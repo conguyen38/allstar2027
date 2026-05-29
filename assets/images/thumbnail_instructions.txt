@@ -1,0 +1,2 @@
+# Social Thumbnail placeholder
+Please replace this file with the 1200x630px image provided in the prompt, named exactly 'thumbnail.png'.
