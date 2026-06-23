@@ -47,37 +47,9 @@
       "source": "/sih/leaderboard-sih.html",
       "destination": "/sih/leaderboard-sih/",
       "permanent": true
-    },
-    {
-      "source": "/allstar-brief/index.html",
-      "destination": "/allstar-brief/",
-      "permanent": true
-    },
-    {
-      "source": "/allstar-brief.html",
-      "destination": "/allstar-brief/",
-      "permanent": true
     }
   ],
   "headers": [
-    {
-      "source": "/allstar-brief",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        }
-      ]
-    },
-    {
-      "source": "/allstar-brief/(.*)",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        }
-      ]
-    },
     {
       "source": "/_astro/(.*)",
       "headers": [
