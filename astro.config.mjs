@@ -4,7 +4,7 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   site: 'https://allstar26.vercel.app',
   build: {
-    format: 'preserve',
+    format: 'directory',
   },
   integrations: [
     tailwind({ applyBaseStyles: false }),

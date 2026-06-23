@@ -8,7 +8,7 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
 <ProgramLayout
   title={title}
   description={description}
-  canonicalPath="/prm/refer-onetrust.html"
+  canonicalPath="/prm/refer-onetrust/"
   program="prm"
   active="refer"
   bodyClass="bg-[#06090f] text-on-surface font-body antialiased"
@@ -626,7 +626,9 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
 
         /* ── Active nav ── */
         (function setActiveNav() {
-            var filename = window.location.pathname.split('/').pop().split('?')[0].split('#')[0] || 'index.html';
+            var filename = window.location.pathname.split('/').filter(Boolean).pop() || 'index.html';
+            filename = filename.split('?')[0].split('#')[0];
+            if (filename.indexOf('.') === -1 && filename !== 'index.html') filename += '.html';
             var map = {
                 'index.html': 'index', '': 'index',
                 'tong-quan-chuong-trinh.html': 'tong-quan',

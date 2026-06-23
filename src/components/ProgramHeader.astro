@@ -5,21 +5,22 @@ interface Props {
 }
 
 const { program, active = 'index' } = Astro.props;
-const leaderboardHref = program === 'prm' ? 'leaderboard-prm.html' : 'leaderboard-sih.html';
-const logoSrc = 'assets/images/Logo%20Allstar.webp';
+const programBase = `/${program}`;
+const leaderboardHref = program === 'prm' ? `${programBase}/leaderboard-prm/` : `${programBase}/leaderboard-sih/`;
+const logoSrc = `${programBase}/assets/images/Logo%20Allstar.webp`;
 const navItems = [
-  { key: 'index', label: 'Trang chủ', href: 'index.html' },
-  { key: 'tong-quan', label: 'Tổng quan chương trình', href: 'tong-quan-chuong-trinh.html' },
-  { key: 'the-le', label: 'Thể lệ', href: 'the-le.html' },
+  { key: 'index', label: 'Trang chủ', href: `${programBase}/` },
+  { key: 'tong-quan', label: 'Tổng quan chương trình', href: `${programBase}/tong-quan-chuong-trinh/` },
+  { key: 'the-le', label: 'Thể lệ', href: `${programBase}/the-le/` },
   { key: 'bxh', label: 'Bảng xếp hạng', href: leaderboardHref },
-  ...(program === 'prm' ? [{ key: 'refer', label: 'Refer căn độc quyền', href: 'refer-onetrust.html' }] : []),
+  ...(program === 'prm' ? [{ key: 'refer', label: 'Refer căn độc quyền', href: `${programBase}/refer-onetrust/` }] : []),
 ] as const;
 ---
 
 <nav class="fixed top-0 w-full z-50 bg-[#0a0e14]/80 backdrop-blur-xl border-b border-white/10 shadow-[0_0_20px_rgba(0,227,253,0.05)]">
   <div class="flex justify-between items-center px-4 md:px-8 h-20 max-w-full mx-auto">
     <div class="flex items-center gap-6">
-      <a href="index.html">
+      <a href={programBase + '/'}>
         <img alt="Star Logo" class="h-14 w-auto object-contain" src={logoSrc} />
       </a>
       <div class="hidden lg:flex items-center gap-8 font-['Open_Sans'] font-bold tracking-tight h-full">

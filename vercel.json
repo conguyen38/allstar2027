@@ -2,6 +2,53 @@
   "framework": "astro",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/prm/index.html",
+      "destination": "/prm/",
+      "permanent": true
+    },
+    {
+      "source": "/prm/tong-quan-chuong-trinh.html",
+      "destination": "/prm/tong-quan-chuong-trinh/",
+      "permanent": true
+    },
+    {
+      "source": "/prm/the-le.html",
+      "destination": "/prm/the-le/",
+      "permanent": true
+    },
+    {
+      "source": "/prm/leaderboard-prm.html",
+      "destination": "/prm/leaderboard-prm/",
+      "permanent": true
+    },
+    {
+      "source": "/prm/refer-onetrust.html",
+      "destination": "/prm/refer-onetrust/",
+      "permanent": true
+    },
+    {
+      "source": "/sih/index.html",
+      "destination": "/sih/",
+      "permanent": true
+    },
+    {
+      "source": "/sih/tong-quan-chuong-trinh.html",
+      "destination": "/sih/tong-quan-chuong-trinh/",
+      "permanent": true
+    },
+    {
+      "source": "/sih/the-le.html",
+      "destination": "/sih/the-le/",
+      "permanent": true
+    },
+    {
+      "source": "/sih/leaderboard-sih.html",
+      "destination": "/sih/leaderboard-sih/",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/_astro/(.*)",
