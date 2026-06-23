@@ -16,14 +16,14 @@ const {
   title,
   description = 'Allstar Club là chương trình loyalty dành cho lực lượng bán Techcombank và OneHousing.',
   canonicalPath = '/',
-  ogImage = 'https://onehousing.club/assets/images/thumbnail.jpg',
+  ogImage = 'https://allstar26.vercel.app/assets/images/thumbnail.jpg',
   bodyClass = 'bg-[#06090f] text-on-surface font-body antialiased',
   htmlClass = 'dark',
   scrollEffects = false,
   scrollRevealMode = 'mixed',
 } = Astro.props;
 
-const canonicalUrl = new URL(canonicalPath, 'https://onehousing.club').toString();
+const canonicalUrl = new URL(canonicalPath, 'https://allstar26.vercel.app').toString();
 const programAssetBase = canonicalPath.startsWith('/prm/')
   ? '/prm'
   : canonicalPath.startsWith('/sih/')

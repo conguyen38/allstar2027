@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://onehousing.club/sitemap.xml
+Sitemap: https://allstar26.vercel.app/sitemap.xml
