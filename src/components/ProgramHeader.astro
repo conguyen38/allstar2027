@@ -1,0 +1,74 @@
+---
+interface Props {
+  program: 'prm' | 'sih';
+  active?: 'index' | 'tong-quan' | 'the-le' | 'bxh' | 'refer';
+}
+
+const { program, active = 'index' } = Astro.props;
+const leaderboardHref = program === 'prm' ? 'leaderboard-prm.html' : 'leaderboard-sih.html';
+const logoSrc = 'assets/images/Logo%20Allstar.webp';
+const navItems = [
+  { key: 'index', label: 'Trang chủ', href: 'index.html' },
+  { key: 'tong-quan', label: 'Tổng quan chương trình', href: 'tong-quan-chuong-trinh.html' },
+  { key: 'the-le', label: 'Thể lệ', href: 'the-le.html' },
+  { key: 'bxh', label: 'Bảng xếp hạng', href: leaderboardHref },
+  ...(program === 'prm' ? [{ key: 'refer', label: 'Refer căn độc quyền', href: 'refer-onetrust.html' }] : []),
+] as const;
+---
+
+<nav class="fixed top-0 w-full z-50 bg-[#0a0e14]/80 backdrop-blur-xl border-b border-white/10 shadow-[0_0_20px_rgba(0,227,253,0.05)]">
+  <div class="flex justify-between items-center px-4 md:px-8 h-20 max-w-full mx-auto">
+    <div class="flex items-center gap-6">
+      <a href="index.html">
+        <img alt="Star Logo" class="h-14 w-auto object-contain" src={logoSrc} />
+      </a>
+      <div class="hidden lg:flex items-center gap-8 font-['Open_Sans'] font-bold tracking-tight h-full">
+        {navItems.map((item) => (
+          <div class="relative group menu-item h-20 flex items-center">
+            <a
+              class:list={[
+                'text-white/70 hover:text-white flex items-center gap-1 transition-colors cursor-pointer',
+                active === item.key && 'nav-active',
+              ]}
+              href={item.href}
+              data-nav={item.key}
+            >
+              {item.label}
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <button
+        id="mobile-menu-btn"
+        onclick="toggleMobileMenu()"
+        class="lg:hidden flex flex-col justify-center gap-[5px] w-10 h-10 rounded-lg hover:bg-white/10 transition-colors p-2"
+        aria-label="Mở menu"
+      >
+        <span id="ham-1" class="block w-full h-0.5 bg-white/80 rounded-full transition-all duration-300 origin-center"></span>
+        <span id="ham-2" class="block w-full h-0.5 bg-white/80 rounded-full transition-all duration-300"></span>
+        <span id="ham-3" class="block w-full h-0.5 bg-white/80 rounded-full transition-all duration-300 origin-center"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div id="mobile-menu" class="hidden fixed inset-0 z-40 lg:hidden">
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+  <div class="absolute top-20 left-0 right-0 bg-[#0a0e14]/97 border-b border-white/10 backdrop-blur-xl px-4 py-6 space-y-1">
+    {navItems.map((item, index) => (
+      <a
+        href={item.href}
+        data-nav={item.key}
+        class:list={[
+          "mobile-nav-link flex items-center gap-3 px-4 py-4 rounded-xl text-white/70 font-bold font-['Open_Sans'] hover:bg-white/5 hover:text-white transition-colors",
+          index < navItems.length - 1 && 'border-b border-white/5',
+          active === item.key && 'nav-active',
+        ]}
+      >
+        {item.label}
+      </a>
+    ))}
+  </div>
+</div>

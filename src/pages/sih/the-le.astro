@@ -1,0 +1,527 @@
+﻿---
+import ProgramLayout from '../../layouts/ProgramLayout.astro';
+
+const title = "Thể Lệ Chương Trình LLB OneHousing - Allstar Club";
+const description = "Chi tiết thời gian ghi nhận, kênh áp dụng và cách thức tính điểm U-Point dành cho Lực lượng bán OneHousing trong chương trình loyalty Allstar Club 2026.";
+---
+
+<ProgramLayout
+  title={title}
+  description={description}
+  canonicalPath="/sih/the-le.html"
+  program="sih"
+  active="the-le"
+  bodyClass="bg-[#06090f] text-on-surface font-body antialiased"
+>
+  <Fragment slot="head">
+<script is:inline type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Thể Lệ Chương Trình LLB OneHousing",
+    "description": "Thời gian ghi nhận, kênh áp dụng và cách tính điểm chương trình loyalty Allstar Club dành cho LLB OneHousing",
+    "publisher": {
+      "@type": "Organization",
+      "name": "OneHousing"
+    }
+  }
+  </script>
+<style>
+    /* ── Hero ── */
+    .hero-banner {
+      background-image: url('/sih/assets/images/Herobanner1.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .hero-overlay {
+      background: linear-gradient(to bottom, rgba(10, 14, 20, 0.8) 0%, rgba(10, 14, 20, 0.2) 50%, rgba(10, 14, 20, 0.8) 100%);
+    }
+
+
+
+    @keyframes ray-pulse {
+      0%, 100% { opacity: 0.35; }
+      50% { opacity: 0.7; }
+    }
+
+    .neon-ray {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
+    }
+
+    @keyframes trophy-glow {
+      0%, 100% { filter: drop-shadow(0 0 28px rgba(255, 209, 108, 0.55)) drop-shadow(0 0 56px rgba(255, 160, 0, 0.28)); }
+      50% { filter: drop-shadow(0 0 56px rgba(255, 209, 108, 0.9)) drop-shadow(0 0 100px rgba(255, 160, 0, 0.5)); }
+    }
+
+    .trophy-anim {
+      animation: float 5s ease-in-out infinite, trophy-glow 3.5s ease-in-out infinite;
+    }
+
+    /* ── Glass card (Dark mode) ── */
+    .glass-card {
+      background: rgba(32, 38, 47, 0.4);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(68, 72, 79, 0.3);
+      border-left: 1px solid rgba(68, 72, 79, 0.3);
+    }
+
+    /* ── Tables (Dark mode) ── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+
+    .data-table th {
+      background: rgba(255, 255, 255, 0.03);
+      color: rgba(255, 255, 255, 0.4);
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.875rem;
+      padding: 1rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .data-table td {
+      padding: 1rem 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: rgba(255, 255, 255, 0.7);
+      vertical-align: middle;
+      line-height: 1.6;
+    }
+
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .data-table tbody tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .row-danger td {
+      background: rgba(255, 113, 104, 0.08) !important;
+      color: #ff7168 !important;
+    }
+
+    .row-danger td:first-child {
+      border-left: 3px solid #ff7168;
+    }
+
+    .badge-th {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 2.5rem;
+      padding: 2px 8px;
+      border-radius: 0.375rem;
+      font-size: 0.875rem;
+      font-weight: 800;
+      font-family: 'Open Sans', sans-serif;
+      text-transform: uppercase;
+    }
+
+    .badge-th1 { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+    .badge-th2 { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+    .badge-th3 { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+
+    /* ── Misc boxes ── */
+    .info-box {
+      background: rgba(59, 130, 246, 0.05);
+      border: 1px solid rgba(59, 130, 246, 0.15);
+      border-radius: 0.75rem;
+      padding: 1rem 1.125rem;
+    }
+
+    .example-box {
+      background: rgba(245, 158, 11, 0.05);
+      border: 1px solid rgba(245, 158, 11, 0.15);
+      border-radius: 0.75rem;
+      padding: 1rem 1.125rem;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 12px;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .chip-gold { background: #ffd16c; color: #604700; }
+    .chip-cyan { background: #00e3fd; color: #004a54; }
+    .chip-red { background: #ff7168; color: #601410; }
+
+    .list-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .list-item:last-child { border-bottom: none; }
+
+    .list-num {
+      flex-shrink: 0;
+      width: 1.6rem;
+      height: 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ffd16c, #ff9500);
+      color: #604700;
+      border-radius: 50%;
+      font-size: 0.875rem;
+      font-weight: 800;
+      font-family: 'Open Sans', sans-serif;
+      margin-top: 1px;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* ── Neon light trails ── */
+    .trails-svg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.45;
+    }
+
+    @keyframes trail-move {
+      0% {
+        stroke-dashoffset: 1000;
+        opacity: 0;
+      }
+      20% { opacity: 1; }
+      80% { opacity: 0.6; }
+      100% {
+        stroke-dashoffset: 0;
+        opacity: 0;
+      }
+    }
+
+    .trail-line {
+      stroke-dasharray: 400 600;
+      animation: trail-move 6s linear infinite;
+    }
+
+    .trail-line:nth-child(2) { animation-delay: 1.5s; animation-duration: 7s; }
+    .trail-line:nth-child(3) { animation-delay: 3s; animation-duration: 5.5s; }
+    .trail-line:nth-child(4) { animation-delay: 0.8s; animation-duration: 8s; }
+    .trail-line:nth-child(5) { animation-delay: 2.2s; animation-duration: 6.5s; }
+  </style>
+  </Fragment>
+
+  <Fragment slot="beforeHeader">
+<!-- Neon light trails -->
+    <svg class="trails-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none"
+        xmlns="http://www.w3.org/2000/svg" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; opacity:0.45;">
+        <line class="trail-line" x1="-100" y1="200" x2="1540" y2="180" stroke="rgba(0,227,253,0.4)" stroke-width="1" />
+        <line class="trail-line" x1="-100" y1="450" x2="1540" y2="420" stroke="rgba(255,209,108,0.35)" stroke-width="0.8" />
+        <line class="trail-line" x1="-100" y1="680" x2="1540" y2="700" stroke="rgba(0,100,255,0.3)" stroke-width="1.2" />
+        <line class="trail-line" x1="200" y1="-50" x2="180" y2="950" stroke="rgba(0,227,253,0.25)" stroke-width="0.8" />
+        <line class="trail-line" x1="1100" y1="-50" x2="1120" y2="950" stroke="rgba(255,209,108,0.2)" stroke-width="1" />
+    </svg>
+  </Fragment>
+
+<main>
+
+    <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+    <section class="relative min-h-[300px] md:h-[400px] flex items-center justify-center overflow-hidden hero-banner">
+      <!-- Overlay for better text readability -->
+      <div class="absolute inset-0 z-0 hero-overlay"></div>
+
+
+
+      <!-- Ambient glows -->
+      <div
+        class="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-[#ffd16c]/5 rounded-full blur-[120px] pointer-events-none">
+      </div>
+      <div
+        class="absolute bottom-1/3 right-1/4 w-[300px] h-[300px] bg-[#00e3fd]/5 rounded-full blur-[100px] pointer-events-none">
+      </div>
+
+      <!-- Hero content — centered title only -->
+      <div class="relative z-10 w-full px-4 flex items-center justify-center mt-10 md:mt-16">
+        <h1 class="font-headline font-bold text-white text-center uppercase text-[36px] leading-[1.3] md:text-[60px] md:leading-[1.1]"
+          style="text-shadow: 0 2px 16px rgba(0,0,0,0.45);">
+          THỂ LỆ
+        </h1>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ BODY ═══════════════════════════════ -->
+    <section class="max-w-5xl mx-auto px-4 md:px-8 py-12 md:py-16 space-y-12">
+
+      <!-- ─── SECTION I ─── -->
+      <div id="sec-1">
+        <h2 class="text-white text-2xl md:text-3xl font-bold mb-6 font-headline flex items-center gap-3">
+          <span class="w-1.5 h-8 bg-primary rounded-full"></span>
+          I. Thời gian ghi nhận và chi trả
+        </h2>
+        <div class="glass-card p-6 md:p-10 rounded-3xl shadow-xl">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Thời gian ghi nhận -->
+            <div class="info-box flex items-start gap-3">
+              <span class="material-symbols-outlined text-blue-400 mt-0.5 text-[22px]">calendar_today</span>
+              <div>
+                <p class="text-white/40 text-sm font-['Open_Sans'] uppercase tracking-wider mb-1">Thời gian ghi
+                  nhận</p>
+                <p class="text-white font-bold font-['Open_Sans'] text-base">01/02/2026 – 31/12/2026</p>
+              </div>
+            </div>
+            <!-- Thời gian chi trả -->
+            <div class="example-box flex items-start gap-3">
+              <span class="material-symbols-outlined text-amber-400 mt-0.5 text-[22px]">payments</span>
+              <div>
+                <p class="text-white/40 text-sm font-['Open_Sans'] uppercase tracking-wider mb-1">Thời gian chi
+                  trả</p>
+                <p class="text-primary font-bold font-['Open_Sans'] text-base">2 đợt trong năm</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── SECTION II ─── -->
+      <div id="sec-2">
+        <h2 class="text-white text-2xl md:text-3xl font-bold mb-6 font-headline flex items-center gap-3">
+          <span class="w-1.5 h-8 bg-primary rounded-full"></span>
+          II. Kênh áp dụng
+        </h2>
+        <div class="glass-card p-6 md:p-10 rounded-3xl shadow-xl">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="rounded-xl border border-green-400/20 bg-green-400/5 p-5">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="material-symbols-outlined text-green-400 text-[20px]">check_circle</span>
+                <p class="text-green-400 font-['Open_Sans'] font-bold text-sm uppercase tracking-wider">Áp dụng
+                  cho</p>
+              </div>
+              <ul class="space-y-2">
+                <li class="flex items-start gap-2 text-sm text-white/70">
+                  <span class="w-1.5 h-1.5 rounded-full bg-green-400 mt-2 shrink-0"></span>
+                  PNS - TCB, Quỹ chéo
+                </li>
+              </ul>
+            </div>
+            <div class="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="material-symbols-outlined text-red-400 text-[20px]">cancel</span>
+                <p class="text-red-400 font-['Open_Sans'] font-bold text-sm uppercase tracking-wider">Ngoại trừ
+                </p>
+              </div>
+              <ul class="space-y-2">
+                <li class="flex items-start gap-2 text-sm text-white/70">
+                  <span class="w-1.5 h-1.5 rounded-full bg-red-400 mt-2 shrink-0"></span>
+                  Căn CBVN thuộc Hệ sinh thái
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── SECTION III ─── -->
+      <div id="sec-3">
+        <h2 class="text-white text-2xl md:text-3xl font-bold mb-6 font-headline flex items-center gap-3">
+          III. Điều kiện áp dụng
+        </h2>
+        <div class="glass-card p-6 md:p-10 rounded-3xl shadow-xl">
+          <div class="space-y-4 mb-6">
+            <div>
+              <p class="text-sm text-white/70 leading-relaxed">
+                <strong class="text-white">1.</strong> Áp dụng đối với <strong class="text-white">các căn
+                  được ráp (HBK) trong thời gian từ 01/02/2026 đến
+                  31/12/2026.</strong>
+              </p>
+            </div>
+            <div>
+              <p class="text-sm text-white/70 leading-relaxed">
+                <strong class="text-white">2.</strong> Giá trị GMV tính thưởng là <strong
+                  class="text-white">giá trị căn hộ trước VAT và KPBT (giá sau khi đối soát với CĐT).</strong>.
+              </p>
+            </div>
+            <div>
+              <p class="text-sm text-white/70 leading-relaxed">
+                <strong class="text-white">3. Điểm tạm tính</strong>
+                <br>- Được ghi nhận tại thời điểm ráp căn thành công (HBK – OTP).
+                <br>- Điểm sẽ bị thu hồi nếu giao dịch không chuyển đổi thành HĐMB.
+              </p>
+            </div>
+            <div>
+              <p class="text-sm text-white/70 leading-relaxed">
+                <strong class="text-white">4. Điểm chính thức</strong>
+                <br>- Được ghi nhận khi căn đã chuyển đổi thành HĐMB.
+                <br>- Đã được đối soát bởi CĐT.
+              </p>
+            </div>
+            <div>
+              <p class="text-sm text-white/70 leading-relaxed">
+                <strong class="text-white">5.</strong> U-Point được quy đổi từ GMV NET và <strong
+                  class="text-white">làm tròn đến 1 chữ số thập phân</strong> theo nguyên tắc làm tròn xuống.</p>
+            </div>
+          </div>
+
+          <!-- Example box -->
+          <div class="example-box flex items-start gap-3">
+            <span class="material-symbols-outlined text-amber-400 text-[20px] mt-0.5 shrink-0">lightbulb</span>
+            <div>
+              <p class="text-amber-400 font-['Open_Sans'] font-bold text-sm uppercase tracking-wider mb-1">Ví dụ
+                minh họa</p>
+              <p class="text-sm text-white/70 leading-relaxed">
+                GMV NET = <strong class="text-white">5.67 tỷ VNĐ</strong>
+                &nbsp;→&nbsp;
+                <strong class="text-tertiary">5.6 U-Point</strong>
+                &nbsp;<span class="text-white/50">(làm tròn 1 chữ số thập phân, làm tròn xuống)</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── SECTION IV ─── -->
+      <div id="sec-4">
+        <h2 class="text-white text-2xl md:text-3xl font-bold mb-6 font-headline flex items-center gap-3">
+          IV. Cách thức tính điểm và tỷ lệ chi trả
+        </h2>
+        <div class="glass-card p-6 md:p-10 rounded-3xl shadow-xl">
+          <!-- Tỷ lệ tổng quan -->
+          <div class="grid grid-cols-2 gap-4 mb-8">
+            <div class="rounded-xl bg-blue-400/5 border border-secondary/20 p-4 text-center">
+              <p class="text-4xl font-black font-['Open_Sans'] text-[#4ade80]">80%</p>
+              <p class="text-sm text-white/40 mt-1 font-['Open_Sans'] uppercase tracking-wider">Chi trả theo kỳ
+                chi trả gần nhất</p>
+            </div>
+            <div class="rounded-xl bg-gray-500/5 border border-gray-500/20 p-4 text-center">
+              <p class="text-4xl font-black font-['Open_Sans'] text-primary">20%</p>
+              <p class="text-sm text-white/40 mt-1 font-['Open_Sans'] uppercase tracking-wider">Tạm khóa · Chi
+                trả có điều kiện</p>
+            </div>
+          </div>
+
+          <!-- Table 1: 80% khả dụng -->
+          <div class="mb-8">
+            <div class="flex items-center gap-2 mb-4">
+              <p class="text-sm font-bold text-white/80 font-['Open_Sans'] uppercase"><strong class="text-white">1.</strong> CHI TRẢ 80% U-POINT KHẢ DỤNG</p>
+            </div>
+            <div class="overflow-x-auto rounded-xl">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Kỳ Allstar</th>
+                    <th>Thời gian chi trả</th>
+                    <th style="text-align: right;">Tỷ lệ chi trả</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="chip chip-gold">H1</span></td>
+                    <td class="text-white font-semibold">Kỳ chi trả gần nhất sau khi có kết quả đánh giá Hiệu quả
+                      công việc </td>
+                    <td class="text-white/40" style="text-align: right;">80% H1</td>
+                  </tr>
+                  <tr>
+                    <td><span class="chip chip-gold">H2</span></td>
+                    <td class="text-white font-semibold">Kỳ chi trả gần nhất sau khi có kết quả đánh giá Hiệu quả
+                      công việc </td>
+                    <td class="text-white/40" style="text-align: right;">80% H2</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Table 2: 20% tạm khóa H1 -->
+          <div>
+            <div class="flex items-center gap-2 mb-4">
+              <p class="text-sm font-bold text-white/80 font-['Open_Sans']"><strong class="text-white">2.</strong> CHI TRẢ 20% U-POINT TẠM KHÓA</p>
+            </div>
+            <div class="overflow-x-auto rounded-xl">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="width:80px">Trường hợp</th>
+                    <th>Điều kiện</th>
+                    <th>Thời gian & Hình thức chi trả</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="badge-th badge-th1">TH1</span></td>
+                    <td class="text-white/70">H2/2026 phát sinh ít nhất <strong class="text-white">1 HBK</strong>
+                    </td>
+                    <td class="text-white/70">20% còn lại của H1/2026 vào kỳ chi trả của <strong
+                        class="text-white">H2/2026</strong></td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge-th badge-th2">TH2</span></td>
+                    <td class="text-white/70">H1/2027 phát sinh ít nhất <strong class="text-white">1 HBK</strong>
+                    </td>
+                    <td class="text-white/70">20% còn lại của H2/2027 vào kỳ chi trả của <strong
+                        class="text-white">H1/2027</strong></td>
+                  </tr>
+                  <tr class="text-gray-400">
+                    <td><span class="badge-th bg-gray-500/20 text-gray-400">TH3</span></td>
+                    <td>H2/2026 hoặc H1/2027 <strong class="text-white">không phát sinh HBK</strong></td>
+                    <td><strong class="text-white">20% mỗi kỳ sẽ không chi trả và được chuyển về quỹ thưởng chung cho LLB,
+                      </strong>dành cho Top LLB có GMV cao nhất</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+
+<script is:inline>
+    /* ────────────────── Active nav sync ────────────────── */
+    function setActiveNav() {
+      var filename = window.location.pathname.split('/').filter(Boolean).pop() || 'index.html';
+      if (filename.indexOf('.') === -1 && filename !== 'index.html') filename += '.html';
+      var map = {
+        'index.html': 'index', 'index': 'index', '': 'index',
+        'tong-quan-chuong-trinh.html': 'tong-quan', 'tong-quan-chuong-trinh': 'tong-quan',
+        'the-le.html': 'the-le', 'the-le': 'the-le',
+        'leaderboard-sih.html': 'bxh', 'leaderboard-sih': 'bxh',
+      };
+      var active = map[filename] || 'index';
+      document.querySelectorAll('[data-nav]').forEach(function (el) {
+        if (el.dataset.nav === active) {
+          el.classList.add('nav-active');
+        } else {
+          el.classList.remove('nav-active');
+        }
+      });
+    }
+    setActiveNav();
+  </script>
+  
+</ProgramLayout>
+

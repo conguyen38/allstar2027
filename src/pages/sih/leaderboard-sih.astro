@@ -1,0 +1,925 @@
+﻿---
+import ProgramLayout from '../../layouts/ProgramLayout.astro';
+
+const title = "Bảng Xếp Hạng LLB OneHousing - Allstar Club";
+const description = "Theo dõi bảng xếp hạng trực tiếp của Lực lượng bán (LLB) OneHousing khu vực miền Bắc và miền Nam trong chương trình loyalty Allstar Club. Cập nhật U-Point real-time.";
+---
+
+<ProgramLayout
+  title={title}
+  description={description}
+  canonicalPath="/sih/leaderboard-sih.html"
+  program="sih"
+  active="bxh"
+  bodyClass="page-bg text-on-surface antialiased"
+>
+  <Fragment slot="head">
+<script is:inline type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Bảng Xếp Hạng LLB OneHousing - Allstar Club",
+    "description": "Bảng xếp hạng trực tiếp chương trình loyalty Allstar Club dành cho Lực lượng bán OneHousing",
+    "publisher": {
+      "@type": "Organization",
+      "name": "OneHousing"
+    }
+  }
+  </script>
+<style is:global>
+
+    /* ── Page background ── */
+    body {
+      background: #06091a;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .page-bg {
+      background:
+        radial-gradient(ellipse 80% 50% at 20% 20%, rgba(0, 80, 180, 0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 10%, rgba(0, 227, 253, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 60% at 50% 80%, rgba(80, 0, 180, 0.12) 0%, transparent 60%),
+        #06091a;
+      min-height: 100vh;
+    }
+
+    /* ── Neon light trails ── */
+    .trails-svg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.45;
+    }
+
+    @keyframes trail-move {
+      0% {
+        stroke-dashoffset: 1000;
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 1;
+      }
+
+      80% {
+        opacity: 0.6;
+      }
+
+      100% {
+        stroke-dashoffset: 0;
+        opacity: 0;
+      }
+    }
+
+    .trail-line {
+      stroke-dasharray: 400 600;
+      animation: trail-move 6s linear infinite;
+    }
+
+    .trail-line:nth-child(2) {
+      animation-delay: 1.5s;
+      animation-duration: 7s;
+    }
+
+    .trail-line:nth-child(3) {
+      animation-delay: 3s;
+      animation-duration: 5.5s;
+    }
+
+    .trail-line:nth-child(4) {
+      animation-delay: 0.8s;
+      animation-duration: 8s;
+    }
+
+    .trail-line:nth-child(5) {
+      animation-delay: 2.2s;
+      animation-duration: 6.5s;
+    }
+
+    /* ── Glassmorphism ── */
+    .glass {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+    }
+
+    .glass-gold {
+      background: rgba(255, 209, 108, 0.06);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 209, 108, 0.25);
+    }
+
+    .glass-silver {
+      background: rgba(200, 200, 220, 0.05);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(200, 200, 220, 0.2);
+    }
+
+    .glass-bronze {
+      background: rgba(180, 100, 40, 0.06);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(205, 127, 50, 0.22);
+    }
+
+    /* ── Podium badges ── */
+    .badge-gold {
+      background: linear-gradient(135deg, #fff8c5, #ffd700, #b8860b);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .badge-silver {
+      background: linear-gradient(135deg, #f0f0f0, #c0c0c0, #808080);
+      box-shadow: 0 0 16px rgba(192, 192, 192, 0.5), 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .badge-bronze {
+      background: linear-gradient(135deg, #f5deb3, #cd7f32, #8b4513);
+      box-shadow: 0 0 16px rgba(205, 127, 50, 0.5), 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    /* ── Glow effects ── */
+    @keyframes pulse-gold {
+
+      0%,
+      100% {
+        box-shadow: 0 0 20px rgba(255, 209, 108, 0.3);
+      }
+
+      50% {
+        box-shadow: 0 0 50px rgba(255, 209, 108, 0.7), 0 0 80px rgba(255, 160, 0, 0.3);
+      }
+    }
+
+    @keyframes pulse-silver {
+
+      0%,
+      100% {
+        box-shadow: 0 0 16px rgba(200, 200, 220, 0.2);
+      }
+
+      50% {
+        box-shadow: 0 0 35px rgba(200, 200, 220, 0.5);
+      }
+    }
+
+    .glow-gold {
+      animation: pulse-gold 3s ease-in-out infinite;
+    }
+
+    .glow-silver {
+      animation: pulse-silver 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse-bronze {
+      0%, 100% { box-shadow: 0 0 16px rgba(205, 127, 50, 0.2); }
+      50% { box-shadow: 0 0 35px rgba(205, 127, 50, 0.5); }
+    }
+
+    .glow-bronze {
+      animation: pulse-bronze 3s ease-in-out infinite;
+    }
+
+    /* ── Avatar ── */
+    .avatar {
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .podium-card {
+      width: 100%;
+      max-width: 320px;
+      min-height: 150px;
+      border-radius: 1rem;
+      display: grid;
+      grid-template-rows: auto minmax(1.25em, auto) 1.35em auto;
+      align-content: center;
+      justify-items: center;
+      padding: 1rem 0.75rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      row-gap: 0.35rem;
+    }
+
+    .podium-avatar {
+      width: 3rem;
+      height: 3rem;
+      margin: 0 auto;
+    }
+
+    .podium-badge {
+      position: absolute;
+      right: -0.25rem;
+      bottom: -0.25rem;
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.625rem;
+      font-weight: 900;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .podium-name {
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      line-height: 1.25;
+      min-height: 1.25em;
+      width: 100%;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .podium-branch {
+      width: 100%;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.6875rem;
+      line-height: 1.35;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .podium-score {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (min-width: 768px) {
+      .podium-card {
+        flex: 1 1 0%;
+        max-width: 220px;
+        min-height: 0;
+        grid-template-rows: 4rem 2.5em 1.4em auto;
+        align-content: center;
+        padding: 1rem 0.75rem 1.25rem;
+        row-gap: 0.45rem;
+      }
+
+      .podium-card.rank-card-1 {
+        height: 15rem;
+        order: 2;
+      }
+
+      .podium-card.rank-card-2 {
+        height: 14.5rem;
+        order: 1;
+      }
+
+      .podium-card.rank-card-3 {
+        height: 14.25rem;
+        order: 3;
+      }
+
+      .podium-avatar {
+        width: 4rem;
+        height: 4rem;
+      }
+
+      .podium-badge {
+        width: 1.5rem;
+        height: 1.5rem;
+        font-size: 0.875rem;
+      }
+
+      .podium-name {
+        font-size: 0.875rem;
+        min-height: 2.5em;
+        -webkit-line-clamp: 2;
+      }
+
+      .podium-branch {
+        font-size: 0.875rem;
+      }
+    }
+
+    /* ── Table rows ── */
+    .lb-row {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      transition: background 0.15s;
+    }
+
+    .lb-row:hover {
+      background: rgba(0, 227, 253, 0.04);
+    }
+
+    .lb-row:last-child {
+      border-bottom: none;
+    }
+
+    /* ── Rank markers ── */
+    .rank-1 {
+      background: linear-gradient(135deg, #ffd700, #b8860b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .rank-2 {
+      background: linear-gradient(135deg, #e8e8e8, #808080);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .rank-3 {
+      background: linear-gradient(135deg, #cd7f32, #8b4513);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Search input ── */
+    .search-input {
+      background-color: #0d1117 !important;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff !important;
+      outline: none !important;
+      transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+      -webkit-appearance: none;
+    }
+
+    .search-input::placeholder {
+      color: rgba(255, 255, 255, 0.3) !important;
+    }
+
+    .search-input:focus {
+      background-color: #06090f !important;
+      border-color: rgba(0, 227, 253, 0.8) !important;
+      box-shadow: 0 0 20px rgba(0, 227, 253, 0.25), inset 0 0 10px rgba(0, 227, 253, 0.05) !important;
+    }
+
+    /* ── Region toggle ── */
+    .region-btn {
+      transition: all 0.2s;
+    }
+
+    .region-btn.active {
+      background: linear-gradient(135deg, #ff9500, #ffd16c);
+      color: #4a2800;
+    }
+
+    .region-btn:not(.active) {
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(241, 243, 252, 0.6);
+    }
+
+    .region-btn:not(.active):hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #f1f3fc;
+    }
+
+    /* ── Period selection ── */
+    .period-btn {
+      transition: all 0.2s;
+    }
+
+    .period-btn.active {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffd16c;
+      box-shadow: inset 0 0 10px rgba(255, 209, 108, 0.1);
+    }
+
+    .period-btn:not(.active) {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .period-btn:not(.active):hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* ── Tra cứu button ── */
+    .tracuu-btn {
+      background: linear-gradient(135deg, #ff6d00, #ffd16c);
+      color: #4a2800;
+      font-weight: 800;
+      transition: all 0.25s;
+    }
+
+    .tracuu-btn:hover {
+      box-shadow: 0 0 20px rgba(255, 160, 0, 0.5), 0 0 40px rgba(255, 100, 0, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .tracuu-btn:active {
+      transform: translateY(0);
+    }
+
+    /* ── Pagination ── */
+    .page-btn {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 700;
+      font-family: 'Open Sans', sans-serif;
+      transition: all 0.15s;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(241, 243, 252, 0.5);
+      background: transparent;
+    }
+
+    .page-btn:hover {
+      background: rgba(255, 255, 255, 0.07);
+      color: #f1f3fc;
+    }
+
+    .page-btn.active {
+      background: linear-gradient(135deg, #ff9500, #ffd16c);
+      color: #4a2800;
+      border-color: transparent;
+    }
+
+    /* ── Points highlight ── */
+    .pts {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 800;
+      color: #ffd16c;
+    }
+
+    /* ── Crown on #1 ── */
+    @keyframes bounce-slow {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-3deg);
+      }
+
+      50% {
+        transform: translateY(-4px) rotate(3deg);
+      }
+    }
+
+    .crown {
+      animation: bounce-slow 2.5s ease-in-out infinite;
+      display: inline-block;
+    }
+
+    /* ── Scroll ── */
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .loading-spinner {
+      animation: spin 0.8s linear infinite;
+    }
+
+  </style>
+  </Fragment>
+
+  <Fragment slot="beforeHeader">
+<!-- Neon light trails -->
+  <svg class="trails-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none"
+    xmlns="http://www.w3.org/2000/svg">
+    <line class="trail-line" x1="-100" y1="200" x2="1540" y2="180" stroke="rgba(0,227,253,0.4)" stroke-width="1" />
+    <line class="trail-line" x1="-100" y1="450" x2="1540" y2="420" stroke="rgba(255,209,108,0.35)" stroke-width="0.8" />
+    <line class="trail-line" x1="-100" y1="680" x2="1540" y2="700" stroke="rgba(0,100,255,0.3)" stroke-width="1.2" />
+    <line class="trail-line" x1="200" y1="-50" x2="180" y2="950" stroke="rgba(0,227,253,0.25)" stroke-width="0.8" />
+    <line class="trail-line" x1="1100" y1="-50" x2="1120" y2="950" stroke="rgba(255,209,108,0.2)" stroke-width="1" />
+  </svg>
+  </Fragment>
+
+<main class="relative z-10 pt-20">
+
+    <!-- ═══════════════ PAGE HEADER ═══════════════ -->
+    <div class="max-w-6xl mx-auto px-4 md:px-8 pt-10 pb-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span
+              class="inline-flex items-center gap-1 text-sm font-bold font-['Open_Sans'] uppercase  text-white border border-secondary/30 rounded-full px-3 py-0.5">
+              <span class="material-symbols-outlined text-sm">leaderboard</span>
+              Live Rankings
+            </span>
+          </div>
+          <h1 class="font-['Open_Sans'] font-black text-2xl md:text-3xl text-white tracking-tight">
+            Bảng Xếp Hạng <span class="text-primary">LLB OneHousing</span>
+          </h1>
+          <p class="text-white/40 text-sm mt-1 font-['Open_Sans']">Allstar Club · Kỳ 2026 · Cập nhật tự động</p>
+        </div>
+        <div class="flex items-center gap-3 flex-wrap">
+          <!-- Region toggle -->
+          <div class="flex items-center gap-1 p-1 rounded-xl glass">
+            <button
+              class="region-btn active rounded-lg px-4 py-2 text-sm font-bold font-['Open_Sans'] uppercase tracking-wider"
+              onclick="switchRegion('north', this)">
+              Miền Bắc
+            </button>
+            <button
+              class="region-btn rounded-lg px-4 py-2 text-sm font-bold font-['Open_Sans'] uppercase tracking-wider"
+              onclick="switchRegion('south', this)">
+              Miền Nam
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ TOP 3 PODIUM ═══════════════ -->
+    <div class="max-w-6xl mx-auto px-4 md:px-8 py-6">
+      <div id="podium" class="flex flex-col md:flex-row items-center md:items-end justify-center gap-4 md:gap-6">
+        <!-- Rendered by JS -->
+        <div class="text-center text-white/30 text-sm py-8 w-full" id="podium-loading">
+          <span class="material-symbols-outlined loading-spinner text-3xl block mx-auto mb-2">refresh</span>
+          Đang tải dữ liệu...
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ LEADERBOARD TABLE ═══════════════ -->
+    <div class="max-w-6xl mx-auto px-4 md:px-8 pb-16">
+      <div class="glass rounded-2xl overflow-hidden">
+
+        <!-- Table toolbar -->
+        <div
+          class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 px-5 py-4 border-b border-white/5">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-[20px]">table_chart</span>
+            <span class="font-['Open_Sans'] font-bold text-white text-sm uppercase tracking-wider">Xếp hạng chi tiết</span>
+            <span id="total-badge"
+              class="text-[11px] font-bold bg-white/5 text-white/40 rounded-full px-2.5 py-1 font-['Open_Sans']">—
+              thành viên</span>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto">
+            <!-- Period Selection -->
+            <div class="flex items-center gap-1 p-1 rounded-xl glass w-full sm:w-auto overflow-x-auto no-scrollbar">
+              <button
+                class="period-btn active flex-1 sm:flex-none whitespace-nowrap rounded-lg px-3 py-1.5 text-[10px] font-bold font-['Open_Sans'] uppercase tracking-tight transition-all"
+                onclick="switchPeriod(1, this)">
+                Kỳ 1
+              </button>
+              <button
+                class="period-btn flex-1 sm:flex-none whitespace-nowrap rounded-lg px-3 py-1.5 text-[10px] font-bold font-['Open_Sans'] uppercase tracking-tight transition-all"
+                onclick="switchPeriod(2, this)">
+                Kỳ 2
+              </button>
+            </div>
+
+            <!-- Search -->
+            <div class="relative w-full sm:w-64">
+              <span
+                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-white/30">search</span>
+              <input id="search-input" type="text" placeholder="Tìm kiếm tên thành viên..."
+                class="search-input w-full pl-9 pr-4 py-2 rounded-xl text-sm" oninput="onSearch(this.value)">
+            </div>
+          </div>
+        </div>
+
+        <!-- Table header -->
+        <div
+          class="grid grid-cols-[3rem_1fr_auto] md:grid-cols-[3rem_18rem_1fr_8rem_7rem] gap-0 px-5 py-3 text-sm font-bold font-['Open_Sans'] uppercase  text-white/30 border-b border-white/5">
+          <span>#</span>
+          <span>Thành viên</span>
+          <span class="hidden md:block">Team</span>
+          <span class="hidden md:block">Cập nhật</span>
+          <span class="text-right">Điểm số</span>
+        </div>
+
+        <!-- Table body -->
+        <div id="table-body">
+          <!-- Rendered by JS -->
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex items-center justify-between px-5 py-4 border-t border-white/5">
+          <p id="pagination-info" class="text-sm text-white/30 font-['Open_Sans']"></p>
+          <div id="pagination-btns" class="flex items-center gap-1"></div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+
+  <!-- Footer -->
+
+<script is:inline>
+    /* ══════════════════════════════════════════════════════
+       GOOGLE SHEET – CSV INTEGRATION
+       ──────────────────────────────────────────────────────
+       Cách lấy CSV URL từ Google Sheet:
+       1. Mở Google Sheet → File → Share → Publish to web
+       2. Chọn tab sheet cần dùng (vd: "Sheet1")
+       3. Chọn định dạng "Comma-separated values (.csv)"
+       4. Nhấn "Publish" → Copy URL được cấp
+       5. Dán URL vào biến CSV_URL bên dưới
+       6. Cấu trúc sheet (hàng 1 là header, bỏ qua tự động):
+          Cột A=Tên, B=Team, C=Cập nhật, D=Điểm số
+    ══════════════════════════════════════════════════════ */
+    const CSV_URLS = {
+      north: {
+        1: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQBTL76O7PcIcwvfG9ZDkxXWh0IGaPUwGOJPiLRT0qO1a_3rb1rGORI55OSUiGebqQyv6ojaaggp0Mf/pub?gid=675862476&single=true&output=csv',
+        2: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQBTL76O7PcIcwvfG9ZDkxXWh0IGaPUwGOJPiLRT0qO1a_3rb1rGORI55OSUiGebqQyv6ojaaggp0Mf/pub?gid=2142241167&single=true&output=csv'
+      },
+      south: {
+        1: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQBTL76O7PcIcwvfG9ZDkxXWh0IGaPUwGOJPiLRT0qO1a_3rb1rGORI55OSUiGebqQyv6ojaaggp0Mf/pub?gid=847319760&single=true&output=csv',
+        2: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQBTL76O7PcIcwvfG9ZDkxXWh0IGaPUwGOJPiLRT0qO1a_3rb1rGORI55OSUiGebqQyv6ojaaggp0Mf/pub?gid=1260015118&single=true&output=csv'
+      }
+    };
+
+
+    /* ────────────────── State ────────────────── */
+    let allData = [];
+    let filteredData = [];
+    let currentPage = 1;
+    let currentRegion = 'north';
+    let currentPeriod = 1;
+    const PAGE_SIZE = 10;
+
+    /* ────────────────── Init ────────────────── */
+    window.addEventListener('DOMContentLoaded', () => {
+      fetchData(currentRegion, currentPeriod);
+    });
+
+    /* ────────────────── Fetch CSV from Google Sheet ────────────────── */
+    async function fetchData(region, period) {
+      try {
+        // Show loading state
+        document.getElementById('podium').innerHTML = `
+          <div class="text-center text-white/30 text-sm py-8 w-full" id="podium-loading">
+            <span class="material-symbols-outlined loading-spinner text-3xl block mx-auto mb-2">refresh</span>
+            Đang tải dữ liệu...
+          </div>
+        `;
+        document.getElementById('table-body').innerHTML = '';
+        
+        const res = await fetch(CSV_URLS[region][period]);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const text = await res.text();
+        const parsed = parseCSV(text);
+        parsed.sort((a, b) => b.points - a.points);
+        loadData(parsed);
+      } catch (e) {
+        console.error('CSV fetch error:', e);
+        loadData([]);
+      }
+    }
+
+    /* ────────────────── CSV Parser ────────────────── */
+    function parseCSV(text) {
+      const lines = text.trim().split('\n');
+      // Skip header row (row 0), parse from row 1
+      const rows = lines.slice(1);
+      const result = [];
+      for (const line of rows) {
+        const cols = splitCSVLine(line);
+        const name    = (cols[0] ?? '').trim();
+        const team    = (cols[1] ?? '').trim();
+        const points  = parseFloat((cols[2] ?? '0').replace(/[^0-9.]/g, '')) || 0;
+        const updated = (cols[3] ?? '').trim();
+        if (name) result.push({ name, team, updated, points });
+      }
+      return result;
+    }
+
+    // Handles quoted fields with commas inside (RFC 4180)
+    function splitCSVLine(line) {
+      const result = [];
+      let cur = '', inQuote = false;
+      for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        if (ch === '"') {
+          if (inQuote && line[i + 1] === '"') { cur += '"'; i++; }
+          else inQuote = !inQuote;
+        } else if (ch === ',' && !inQuote) {
+          result.push(cur); cur = '';
+        } else {
+          cur += ch;
+        }
+      }
+      result.push(cur);
+      return result;
+    }
+
+    /* ────────────────── Load & render ────────────────── */
+    function loadData(data) {
+      allData = data.map((d, i) => ({ ...d, rank: i + 1 }));
+      filteredData = [...allData];
+      renderPodium(allData.slice(0, 3));
+      renderTable();
+    }
+
+    /* ────────────────── Avatar URL ────────────────── */
+    function avatarUrl(name, rank) {
+      const colors = ['1a1a2e', '1a2e1a', '2e1a1a', '1a1f2e', '2a1a2e'];
+      const bg = colors[(name.charCodeAt(0) || 0) % colors.length];
+      return `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=${bg}&color=ffffff&bold=true&size=64`;
+    }
+
+    /* ────────────────── Render Podium ────────────────── */
+    function renderPodium(top3) {
+      const podium = document.getElementById('podium');
+      podium.innerHTML = '';
+      if (!top3.length) return;
+
+      const order = [1, 0, 2]; // display: 2nd, 1st, 3rd (Desktop)
+      const configs = [
+        { glassClass: 'glass-gold', badgeClass: 'badge-gold', rankClass: 'rank-card-1', glowClass: 'glow-gold' },
+        { glassClass: 'glass-silver', badgeClass: 'badge-silver', rankClass: 'rank-card-2', glowClass: 'glow-silver' },
+        { glassClass: 'glass-bronze', badgeClass: 'badge-bronze', rankClass: 'rank-card-3', glowClass: 'glow-bronze' },
+      ];
+
+      order.forEach((dataIdx, displayIdx) => {
+        const person = top3[dataIdx];
+        if (!person) return;
+        const cfg = configs[dataIdx];
+        const isFirst = dataIdx === 0;
+
+        const card = document.createElement('div');
+        card.className = `podium-card ${cfg.rankClass} ${cfg.glassClass} ${cfg.glowClass}`;
+
+        card.innerHTML = `
+      ${isFirst ? `<div class="absolute top-2 right-3 text-lg crown">👑</div>` : ''}
+      <div class="mb-2 md:mb-3 relative">
+        <img src="${avatarUrl(person.name, dataIdx + 1)}" class="avatar podium-avatar" alt="${person.name}" loading="lazy">
+        <div class="podium-badge ${cfg.badgeClass}">${dataIdx + 1}</div>
+      </div>
+      <p class="podium-name">${person.name}</p>
+      <p class="podium-branch">${person.team}</p>
+      <div class="podium-score">
+        <p class="pts text-lg md:text-2xl">${person.points.toFixed(1)}</p>
+        <p class="text-white/35 text-[10px] md:text-sm font-['Open_Sans'] uppercase tracking-wider">U-Point</p>
+      </div>
+    `;
+        podium.appendChild(card);
+      });
+
+      document.getElementById('podium-loading')?.remove();
+    }
+
+    /* ────────────────── Render Table ────────────────── */
+    function renderTable() {
+      const total = filteredData.length;
+      const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+      if (currentPage > totalPages) currentPage = totalPages;
+
+      const start = (currentPage - 1) * PAGE_SIZE;
+      const slice = filteredData.slice(start, start + PAGE_SIZE);
+
+      document.getElementById('total-badge').textContent = `${total} thành viên`;
+      document.getElementById('pagination-info').textContent =
+        `Hiển thị ${start + 1}–${Math.min(start + PAGE_SIZE, total)} / ${total}`;
+
+      const tbody = document.getElementById('table-body');
+      tbody.innerHTML = '';
+
+      if (!slice.length) {
+        tbody.innerHTML = `<div class="py-12 text-center text-white/30 text-sm font-['Open_Sans']">Không tìm thấy thành viên nào.</div>`;
+        renderPagination(0);
+        return;
+      }
+
+      slice.forEach(person => {
+        const row = document.createElement('div');
+        row.className = 'lb-row grid grid-cols-[3rem_1fr_auto] md:grid-cols-[3rem_18rem_1fr_8rem_7rem] gap-0 items-center px-5 py-3';
+
+        let rankEl = '';
+        if (person.rank === 1) rankEl = `<span class="font-black font-['Open_Sans'] text-base rank-1">1</span>`;
+        else if (person.rank === 2) rankEl = `<span class="font-black font-['Open_Sans'] text-base rank-2">2</span>`;
+        else if (person.rank === 3) rankEl = `<span class="font-black font-['Open_Sans'] text-base rank-3">3</span>`;
+        else rankEl = `<span class="font-bold font-['Open_Sans'] text-sm text-white/40">${person.rank}</span>`;
+
+        row.innerHTML = `
+      <div>${rankEl}</div>
+      <div class="flex items-center gap-3 min-w-0">
+        <img src="${avatarUrl(person.name, person.rank)}" class="avatar w-8 h-8 shrink-0" alt="${person.name}">
+        <div class="min-w-0">
+          <p class="font-semibold text-white text-sm truncate">${person.name}</p>
+          <p class="text-white/35 text-sm truncate md:hidden">${person.team}</p>
+        </div>
+      </div>
+      <span class="hidden md:block text-white/50 text-sm truncate pr-2">${person.team}</span>
+      <span class="hidden md:block text-white/50 text-sm truncate pr-2">${person.updated}</span>
+      <div class="text-right">
+        <span class="pts text-base">${person.points.toFixed(1)}</span>
+        <span class="text-white/30 text-sm font-['Open_Sans'] ml-0.5">pt</span>
+      </div>
+    `;
+        tbody.appendChild(row);
+      });
+
+      renderPagination(totalPages);
+    }
+
+    /* ────────────────── Pagination ────────────────── */
+    function renderPagination(totalPages) {
+      const container = document.getElementById('pagination-btns');
+      container.innerHTML = '';
+
+      if (totalPages <= 1) return;
+
+      const prev = document.createElement('button');
+      prev.className = 'page-btn flex items-center justify-center';
+      prev.innerHTML = '<span class="material-symbols-outlined text-[16px]">chevron_left</span>';
+      prev.disabled = currentPage === 1;
+      prev.style.opacity = currentPage === 1 ? '0.3' : '1';
+      prev.onclick = () => { if (currentPage > 1) { currentPage--; renderTable(); } };
+      container.appendChild(prev);
+
+      const range = pageRange(currentPage, totalPages);
+      range.forEach(p => {
+        if (p === '…') {
+          const dot = document.createElement('span');
+          dot.className = 'text-white/30 text-xs px-1';
+          dot.textContent = '…';
+          container.appendChild(dot);
+        } else {
+          const btn = document.createElement('button');
+          btn.className = `page-btn ${p === currentPage ? 'active' : ''}`;
+          btn.textContent = p;
+          btn.onclick = () => { currentPage = p; renderTable(); };
+          container.appendChild(btn);
+        }
+      });
+
+      const next = document.createElement('button');
+      next.className = 'page-btn flex items-center justify-center';
+      next.innerHTML = '<span class="material-symbols-outlined text-[16px]">chevron_right</span>';
+      next.disabled = currentPage === totalPages;
+      next.style.opacity = currentPage === totalPages ? '0.3' : '1';
+      next.onclick = () => { if (currentPage < totalPages) { currentPage++; renderTable(); } };
+      container.appendChild(next);
+    }
+
+    function pageRange(current, total) {
+      if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+      if (current <= 4) return [1, 2, 3, 4, 5, '…', total];
+      if (current >= total - 3) return [1, '…', total - 4, total - 3, total - 2, total - 1, total];
+      return [1, '…', current - 1, current, current + 1, '…', total];
+    }
+
+    /* ────────────────── Search ────────────────── */
+    function onSearch(val) {
+      const q = val.trim().toLowerCase();
+      filteredData = q ? allData.filter(d => d.name.toLowerCase().includes(q)) : [...allData];
+      currentPage = 1;
+      renderTable();
+    }
+
+
+    /* ────────────────── Region switch ────────────────── */
+    function switchRegion(region, btn) {
+      document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentRegion = region;
+      currentPage = 1;
+      document.getElementById('search-input').value = '';
+      fetchData(currentRegion, currentPeriod);
+    }
+
+    /* ────────────────── Period switch ────────────────── */
+    function switchPeriod(period, btn) {
+      document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentPeriod = period;
+      currentPage = 1;
+      document.getElementById('search-input').value = '';
+      fetchData(currentRegion, currentPeriod);
+    }
+
+    /* ────────────────── Active nav sync ────────────────── */
+    function setActiveNav() {
+      var filename = window.location.pathname.split('/').filter(Boolean).pop() || 'index.html';
+      if (filename.indexOf('.') === -1 && filename !== 'index.html') filename += '.html';
+      var map = {
+        'index.html': 'index', 'index': 'index', '': 'index',
+        'tong-quan-chuong-trinh.html': 'tong-quan', 'tong-quan-chuong-trinh': 'tong-quan',
+        'the-le.html': 'the-le', 'the-le': 'the-le',
+        'leaderboard-sih.html': 'bxh', 'leaderboard-sih': 'bxh',
+      };
+      var active = map[filename] || 'index';
+      document.querySelectorAll('[data-nav]').forEach(function (el) {
+        if (el.dataset.nav === active) {
+          el.classList.add('nav-active');
+        } else {
+          el.classList.remove('nav-active');
+        }
+      });
+    }
+    setActiveNav();
+  </script>
+  
+</ProgramLayout>
+

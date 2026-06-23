@@ -1,0 +1,645 @@
+﻿---
+import ProgramLayout from '../../layouts/ProgramLayout.astro';
+
+const title = "Referral - OneTrust – Allstar";
+const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing giới thiệu khách hàng bán căn hộ cho OneTrust để nhận điểm thưởng loyalty trong chương trình Allstar Club.";
+---
+
+<ProgramLayout
+  title={title}
+  description={description}
+  canonicalPath="/prm/refer-onetrust.html"
+  program="prm"
+  active="refer"
+  bodyClass="bg-[#06090f] text-on-surface font-body antialiased"
+>
+  <Fragment slot="head">
+<script is:inline type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Refer Căn cho OneTrust - Chương trình Allstar Club",
+      "description": "Form giới thiệu căn hộ cho OneTrust dành cho thành viên chương trình loyalty Allstar Club",
+      "publisher": {
+        "@type": "Organization",
+        "name": "OneHousing"
+      }
+    }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(32, 38, 47, 0.4);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(68, 72, 79, 0.3);
+            border-left: 1px solid rgba(68, 72, 79, 0.3);
+        }
+
+        .form-input {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(68, 72, 79, 0.6);
+            color: #111111;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: rgba(0, 227, 253, 0.6);
+            box-shadow: 0 0 0 3px rgba(0, 227, 253, 0.08);
+        }
+
+        .form-input::placeholder {
+            color: rgba(200, 203, 210, 0.85);
+        }
+
+        html:not(.dark) .form-input::placeholder {
+            color: rgba(100, 110, 125, 0.6);
+        }
+
+        .form-label {
+            color: #a8abb3;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* Radio custom style */
+        .radio-option {
+            border: 1px solid rgba(68, 72, 79, 0.6);
+            background: rgba(255, 255, 255, 0.03);
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .radio-option:has(input:checked) {
+            border-color: rgba(255, 209, 108, 0.7);
+            background: rgba(255, 209, 108, 0.06);
+            box-shadow: 0 0 16px rgba(255, 209, 108, 0.08);
+        }
+
+        .radio-option:hover {
+            border-color: rgba(255, 209, 108, 0.4);
+            background: rgba(255, 209, 108, 0.03);
+        }
+
+        /* File upload drop zone */
+        .drop-zone {
+            border: 2px dashed rgba(68, 72, 79, 0.6);
+            background: rgba(255, 255, 255, 0.02);
+            transition: all 0.25s;
+        }
+
+        .drop-zone:hover,
+        .drop-zone.dragover {
+            border-color: rgba(0, 227, 253, 0.5);
+            background: rgba(0, 227, 253, 0.04);
+        }
+
+        /* Submit button */
+        .btn-primary {
+            background: linear-gradient(135deg, #fdc003, #ecb200);
+            color: #3d2b00;
+            font-weight: 700;
+            transition: all 0.25s;
+            box-shadow: 0 0 20px rgba(253, 192, 3, 0.2);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 24px rgba(253, 192, 3, 0.35);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Theme toggle */
+        .theme-toggle {
+            transition: all 0.2s;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+        }
+    </style>
+  </Fragment>
+
+  <Fragment slot="beforeHeader">
+<!-- TopNavBar -->
+  </Fragment>
+
+<main class="pt-20 min-h-screen">
+
+        <!-- Page Header -->
+        <section class="relative py-16 px-4 overflow-hidden"
+            style="background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255,209,108,0.07) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 80% 100%, rgba(0,227,253,0.05) 0%, transparent 60%), #06090f;">
+            <div class="absolute inset-0 pointer-events-none">
+                <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[100px]"></div>
+                <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-secondary/5 rounded-full blur-[100px]"></div>
+            </div>
+            <div class="relative max-w-3xl mx-auto text-center">
+                <div
+                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-bold uppercase  mb-6">
+                    <span class="material-symbols-outlined text-[14px]">assignment</span>
+                    Hỗ trợ PRM
+                </div>
+                <h1
+                    class="font-headline font-black text-3xl md:text-5xl tracking-tight text-on-background leading-tight mb-4">
+                    Refer <span class="text-primary">Căn cho OneTrust</span>
+                </h1>
+                <p class="text-on-surface-variant text-base md:text-lg max-w-xl mx-auto">
+                    Điền thông tin khách hàng và tải lên hồ sơ căn khách muốn bán. Dữ liệu sẽ được lưu tự động vào hệ
+                    thống.
+                </p>
+            </div>
+        </section>
+
+        <!-- Form Section -->
+        <section class="py-12 px-4 max-w-2xl mx-auto">
+            <div class="glass-card rounded-2xl p-6 md:p-10 shadow-xl border border-white/5">
+
+                <form id="referForm" novalidate>
+
+                    <!-- ── Section 1: Thông tin PRM ── -->
+                    <div class="mb-8">
+                        <div class="flex items-center gap-2 mb-5">
+                            <div
+                                class="w-6 h-6 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center shrink-0">
+                                <span class="text-primary text-xs font-black">1</span>
+                            </div>
+                            <h3 class="text-sm font-bold text-on-surface tracking-wide uppercase">Thông tin PRM/ Người
+                                giới thiệu</h3>
+                            <div class="flex-1 h-px bg-outline-variant/40"></div>
+                        </div>
+
+                        <!-- Họ và tên -->
+                        <div class="mb-5">
+                            <label for="hoTen" class="form-label block mb-2">
+                                Họ và tên <span class="text-tertiary">*</span>
+                            </label>
+                            <input id="hoTen" name="hoTen" type="text" required placeholder="Nguyễn Văn A"
+                                class="form-input w-full rounded-xl px-4 py-3 text-sm">
+                        </div>
+
+                        <!-- Số điện thoại -->
+                        <div class="mb-5">
+                            <label for="sdt" class="form-label block mb-2">
+                                Số điện thoại <span class="text-tertiary">*</span>
+                            </label>
+                            <input id="sdt" name="sdt" type="tel" inputmode="numeric" required
+                                placeholder="0901 234 567" class="form-input w-full rounded-xl px-4 py-3 text-sm">
+                            <div id="sdtError" class="hidden text-xs text-tertiary mt-1.5 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[13px]">error</span>
+                                Số điện thoại không hợp lệ (VD: 0901234567)
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-1">
+                            <label for="email" class="form-label block mb-2">
+                                Email <span class="text-tertiary">*</span>
+                            </label>
+                            <input id="email" name="email" type="email" required placeholder="example@email.com"
+                                class="form-input w-full rounded-xl px-4 py-3 text-sm">
+                            <div id="emailError" class="hidden text-xs text-tertiary mt-1.5 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[13px]">error</span>
+                                Email không hợp lệ
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── Section 2: Thông tin căn refer ── -->
+                    <div class="mb-8">
+                        <div class="flex items-center gap-2 mb-5">
+                            <div
+                                class="w-6 h-6 rounded-full bg-secondary/20 border border-secondary/40 flex items-center justify-center shrink-0">
+                                <span class="text-white text-xs font-black">2</span>
+                            </div>
+                            <h3 class="text-sm font-bold text-on-surface tracking-wide uppercase">Thông tin căn refer
+                            </h3>
+                            <div class="flex-1 h-px bg-outline-variant/40"></div>
+                        </div>
+
+                        <!-- Dự án -->
+                        <div class="mb-5">
+                            <label for="duAn" class="form-label block mb-2">
+                                Dự án <span class="text-tertiary">*</span>
+                            </label>
+                            <div class="relative">
+                                <select id="duAn" name="duAn" required
+                                    class="form-input w-full rounded-xl px-4 py-3 pr-10 text-sm appearance-none cursor-pointer">
+                                    <option value="" disabled selected>-- Chọn dự án --</option>
+                                    <option value="Vinhomes Ocean Park 1">Vinhomes Ocean Park 1</option>
+                                    <option value="Vinhomes Ocean Park 2">Vinhomes Ocean Park 2</option>
+                                    <option value="Vinhomes Ocean Park 3">Vinhomes Ocean Park 3</option>
+                                    <option value="Vinhomes Smart City">Vinhomes Smart City</option>
+                                    <option value="Masteri Grand Avenue">Masteri Grand Avenue</option>
+                                    <option value="Lumiere Prime Hills">Lumiere Prime Hills</option>
+                                </select>
+                                <span
+                                    class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px] pointer-events-none">expand_more</span>
+                            </div>
+                        </div>
+
+                        <!-- Mã căn -->
+                        <div class="mb-5">
+                            <label for="maCan" class="form-label block mb-2">
+                                Mã căn <span class="text-tertiary">*</span>
+                            </label>
+                            <input id="maCan" name="maCan" type="text" required placeholder="VD: S1.02-08"
+                                class="form-input w-full rounded-xl px-4 py-3 text-sm">
+                        </div>
+
+                        <!-- Giá chủ đang chào bán / Giá dự kiến (2 cột) -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+                            <div>
+                                <label for="giaChao" class="form-label block mb-2">
+                                    Giá chủ đang chào bán <span class="text-tertiary">*</span>
+                                </label>
+                                <input id="giaChao" name="giaChao" type="text" inputmode="numeric" required
+                                    placeholder="VD: 1,340,000,000"
+                                    class="form-input w-full rounded-xl px-4 py-3 text-sm">
+                            </div>
+                            <div>
+                                <label for="giaDamPhan" class="form-label block mb-2">
+                                    Giá dự kiến đàm phán được <span class="text-tertiary">*</span>
+                                </label>
+                                <input id="giaDamPhan" name="giaDamPhan" type="text" inputmode="numeric" required
+                                    placeholder="VD: 1,340,000,000"
+                                    class="form-input w-full rounded-xl px-4 py-3 text-sm">
+                            </div>
+                        </div>
+
+                        <!-- Pháp lý -->
+                        <div class="mb-5">
+                            <label class="form-label block mb-3">
+                                Pháp lý <span class="text-tertiary">*</span>
+                            </label>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <label class="radio-option rounded-xl p-4 flex items-center gap-3 select-none">
+                                    <input type="radio" name="phapLy" value="HDMB" required
+                                        class="w-4 h-4 accent-primary shrink-0">
+                                    <div>
+                                        <div class="text-sm font-semibold text-on-surface">HĐMB</div>
+                                        <div class="text-xs text-on-surface-variant">Hợp đồng mua bán</div>
+                                    </div>
+                                </label>
+                                <label class="radio-option rounded-xl p-4 flex items-center gap-3 select-none">
+                                    <input type="radio" name="phapLy" value="San so"
+                                        class="w-4 h-4 accent-primary shrink-0">
+                                    <div>
+                                        <div class="text-sm font-semibold text-on-surface">Sẵn sổ</div>
+                                        <div class="text-xs text-on-surface-variant">Căn hộ sẵn sổ</div>
+                                    </div>
+                                </label>
+                                <label class="radio-option rounded-xl p-4 flex items-center gap-3 select-none">
+                                    <input type="radio" name="phapLy" value="Co so dang vay"
+                                        class="w-4 h-4 accent-primary shrink-0">
+                                    <div>
+                                        <div class="text-sm font-semibold text-on-surface">Có sổ đang vay</div>
+                                        <div class="text-xs text-on-surface-variant">Căn hộ có sổ nhưng đang thế chấp
+                                            ngân hàng</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- File Upload (multiple) -->
+                        <div class="mb-2">
+                            <label class="form-label block mb-2">
+                                Tải lên hồ sơ (Không bắt buộc)
+                                <span class="text-on-surface-variant font-normal normal-case text-xs"><br>Hình ảnh căn
+                                    hộ &
+                                    Pháp lý (căn đã bàn giao) hoặc PTG (căn chưa bàn giao)</span>
+                            </label>
+                            <div id="dropZone" class="drop-zone rounded-xl p-8 text-center cursor-pointer"
+                                onclick="document.getElementById('fileInput').click()"
+                                ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)"
+                                ondrop="handleDrop(event)">
+                                <input id="fileInput" name="fileInput" type="file" accept="image/*,.pdf" multiple
+                                    class="hidden" onchange="handleFileSelect(event)">
+                                <span
+                                    class="material-symbols-outlined text-4xl text-on-surface-variant mb-3 block">cloud_upload</span>
+                                <p class="text-sm text-on-surface-variant mb-1">Kéo thả tệp vào đây hoặc <span
+                                        class="text-white font-semibold">chọn tệp</span></p>
+                                <p class="text-xs text-on-surface-variant/60">Hỗ trợ: JPG, PNG, PDF – có thể chọn nhiều
+                                    tệp - tối đa 10MB</p>
+                            </div>
+                            <!-- File list -->
+                            <ul id="fileList" class="mt-3 space-y-2"></ul>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button id="submitBtn" type="submit"
+                        class="btn-primary w-full py-4 rounded-xl text-sm font-bold tracking-wide flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-[18px]">send</span>
+                        Gửi thông tin
+                    </button>
+
+                </form>
+
+                <!-- Success State -->
+                <div id="successMsg" class="hidden text-center py-10 px-2">
+                    <div
+                        class="w-16 h-16 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center mx-auto mb-5">
+                        <span class="material-symbols-outlined text-3xl text-primary">check_circle</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-on-surface mb-6">Gửi thành công!</h3>
+                    <div
+                        class="flex items-start gap-3 px-5 py-4 rounded-xl border border-secondary/30 bg-secondary/5 text-left w-full max-w-sm mx-auto mb-8">
+                        <span class="material-symbols-outlined text-white text-[20px] shrink-0 mt-0.5">chat</span>
+                        <p class="text-sm text-on-surface leading-relaxed">
+                            Hãy <span class="text-white font-semibold">follow Zalo OA</span> – chúng tôi sẽ liên hệ
+                            với bạn trong vòng <span class="text-primary font-semibold">24 giờ</span>.
+                        </p>
+                    </div>
+                    <button onclick="resetForm()"
+                        class="w-full max-w-sm px-6 py-3 rounded-xl border border-primary/30 text-primary text-sm font-semibold hover:bg-primary/10 transition-colors">
+                        Gửi thêm hồ sơ
+                    </button>
+                </div>
+
+                <!-- Error State -->
+                <div id="errorMsg" class="hidden mt-4 p-4 rounded-xl border border-tertiary/30 bg-tertiary/5">
+                    <div class="flex items-center gap-2 text-tertiary text-sm font-semibold mb-1">
+                        <span class="material-symbols-outlined text-[16px]">error</span>
+                        Gửi thất bại
+                    </div>
+                    <p id="errorText" class="text-on-surface-variant text-xs"></p>
+                </div>
+
+            </div>
+
+            <!-- Setup instruction note -->
+            <!-- <div class="mt-6 p-5 rounded-xl border border-outline-variant/40 bg-surface-container/40">
+                <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">info</span>
+                    <div>
+                        <p class="text-xs font-semibold text-on-surface mb-1">Cấu hình Google Apps Script</p>
+                        <p class="text-xs text-on-surface-variant leading-relaxed">
+                            Để form hoạt động, hãy thay <code class="text-white bg-surface-container-high px-1 py-0.5 rounded text-[11px]">hih</code>
+                            trong script bên dưới bằng URL Web App từ Google Apps Script của bạn.
+                            File upload sẽ được lưu vào Google Drive và link tự động ghi vào Sheet.
+                        </p>
+                    </div>
+                </div>
+            </div> -->
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+
+<script is:inline>
+        /* ── CONFIG: Replace with your deployed Google Apps Script Web App URL ── */
+        const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzTi5WoCZ1CoGSuAMtpjDDraI-7iM_hXwJKhnkK8damR4KM1gSxodm7Bd1NeUIEYyEj/exec';
+
+        /* ── File handling (multiple) ── */
+        let selectedFiles = [];
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            document.getElementById('dropZone').classList.add('dragover');
+        }
+
+        function handleDragLeave(e) {
+            document.getElementById('dropZone').classList.remove('dragover');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            document.getElementById('dropZone').classList.remove('dragover');
+            addFiles(Array.from(e.dataTransfer.files));
+        }
+
+        function handleFileSelect(e) {
+            addFiles(Array.from(e.target.files));
+            e.target.value = ''; // reset so same file can be re-added
+        }
+
+        function addFiles(files) {
+            const allowed = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'];
+            files.forEach(file => {
+                if (!allowed.includes(file.type)) {
+                    alert(`"${file.name}" không được hỗ trợ. Chỉ chấp nhận JPG, PNG, PDF.`);
+                    return;
+                }
+                if (file.size > 10 * 1024 * 1024) {
+                    alert(`"${file.name}" vượt quá giới hạn 10MB.`);
+                    return;
+                }
+                // Avoid duplicates by name
+                if (selectedFiles.some(f => f.name === file.name && f.size === file.size)) return;
+                selectedFiles.push(file);
+            });
+            renderFileList();
+        }
+
+        function removeFile(idx) {
+            selectedFiles.splice(idx, 1);
+            renderFileList();
+        }
+
+        function renderFileList() {
+            const list = document.getElementById('fileList');
+            list.innerHTML = '';
+            selectedFiles.forEach((file, i) => {
+                const isPDF = file.type === 'application/pdf';
+                const li = document.createElement('li');
+                li.className = 'flex items-center gap-3 px-3 py-2 rounded-lg border border-outline-variant/40 bg-surface-container/30 text-sm';
+                li.innerHTML = `
+                    <span class="material-symbols-outlined text-[18px] ${isPDF ? 'text-tertiary' : 'text-white'} shrink-0">
+                        ${isPDF ? 'picture_as_pdf' : 'image'}
+                    </span>
+                    <span class="flex-1 truncate text-on-surface">${file.name}</span>
+                    <span class="text-xs text-on-surface-variant shrink-0">${(file.size / 1024).toFixed(0)} KB</span>
+                    <button type="button" onclick="removeFile(${i})" class="text-on-surface-variant hover:text-tertiary transition-colors shrink-0">
+                        <span class="material-symbols-outlined text-[16px]">close</span>
+                    </button>`;
+                list.appendChild(li);
+            });
+        }
+
+        /* ── Validation helpers ── */
+        function isValidPhone(val) {
+            return /^(0|\+84)(3[2-9]|5[2689]|7[06-9]|8[0-9]|9[0-9])[0-9]{7}$/.test(val.replace(/\s/g, ''));
+        }
+
+        function isValidEmail(val) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim());
+        }
+
+        /* ── Live inline validation ── */
+        document.getElementById('sdt').addEventListener('blur', function () {
+            const err = document.getElementById('sdtError');
+            err.classList.toggle('hidden', isValidPhone(this.value) || !this.value);
+        });
+
+        document.getElementById('email').addEventListener('blur', function () {
+            const err = document.getElementById('emailError');
+            err.classList.toggle('hidden', isValidEmail(this.value) || !this.value);
+        });
+
+        /* ── Price formatting ── */
+        function formatNumberInput(e) {
+            let val = e.target.value.replace(/,/g, '');
+            if (val) {
+                val = val.replace(/\D/g, '');
+                if (val) {
+                    e.target.value = Number(val).toLocaleString('en-US');
+                } else {
+                    e.target.value = '';
+                }
+            }
+        }
+        document.getElementById('giaChao').addEventListener('input', formatNumberInput);
+        document.getElementById('giaDamPhan').addEventListener('input', formatNumberInput);
+
+        /* ── Base64 helper ── */
+        function toBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result.split(',')[1]);
+                reader.onerror = reject;
+            });
+        }
+
+        /* ── Form submit ── */
+        document.getElementById('referForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const form = e.target;
+            const submitBtn = document.getElementById('submitBtn');
+            const errorMsg = document.getElementById('errorMsg');
+
+            // Collect values
+            const hoTen = document.getElementById('hoTen').value.trim();
+            const sdt = document.getElementById('sdt').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const duAn = document.getElementById('duAn').value;
+            const maCan = document.getElementById('maCan').value.trim();
+            const giaChao = document.getElementById('giaChao').value.trim().replace(/,/g, '');
+            const giaDamPhan = document.getElementById('giaDamPhan').value.trim().replace(/,/g, '');
+            const phapLy = document.querySelector('input[name="phapLy"]:checked')?.value;
+
+            // Validate
+            let errors = [];
+            if (!hoTen) errors.push('Họ và tên');
+            if (!sdt || !isValidPhone(sdt)) {
+                errors.push('Số điện thoại hợp lệ');
+                document.getElementById('sdtError').classList.remove('hidden');
+            }
+            if (!email || !isValidEmail(email)) {
+                errors.push('Email hợp lệ');
+                document.getElementById('emailError').classList.remove('hidden');
+            }
+            if (!duAn) errors.push('Dự án');
+            if (!maCan) errors.push('Mã căn');
+            if (!giaChao) errors.push('Giá chủ đang chào bán');
+            if (!giaDamPhan) errors.push('Giá dự kiến đàm phán');
+            if (!phapLy) errors.push('Pháp lý');
+
+            if (errors.length) {
+                errorMsg.classList.remove('hidden');
+                document.getElementById('errorText').textContent = 'Vui lòng điền đúng: ' + errors.join(', ') + '.';
+                return;
+            }
+
+            errorMsg.classList.add('hidden');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span> Đang gửi...';
+
+            try {
+                // Encode all files to base64
+                const filesData = await Promise.all(
+                    selectedFiles.map(async f => ({
+                        name: f.name,
+                        type: f.type,
+                        base64: await toBase64(f)
+                    }))
+                );
+
+                const payload = {
+                    timestamp: new Date().toISOString(),
+                    hoTen, sdt, email,
+                    duAn, maCan, giaChao, giaDamPhan, phapLy,
+                    files: filesData
+                };
+
+                const response = await fetch(GAS_WEB_APP_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+
+                const result = await response.json();
+                if (!result.success) throw new Error(result.message || 'Lỗi không xác định');
+
+                form.classList.add('hidden');
+                document.getElementById('successMsg').classList.remove('hidden');
+
+            } catch (err) {
+                console.error(err);
+                errorMsg.classList.remove('hidden');
+                document.getElementById('errorText').textContent =
+                    err.message.includes('YOUR_GAS')
+                        ? 'Chưa cấu hình Google Apps Script URL. Vui lòng liên hệ quản trị viên.'
+                        : 'Có lỗi xảy ra: ' + err.message;
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">send</span> Gửi thông tin';
+            }
+        });
+
+        function resetForm() {
+            document.getElementById('referForm').reset();
+            document.getElementById('referForm').classList.remove('hidden');
+            document.getElementById('successMsg').classList.add('hidden');
+            document.getElementById('errorMsg').classList.add('hidden');
+            document.getElementById('sdtError').classList.add('hidden');
+            document.getElementById('emailError').classList.add('hidden');
+            selectedFiles = [];
+            renderFileList();
+        }
+
+        /* ── Mobile menu ── */
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const h1 = document.getElementById('ham-1');
+            const h2 = document.getElementById('ham-2');
+            const h3 = document.getElementById('ham-3');
+            const isHidden = menu.classList.contains('hidden');
+            menu.classList.toggle('hidden', !isHidden);
+            if (!isHidden) {
+                h1.style.transform = ''; h2.style.opacity = ''; h3.style.transform = '';
+            } else {
+                h1.style.transform = 'translateY(6.5px) rotate(45deg)';
+                h2.style.opacity = '0';
+                h3.style.transform = 'translateY(-6.5px) rotate(-45deg)';
+            }
+        }
+
+
+
+        /* ── Active nav ── */
+        (function setActiveNav() {
+            var filename = window.location.pathname.split('/').pop().split('?')[0].split('#')[0] || 'index.html';
+            var map = {
+                'index.html': 'index', '': 'index',
+                'tong-quan-chuong-trinh.html': 'tong-quan',
+                'the-le.html': 'the-le',
+                'leaderboard-prm.html': 'bxh',
+                'refer-onetrust.html': 'refer',
+            };
+            var active = map[filename] || '';
+            document.querySelectorAll('[data-nav]').forEach(function (el) {
+                el.classList.toggle('nav-active', el.dataset.nav === active);
+            });
+        })();
+    </script>
+    
+</ProgramLayout>
+

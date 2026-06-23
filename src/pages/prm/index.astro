@@ -1,0 +1,711 @@
+﻿---
+import ProgramLayout from '../../layouts/ProgramLayout.astro';
+
+const title = "Allstar Club - Chương trình loyalty dành cho lực lượng bán Techcombank và OneHousing";
+const description = "Allstar Club là chương trình loyalty dành cho lực lượng bán Techcombank và OneHousing. Ghi điểm qua GMV bán dự án Premium, Branded và các hoạt động trên OneHub để nhận thưởng hấp dẫn.";
+---
+
+<ProgramLayout
+  title={title}
+  description={description}
+  canonicalPath="/prm/index.html"
+  program="prm"
+  active="index"
+  bodyClass="page-bg text-on-surface font-body selection:bg-primary/30 selection:text-primary overflow-x-hidden"
+>
+  <Fragment slot="head">
+<script is:inline type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Allstar Club - OneHousing",
+      "url": "https://onehousing.club/prm/",
+      "description": "Chương trình loyalty dành cho lực lượng bán Techcombank và OneHousing",
+      "publisher": {
+        "@type": "Organization",
+        "name": "OneHousing",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://onehousing.club/prm/assets/images/Logo%20Allstar.webp"
+        }
+      }
+    }
+    </script>
+<style type="text/css">
+        .glass-card {
+            background: rgba(32, 38, 47, 0.4);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(68, 72, 79, 0.3);
+            border-left: 1px solid rgba(68, 72, 79, 0.3);
+        }
+
+        .hero-banner {
+            background-image: url('/prm/assets/images/Herobanner1.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(10, 14, 20, 0.8) 0%, rgba(10, 14, 20, 0.2) 50%, rgba(10, 14, 20, 0.8) 100%);
+        }
+
+        /* Specific styles for the requested milestone table */
+        .milestone-table-row:last-child {
+            background: linear-gradient(90deg, rgba(253, 192, 3, 0.05), rgba(0, 227, 253, 0.05));
+        }
+
+        /* Table responsive */
+        @media (max-width: 767px) {
+            .milestone-table-cell-pad {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ── Page background & Neon trails ── */
+        .page-bg {
+            background:
+                radial-gradient(ellipse 80% 50% at 20% 20%, rgba(0, 80, 180, 0.18) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 80% 10%, rgba(0, 227, 253, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse 50% 60% at 50% 80%, rgba(80, 0, 180, 0.12) 0%, transparent 60%),
+                #06091a;
+            min-height: 100vh;
+        }
+
+        .trails-svg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.45;
+        }
+
+        @keyframes trail-move {
+            0% {
+                stroke-dashoffset: 1000;
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            80% {
+                opacity: 0.6;
+            }
+
+            100% {
+                stroke-dashoffset: 0;
+                opacity: 0;
+            }
+        }
+
+        .trail-line {
+            stroke-dasharray: 400 600;
+            animation: trail-move 6s linear infinite;
+        }
+
+        .trail-line:nth-child(2) {
+            animation-delay: 1.5s;
+            animation-duration: 7s;
+        }
+
+        .trail-line:nth-child(3) {
+            animation-delay: 3s;
+            animation-duration: 5.5s;
+        }
+
+        .trail-line:nth-child(4) {
+            animation-delay: 0.8s;
+            animation-duration: 8s;
+        }
+
+        .trail-line:nth-child(5) {
+            animation-delay: 2.2s;
+            animation-duration: 6.5s;
+        }
+    </style>
+  </Fragment>
+
+  <Fragment slot="beforeHeader">
+<!-- Neon light trails -->
+    <svg class="trails-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <line class="trail-line" x1="-100" y1="200" x2="1540" y2="180" stroke="rgba(0,227,253,0.4)" stroke-width="1" />
+        <line class="trail-line" x1="-100" y1="450" x2="1540" y2="420" stroke="rgba(255,209,108,0.35)"
+            stroke-width="0.8" />
+        <line class="trail-line" x1="-100" y1="680" x2="1540" y2="700" stroke="rgba(0,100,255,0.3)"
+            stroke-width="1.2" />
+        <line class="trail-line" x1="200" y1="-50" x2="180" y2="950" stroke="rgba(0,227,253,0.25)" stroke-width="0.8" />
+        <line class="trail-line" x1="1100" y1="-50" x2="1120" y2="950" stroke="rgba(255,209,108,0.2)"
+            stroke-width="1" />
+    </svg>
+    <!-- TopNavBar -->
+  </Fragment>
+
+<main class="pt-20">
+        <!-- Hero Banner -->
+        <section
+            class="relative min-h-[450px] md:h-[921px] py-12 md:py-0 flex items-center justify-center overflow-hidden hero-banner">
+            <!-- Overlay for better text readability -->
+            <div class="absolute inset-0 z-0 hero-overlay"></div>
+            <div class="relative z-10 w-full max-w-screen-2xl px-4 md:px-12 flex flex-col items-center justify-center">
+                <!-- Center Logo -->
+                <div class="relative flex-shrink-0 flex items-center justify-center">
+                    <div class="animate-float">
+                        <img alt="Allstar Logo"
+                            class="w-64 md:w-[550px] h-auto object-contain transition-all duration-500 hover:scale-105 animate-pulse-glow cursor-pointer drop-shadow-[0_0_50px_rgba(255,209,108,0.55)]"
+                            src="assets/images/Logo%20Allstar.webp" width="620" height="428" fetchpriority="high" decoding="async" style="">
+                    </div>
+                    <!-- Orbital ring 1 -->
+                    <div class="absolute inset-[-20px] md:inset-[-32px] rounded-full border border-primary/15 pointer-events-none"
+                        style="animation: spin 12s linear infinite;">
+                        <div
+                            class="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-primary/60 shadow-[0_0_8px_#ffd16c]">
+                        </div>
+                    </div>
+                    <!-- Orbital ring 2 -->
+                    <div class="absolute inset-[-42px] md:inset-[-60px] rounded-full border border-secondary/10 pointer-events-none"
+                        style="animation: spin 20s linear infinite reverse;">
+                        <div
+                            class="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-secondary/50 shadow-[0_0_6px_#00e3fd]">
+                        </div>
+                    </div>
+                    <!-- Glow behind logo -->
+                    <div class="absolute inset-0 bg-primary/15 blur-[80px] rounded-full -z-10 pointer-events-none">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Cách thức ghi điểm -->
+        <section class="py-16 md:py-16 px-4 md:px-8 max-w-7xl mx-auto">
+            <div class="mb-10 md:mb-16">
+                <h2 class="font-headline font-bold text-3xl md:text-4xl text-on-background mb-2" style="">Ghi điểm qua
+                    GMV bán Dự án</h2>
+                <p class="text-white font-label font-semibold  text-sm" style="">Với mỗi 1
+                    tỷ GMV đạt được (giá trước VAT & KPBT) & 1 điểm = 1Tr U-Point</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+                <!-- Card 1: Dự án Premium -->
+                <div
+                    class="glass-card p-8 rounded-3xl shadow-2xl border border-white/5 relative overflow-hidden group hover:shadow-xl transition-all duration-300 text-center flex flex-col items-center">
+                    <div class="bg-[#1e293b]/50 text-white px-6 py-1 rounded-full text-sm font-bold  uppercase mb-4"
+                        style="">
+                        Dự án Premium
+                    </div>
+                    <div class="w-full space-y-3 mt-4">
+                        <div class="flex justify-between items-center border-b border-white/5 py-2">
+                            <span class="text-white/70 text-sm font-medium" style="">Cá nhân</span>
+                            <span class="font-bold text-primary text-lg" style="">1 điểm</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2">
+                            <span class="text-white/70 text-sm font-medium" style="">Chi nhánh</span>
+                            <span class="font-bold text-primary text-lg" style="">0.5 điểm</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2: Dự án Branded -->
+                <div
+                    class="glass-card p-8 rounded-3xl shadow-2xl border border-white/5 relative overflow-hidden group hover:shadow-xl transition-all duration-300 text-center flex flex-col items-center">
+                    <div class="bg-[#1e293b]/50 text-white px-6 py-1 rounded-full text-sm font-bold  uppercase mb-4"
+                        style="">
+                        Dự án Branded
+                    </div>
+                    <div class="w-full space-y-3 mt-4">
+                        <div class="flex justify-between items-center border-b border-white/5 py-2">
+                            <span class="text-white/70 text-sm font-medium" style="">Cá nhân (LLTV)</span>
+                            <span class="font-bold text-primary text-lg" style="">0.8 điểm</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-white/5 py-2">
+                            <span class="text-white/70 text-sm font-medium" style="">Cá nhân (PM/Headhub)</span>
+                            <span class="font-bold text-primary text-lg" style="">0.2 điểm</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2">
+                            <span class="text-white/70 text-sm font-medium" style="">Chi nhánh</span>
+                            <span class="font-bold text-primary text-lg" style="">0.5 điểm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- section: Ghi điểm qua hình thức khác -->
+        <section class="py-16 md:pt-2 md:pb-16 px-4 md:px-8 max-w-7xl mx-auto">
+            <div class="mb-10 md:mb-16">
+                <h2 class="font-headline font-bold text-3xl md:text-4xl text-on-background mb-2" style="">Ghi điểm qua
+                    hình thức khác</h2>
+                <p class="text-white font-label font-semibold  text-sm" style="">Khuyến
+                    khích LLTV tham gia các hoạt động tăng tích lũy điểm</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+                <!-- Card 3: Refer to OneTrust -->
+                <div
+                    class="glass-card p-8 rounded-3xl shadow-2xl border border-white/5 relative overflow-hidden group hover:shadow-xl transition-all duration-300 text-center flex flex-col items-center">
+
+                    <div class="bg-[#1e293b]/50 text-white px-6 py-1 rounded-full text-sm font-bold  uppercase mb-4"
+                        style="">
+                        Refer căn chuyển nhượng cho OneTrust
+                    </div>
+                    <p class="text-white text-sm font-medium mb-2" style="">Mỗi 1 tỷ GMV (NET) được chốt sẽ quy đổi:
+                    </p>
+                    <div class="w-full space-y-3 mt-4">
+                        <div class="flex justify-between items-center border-b border-white/5 py-2">
+                            <span class="text-white/70 text-sm font-medium" style="">LLTV</span>
+                            <span class="font-bold text-primary text-lg" style="">1 điểm</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2">
+                            <span class="text-white/70 text-sm font-medium" style="">Chi nhánh</span>
+                            <span class="font-bold text-primary text-lg" style="">0.5 điểm</span>
+                        </div>
+                    </div>
+                    <p class="text-white text-sm font-medium mb-2" style="">Các dự án ghi nhận: Cao tầng OCP1 và Cao
+                        tầng Cổ Loa
+                    </p>
+                </div>
+                <!-- Card 4: OneHub activities -->
+                <div
+                    class="glass-card p-8 rounded-3xl shadow-2xl border border-white/5 relative overflow-hidden group hover:shadow-xl transition-all duration-300 text-center flex flex-col items-center">
+
+                    <div class="bg-[#1e293b]/50 text-white px-6 py-1 rounded-full text-sm font-bold  uppercase mb-4"
+                        style="">
+                        Hoạt động trên OneHub
+                    </div>
+                    <p class="text-white text-sm font-medium mb-2" style="">Mỗi hoạt động trên nền tảng OneHub sẽ quy
+                        đổi:
+                    </p>
+                    <div class="w-full space-y-3 mt-4">
+                        <div class="flex justify-between items-center border-b border-white/5 py-2">
+                            <span class="text-white/70 text-sm font-medium" style="">LLTV Kích hoạt tài khoản</span>
+                            <span class="font-bold text-primary text-lg" style="">0.1 điểm</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-white/5 py-2">
+                            <span class="text-white/70 text-sm font-medium" style="">Niêm yết OneHub thỏa 2K4D</span>
+                            <span class="font-bold text-primary text-lg" style="">0.5 điểm</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2">
+                            <span class="text-white/70 text-sm font-medium" style="">Giao dịch OneHub</span>
+                            <span class="font-bold text-primary text-lg" style="">0.5 điểm</span>
+                        </div>
+                    </div>
+                    <p class="text-white text-sm font-medium mb-2" style="">Các dự án ghi nhận: Cao tầng OCP1,2,3 và
+                        Ecopark
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- Bảng mốc thưởng -->
+        <section class="py-16">
+            <div class="max-w-7xl mx-auto px-4 md:px-8">
+                <div class="mb-8 md:mb-12 flex flex-wrap justify-between items-end gap-4">
+                    <div>
+                        <h2 class="font-headline font-bold text-3xl md:text-4xl text-on-background mb-2" style="">Bảng
+                            mốc thưởng</h2>
+                        <p class="text-white font-label font-semibold  text-sm" style="">
+                            Điểm bonus sẽ được cộng dồn
+                            khi đạt các mốc điểm tương ứng của chương trình.</p>
+                    </div>
+                    <!-- <button class="text-primary font-label font-bold flex items-center gap-2 hover:gap-3 transition-all" style="">
+                    Xem chi tiết <span class="material-symbols-outlined" style="">arrow_forward</span>
+</button> -->
+                </div>
+                <div class="overflow-x-auto rounded-3xl shadow-2xl">
+                    <div class="overflow-hidden rounded-3xl glass-card border border-white/5 w-full">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-white/5">
+                                    <th class="px-3 md:px-12 py-4 md:py-8 font-headline font-bold text-white uppercase  text-sm"
+                                        style="">Mốc điểm</th>
+                                    <th class="px-4 md:px-12 py-5 md:py-8 font-headline font-bold text-white uppercase  text-sm text-center"
+                                        style="">Bonus</th>
+                                    <th class="px-4 md:px-12 py-5 md:py-8 font-headline font-bold text-white uppercase  text-sm text-right"
+                                        style="">Tổng bonus</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/5">
+                                <tr class="hover:bg-white/5 transition-colors group">
+                                    <td class="px-3 md:px-12 py-3 md:py-6" style="">
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-2 h-2 rounded-full bg-primary"></div>
+                                            <span class="text-xl md:text-3xl font-black text-primary font-headline"
+                                                style="">10</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-3 md:px-12 py-3 md:py-6 text-center" style="">
+                                        <div
+                                            class="inline-block px-4 py-1.5 rounded-lg bg-[#553e00]/30 border border-primary/20">
+                                            <span class="text-base md:text-xl font-bold text-primary font-headline"
+                                                style="">+5</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-3 md:px-12 py-3 md:py-6 text-right" style="">
+                                        <span class="text-xl md:text-3xl font-black text-[#ffffff] font-headline"
+                                            style="">5</span>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition-colors group">
+                                    <td class="px-3 md:px-12 py-3 md:py-6" style="">
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-2 h-2 rounded-full bg-primary"></div>
+                                            <span class="text-xl md:text-3xl font-black text-primary font-headline"
+                                                style="">18</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-3 md:px-12 py-3 md:py-6 text-center" style="">
+                                        <div
+                                            class="inline-block px-4 py-1.5 rounded-lg bg-[#553e00]/30 border border-primary/20">
+                                            <span class="text-base md:text-xl font-bold text-primary font-headline"
+                                                style="">+8</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-3 md:px-12 py-3 md:py-6 text-right" style="">
+                                        <span class="text-xl md:text-3xl font-black text-[#ffffff] font-headline"
+                                            style="">13</span>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition-colors group">
+                                    <td class="px-3 md:px-12 py-3 md:py-6" style="">
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-2 h-2 rounded-full bg-primary"></div>
+                                            <span class="text-xl md:text-3xl font-black text-primary font-headline"
+                                                style="">32</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-3 md:px-12 py-3 md:py-6 text-center" style="">
+                                        <div
+                                            class="inline-block px-4 py-1.5 rounded-lg bg-[#553e00]/30 border border-primary/20">
+                                            <span class="text-base md:text-xl font-bold text-primary font-headline"
+                                                style="">+12</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-3 md:px-12 py-3 md:py-6 text-right" style="">
+                                        <span class="text-xl md:text-3xl font-black text-[#ffffff] font-headline"
+                                            style="">25</span>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition-colors group">
+                                    <td class="px-3 md:px-12 py-3 md:py-6" style="">
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-2 h-2 rounded-full bg-primary"></div>
+                                            <span class="text-xl md:text-3xl font-black text-primary font-headline"
+                                                style="">80</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-3 md:px-12 py-3 md:py-6 text-center" style="">
+                                        <div
+                                            class="inline-block px-4 py-1.5 rounded-lg bg-[#553e00]/30 border border-primary/20">
+                                            <span class="text-base md:text-xl font-bold text-primary font-headline"
+                                                style="">+40</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-3 md:px-12 py-3 md:py-6 text-right" style="">
+                                        <span class="text-xl md:text-3xl font-black text-[#ffffff] font-headline"
+                                            style="">65</span>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition-colors group">
+                                    <td class="px-3 md:px-12 py-3 md:py-6" style="">
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-2 h-2 rounded-full bg-primary"></div>
+                                            <span class="text-xl md:text-3xl font-black text-primary font-headline"
+                                                style="">150</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-3 md:px-12 py-3 md:py-6 text-center" style="">
+                                        <div
+                                            class="inline-block px-4 py-1.5 rounded-lg bg-[#553e00]/30 border border-primary/20">
+                                            <span class="text-base md:text-xl font-bold text-primary font-headline"
+                                                style="">+32</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-3 md:px-12 py-3 md:py-6 text-right" style="">
+                                        <span class="text-xl md:text-3xl font-black text-[#ffffff] font-headline"
+                                            style="">97</span>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition-colors group">
+                                    <td class="px-3 md:px-12 py-3 md:py-6" style="">
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-2 h-2 rounded-full bg-primary"></div>
+                                            <span class="text-xl md:text-3xl font-black text-primary font-headline"
+                                                style="">320</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-3 md:px-12 py-3 md:py-6 text-center" style="">
+                                        <div
+                                            class="inline-block px-4 py-1.5 rounded-lg bg-[#553e00]/30 border border-primary/20">
+                                            <span class="text-base md:text-xl font-bold text-primary font-headline"
+                                                style="">+68</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-3 md:px-12 py-3 md:py-6 text-right" style="">
+                                        <span class="text-xl md:text-3xl font-black text-[#ffffff] font-headline"
+                                            style="">165</span>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition-colors group">
+                                    <td class="px-3 md:px-12 py-3 md:py-6" style="">
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-2 h-2 rounded-full bg-primary"></div>
+                                            <span class="text-xl md:text-3xl font-black text-primary font-headline"
+                                                style="">680</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-3 md:px-12 py-3 md:py-6 text-center" style="">
+                                        <div
+                                            class="inline-block px-4 py-1.5 rounded-lg bg-[#553e00]/30 border border-primary/20">
+                                            <span class="text-base md:text-xl font-bold text-primary font-headline"
+                                                style="">+138</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-3 md:px-12 py-3 md:py-6 text-right" style="">
+                                        <span class="text-xl md:text-3xl font-black text-[#ffffff] font-headline"
+                                            style="">303</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- <div class="py-8 border-t border-white/5 bg-surface-container-highest/30 text-center">
+<p class="font-headline font-bold text-on-surface-variant flex items-center justify-center gap-4" style="">
+<span class="uppercase  text-sm" style="">Tổng Bonus Tối Đa</span>
+<span class="text-2xl md:text-4xl font-black text-[#ffffff]" style="">303</span>
+<span class="text-sm" style="">điểm</span>
+</p>
+</div> -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- QnA Accordion -->
+        <section class="py-16 md:py-16 px-4 md:px-8 max-w-4xl mx-auto">
+            <h2 class="font-headline font-bold text-3xl md:text-4xl text-on-background mb-10 md:mb-16 text-center">Câu
+                hỏi thường gặp</h2>
+            <div id="faq-accordion" class="flex flex-col gap-3"></div>
+        </section>
+        <style is:global>
+            .accordion-item {
+                background: rgba(32, 38, 47, 0.4);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(68, 72, 79, 0.3);
+                border-radius: 0.75rem;
+                overflow: hidden;
+                transition: border-color 0.2s;
+            }
+
+            .accordion-item:hover {
+                border-color: rgba(0, 227, 253, 0.25);
+            }
+
+            .accordion-item.is-open {
+                border-color: rgba(255, 209, 108, 0.4);
+            }
+
+            .accordion-trigger {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+                padding: 1.25rem 1.5rem;
+                text-align: left;
+                font-family: "Open Sans", sans-serif;
+                font-weight: 700;
+                font-size: 0.95rem;
+                color: rgba(255, 255, 255, 0.85);
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                transition: color 0.2s;
+            }
+
+            .accordion-trigger:hover {
+                color: #fff;
+            }
+
+            .accordion-item.is-open .accordion-trigger {
+                color: #ffd16c;
+            }
+
+            .accordion-icon {
+                flex-shrink: 0;
+                width: 1.25rem;
+                height: 1.25rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: transform 0.3s ease;
+            }
+
+            .accordion-item.is-open .accordion-icon {
+                transform: rotate(45deg);
+            }
+
+            .accordion-body {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease;
+            }
+
+            .accordion-item.is-open .accordion-body {
+                max-height: 900px;
+            }
+
+            .accordion-content {
+                padding: 0 1.5rem 1.25rem;
+                color: #fff;
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+        </style>
+        <script is:inline>
+            var faqData = [
+                {
+                    title: "Điểm được ghi nhận như thế nào?",
+                    body: [
+                        "Điểm <strong>tạm tính</strong> được ghi nhân tại thời điểm ráp căn thành công <strong>(HBK - OTP)</strong>.",
+                        "Điểm sẽ bị <strong>thu hồi</strong> nếu giao dịch không chuyển đổi thành HĐMB."
+                    ]
+                },
+                {
+                    title: "Có thể rút quỹ thưởng bất kì lúc nào không? Thời gian chi trả là khi nào?",
+                    body: [
+                        "<strong>Không</strong>, việc chi trả thực tế sẽ dựa theo kỳ chi dự kiến nêu trong thể lệ, phụ thuộc vào thời gian hoàn tất <strong>HĐMB</strong>."
+                    ]
+                },
+                {
+                    title: "Xem điểm thưởng ở đâu?",
+                    body: [
+                        "Điểm thưởng sẽ được cập nhật <strong>real-time</strong> ở mục <strong>Bảng xếp hạng</strong> trên website chương trình, theo miền LLTV."
+                    ]
+                },
+                {
+                    title: "LLTV làm ở chi nhánh A đến hết T3.2026 rồi chuyển sang chi nhánh B, vậy 20% điểm cá nhân của LLTV sẽ được tính theo chi nhánh nào?",
+                    body: [
+                        "Điểm (bao gồm phần tạm khóa) sẽ ghi nhận cho <strong>Chi nhánh A</strong> tính đến giao dịch cuối cùng trước khi chuyển. Các giao dịch sau đó sẽ tính cho <strong>Chi nhánh B</strong>."
+                    ]
+                },
+                {
+                    title: "Nếu LLTV bán cả dự án miền Bắc và miền Nam, điểm sẽ được tính như thế nào?",
+                    body: [
+                        "Điểm sẽ được tính theo <strong>miền của lực lượng tư vấn</strong>, điểm sẽ vẫn được cộng theo cơ chế chung, không theo miền dự án."
+                    ]
+                },
+                {
+                    title: "LLTV có thể tra số dư điểm thưởng ở đâu?",
+                    body: [
+                        "LLTV vui lòng liên hệ <strong>PNS</strong> đang phụ trách tại Chi nhánh hoặc liên hệ BTC qua hotline: <strong>Bùi Bích Phương - 0917701043</strong>"
+                    ]
+                },
+                {
+                    title: "LLTV có thể gửi câu hỏi hoặc đóng góp ý kiến về chương trình qua kênh nào?",
+                    body: [
+                        "BTC tiếp nhận mọi câu hỏi và ý kiến đóng góp của LLTV thông qua <strong>Google Form chính thức</strong> của chương trình: <a href=\"https://forms.gle/xsMVxV681t2ha9Hk7\" target=\"_blank\" class=\"text-primary hover:underline\">https://forms.gle/xsMVxV681t2ha9Hk7</a>",
+                        "LLTV vui lòng điền thông tin theo biểu mẫu để được hỗ trợ và phản hồi trong thời gian sớm nhất."
+                    ]
+                }
+            ];
+
+            function buildAccordion() {
+                var container = document.getElementById("faq-accordion");
+                if (!container) return;
+                faqData.forEach(function (item, idx) {
+                    var div = document.createElement("div");
+                    div.className = "accordion-item";
+                    div.innerHTML =
+                        "<button class=\"accordion-trigger\" onclick=\"toggleAccordion(" + idx + ")\">" +
+                        "<span>" + (idx + 1) + ". " + item.title + "</span>" +
+                        "<span class=\"accordion-icon\">" +
+                        "<svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\">" +
+                        "<line x1=\"7\" y1=\"1\" x2=\"7\" y2=\"13\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/>" +
+                        "<line x1=\"1\" y1=\"7\" x2=\"13\" y2=\"7\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/>" +
+                        "</svg>" +
+                        "</span>" +
+                        "</button>" +
+                        "<div class=\"accordion-body\"><div class=\"accordion-content\" id=\"faq-content-" + idx + "\"></div></div>";
+                    container.appendChild(div);
+                    renderAccordionContent(idx);
+                });
+                var first = document.querySelector(".accordion-item");
+                if (first) first.classList.add("is-open");
+            }
+
+            function renderAccordionContent(idx) {
+                var data = faqData[idx];
+                var el = document.getElementById("faq-content-" + idx);
+                if (!el) return;
+                var html = data.body.map(function (p) { return "<p>" + p + "</p>"; }).join("");
+                if (data.formula) {
+                    html += "<div class=\"mt-4 rounded-xl border border-white/10 bg-white/5 px-6 py-5 text-center\">"
+                        + "<p class=\"text-white/50 text-xs uppercase  mb-3\">C\u00f4ng th\u1ee9c c\u01a1 b\u1ea3n</p>"
+                        + "<div class=\"inline-flex flex-col items-center gap-1\">"
+                        + "<span class=\"text-white font-bold text-base\">Gi\u00e1 tr\u1ecb 1 \u0111i\u1ec3m</span>"
+                        + "<span class=\"text-white/40 text-lg\">=</span>"
+                        + "<div class=\"flex flex-col items-center\">"
+                        + "<span class=\"border-b border-white/30 pb-1 mb-1 text-sm text-white/80 font-semibold px-2\">T\u1ed5ng gi\u00e1 tr\u1ecb qu\u1ef9 th\u01b0\u1edfng</span>"
+                        + "<span class=\"text-sm text-white/80 font-semibold px-2\">T\u1ed5ng \u0111i\u1ec3m to\u00e0n l\u1ef1c l\u01b0\u1ee3ng</span>"
+                        + "</div>"
+                        + "<span class=\"text-white/40 text-lg\">&#215;</span>"
+                        + "<span class=\"text-primary font-bold text-base\">H\u1ec7 s\u1ed1 LLTV <span class=\"text-white/60\">(0.5)</span></span>"
+                        + "</div>"
+                        + "</div>";
+                }
+                if (data.image) {
+                    html += "<div class=\"mt-4 rounded-xl overflow-hidden border border-white/10\">"
+                        + "<img src=\"" + data.image + "\" alt=\"\" class=\"w-full h-auto object-cover\" loading=\"lazy\">"
+                        + "</div>";
+                }
+                el.innerHTML = html;
+            }
+
+            function toggleAccordion(idx) {
+                document.querySelectorAll(".accordion-item").forEach(function (item, i) {
+                    if (i === idx) { item.classList.toggle("is-open"); }
+                    else { item.classList.remove("is-open"); }
+                });
+            }
+
+            buildAccordion();
+        </script>
+    </main>
+    <!-- Footer -->
+
+<script is:inline>
+
+
+        /* ────────────────── Active nav sync ────────────────── */
+        function setActiveNav() {
+            var filename = window.location.pathname.split('/').filter(Boolean).pop() || 'index.html';
+            if (filename.indexOf('.') === -1 && filename !== 'index.html') filename += '.html';
+            var map = {
+                'index.html': 'index', 'index': 'index', '': 'index',
+                'tong-quan-chuong-trinh.html': 'tong-quan', 'tong-quan-chuong-trinh': 'tong-quan',
+                'the-le.html': 'the-le', 'the-le': 'the-le',
+                'leaderboard-prm.html': 'bxh', 'leaderboard-prm': 'bxh',
+                'refer-onetrust.html': 'refer', 'refer-onetrust': 'refer',
+            };
+            var active = map[filename] || 'index';
+            document.querySelectorAll('[data-nav]').forEach(function (el) {
+                if (el.dataset.nav === active) {
+                    el.classList.add('nav-active');
+                } else {
+                    el.classList.remove('nav-active');
+                }
+            });
+        }
+        setActiveNav();
+    </script>
+    
+</ProgramLayout>
+
