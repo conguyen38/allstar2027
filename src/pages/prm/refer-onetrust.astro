@@ -37,7 +37,7 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
         .form-input {
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(68, 72, 79, 0.6);
-            color: #111111;
+            color: #f1f3fc;
             transition: border-color 0.2s, box-shadow 0.2s;
         }
 
@@ -49,6 +49,11 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
 
         .form-input::placeholder {
             color: rgba(200, 203, 210, 0.85);
+        }
+
+        .form-input option {
+            background: #151a21;
+            color: #f1f3fc;
         }
 
         html:not(.dark) .form-input::placeholder {
@@ -63,12 +68,91 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
             text-transform: uppercase;
         }
 
+        .custom-select {
+            position: relative;
+        }
+
+        .custom-select-button {
+            min-height: 50px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(68, 72, 79, 0.6);
+            color: #f1f3fc;
+            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+
+        .custom-select-button:hover {
+            border-color: rgba(255, 209, 108, 0.38);
+            background: rgba(255, 255, 255, 0.055);
+        }
+
+        .custom-select-button:focus-visible,
+        .custom-select-button[aria-expanded="true"] {
+            outline: none;
+            border-color: rgba(0, 227, 253, 0.6);
+            box-shadow: 0 0 0 3px rgba(0, 227, 253, 0.08);
+        }
+
+        .custom-select-button[data-placeholder="true"] .custom-select-value {
+            color: rgba(200, 203, 210, 0.85);
+        }
+
+        .custom-select-button .material-symbols-outlined {
+            transition: transform 0.2s;
+        }
+
+        .custom-select-button[aria-expanded="true"] .material-symbols-outlined {
+            transform: rotate(180deg);
+        }
+
+        .custom-select-menu {
+            position: absolute;
+            z-index: 40;
+            top: calc(100% + 8px);
+            left: 0;
+            right: 0;
+            max-height: 240px;
+            overflow-y: auto;
+            padding: 6px;
+            border-radius: 14px;
+            border: 1px solid rgba(68, 72, 79, 0.78);
+            background: rgba(21, 26, 33, 0.98);
+            box-shadow: 0 18px 42px rgba(0, 0, 0, 0.38);
+            backdrop-filter: blur(14px);
+        }
+
+        .custom-select-menu.hidden {
+            display: none;
+        }
+
+        .custom-select-option {
+            width: 100%;
+            border-radius: 10px;
+            padding: 10px 12px;
+            color: #f1f3fc;
+            text-align: left;
+            font-size: 0.875rem;
+            transition: background 0.16s, color 0.16s;
+        }
+
+        .custom-select-option:hover,
+        .custom-select-option:focus-visible {
+            outline: none;
+            background: rgba(255, 209, 108, 0.09);
+            color: #ffd16c;
+        }
+
+        .custom-select-option[aria-selected="true"] {
+            background: rgba(0, 227, 253, 0.09);
+            color: #e8fbff;
+        }
+
         /* Radio custom style */
         .radio-option {
             border: 1px solid rgba(68, 72, 79, 0.6);
             background: rgba(255, 255, 255, 0.03);
             transition: all 0.2s;
             cursor: pointer;
+            position: relative;
         }
 
         .radio-option:has(input:checked) {
@@ -77,9 +161,38 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
             box-shadow: 0 0 16px rgba(255, 209, 108, 0.08);
         }
 
+        .radio-option:has(input:focus-visible) {
+            border-color: rgba(0, 227, 253, 0.6);
+            box-shadow: 0 0 0 3px rgba(0, 227, 253, 0.08);
+        }
+
         .radio-option:hover {
             border-color: rgba(255, 209, 108, 0.4);
             background: rgba(255, 209, 108, 0.03);
+        }
+
+        .radio-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .radio-indicator {
+            width: 1rem;
+            height: 1rem;
+            border-radius: 9999px;
+            border: 2px solid rgba(241, 243, 252, 0.9);
+            background: rgba(241, 243, 252, 0.95);
+            box-shadow: inset 0 0 0 4px rgba(21, 26, 33, 0.95);
+            transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+        }
+
+        .radio-option input[type="radio"]:checked + .radio-indicator {
+            border-color: #ffd16c;
+            background: #ffd16c;
+            box-shadow:
+                inset 0 0 0 4px rgba(21, 26, 33, 0.95),
+                0 0 14px rgba(255, 209, 108, 0.35);
         }
 
         /* File upload drop zone */
@@ -196,7 +309,7 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
                         </div>
 
                         <!-- Email -->
-                        <div class="mb-1">
+                        <div class="mb-5">
                             <label for="email" class="form-label block mb-2">
                                 Email <span class="text-tertiary">*</span>
                             </label>
@@ -205,6 +318,34 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
                             <div id="emailError" class="hidden text-xs text-tertiary mt-1.5 flex items-center gap-1">
                                 <span class="material-symbols-outlined text-[13px]">error</span>
                                 Email không hợp lệ
+                            </div>
+                        </div>
+
+                        <!-- Vùng -->
+                        <div class="mb-1">
+                            <label for="vung" class="form-label block mb-2">
+                                Vùng <span class="text-tertiary">*</span>
+                            </label>
+                            <input id="vung" name="vung" type="hidden" required>
+                            <div class="custom-select" data-custom-select data-target="vung">
+                                <button type="button"
+                                    class="custom-select-button w-full rounded-xl px-4 py-3 text-sm flex items-center justify-between gap-3 cursor-pointer"
+                                    aria-haspopup="listbox" aria-expanded="false" data-placeholder="true">
+                                    <span class="custom-select-value">-- Chọn vùng --</span>
+                                    <span
+                                        class="material-symbols-outlined text-on-surface-variant text-[18px] pointer-events-none">expand_more</span>
+                                </button>
+                                <div class="custom-select-menu hidden" role="listbox">
+                                    <button type="button" class="custom-select-option" role="option" data-value="Vùng 1">Vùng 1</button>
+                                    <button type="button" class="custom-select-option" role="option" data-value="Vùng 2">Vùng 2</button>
+                                    <button type="button" class="custom-select-option" role="option" data-value="Vùng 3">Vùng 3</button>
+                                    <button type="button" class="custom-select-option" role="option" data-value="Vùng 5A">Vùng 5A</button>
+                                    <button type="button" class="custom-select-option" role="option" data-value="Vùng 5">Vùng 5</button>
+                                    <button type="button" class="custom-select-option" role="option" data-value="Vùng 6">Vùng 6</button>
+                                    <button type="button" class="custom-select-option" role="option" data-value="Vùng 7">Vùng 7</button>
+                                    <button type="button" class="custom-select-option" role="option" data-value="Vùng 8">Vùng 8</button>
+                                    <button type="button" class="custom-select-option" role="option" data-value="HUB Miền Bắc">HUB Miền Bắc</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -226,19 +367,23 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
                             <label for="duAn" class="form-label block mb-2">
                                 Dự án <span class="text-tertiary">*</span>
                             </label>
-                            <div class="relative">
-                                <select id="duAn" name="duAn" required
-                                    class="form-input w-full rounded-xl px-4 py-3 pr-10 text-sm appearance-none cursor-pointer">
-                                    <option value="" disabled selected>-- Chọn dự án --</option>
-                                    <option value="Vinhomes Ocean Park 1">Vinhomes Ocean Park 1</option>
-                                    <option value="Vinhomes Ocean Park 2">Vinhomes Ocean Park 2</option>
-                                    <option value="Vinhomes Ocean Park 3">Vinhomes Ocean Park 3</option>
-                                    <option value="Vinhomes Smart City">Vinhomes Smart City</option>
-                                    <option value="Masteri Grand Avenue">Masteri Grand Avenue</option>
-                                    <option value="Lumiere Prime Hills">Lumiere Prime Hills</option>
-                                </select>
-                                <span
-                                    class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px] pointer-events-none">expand_more</span>
+                            <input id="duAn" name="duAn" type="hidden" required>
+                            <div class="custom-select" data-custom-select data-target="duAn">
+                                <button type="button"
+                                    class="custom-select-button w-full rounded-xl px-4 py-3 text-sm flex items-center justify-between gap-3 cursor-pointer"
+                                    aria-haspopup="listbox" aria-expanded="false" data-placeholder="true">
+                                    <span class="custom-select-value">-- Chọn dự án --</span>
+                                    <span
+                                        class="material-symbols-outlined text-on-surface-variant text-[18px] pointer-events-none">expand_more</span>
+                                </button>
+                                <div class="custom-select-menu hidden" role="listbox">
+                                    <button type="button" class="custom-select-option" role="option" data-value="Vinhomes Ocean Park 1">Vinhomes Ocean Park 1</button>
+                                    <button type="button" class="custom-select-option" role="option" data-value="Vinhomes Ocean Park 2">Vinhomes Ocean Park 2</button>
+                                    <button type="button" class="custom-select-option" role="option" data-value="Vinhomes Ocean Park 3">Vinhomes Ocean Park 3</button>
+                                    <button type="button" class="custom-select-option" role="option" data-value="Vinhomes Smart City">Vinhomes Smart City</button>
+                                    <button type="button" class="custom-select-option" role="option" data-value="Masteri Grand Avenue">Masteri Grand Avenue</button>
+                                    <button type="button" class="custom-select-option" role="option" data-value="Lumiere Prime Hills">Lumiere Prime Hills</button>
+                                </div>
                             </div>
                         </div>
 
@@ -274,12 +419,13 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
                         <!-- Pháp lý -->
                         <div class="mb-5">
                             <label class="form-label block mb-3">
-                                Pháp lý <span class="text-tertiary">*</span>
+                                Pháp lý
                             </label>
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                                 <label class="radio-option rounded-xl p-4 flex items-center gap-3 select-none">
-                                    <input type="radio" name="phapLy" value="HDMB" required
-                                        class="w-4 h-4 accent-primary shrink-0">
+                                    <input type="radio" name="phapLy" value="HDMB"
+                                        class="shrink-0">
+                                    <span class="radio-indicator shrink-0" aria-hidden="true"></span>
                                     <div>
                                         <div class="text-sm font-semibold text-on-surface">HĐMB</div>
                                         <div class="text-xs text-on-surface-variant">Hợp đồng mua bán</div>
@@ -287,7 +433,8 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
                                 </label>
                                 <label class="radio-option rounded-xl p-4 flex items-center gap-3 select-none">
                                     <input type="radio" name="phapLy" value="San so"
-                                        class="w-4 h-4 accent-primary shrink-0">
+                                        class="shrink-0">
+                                    <span class="radio-indicator shrink-0" aria-hidden="true"></span>
                                     <div>
                                         <div class="text-sm font-semibold text-on-surface">Sẵn sổ</div>
                                         <div class="text-xs text-on-surface-variant">Căn hộ sẵn sổ</div>
@@ -295,7 +442,8 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
                                 </label>
                                 <label class="radio-option rounded-xl p-4 flex items-center gap-3 select-none">
                                     <input type="radio" name="phapLy" value="Co so dang vay"
-                                        class="w-4 h-4 accent-primary shrink-0">
+                                        class="shrink-0">
+                                    <span class="radio-indicator shrink-0" aria-hidden="true"></span>
                                     <div>
                                         <div class="text-sm font-semibold text-on-surface">Có sổ đang vay</div>
                                         <div class="text-xs text-on-surface-variant">Căn hộ có sổ nhưng đang thế chấp
@@ -471,6 +619,73 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim());
         }
 
+        function closeCustomSelects(except) {
+            document.querySelectorAll('[data-custom-select]').forEach(select => {
+                if (select === except) return;
+                const button = select.querySelector('.custom-select-button');
+                const menu = select.querySelector('.custom-select-menu');
+                button.setAttribute('aria-expanded', 'false');
+                menu.classList.add('hidden');
+            });
+        }
+
+        function initCustomSelects() {
+            document.querySelectorAll('[data-custom-select]').forEach(select => {
+                const input = document.getElementById(select.dataset.target);
+                const button = select.querySelector('.custom-select-button');
+                const value = select.querySelector('.custom-select-value');
+                const menu = select.querySelector('.custom-select-menu');
+                const options = select.querySelectorAll('.custom-select-option');
+
+                button.addEventListener('click', () => {
+                    const willOpen = button.getAttribute('aria-expanded') !== 'true';
+                    closeCustomSelects(select);
+                    button.setAttribute('aria-expanded', String(willOpen));
+                    menu.classList.toggle('hidden', !willOpen);
+                });
+
+                options.forEach(option => {
+                    option.addEventListener('click', () => {
+                        input.value = option.dataset.value;
+                        value.textContent = option.textContent.trim();
+                        button.dataset.placeholder = 'false';
+                        options.forEach(item => item.setAttribute('aria-selected', 'false'));
+                        option.setAttribute('aria-selected', 'true');
+                        button.setAttribute('aria-expanded', 'false');
+                        menu.classList.add('hidden');
+                    });
+                });
+            });
+
+            document.addEventListener('click', event => {
+                if (!event.target.closest('[data-custom-select]')) {
+                    closeCustomSelects();
+                }
+            });
+
+            document.addEventListener('keydown', event => {
+                if (event.key === 'Escape') closeCustomSelects();
+            });
+        }
+
+        function resetCustomSelects() {
+            document.querySelectorAll('[data-custom-select]').forEach(select => {
+                const input = document.getElementById(select.dataset.target);
+                const button = select.querySelector('.custom-select-button');
+                const value = select.querySelector('.custom-select-value');
+                const menu = select.querySelector('.custom-select-menu');
+                const options = select.querySelectorAll('.custom-select-option');
+                input.value = '';
+                value.textContent = select.dataset.target === 'vung' ? '-- Chọn vùng --' : '-- Chọn dự án --';
+                button.dataset.placeholder = 'true';
+                button.setAttribute('aria-expanded', 'false');
+                menu.classList.add('hidden');
+                options.forEach(option => option.setAttribute('aria-selected', 'false'));
+            });
+        }
+
+        initCustomSelects();
+
         /* ── Live inline validation ── */
         document.getElementById('sdt').addEventListener('blur', function () {
             const err = document.getElementById('sdtError');
@@ -519,6 +734,7 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
             const hoTen = document.getElementById('hoTen').value.trim();
             const sdt = document.getElementById('sdt').value.trim();
             const email = document.getElementById('email').value.trim();
+            const vung = document.getElementById('vung').value;
             const duAn = document.getElementById('duAn').value;
             const maCan = document.getElementById('maCan').value.trim();
             const giaChao = document.getElementById('giaChao').value.trim().replace(/,/g, '');
@@ -536,11 +752,11 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
                 errors.push('Email hợp lệ');
                 document.getElementById('emailError').classList.remove('hidden');
             }
+            if (!vung) errors.push('Vùng');
             if (!duAn) errors.push('Dự án');
             if (!maCan) errors.push('Mã căn');
             if (!giaChao) errors.push('Giá chủ đang chào bán');
             if (!giaDamPhan) errors.push('Giá dự kiến đàm phán');
-            if (!phapLy) errors.push('Pháp lý');
 
             if (errors.length) {
                 errorMsg.classList.remove('hidden');
@@ -564,8 +780,9 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
 
                 const payload = {
                     timestamp: new Date().toISOString(),
-                    hoTen, sdt, email,
-                    duAn, maCan, giaChao, giaDamPhan, phapLy,
+                    hoTen, sdt, email, vung,
+                    duAn, maCan, giaChao, giaDamPhan,
+                    phapLy: phapLy || '',
                     files: filesData
                 };
 
@@ -601,6 +818,7 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
             document.getElementById('errorMsg').classList.add('hidden');
             document.getElementById('sdtError').classList.add('hidden');
             document.getElementById('emailError').classList.add('hidden');
+            resetCustomSelects();
             selectedFiles = [];
             renderFileList();
         }
