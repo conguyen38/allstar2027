@@ -1,0 +1,632 @@
+---
+import '../../styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allstar Briefing </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { background-color: #F8FAFC; color: #1E293B; overflow-x: hidden; }
+        
+        .glass-panel { 
+            background: #FFFFFF; 
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        
+        .premium-container {
+            background: linear-gradient(135deg, #EEF2F6 0%, #FFFFFF 100%);
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+        }
+
+        .progress-container {
+            display: flex;
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+            width: 100%;
+            background: #E2E8F0;
+        }
+        
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen py-10 px-4 md:px-8">
+
+    <div class="max-w-6xl mx-auto space-y-10">
+        
+        <header class="text-center space-y-4 mb-8">
+            <h1 class="font-display text-5xl md:text-6xl font-black text-slate-800 tracking-tight">
+                ALLSTAR <span class="text-accent3">BRIEFING</span>
+            </h1>
+            <p class="text-slate-500 text-lg max-w-2xl mx-auto font-medium">Tổng thể chương trình AllStar 2025 - 2026</p>
+        </header>
+
+        <!-- ĐIỂM CHUNG -->
+        <section class="glass-panel rounded-2xl p-6">
+            <h2 class="text-xs font-bold text-slate-400 mb-4 uppercase tracking-widest text-center">Đặc điểm chung chương trình</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                <div class="bg-slate-50 border border-slate-100 p-4 rounded-xl flex flex-col items-center text-center">
+                    <div class="w-10 h-10 rounded-full bg-accent1/10 flex items-center justify-center text-accent1 mb-3"><i class="fa-solid fa-users"></i></div>
+                    <div class="text-[10px] text-slate-500 uppercase font-bold mb-1">Đối tượng</div>
+                    <div class="text-xs font-bold text-slate-800 mb-1">PNS Chiến lược (TCB)</div>
+                    <div class="text-[10px] text-accent1 font-semibold bg-accent1/10 px-2 py-0.5 rounded">Cá nhân & Tập thể (Chi nhánh (CN))</div>
+                </div>
+                
+                <div class="bg-slate-50 border border-slate-100 p-4 rounded-xl flex flex-col items-center text-center">
+                    <div class="w-10 h-10 rounded-full bg-accent3/10 flex items-center justify-center text-accent3 mb-3"><i class="fa-solid fa-network-wired"></i></div>
+                    <div class="text-[10px] text-slate-500 uppercase font-bold mb-1">Kênh Nguồn</div>
+                    <div class="text-xs font-bold text-slate-800">PARTNER_TCB</div>
+                    <div class="text-[10px] font-semibold text-slate-500 mt-1">& Quỹ cấn chéo</div>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-100 p-4 rounded-xl flex flex-col items-center text-center">
+                    <div class="w-10 h-10 rounded-full bg-accent4/10 flex items-center justify-center text-accent4 mb-3"><i class="fa-solid fa-right-to-bracket"></i></div>
+                    <div class="text-[10px] text-slate-500 uppercase font-bold mb-1">Điều kiện tham gia</div>
+                    <div class="text-xs font-bold text-slate-800">Tối thiểu 05 điểm</div>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-100 p-4 rounded-xl flex flex-col items-center text-center">
+                    <div class="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-3"><i class="fa-solid fa-wallet"></i></div>
+                    <div class="text-[10px] text-slate-500 uppercase font-bold mb-1">Cơ chế & Trả thưởng</div>
+                    <div class="text-xs font-bold text-slate-800 mb-1">U-Point (App OneU)</div>
+                    <div class="text-[10px] font-semibold text-gold bg-gold/10 px-2 py-0.5 rounded">1 Điểm = 1 Triệu (ngoại trừ AllStar 2025) </div>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-100 p-4 rounded-xl flex flex-col items-center text-center">
+                    <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-600 mb-3"><i class="fa-solid fa-bullseye"></i></div>
+                    <div class="text-[10px] text-slate-500 uppercase font-bold mb-1">Mốc tính thưởng</div>
+                    <div class="text-sm font-black text-slate-800">Mốc cuối CE</div>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-100 p-4 rounded-xl flex flex-col items-center text-center">
+                    <div class="w-10 h-10 rounded-full bg-accent2/10 flex items-center justify-center text-accent2 mb-3"><i class="fa-solid fa-gift"></i></div>
+                    <div class="text-[10px] text-slate-500 uppercase font-bold mb-1">Quyền lợi khác</div>
+                    <div class="text-[10px] font-semibold text-slate-700 leading-relaxed">
+                        Thưởng tích lũy, Đào tạo, Sự kiện & Thông tin dự án
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="glass-panel rounded-[2rem] p-8 border-t-4 border-t-accent1 relative overflow-hidden flex flex-col">
+                <div class="absolute top-0 right-0 p-6 opacity-5 text-accent1"><i class="fa-solid fa-handshake text-8xl"></i></div>
+                
+                <div class="flex justify-between items-start mb-6 relative z-10">
+                    <div>
+                        <h2 class="font-display text-2xl font-bold text-slate-800 mb-2">Loyalty Allstar Club</h2>
+                        <div class="flex gap-2">
+                            <div class="badge bg-accent1/10 text-accent1 border border-accent1/20">
+                                <i class="fa-regular fa-calendar mr-2"></i> 11/2025 - 01/2026
+                            </div>
+                            <div class="badge bg-slate-100 text-slate-600 border border-slate-200">
+                                Trả theo Kỳ Đánh Giá
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 mb-6 relative z-10">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <div class="text-xs text-slate-500 font-semibold mb-1">Cơ chế tính điểm</div>
+                        <div class="text-sm font-bold text-slate-800">Hành động giao dịch</div>
+                        <div class="text-[10px] text-accent1 mt-1 font-medium">HBK • VBTT • HĐMB • Refer căn độc quyền</div>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <div class="text-xs text-slate-500 font-semibold mb-1">Hệ số điểm dự án</div>
+                        <div class="text-sm font-bold text-slate-800">Cố định</div>
+                        <div class="text-[10px] text-accent1 mt-1 font-medium">Cao tầng 7đ | Thấp tầng theo chính sách dự án</div>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 col-span-2 flex items-center justify-between">
+                        <div>
+                            <div class="text-xs text-slate-500 font-semibold mb-1">Quy mô quỹ thưởng</div>
+                            <div class="text-lg font-bold text-gold">Tối đa 15.1 Tỷ VNĐ</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-auto relative z-10 bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+                    <div class="text-[10px] text-slate-500 font-bold mb-3 uppercase flex items-center gap-2"><i class="fa-solid fa-sitemap text-accent1"></i> Hệ số phân bổ Quỹ thưởng chung</div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div class="bg-slate-50 border border-slate-100 rounded-lg py-2 px-1 text-center">
+                            <div class="text-[9px] text-slate-500 font-bold uppercase mb-1">Cá nhân</div>
+                            <div class="text-lg font-black text-accent1">0.5</div>
+                        </div>
+                        <div class="bg-slate-50 border border-slate-100 rounded-lg py-2 px-1 text-center">
+                            <div class="text-[9px] text-slate-500 font-bold uppercase mb-1">C.Nhánh</div>
+                            <div class="text-lg font-black text-accent4">0.3</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-slate-100">
+                    <div class="flex justify-between text-xs font-bold mb-2">
+                        <span class="text-accent1">90% Kỳ Hiện Tại</span>
+                        <span class="text-slate-500">10% Kỳ Tiếp Theo</span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="bg-accent1" style="width: 90%"></div>
+                        <div class="bg-slate-300" style="width: 10%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-panel rounded-[2rem] p-8 border-t-4 border-t-accent2 relative overflow-hidden flex flex-col">
+                <div class="absolute top-0 right-0 p-6 opacity-5 text-accent2"><i class="fa-solid fa-rocket text-8xl"></i></div>
+                
+                <div class="flex justify-between items-start mb-6 relative z-10">
+                    <div>
+                        <h2 class="font-display text-2xl font-bold text-slate-800 mb-2">Special Bonus</h2>
+                        <div class="flex gap-2">
+                            <div class="badge bg-accent2/10 text-accent2 border border-accent2/20">
+                                <i class="fa-regular fa-calendar mr-2"></i> Tháng 01/2026
+                            </div>
+                            <div class="badge bg-slate-100 text-slate-600 border border-slate-200">
+                                Trả Tháng 2/2026
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 mb-6 relative z-10">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 col-span-2">
+                        <div class="text-xs text-slate-500 font-semibold mb-1">Mục tiêu cốt lõi</div>
+                        <div class="text-sm font-bold text-slate-800">Thúc đẩy GMV & Ký kết đầu năm</div>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 col-span-2 flex items-center justify-between">
+                        <div>
+                            <div class="text-xs text-slate-500 font-semibold mb-1">Cơ sở tính thưởng</div>
+                            <div class="text-sm font-bold text-slate-800">Theo giá trị GMV</div>
+                        </div>
+                        <div class="text-right text-[10px] font-medium text-slate-500 bg-white px-3 py-1.5 rounded-lg border border-slate-100">
+                            Giá trị tính thưởng<br><strong class="text-accent2">Trước VAT & KPBT</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-auto relative z-10 space-y-3">
+                    <!-- Cao Tầng -->
+                    <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-sm flex items-center gap-4">
+                        <div class="w-10 h-10 shrink-0 rounded bg-accent2/10 flex items-center justify-center text-accent2 text-lg"><i class="fa-solid fa-building"></i></div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-1">
+                                <div class="text-xs text-slate-800 font-bold">Dự án Cao Tầng</div>
+                                <div class="text-xs font-black text-accent2">1.5đ <span class="text-[10px] text-slate-500 font-normal">/ 1 tỷ GMV</span></div>
+                            </div>
+                            <div class="flex flex-wrap gap-1 text-[10px] font-bold">
+                                <span class="bg-accent4/10 text-accent4 px-1.5 py-0.5 rounded">CN: 0.5đ/tỷ</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Thấp Tầng -->
+                    <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-sm flex items-center gap-4">
+                        <div class="w-10 h-10 shrink-0 rounded bg-accent1/10 flex items-center justify-center text-accent1 text-lg"><i class="fa-solid fa-house"></i></div>
+                        <div class="flex-1">
+                            <div class="text-xs text-slate-800 font-bold mb-1.5">Dự án Thấp tầng & Hàng hiệu</div>
+                            <div class="grid grid-cols-1 gap-1.5 text-[9px]">
+                                <div class="bg-slate-50 p-1.5 rounded border border-slate-100 flex justify-between">
+                                    <span class="font-bold text-accent4">C.Nhánh:</span> 
+                                    <span class="text-slate-600 text-right">Gộp chung bảng Cá nhân (Mốc 20-160 tỷ)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-slate-100">
+                    <div class="flex justify-between text-xs font-bold mb-2">
+                        <span class="text-accent2">90% Kỳ Hiện Tại</span>
+                        <span class="text-slate-500">10% Kỳ Tiếp Theo</span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="bg-accent2" style="width: 90%"></div>
+                        <div class="bg-slate-300" style="width: 10%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="premium-container rounded-[2.5rem] p-6 md:p-10 mt-10">
+            
+            <div class="text-center mb-10">
+                <div class="badge bg-accent3/10 text-accent3 border border-accent3/20 mb-4 px-4 py-1.5 text-sm">
+                    <i class="fa-solid fa-crown mr-2"></i> Chương trình 2026: 02/2026 - 12/2026
+                </div>
+                <h2 class="font-display text-4xl md:text-5xl font-black text-slate-900">ALLSTAR 2026</h2>
+                <p class="text-slate-500 mt-2 font-medium">Cơ sở tính GMV - Mở rộng nền tảng số & thị trường thứ cấp</p>
+            </div>
+
+            <!-- 1. GMV Sơ Cấp (Cá nhân & Tập thể) -->
+            <div class="bg-white border border-slate-200 rounded-2xl shadow-sm mb-6 overflow-hidden p-6">
+                
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 border-b border-slate-100 pb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-xl bg-accent1/10 flex items-center justify-center text-accent1 text-2xl"><i class="fa-solid fa-building"></i></div>
+                        <div>
+                            <h3 class="font-bold text-xl text-slate-800">GMV Sơ Cấp</h3>
+                            <p class="text-xs font-medium text-slate-500 mt-1">Cơ sở tính điểm trên mỗi <strong class="text-accent1">1 Tỷ VNĐ GMV</strong></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <!-- Phân hệ Cá nhân -->
+                    <div class="bg-slate-50/50 border border-slate-100 rounded-xl p-4 hover:shadow-sm transition-shadow">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-user text-accent1"></i>
+                                <h4 class="font-bold text-slate-700 text-sm uppercase">Cá Nhân</h4>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="flex justify-between items-center bg-white border border-slate-200 p-4 rounded-xl shadow-sm hover:border-accent1/30 transition-colors">
+                                <span class="font-semibold text-slate-700 text-sm">Sản phẩm Premium</span>
+                                <span class="font-black text-accent1 text-2xl">1.0đ <span class="text-[10px] text-slate-400 font-normal">/ 1 tỷ</span></span>
+                            </div>
+                            <div class="flex justify-between items-center bg-white border border-slate-200 p-4 rounded-xl shadow-sm hover:border-accent1/30 transition-colors">
+                                <span class="font-semibold text-slate-700 text-sm">Sản phẩm Branded</span>
+                                <span class="font-black text-accent1 text-2xl">0.8đ <span class="text-[10px] text-slate-400 font-normal">/ 1 tỷ</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phân hệ Tập thể -->
+                    <div class="bg-slate-50/50 border border-slate-100 rounded-xl p-4 hover:shadow-sm transition-shadow">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-sitemap text-accent4"></i>
+                                <h4 class="font-bold text-slate-700 text-sm uppercase">Tập Thể</h4>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 gap-3">
+                            <div class="bg-white border border-slate-200 rounded-xl py-3 px-2 text-center shadow-sm hover:border-accent4/30 transition-colors">
+                                <div class="text-[10px] text-slate-500 font-bold uppercase mb-1">Chi Nhánh</div>
+                                <div class="text-2xl font-black text-accent4">0.5đ</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                <!-- OneHub -->
+                <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-accent4/10 flex items-center justify-center text-accent4 text-lg"><i class="fa-solid fa-globe"></i></div>
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-800">Cơ chế OneHub</h3>
+                                <span class="text-[10px] font-bold text-accent4 bg-accent4/10 px-2 py-0.5 rounded uppercase">Hoạt động Nền tảng số</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center bg-slate-50 p-3 rounded-xl border border-slate-100">
+                                <span class="text-sm font-semibold text-slate-700">Kích hoạt Tài khoản</span>
+                                <span class="font-black text-accent4 text-lg">+0.1đ</span>
+                            </div>
+                            <div class="flex justify-between items-center bg-slate-50 p-3 rounded-xl border border-slate-100">
+                                <span class="text-sm font-semibold text-slate-700">Niêm yết <span class="text-[10px] text-slate-400 font-normal">(Đáp ứng 2K4D)</span></span>
+                                <span class="font-black text-accent4 text-lg">+0.5đ <span class="text-[10px] text-slate-400 font-normal">/ niêm yết</span></span>
+                            </div>
+                            <div class="flex justify-between items-center bg-slate-50 p-3 rounded-xl border border-slate-100">
+                                <span class="text-sm font-semibold text-slate-700">Hoàn thành GD qua OneHub</span>
+                                <span class="font-black text-accent4 text-lg">+0.5đ <span class="text-[10px] text-slate-400 font-normal">/ giao dịch</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- OneTrust -->
+                <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-accent2/10 flex items-center justify-center text-accent2 text-lg"><i class="fa-solid fa-handshake-angle"></i></div>
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-800">Cơ chế OneTrust</h3>
+                                <span class="text-[10px] font-bold text-accent2 bg-accent2/10 px-2 py-0.5 rounded uppercase">Thị trường Thứ cấp</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+                                <span class="text-sm font-semibold text-slate-700">Quy đổi Cá nhân</span>
+                                <span class="font-black text-accent2 text-xl">1.0đ <span class="text-[10px] text-slate-500 font-normal">/ 1 tỷ GMV NET</span></span>
+                            </div>
+                            <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+                                <span class="text-sm font-semibold text-slate-700">Thưởng Chi nhánh</span>
+                                <span class="text-xs text-right text-slate-600 font-medium bg-slate-50 px-2 py-1.5 rounded border border-slate-100">CN <strong class="text-accent2">0.5</strong></span>
+                            </div>
+                            <div class="flex justify-between items-center pt-1 bg-slate-50 p-3 rounded-xl">
+                                <span class="text-xs text-slate-500 font-bold"><i class="fa-solid fa-location-dot text-slate-400 mr-1"></i> Phạm vi dự án</span>
+                                <span class="text-xs text-right font-bold text-slate-700">Cao tầng OCP1 & Cổ Loa</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-10 bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+                <h3 class="text-center font-bold text-slate-800 mb-6 uppercase tracking-widest text-sm flex items-center justify-center gap-3">
+                    <span class="h-px w-10 bg-slate-200"></span>
+                    Thưởng Bonus Milestone Lũy Tiến (Cá Nhân)
+                    <span class="h-px w-10 bg-slate-200"></span>
+                </h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
+                    
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-center hover:border-gold hover:shadow-md transition-all group">
+                        <div class="text-[10px] text-slate-400 uppercase font-bold mb-1">Mốc đạt</div>
+                        <div class="text-xl font-black text-slate-800 mb-2 group-hover:text-accent1 transition-colors">10đ</div>
+                        <div class="bg-accent1/10 text-accent1 text-xs py-1.5 rounded-lg mb-2 font-bold border border-accent1/20">+5đ</div>
+                        <div class="text-[10px] text-slate-500 font-medium">Lũy kế: <span class="text-slate-800 font-bold">5</span></div>
+                    </div>
+
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-center hover:border-gold hover:shadow-md transition-all group">
+                        <div class="text-[10px] text-slate-400 uppercase font-bold mb-1">Mốc đạt</div>
+                        <div class="text-xl font-black text-slate-800 mb-2 group-hover:text-accent1 transition-colors">18đ</div>
+                        <div class="bg-accent1/10 text-accent1 text-xs py-1.5 rounded-lg mb-2 font-bold border border-accent1/20">+8đ</div>
+                        <div class="text-[10px] text-slate-500 font-medium">Lũy kế: <span class="text-slate-800 font-bold">13</span></div>
+                    </div>
+
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-center hover:border-gold hover:shadow-md transition-all group">
+                        <div class="text-[10px] text-slate-400 uppercase font-bold mb-1">Mốc đạt</div>
+                        <div class="text-xl font-black text-slate-800 mb-2 group-hover:text-accent1 transition-colors">32đ</div>
+                        <div class="bg-accent1/10 text-accent1 text-xs py-1.5 rounded-lg mb-2 font-bold border border-accent1/20">+12đ</div>
+                        <div class="text-[10px] text-slate-500 font-medium">Lũy kế: <span class="text-slate-800 font-bold">25</span></div>
+                    </div>
+
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-center hover:border-gold hover:shadow-md transition-all group">
+                        <div class="text-[10px] text-slate-400 uppercase font-bold mb-1">Mốc đạt</div>
+                        <div class="text-xl font-black text-slate-800 mb-2 group-hover:text-accent1 transition-colors">80đ</div>
+                        <div class="bg-accent1/10 text-accent1 text-xs py-1.5 rounded-lg mb-2 font-bold border border-accent1/20">+40đ</div>
+                        <div class="text-[10px] text-slate-500 font-medium">Lũy kế: <span class="text-slate-800 font-bold">65</span></div>
+                    </div>
+
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-center hover:border-gold hover:shadow-md transition-all group">
+                        <div class="text-[10px] text-slate-400 uppercase font-bold mb-1">Mốc đạt</div>
+                        <div class="text-xl font-black text-slate-800 mb-2 group-hover:text-accent1 transition-colors">150đ</div>
+                        <div class="bg-accent1/10 text-accent1 text-xs py-1.5 rounded-lg mb-2 font-bold border border-accent1/20">+32đ</div>
+                        <div class="text-[10px] text-slate-500 font-medium">Lũy kế: <span class="text-slate-800 font-bold">97</span></div>
+                    </div>
+
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-center hover:border-gold hover:shadow-md transition-all group">
+                        <div class="text-[10px] text-slate-400 uppercase font-bold mb-1">Mốc đạt</div>
+                        <div class="text-xl font-black text-slate-800 mb-2 group-hover:text-accent1 transition-colors">320đ</div>
+                        <div class="bg-accent1/10 text-accent1 text-xs py-1.5 rounded-lg mb-2 font-bold border border-accent1/20">+68đ</div>
+                        <div class="text-[10px] text-slate-500 font-medium">Lũy kế: <span class="text-slate-800 font-bold">165</span></div>
+                    </div>
+
+                    <div class="bg-amber-50 border-2 border-gold/40 rounded-xl p-4 text-center shadow-[0_4px_15px_rgba(217,119,6,0.15)] relative overflow-hidden">
+                        <div class="relative z-10">
+                            <div class="text-[10px] text-gold uppercase font-black mb-1"><i class="fa-solid fa-crown mr-1"></i> Mốc MAX</div>
+                            <div class="text-xl font-black text-slate-900 mb-2">680đ</div>
+                            <div class="bg-gold text-white shadow-md text-xs py-1.5 rounded-lg mb-2 font-black">+138đ</div>
+                            <div class="text-[10px] text-slate-600 font-medium">Lũy kế: <span class="text-slate-900 font-black">303</span></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Cơ cấu 4 Quý & Quy trình Giải Ngân (Redesigned) -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-transparent">
+                
+                <!-- Left: Timeline 4 Quarters -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col h-full">
+                    <h4 class="text-sm font-bold text-slate-700 mb-8 uppercase flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-full bg-accent3/10 text-accent3 flex items-center justify-center"><i class="fa-solid fa-chart-pie"></i></div>
+                        Tiến trình 4 Quý độc lập
+                    </h4>
+                    
+                    <div class="flex-grow flex items-center justify-center relative mb-4">
+                        <!-- Horizontal Line -->
+                        <div class="absolute top-[40%] left-6 right-6 h-1 bg-slate-100 rounded-full z-0"></div>
+                        
+                        <!-- 4 Nodes -->
+                        <div class="w-full flex justify-between relative z-10 px-2">
+                            <div class="flex flex-col items-center group">
+                                <div class="w-14 h-14 rounded-full bg-white border-4 border-slate-100 flex items-center justify-center text-slate-400 font-black shadow-sm group-hover:border-accent3 group-hover:text-accent3 transition-colors mb-2">Q1</div>
+                                <span class="text-[10px] font-bold text-slate-500 uppercase bg-slate-50 px-2 py-1 rounded">Đánh giá T4</span>
+                            </div>
+                            <div class="flex flex-col items-center group">
+                                <div class="w-14 h-14 rounded-full bg-white border-4 border-slate-100 flex items-center justify-center text-slate-400 font-black shadow-sm group-hover:border-accent3 group-hover:text-accent3 transition-colors mb-2">Q2</div>
+                                <span class="text-[10px] font-bold text-slate-500 uppercase bg-slate-50 px-2 py-1 rounded">Đánh giá T7</span>
+                            </div>
+                            <div class="flex flex-col items-center group">
+                                <div class="w-14 h-14 rounded-full bg-white border-4 border-slate-100 flex items-center justify-center text-slate-400 font-black shadow-sm group-hover:border-accent3 group-hover:text-accent3 transition-colors mb-2">Q3</div>
+                                <span class="text-[10px] font-bold text-slate-500 uppercase bg-slate-50 px-2 py-1 rounded">Đánh giá T10</span>
+                            </div>
+                            <div class="flex flex-col items-center group">
+                                <div class="w-14 h-14 rounded-full bg-white border-4 border-slate-100 flex items-center justify-center text-slate-400 font-black shadow-sm group-hover:border-accent3 group-hover:text-accent3 transition-colors mb-2">Q4</div>
+                                <span class="text-[10px] font-bold text-slate-500 uppercase bg-slate-50 px-2 py-1 rounded">Đánh giá T1/27</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-auto text-xs text-slate-500 bg-slate-50 p-3 rounded-lg border border-slate-100 text-center">
+                        <i class="fa-solid fa-circle-info text-accent3 mr-1"></i> Mỗi quý hoạt động độc lập, không cộng dồn doanh số.
+                    </div>
+                </div>
+
+                <!-- Right: Quy trình giải ngân Cards -->
+                <div class="flex flex-col gap-4 h-full">
+                    
+                    <!-- Cá Nhân Card -->
+                    <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm relative overflow-hidden flex-1">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent1 to-accent2"></div>
+                        <h4 class="text-xs font-bold text-slate-500 mb-4 uppercase flex items-center gap-2"><i class="fa-solid fa-user text-accent1"></i> Giải ngân Cá Nhân</h4>
+
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="flex-1 bg-slate-50 rounded-xl p-3 border border-slate-100 text-center hover:border-accent4/30 transition-colors">
+                                <div class="text-2xl font-black text-accent4">80%</div>
+                                <div class="text-[10px] text-slate-500 mt-1">Chi trả tại <strong class="text-slate-700">Quý hiện tại</strong></div>
+                            </div>
+                            <div class="flex-1 bg-slate-50 rounded-xl p-3 border border-slate-100 text-center hover:border-accent2/30 transition-colors">
+                                <div class="text-2xl font-black text-accent2">20%</div>
+                                <div class="text-[10px] text-slate-500 mt-1">Tạm khóa (Cần <strong class="text-slate-700">duy trì HBK</strong>)</div>
+                            </div>
+                        </div>
+                        
+                        <div class="w-full h-2.5 rounded-full flex overflow-hidden bg-slate-100">
+                            <div class="bg-accent4 w-[80%]"></div>
+                            <div class="bg-accent2 w-[20%]"></div>
+                        </div>
+                    </div>
+
+                    <!-- Tập Thể Card -->
+                    <div class="bg-amber-50 border border-gold/30 rounded-2xl p-5 shadow-sm">
+                        <h4 class="text-xs font-bold text-gold mb-3 uppercase flex items-center gap-2"><i class="fa-solid fa-sitemap"></i> Giải ngân Tập Thể</h4>
+                        <div class="flex items-center gap-4">
+                            <div class="text-4xl font-black text-gold">100%</div>
+                            <div class="text-sm text-slate-700 font-medium">Được chi trả toàn bộ vào <strong class="text-slate-900 font-bold">cuối mỗi Quý</strong><br><span class="text-[10px] text-slate-500 font-normal">Áp dụng cho cấp Chi nhánh</span></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+        <section class="bg-white rounded-[2.5rem] p-6 md:p-10 border border-slate-200 shadow-sm mt-10">
+            <div class="mb-8 border-b border-slate-100 pb-6">
+                <div class="text-xs font-bold text-accent1 mb-2 uppercase tracking-widest">Khung đánh giá chất lượng đầu vào Inquiry [Yêu cầu mua]</div>
+                <div class="flex flex-col lg:flex-row lg:items-center gap-4">
+                    <div class="font-display text-6xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accent1 to-blue-600 tracking-normal leading-[1.05] pr-3 pb-1 shrink-0 overflow-visible">
+                        2K4Đ
+                    </div>
+                    <div>
+                        <h2 class="text-xl md:text-2xl font-bold text-slate-800 leading-tight">Checklist 6 tiêu chí chấm chất lượng đầu vào Inquiry [Qualifying]</h2>
+                        <p class="text-slate-500 mt-1 font-medium text-sm">Tick đủ tiêu chí để nâng hạng Yêu Cầu Mua — từ Unqualified đến Nhu Cầu Đạt Chuẩn.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Cột trái: 2K & 4Đ -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- 2K -->
+                    <div>
+                        <h3 class="text-sm font-bold text-slate-800 uppercase mb-3 flex items-center gap-2"><span class="text-accent1 text-lg">2K</span> Khoảng — khớp nhu cầu & nguồn hàng</h3>
+                        <div class="space-y-2 pl-2 border-l-2 border-slate-100">
+                            <!-- K1 -->
+                            <div class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-100">
+                                <i class="fa-solid fa-circle-check text-accent1 text-xl mt-0.5"></i>
+                                <div>
+                                    <div class="font-bold text-slate-800">K1 Khoảng Giá</div>
+                                    <div class="text-sm text-slate-600 mt-0.5">Ngân sách của khách hàng</div>
+                                </div>
+                            </div>
+                            <!-- K2 -->
+                            <div class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-100">
+                                <i class="fa-solid fa-circle-check text-accent1 text-xl mt-0.5"></i>
+                                <div>
+                                    <div class="font-bold text-slate-800">K2 Khu Vực</div>
+                                    <div class="text-sm text-slate-600 mt-0.5">Khu vực thuộc Vinhomes Ocean Park 1, 2, 3/ Eco Park<br>Loại hình sản phẩm thứ cấp (Cao tầng, thấp tầng)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4Đ -->
+                    <div>
+                        <h3 class="text-sm font-bold text-slate-800 uppercase mb-3 flex items-center gap-2 mt-6"><span class="text-accent1 text-lg">4Đ</span> Động lực & Điều kiện</h3>
+                        <div class="space-y-2 pl-2 border-l-2 border-slate-100">
+                            <!-- Đ1 -->
+                            <div class="flex items-start justify-between gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-100">
+                                <div class="flex items-start gap-3">
+                                    <i class="fa-solid fa-circle-check text-accent1 text-xl mt-0.5"></i>
+                                    <div>
+                                        <div class="font-bold text-slate-800">Đ1 Động Lực</div>
+                                        <div class="text-sm text-slate-600 mt-0.5">Mua để làm gì (ở, đầu tư, đổi nhà...)<br>Timelines đến quyết định (1 tháng, 3 tháng, chưa rõ)</div>
+                                    </div>
+                                </div>
+                                <span class="shrink-0 bg-blue-50 text-blue-600 border border-blue-200 text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">Bắt buộc</span>
+                            </div>
+                            <!-- Đ2 -->
+                            <div class="flex items-start justify-between gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-100">
+                                <div class="flex items-start gap-3">
+                                    <i class="fa-solid fa-circle-check text-accent1 text-xl mt-0.5"></i>
+                                    <div>
+                                        <div class="font-bold text-slate-800">Đ2 Điều kiện Tài chính</div>
+                                        <div class="text-sm text-slate-600 mt-0.5">Tiền mặt/ Vay/ Chưa Rõ<br>Mua Vay - Đã Có/ Chưa Có Pre-approval (Đánh giá cho vay sơ bộ)</div>
+                                    </div>
+                                </div>
+                                <span class="shrink-0 bg-blue-50 text-blue-600 border border-blue-200 text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">Bắt buộc</span>
+                            </div>
+                            <!-- Đ3 -->
+                            <div class="flex items-start justify-between gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-100">
+                                <div class="flex items-start gap-3">
+                                    <i class="fa-solid fa-circle-check text-accent1 text-xl mt-0.5"></i>
+                                    <div>
+                                        <div class="font-bold text-slate-800">Đ3 Đã làm việc với Môi giới</div>
+                                        <div class="text-sm text-slate-600 mt-0.5">Khách đã/đang làm việc với môi giới nào khác chưa? (Có/ Không)</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Đ4 -->
+                            <div class="flex items-start justify-between gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-100">
+                                <div class="flex items-start gap-3">
+                                    <i class="fa-solid fa-circle-check text-accent1 text-xl mt-0.5"></i>
+                                    <div>
+                                        <div class="font-bold text-slate-800">Đ4 Đã có lịch hẹn gặp mặt</div>
+                                        <div class="text-sm text-slate-600 mt-0.5">Đã/ chưa có lịch xem nhà / gặp mặt — tín hiệu mạnh nhất.</div>
+                                    </div>
+                                </div>
+                                <span class="shrink-0 bg-blue-50 text-blue-600 border border-blue-200 text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">Bắt buộc</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cột phải: Chấm điểm xếp loại -->
+                <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-200 flex flex-col justify-center relative">
+                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-6 text-center">Chấm điểm &rarr; Xếp loại</h3>
+                    
+                    <div class="flex flex-col gap-2 relative z-10">
+                        <!-- Top: Đạt chuẩn -->
+                        <div class="bg-gradient-to-r from-accent1 to-blue-600 text-white p-5 rounded-xl shadow-md border border-blue-500 relative hover:-translate-y-1 transition-transform">
+                            <div class="font-bold text-lg mb-1">Đạt Chuẩn</div>
+                            <div class="text-xs text-blue-50 leading-relaxed font-medium">Đủ cả <strong class="text-white">3 tiêu chí bắt buộc</strong> — sẵn sàng chuyển giao</div>
+                        </div>
+
+                        <div class="text-center text-slate-400 py-1 text-lg"><i class="fa-solid fa-arrow-up"></i></div>
+
+                        <!-- Mid: Đủ ĐK -->
+                        <div class="bg-blue-50 border border-blue-100 p-5 rounded-xl shadow-sm hover:-translate-y-1 transition-transform">
+                            <div class="font-bold text-blue-800 text-lg mb-1">Đủ Điều Kiện - Cần Chăm Sóc</div>
+                            <div class="text-xs text-slate-600 leading-relaxed font-medium">Đủ <strong class="text-slate-800">Đ1 + Đ2</strong> — ý định rõ ràng, tài chính xác định.<br>Chăm Sóc Thêm Trước Chuyển Giao.</div>
+                        </div>
+
+                        <div class="text-center text-slate-400 py-1 text-lg"><i class="fa-solid fa-arrow-up"></i></div>
+
+                        <!-- Bottom: Chưa đủ ĐK -->
+                        <div class="bg-slate-100 border border-slate-200 p-5 rounded-xl hover:-translate-y-1 transition-transform">
+                            <div class="font-bold text-slate-600 text-lg mb-1">Chưa đủ Điều Kiện</div>
+                            <div class="text-xs text-slate-500 leading-relaxed font-medium">Thiếu Đ1 và/hoặc Đ2 — tiếp tục nurture, khai thác thêm.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</body>
+</html>
