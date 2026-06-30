@@ -1,0 +1,57 @@
+name: Deploy production to Vercel
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vercel-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_ORG_ID: team_lcPMw20uZ6Oeigq5WA12M7s4
+      VERCEL_PROJECT_ID: prj_SUmsEO2N1pgVw5kNH0SHKfroAxJc
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Create Vercel project link
+        run: |
+          test -n "$VERCEL_TOKEN"
+          mkdir -p .vercel
+          printf '{"orgId":"%s","projectId":"%s"}\n' "$VERCEL_ORG_ID" "$VERCEL_PROJECT_ID" > .vercel/project.json
+
+      - name: Build Vercel output
+        run: npx vercel build --prod --token "$VERCEL_TOKEN"
+
+      - name: Deploy production
+        run: |
+          deploy_dir="$RUNNER_TEMP/allstar26-vercel-prebuilt"
+          rm -rf "$deploy_dir"
+          mkdir -p "$deploy_dir/.vercel"
+          cp -R .vercel/output "$deploy_dir/.vercel/output"
+          cp .vercel/project.json "$deploy_dir/.vercel/project.json"
+          cd "$deploy_dir"
+          npx vercel deploy --prebuilt --prod --yes --force --archive=tgz --token "$VERCEL_TOKEN"
