@@ -547,7 +547,7 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của Lực lư
     </div>
 
     <!-- ═══════════════ LEADERBOARD TABLE ═══════════════ -->
-    <div class="max-w-6xl mx-auto px-4 md:px-8 pb-16">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 pb-16">
       <div class="glass rounded-2xl overflow-hidden">
 
         <!-- Table toolbar -->
@@ -586,19 +586,34 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của Lực lư
           </div>
         </div>
 
-        <!-- Table header -->
-        <div
-          class="grid grid-cols-[3rem_1fr_auto] md:grid-cols-[3rem_18rem_1fr_8rem_7rem] gap-0 px-5 py-3 text-sm font-bold font-['Open_Sans'] uppercase  text-white/30 border-b border-white/5">
-          <span>#</span>
-          <span>Thành viên</span>
-          <span class="hidden md:block">Team</span>
-          <span class="hidden md:block">Cập nhật</span>
-          <span class="text-right">Điểm số</span>
-        </div>
+        <div class="overflow-x-auto">
+          <!-- Table header -->
+          <div
+            class="md:min-w-[56rem] grid grid-cols-[2.5rem_1fr_auto] md:grid-cols-[2.5rem_minmax(12rem,1.4fr)_minmax(8rem,0.9fr)_minmax(5.5rem,0.55fr)_minmax(4.75rem,0.45fr)_minmax(5.25rem,0.5fr)_minmax(5.5rem,0.55fr)_minmax(7rem,0.7fr)] gap-0 px-4 py-2 text-[10px] leading-tight font-bold font-['Open_Sans'] uppercase text-white/30 border-b border-white/5">
+            <span>#</span>
+            <span>Thành viên</span>
+            <span class="hidden md:block">Team</span>
+            <span class="hidden md:block text-right">Điểm tạm tính</span>
+            <span class="hidden md:block text-right">Mốc Bonus</span>
+            <span class="hidden md:block text-right">Điểm Bonus</span>
+            <button
+              id="total-sort-btn"
+              type="button"
+              class="justify-self-end inline-flex items-center justify-end gap-1 bg-transparent p-0 text-right text-[10px] font-bold font-['Open_Sans'] uppercase text-white/30 transition-colors hover:text-primary"
+              onclick="toggleTotalSort()"
+              aria-label="Sắp xếp Tổng điểm giảm dần"
+              title="Sắp xếp Tổng điểm"
+            >
+              <span>Tổng điểm</span>
+              <span id="total-sort-icon" class="material-symbols-outlined text-[14px] leading-none">south</span>
+            </button>
+            <span class="hidden md:block text-right">Cập nhật CE</span>
+          </div>
 
-        <!-- Table body -->
-        <div id="table-body">
-          <!-- Rendered by JS -->
+          <!-- Table body -->
+          <div id="table-body" class="md:min-w-[56rem]">
+            <!-- Rendered by JS -->
+          </div>
         </div>
 
         <!-- Pagination -->
@@ -626,7 +641,8 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của Lực lư
        4. Nhấn "Publish" → Copy URL được cấp
        5. Dán URL vào biến CSV_URL bên dưới
        6. Cấu trúc sheet (hàng 1 là header, bỏ qua tự động):
-          Cột A=Tên, B=Team, C=Cập nhật, D=Điểm số
+          name, team, Điểm tạm tính, Mốc Bonus đã đạt, Điểm Bonus,
+          Tổng điểm, Ngày cập nhật CE gần nhất
     ══════════════════════════════════════════════════════ */
     const CSV_URLS = {
       north: {
@@ -646,6 +662,7 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của Lực lư
     let currentPage = 1;
     let currentRegion = 'north';
     let currentPeriod = 1;
+    let totalSortDirection = 'desc';
     const PAGE_SIZE = 10;
 
     /* ────────────────── Init ────────────────── */
@@ -680,18 +697,76 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của Lực lư
     /* ────────────────── CSV Parser ────────────────── */
     function parseCSV(text) {
       const lines = text.trim().split('\n');
+      const headerMap = buildHeaderMap(splitCSVLine(lines[0] ?? ''));
       // Skip header row (row 0), parse from row 1
       const rows = lines.slice(1);
       const result = [];
       for (const line of rows) {
         const cols = splitCSVLine(line);
-        const name    = (cols[0] ?? '').trim();
-        const team    = (cols[1] ?? '').trim();
-        const points  = parseFloat((cols[2] ?? '0').replace(/[^0-9.]/g, '')) || 0;
-        const updated = (cols[3] ?? '').trim();
-        if (name) result.push({ name, team, updated, points });
+        const name = getCell(cols, headerMap, ['name'], 0);
+        const team = getCell(cols, headerMap, ['team'], 1);
+        const tempPoints = parseScore(getCell(cols, headerMap, ['diem tam tinh'], 2));
+        const bonusMilestone = getCell(cols, headerMap, ['moc bonus da dat'], 3) || '0';
+        const bonusPoints = parseScore(getCell(cols, headerMap, ['diem bonus'], 4));
+        const rawTotalPoints = getCell(cols, headerMap, ['tong diem'], 5);
+        const totalPoints = rawTotalPoints ? parseScore(rawTotalPoints) : tempPoints + bonusPoints;
+        const updated = getCell(cols, headerMap, ['ngay cap nhat ce gan nhat'], 6);
+        if (name) {
+          result.push({
+            name,
+            team,
+            tempPoints,
+            bonusMilestone,
+            bonusPoints,
+            totalPoints,
+            updated,
+            points: totalPoints,
+          });
+        }
       }
       return result;
+    }
+
+    function buildHeaderMap(headers) {
+      return headers.reduce((map, header, index) => {
+        map[normalizeHeader(header)] = index;
+        return map;
+      }, {});
+    }
+
+    function normalizeHeader(value) {
+      return String(value ?? '')
+        .trim()
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/đ/g, 'd')
+        .replace(/[^a-z0-9]+/g, ' ')
+        .trim();
+    }
+
+    function getCell(cols, headerMap, headerKeys, fallbackIndex) {
+      const index = headerKeys
+        .map(key => headerMap[key])
+        .find(value => Number.isInteger(value));
+      return (cols[index ?? fallbackIndex] ?? '').trim();
+    }
+
+    function parseScore(value) {
+      let normalized = String(value ?? '')
+        .trim()
+        .replace(/\s/g, '')
+        .replace(/[^0-9,.-]/g, '');
+      if (normalized.includes(',') && !normalized.includes('.')) {
+        normalized = normalized.replace(',', '.');
+      } else {
+        normalized = normalized.replace(/,/g, '');
+      }
+      return parseFloat(normalized) || 0;
+    }
+
+    function formatScore(value) {
+      return Number(value || 0).toFixed(1);
     }
 
     // Handles quoted fields with commas inside (RFC 4180)
@@ -715,17 +790,55 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của Lực lư
 
     /* ────────────────── Load & render ────────────────── */
     function loadData(data) {
-      allData = data.map((d, i) => ({ ...d, rank: i + 1 }));
+      const rankedData = [...data].sort((a, b) => b.points - a.points);
+      allData = rankedData.map((d, i) => ({ ...d, rank: i + 1 }));
       filteredData = [...allData];
+      applyTotalSort();
       renderPodium(allData.slice(0, 3));
+      renderTable();
+    }
+
+    function applyTotalSort() {
+      filteredData.sort((a, b) => {
+        return totalSortDirection === 'asc' ? a.points - b.points : b.points - a.points;
+      });
+      updateTotalSortIcon();
+    }
+
+    function updateTotalSortIcon() {
+      const icon = document.getElementById('total-sort-icon');
+      const btn = document.getElementById('total-sort-btn');
+      if (icon) icon.textContent = totalSortDirection === 'asc' ? 'north' : 'south';
+      if (btn) {
+        btn.setAttribute(
+          'aria-label',
+          totalSortDirection === 'asc' ? 'Sắp xếp Tổng điểm tăng dần' : 'Sắp xếp Tổng điểm giảm dần'
+        );
+      }
+    }
+
+    function toggleTotalSort() {
+      totalSortDirection = totalSortDirection === 'desc' ? 'asc' : 'desc';
+      currentPage = 1;
+      applyTotalSort();
       renderTable();
     }
 
     /* ────────────────── Avatar URL ────────────────── */
     function avatarUrl(name, rank) {
       const colors = ['1a1a2e', '1a2e1a', '2e1a1a', '1a1f2e', '2a1a2e'];
-      const bg = colors[(name.charCodeAt(0) || 0) % colors.length];
-      return `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=${bg}&color=ffffff&bold=true&size=64`;
+      const avatarName = removeVietnameseMarks(name) || 'Allstar';
+      const bg = colors[(avatarName.charCodeAt(0) || 0) % colors.length];
+      return `https://ui-avatars.com/api/?name=${encodeURIComponent(avatarName)}&background=${bg}&color=ffffff&bold=true&size=64`;
+    }
+
+    function removeVietnameseMarks(value) {
+      return String(value ?? '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/đ/g, 'd')
+        .replace(/Đ/g, 'D')
+        .trim();
     }
 
     /* ────────────────── Render Podium ────────────────── */
@@ -793,7 +906,7 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của Lực lư
 
       slice.forEach(person => {
         const row = document.createElement('div');
-        row.className = 'lb-row grid grid-cols-[3rem_1fr_auto] md:grid-cols-[3rem_18rem_1fr_8rem_7rem] gap-0 items-center px-5 py-3';
+        row.className = 'lb-row grid grid-cols-[2.5rem_1fr_auto] md:grid-cols-[2.5rem_minmax(12rem,1.4fr)_minmax(8rem,0.9fr)_minmax(5.5rem,0.55fr)_minmax(4.75rem,0.45fr)_minmax(5.25rem,0.5fr)_minmax(5.5rem,0.55fr)_minmax(7rem,0.7fr)] gap-0 items-center px-4 py-2';
 
         let rankEl = '';
         if (person.rank === 1) rankEl = `<span class="font-black font-['Open_Sans'] text-base rank-1">1</span>`;
@@ -811,11 +924,14 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của Lực lư
         </div>
       </div>
       <span class="hidden md:block text-white/50 text-sm truncate pr-2">${person.team}</span>
-      <span class="hidden md:block text-white/50 text-sm truncate pr-2">${person.updated}</span>
+      <span class="hidden md:block text-white/50 text-sm text-right pr-2">${formatScore(person.tempPoints)}</span>
+      <span class="hidden md:block text-white/50 text-sm text-right pr-2">${person.bonusMilestone}</span>
+      <span class="hidden md:block text-white/50 text-sm text-right pr-2">${formatScore(person.bonusPoints)}</span>
       <div class="text-right">
-        <span class="pts text-base">${person.points.toFixed(1)}</span>
+        <span class="pts text-base">${formatScore(person.totalPoints)}</span>
         <span class="text-white/30 text-sm font-['Open_Sans'] ml-0.5">pt</span>
       </div>
+      <span class="hidden md:block text-white/50 text-sm truncate text-right">${person.updated}</span>
     `;
         tbody.appendChild(row);
       });
@@ -874,6 +990,7 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của Lực lư
     function onSearch(val) {
       const q = val.trim().toLowerCase();
       filteredData = q ? allData.filter(d => d.name.toLowerCase().includes(q)) : [...allData];
+      applyTotalSort();
       currentPage = 1;
       renderTable();
     }
@@ -884,6 +1001,8 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của Lực lư
       document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentRegion = region;
+      totalSortDirection = 'desc';
+      updateTotalSortIcon();
       currentPage = 1;
       document.getElementById('search-input').value = '';
       fetchData(currentRegion, currentPeriod);
@@ -894,6 +1013,8 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của Lực lư
       document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentPeriod = period;
+      totalSortDirection = 'desc';
+      updateTotalSortIcon();
       currentPage = 1;
       document.getElementById('search-input').value = '';
       fetchData(currentRegion, currentPeriod);
@@ -922,4 +1043,3 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của Lực lư
   </script>
   
 </ProgramLayout>
-
