@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Phản hồi - Allstar Club';
+const description = 'Gửi phản hồi cho chương trình Allstar Club.';
+const tallyEmbedUrl = 'https://tally.so/embed/44qO0d?hideTitle=0&transparentBackground=0&dynamicHeight=1';
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/phan-hoi/"
+  bodyClass="bg-[#06091a] text-on-surface antialiased"
+>
+  <Fragment slot="head">
+    <style is:global>
+      body {
+        min-height: 100vh;
+        font-family: 'Open Sans', sans-serif;
+        background: #ffffff;
+      }
+
+      .feedback-shell {
+        min-height: 100vh;
+      }
+
+      .feedback-frame-wrap {
+        min-height: 100vh;
+        padding: 8rem 1.5rem 4rem;
+      }
+
+      .feedback-frame-inner {
+        width: 100%;
+        max-width: 64rem;
+        margin: 0 auto;
+      }
+
+      .feedback-frame {
+        display: block;
+        width: 100%;
+        min-height: calc(100vh - 12rem);
+        border: 0;
+        background: #ffffff;
+      }
+
+      @media (max-width: 768px) {
+        .feedback-frame-wrap {
+          padding: 6.5rem 0 2rem;
+        }
+
+        .feedback-frame-inner {
+          max-width: none;
+        }
+      }
+    </style>
+    <script src="https://tally.so/widgets/embed.js" defer></script>
+  </Fragment>
+
+  <div class="feedback-shell">
+    <nav class="fixed top-0 w-full z-50 bg-[#0a0e14]/80 backdrop-blur-xl border-b border-white/10 shadow-[0_0_20px_rgba(0,227,253,0.05)]">
+      <div class="flex justify-between items-center px-4 md:px-8 h-20 max-w-full mx-auto">
+        <a href="/prm/" class="flex items-center">
+          <img alt="Star Logo" class="h-14 w-auto object-contain" src="/prm/assets/images/Logo%20Allstar.webp" />
+        </a>
+        <div class="flex items-center gap-6 font-['Open_Sans'] font-bold tracking-tight">
+          <a class="text-white/70 hover:text-white transition-colors" href="/prm/">PRM</a>
+          <a class="text-white/70 hover:text-white transition-colors" href="/sih/">SIH</a>
+          <span class="text-primary">Phản hồi</span>
+        </div>
+      </div>
+    </nav>
+
+    <main class="feedback-frame-wrap">
+      <div class="feedback-frame-inner">
+        <iframe
+          title="Phản hồi Allstar Club"
+          src={tallyEmbedUrl}
+          data-tally-src={tallyEmbedUrl}
+          width="100%"
+          height="900"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          loading="eager"
+          class="feedback-frame"
+        ></iframe>
+      </div>
+    </main>
+  </div>
+</BaseLayout>
