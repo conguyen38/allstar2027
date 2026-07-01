@@ -1,7 +1,7 @@
 ---
 interface Props {
   program: 'prm' | 'sih';
-  active?: 'index' | 'tong-quan' | 'the-le' | 'bxh' | 'refer';
+  active?: 'index' | 'tong-quan' | 'the-le' | 'bxh' | 'feedback' | 'refer';
 }
 
 const { program, active = 'index' } = Astro.props;
@@ -9,11 +9,12 @@ const programBase = `/${program}`;
 const leaderboardHref = program === 'prm' ? `${programBase}/leaderboard-prm/` : `${programBase}/leaderboard-sih/`;
 const logoSrc = `${programBase}/assets/images/Logo%20Allstar.webp`;
 const navItems = [
-  { key: 'index', label: 'Trang chủ', href: `${programBase}/` },
-  { key: 'tong-quan', label: 'Tổng quan chương trình', href: `${programBase}/tong-quan-chuong-trinh/` },
-  { key: 'the-le', label: 'Thể lệ', href: `${programBase}/the-le/` },
-  { key: 'bxh', label: 'Bảng xếp hạng', href: leaderboardHref },
-  ...(program === 'prm' ? [{ key: 'refer', label: 'Refer căn độc quyền', href: `${programBase}/refer-onetrust/` }] : []),
+  { key: 'index', label: 'Trang chủ', href: `${programBase}/`, external: false },
+  { key: 'tong-quan', label: 'Tổng quan chương trình', href: `${programBase}/tong-quan-chuong-trinh/`, external: false },
+  { key: 'the-le', label: 'Thể lệ', href: `${programBase}/the-le/`, external: false },
+  { key: 'bxh', label: 'Bảng xếp hạng', href: leaderboardHref, external: false },
+  ...(program === 'prm' ? [{ key: 'refer', label: 'Refer căn độc quyền', href: `${programBase}/refer-onetrust/`, external: false }] : []),
+  { key: 'feedback', label: 'Phản hồi', href: 'https://tally.so/r/44qO0d', external: true },
 ] as const;
 ---
 
@@ -33,6 +34,8 @@ const navItems = [
               ]}
               href={item.href}
               data-nav={item.key}
+              target={item.external ? '_blank' : undefined}
+              rel={item.external ? 'noopener noreferrer' : undefined}
             >
               {item.label}
             </a>
@@ -62,6 +65,8 @@ const navItems = [
       <a
         href={item.href}
         data-nav={item.key}
+        target={item.external ? '_blank' : undefined}
+        rel={item.external ? 'noopener noreferrer' : undefined}
         class:list={[
           "mobile-nav-link flex items-center gap-3 px-4 py-4 rounded-xl text-white/70 font-bold font-['Open_Sans'] hover:bg-white/5 hover:text-white transition-colors",
           index < navItems.length - 1 && 'border-b border-white/5',
