@@ -616,14 +616,14 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
         <div class="overflow-x-auto">
           <!-- Table header -->
           <div
-            class="md:min-w-[62rem] grid grid-cols-[2.5rem_1fr_auto] md:grid-cols-[2.5rem_minmax(12rem,1.3fr)_minmax(5rem,0.5fr)_minmax(7rem,0.75fr)_minmax(5.5rem,0.52fr)_minmax(4.75rem,0.42fr)_minmax(5.25rem,0.48fr)_minmax(5.5rem,0.52fr)_minmax(7rem,0.6fr)] gap-0 px-4 py-2 text-[10px] leading-tight font-bold font-['Open_Sans'] uppercase text-white/30 border-b border-white/5">
+            class="min-w-[53rem] lg:min-w-0 lg:w-full grid grid-cols-[2.5rem_12rem_4.5rem_8rem_5.25rem_4.5rem_5rem_5.25rem_6rem] lg:grid-cols-[3rem_minmax(12rem,1.65fr)_minmax(5rem,0.55fr)_minmax(8rem,0.95fr)_minmax(6.5rem,0.75fr)_minmax(5.25rem,0.55fr)_minmax(6rem,0.65fr)_minmax(6.5rem,0.7fr)_minmax(8rem,0.8fr)] gap-0 px-3 lg:px-5 py-2 text-[10px] leading-tight font-bold font-['Open_Sans'] uppercase text-white/30 border-b border-white/5">
             <span>#</span>
             <span>Thành viên</span>
-            <span class="hidden md:block">Vùng</span>
-            <span class="hidden md:block">Chi nhánh</span>
-            <span class="hidden md:block text-right">Điểm tạm tính</span>
-            <span class="hidden md:block text-right">Mốc Bonus</span>
-            <span class="hidden md:block text-right">Điểm Bonus</span>
+            <span>Vùng</span>
+            <span>Chi nhánh</span>
+            <span class="text-right">Điểm tạm tính</span>
+            <span class="text-right">Mốc Bonus</span>
+            <span class="text-right">Điểm Bonus</span>
             <button
               id="total-sort-btn"
               type="button"
@@ -635,11 +635,11 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
               <span>Tổng điểm</span>
               <span id="total-sort-icon" class="material-symbols-outlined text-[14px] leading-none">south</span>
             </button>
-            <span class="hidden md:block text-right">Cập nhật CE</span>
+            <span class="text-right">Cập nhật CE</span>
           </div>
 
           <!-- Table body -->
-          <div id="table-body" class="md:min-w-[62rem]">
+          <div id="table-body" class="min-w-[53rem] lg:min-w-0 lg:w-full">
             <!-- Rendered by JS -->
           </div>
         </div>
@@ -947,7 +947,7 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
 
       slice.forEach(person => {
         const row = document.createElement('div');
-        row.className = 'lb-row grid grid-cols-[2.5rem_1fr_auto] md:grid-cols-[2.5rem_minmax(12rem,1.3fr)_minmax(5rem,0.5fr)_minmax(7rem,0.75fr)_minmax(5.5rem,0.52fr)_minmax(4.75rem,0.42fr)_minmax(5.25rem,0.48fr)_minmax(5.5rem,0.52fr)_minmax(7rem,0.6fr)] gap-0 items-center px-4 py-2';
+        row.className = 'lb-row grid grid-cols-[2.5rem_12rem_4.5rem_8rem_5.25rem_4.5rem_5rem_5.25rem_6rem] lg:grid-cols-[3rem_minmax(12rem,1.65fr)_minmax(5rem,0.55fr)_minmax(8rem,0.95fr)_minmax(6.5rem,0.75fr)_minmax(5.25rem,0.55fr)_minmax(6rem,0.65fr)_minmax(6.5rem,0.7fr)_minmax(8rem,0.8fr)] gap-0 items-center px-3 lg:px-5 py-2';
 
         let rankEl = '';
         if (person.rank === 1) rankEl = `<span class="font-black font-['Open_Sans'] text-base rank-1">1</span>`;
@@ -961,19 +961,18 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
         <img src="${avatarUrl(person.name, person.rank)}" class="avatar w-8 h-8 shrink-0" alt="${person.name}">
         <div class="min-w-0">
           <p class="font-semibold text-white text-sm truncate">${person.name}</p>
-          <p class="text-white/35 text-sm truncate md:hidden">${person.branch}</p>
         </div>
       </div>
-      <span class="hidden md:block text-white/50 text-sm truncate pr-2">${person.vung}</span>
-      <span class="hidden md:block text-white/50 text-sm truncate pr-2">${person.branch}</span>
-      <span class="hidden md:block text-white/50 text-sm text-right pr-2">${formatScore(person.tempPoints)}</span>
-      <span class="hidden md:block text-white/50 text-sm text-right pr-2">${person.bonusMilestone}</span>
-      <span class="hidden md:block text-white/50 text-sm text-right pr-2">${formatScore(person.bonusPoints)}</span>
+      <span class="text-white/50 text-sm truncate pr-2">${person.vung}</span>
+      <span class="text-white/50 text-sm truncate pr-2">${person.branch}</span>
+      <span class="text-white/50 text-sm text-right pr-2">${formatScore(person.tempPoints)}</span>
+      <span class="text-white/50 text-sm text-right pr-2">${person.bonusMilestone}</span>
+      <span class="text-white/50 text-sm text-right pr-2">${formatScore(person.bonusPoints)}</span>
       <div class="text-right">
         <span class="pts text-base">${formatScore(person.totalPoints)}</span>
         <span class="text-white/30 text-sm font-['Open_Sans'] ml-0.5">pt</span>
       </div>
-      <span class="hidden md:block text-white/50 text-sm truncate text-right">${person.updated}</span>
+      <span class="text-white/50 text-sm truncate text-right">${person.updated}</span>
     `;
         tbody.appendChild(row);
       });
