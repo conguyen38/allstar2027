@@ -587,12 +587,12 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
                 Kỳ 1
               </button>
               <button
-                class="period-btn active flex-1 sm:flex-none whitespace-nowrap rounded-lg px-3 py-1.5 text-[10px] font-bold font-['Open_Sans'] uppercase tracking-tight transition-all"
+                class="period-btn flex-1 sm:flex-none whitespace-nowrap rounded-lg px-3 py-1.5 text-[10px] font-bold font-['Open_Sans'] uppercase tracking-tight transition-all"
                 onclick="switchPeriod(2, this)">
                 Kỳ 2
               </button>
               <button
-                class="period-btn flex-1 sm:flex-none whitespace-nowrap rounded-lg px-3 py-1.5 text-[10px] font-bold font-['Open_Sans'] uppercase tracking-tight transition-all"
+                class="period-btn active flex-1 sm:flex-none whitespace-nowrap rounded-lg px-3 py-1.5 text-[10px] font-bold font-['Open_Sans'] uppercase tracking-tight transition-all"
                 onclick="switchPeriod(3, this)">
                 Kỳ 3
               </button>
@@ -693,7 +693,7 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
     let filteredData = [];
     let currentPage = 1;
     let currentRegion = 'north';
-    let currentPeriod = 2;
+    let currentPeriod = 3;
     let totalSortDirection = 'desc';
     const PAGE_SIZE = 10;
 

@@ -565,12 +565,12 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của Lực lư
             <!-- Period Selection -->
             <div class="flex items-center gap-1 p-1 rounded-xl glass w-full sm:w-auto overflow-x-auto no-scrollbar">
               <button
-                class="period-btn active flex-1 sm:flex-none whitespace-nowrap rounded-lg px-3 py-1.5 text-[10px] font-bold font-['Open_Sans'] uppercase tracking-tight transition-all"
+                class="period-btn flex-1 sm:flex-none whitespace-nowrap rounded-lg px-3 py-1.5 text-[10px] font-bold font-['Open_Sans'] uppercase tracking-tight transition-all"
                 onclick="switchPeriod(1, this)">
                 Kỳ 1
               </button>
               <button
-                class="period-btn flex-1 sm:flex-none whitespace-nowrap rounded-lg px-3 py-1.5 text-[10px] font-bold font-['Open_Sans'] uppercase tracking-tight transition-all"
+                class="period-btn active flex-1 sm:flex-none whitespace-nowrap rounded-lg px-3 py-1.5 text-[10px] font-bold font-['Open_Sans'] uppercase tracking-tight transition-all"
                 onclick="switchPeriod(2, this)">
                 Kỳ 2
               </button>
@@ -661,7 +661,7 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của Lực lư
     let filteredData = [];
     let currentPage = 1;
     let currentRegion = 'north';
-    let currentPeriod = 1;
+    let currentPeriod = 2;
     let totalSortDirection = 'desc';
     const PAGE_SIZE = 10;
 
