@@ -1,7 +1,7 @@
 ---
 interface Props {
   program: 'prm' | 'sih';
-  active?: 'index' | 'tong-quan' | 'the-le' | 'bxh' | 'feedback' | 'refer';
+  active?: 'index' | 'tong-quan' | 'the-le' | 'bxh' | 'feedback' | 'refer' | 'u-point';
 }
 
 const { program, active = 'index' } = Astro.props;
@@ -15,6 +15,7 @@ const navItems = [
   { key: 'bxh', label: 'Bảng xếp hạng', href: leaderboardHref, external: false },
   ...(program === 'prm' ? [{ key: 'refer', label: 'Refer căn độc quyền', href: `${programBase}/refer-onetrust/`, external: false }] : []),
   { key: 'feedback', label: 'Phản hồi', href: '/phan-hoi/', external: false },
+  { key: 'u-point', label: 'Hướng dẫn sử dụng U-Point', href: '/huong-dan-su-dung-u-point/', external: false },
 ] as const;
 ---
 
@@ -78,3 +79,27 @@ const navItems = [
     ))}
   </div>
 </div>
+
+<script is:inline>
+  window.toggleMobileMenu = () => {
+    const menu = document.getElementById('mobile-menu');
+    const h1 = document.getElementById('ham-1');
+    const h2 = document.getElementById('ham-2');
+    const h3 = document.getElementById('ham-3');
+    if (!menu || !h1 || !h2 || !h3) return;
+
+    const isClosed = menu.classList.toggle('hidden');
+    if (isClosed) {
+      h1.style.transform = '';
+      h2.style.opacity = '';
+      h3.style.transform = '';
+      document.body.style.overflow = '';
+      return;
+    }
+
+    h1.style.transform = 'rotate(45deg) translate(4px,4px)';
+    h2.style.opacity = '0';
+    h3.style.transform = 'rotate(-45deg) translate(4px,-4px)';
+    document.body.style.overflow = 'hidden';
+  };
+</script>

@@ -1,0 +1,452 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProgramHeader from '../../components/ProgramHeader.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = 'Hướng dẫn sử dụng U-Point | Allstar Club';
+const description = 'Hướng dẫn sử dụng U-Point và đặc quyền thành viên Allstar trên ứng dụng Techcombank OneU.';
+
+const features = [
+  { icon: 'feature-voucher.png', title: 'Đổi voucher', copy: 'Sử dụng U-Point để đổi voucher giảm giá từ hàng trăm thương hiệu.' },
+  { icon: 'feature-food.png', title: 'Đặt món', copy: 'Sử dụng U-Point để đặt đồ ăn tại hàng loạt thương hiệu.' },
+  { icon: 'feature-ticket.png', title: 'Mua vé', copy: 'Dùng điểm để mua vé các sự kiện thể thao, ca nhạc, giải trí.' },
+  { icon: 'feature-airline.png', title: 'Đổi dặm Vietnam Airlines', copy: 'Sử dụng U-Point để đổi dặm bay Vietnam Airlines và ngược lại.' },
+  { icon: 'feature-car.png', title: 'Đặt xe', copy: 'Thanh toán các chuyến đi Xanh SM trực tiếp bằng U-Point.' },
+  { icon: 'feature-game.png', title: 'Gamification', copy: 'Tham gia các trò chơi trên app OneU để có cơ hội nhận thưởng U-Point giá trị.' },
+  { icon: 'feature-qr.png', title: 'Thanh toán trực tiếp', copy: 'Dùng điểm để thanh toán tại cửa hàng của đối tác qua mã QR (hiện áp dụng tại hệ thống Golden Gate).' },
+  { icon: 'feature-winmart.png', title: 'Đổi Voucher WinMart - Giảm 4%', copy: 'Sử dụng U-Point để đổi voucher mua sắm tại WinMart, WinMart+.' },
+];
+---
+
+<BaseLayout title={title} description={description} canonicalPath="/huong-dan-su-dung-u-point/" bodyClass="u-point-page" scrollEffects={false}>
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </Fragment>
+  <ProgramHeader program="prm" active="u-point" />
+
+  <main class="u-point-main">
+    <div class="desktop-shell artboard-shell">
+      <article class="desktop-artboard artboard" aria-label="Hướng dẫn sử dụng U-Point">
+        <section class="hero">
+          <img class="hero-bg" src="/u-point/layers/hero-background.png" alt="" />
+          <img class="heading-image hero-title" src="/u-point/layers/figma-desktop-hero-title.png" alt="Hướng dẫn sử dụng U-Point và đặc quyền thành viên Allstar" />
+          <div class="hero-subtitle">TRÊN ỨNG DỤNG TECHCOMBANK ONEU</div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <section class="oneu-section">
+          <img class="heading-image oneu-heading" src="/u-point/layers/figma-oneu-heading.png" alt="Giao diện App Techcombank OneU và thông tin điểm" />
+          <img class="main-phone" src="/u-point/layers/transparent/desktop-phone.png?v=4" alt="Giao diện ứng dụng Techcombank OneU" />
+
+          <div class="info-pill voucher-pill">Kho voucher và Số dư U-point</div>
+          <img class="voucher-screen" src="/u-point/layers/voucher-screen-hq.png?v=5" alt="Kho voucher trên OneU" />
+          <p class="voucher-copy">Kho lưu trữ các loại voucher KH đã đổi điểm/ thu thập miễn phí hoặc voucher được tặng</p>
+
+          <img class="points-screen" src="/u-point/layers/points-screen-hq.png?v=5" alt="Thông tin số dư U-Point" />
+          <ul class="points-copy">
+            <li>Thể hiện số U-point ở cả 2 nguồn TCB &amp; OneU</li>
+            <li>Khi truy cập dẫn đến màn <strong>Số dư điểm, Quản lý Điểm &amp; Lịch sử giao dịch điểm</strong></li>
+          </ul>
+
+          <div class="connector connector-left"></div>
+          <div class="connector connector-right"></div>
+          <div class="route-block route-left">
+            <h3>Đường dẫn truy cập các tính năng &amp; collection</h3>
+            <ul>
+              <li>Tính năng đặt món</li>
+              <li>Collections “Voucher siêu thị”, “Voucher HOT”,...</li>
+              <li>Tất cả tiện ích</li>
+            </ul>
+          </div>
+          <div class="route-block route-right"><h3>Các chương trình ưu đãi theo từng thời kì</h3></div>
+        </section>
+
+        <section class="pnp-section">
+          <img class="heading-image pnp-title" src="/u-point/layers/extracted/pnp-title-hq.png" alt="Giao diện PNP đặc quyền" />
+          <div class="pnp-subtitle">DÀNH RIÊNG CHO THÀNH VIÊN ALLSTAR</div>
+          <img class="pnp-phones-figma" src="/u-point/layers/figma-pnp-phones.png?v=1" alt="Giao diện Techcombank Private và Priority dành cho hội viên Allstar" />
+          <p class="pnp-copy pnp-copy-left">Chọn <strong>“Đặc quyền hội viên Techcombank Private &amp; Priority”</strong> để khám phá những voucher, ưu đãi dành riêng cho thành viên Allstar Club.</p>
+          <p class="pnp-copy pnp-copy-right">Giao diện dành cho VIP, khám phá vô vàn ưu đãi từ các hạng mục: Hàng hiệu, Mua sắm, Ẩm thực,...</p>
+          <span class="pnp-line line-left"></span>
+          <span class="pnp-line line-right"></span>
+          <a class="pnp-cta" href="https://s.oneu.vn/dlp_pnp" target="_blank" rel="noopener noreferrer">Trải nghiệm ngay</a>
+        </section>
+
+        <section class="features-section">
+          <div class="features-heading" role="img" aria-label="Các tính năng trên app Techcombank OneU">
+            <img class="features-heading-line features-heading-line-one" src="/u-point/layers/figma-features-heading.png" alt="" />
+            <img class="features-heading-line features-heading-line-two" src="/u-point/layers/figma-features-heading.png" alt="" />
+          </div>
+          <div class="feature-grid">
+            {features.map((feature) => (
+              <article class="feature-item">
+                <img src={`/u-point/layers/transparent/${feature.icon}?v=4`} alt="" />
+                <div><h3>{feature.title}</h3><p>{feature.copy}</p></div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="programs-section">
+          <div class="programs-heading" role="img" aria-label="Các chương trình trên app Techcombank OneU">
+            <img class="programs-heading-line programs-heading-line-one" src="/u-point/layers/figma-programs-heading.png" alt="" />
+            <img class="programs-heading-line programs-heading-line-two" src="/u-point/layers/figma-programs-heading.png" alt="" />
+          </div>
+          <article class="program-card voucher-card">
+            <div class="voucher-card-copy">
+              <h3>Voucher tiền mặt (Cash) &amp; Promo</h3>
+              <p><strong>Đổi điểm lấy voucher của 450++ thương hiệu</strong> với giá giảm tối đa 10-20% tùy từng thời điểm.</p>
+              <p>Các bộ sưu tập voucher được cập nhật liên tục với giá ưu đãi siêu hời</p>
+            </div>
+            <img class="voucher-logos" src="/u-point/layers/extracted/voucher-logos.png" alt="Các thương hiệu áp dụng voucher" />
+            <img class="voucher-collections" src="/u-point/layers/extracted/voucher-collections.png" alt="Các bộ sưu tập voucher OneU" />
+          </article>
+          <article class="program-card sale-card">
+            <img src="/u-point/layers/extracted/sale-artwork.png" alt="Sale sập sàn duy nhất thứ 4" />
+            <div><h3>MEGA SALE/BRAND DAY</h3><p><strong>Ngày sale độc quyền</strong> với loạt voucher promo đổi với 01 U-Point &amp; cash voucher đổi U-Point chỉ từ 20 - 50% giá</p></div>
+          </article>
+          <article class="program-card atvn-card">
+            <img src="/u-point/layers/figma-atvn-full.png?v=1" alt="Anh Trai Vượt Ngàn Chông Gai" />
+            <div><h3>Anh Trai Vượt Ngàn Chông Gai</h3><p><strong>Bộ collection độc quyền</strong> dành riêng cho “Gai con”</p></div>
+          </article>
+        </section>
+
+        <section class="link-section">
+          <img class="heading-image link-title" src="/u-point/layers/figma-link-title.png" alt="Liên kết tài khoản" />
+          <div class="link-subtitle">GIỮA TECHCOMBANK MOBILE - ONEU</div>
+          <ul class="link-copy">
+            <li>Đồng bộ hồ sơ điểm U-Point giữa nền tảng ngân hàng <small>(Techcombank Mobile) và ứng dụng phong cách sống (TCB OneU)</small></li>
+            <li>Trải nghiệm liền mạch và linh hoạt tiêu điểm U-Point trên các tính năng của cả TCB Rewards &amp; TCB OneU</li>
+          </ul>
+          <img class="link-steps" src="/u-point/layers/transparent/link-steps.png?v=4" alt="Các bước liên kết tài khoản Techcombank Mobile và OneU" />
+        </section>
+      </article>
+    </div>
+    <section class="desktop-note" aria-label="Lưu ý sử dụng điểm U-Point"><strong>Lưu ý:</strong><br />Thời hạn sử dụng điểm: 12 tháng (kể từ ngày phát hành / ngày cuối cùng của tháng)<br />Điểm không được chuyển đổi thành tiền mặt, thừa kế, chuyển nhượng</section>
+
+    <div class="mobile-shell artboard-shell">
+      <article class="mobile-artboard artboard" aria-label="Hướng dẫn sử dụng U-Point trên thiết bị di động">
+        <section class="mobile-hero">
+          <img class="mobile-hero-bg" src="/u-point/layers/hero-background.png" alt="" />
+          <img class="mobile-title" src="/u-point/layers/extracted/mobile-hero-title.png?v=3" alt="Hướng dẫn sử dụng U-Point và đặc quyền thành viên Allstar" />
+          <div class="mobile-subtitle">TRÊN ỨNG DỤNG TECHCOMBANK ONEU</div>
+        </section>
+        <div class="mobile-divider"></div>
+
+        <section class="mobile-oneu">
+          <img class="mobile-section-heading mh-oneu" src="/u-point/layers/extracted/mobile-oneu-heading.png?v=3" alt="Giao diện App Techcombank OneU và thông tin điểm" />
+          <img class="m-oneu-callout-group" src="/u-point/layers/extracted/mobile-oneu-callout-group.png?v=1" alt="Giao diện OneU với kho voucher, các tính năng và chương trình ưu đãi" />
+          <h3 class="m-oneu-title m-oneu-title-1"><span>01</span> Kho voucher và Số dư U-point</h3>
+          <img class="m-voucher-screen" src="/u-point/layers/mobile-voucher.png?v=8" alt="Kho voucher" />
+          <p class="m-voucher-copy">Kho lưu trữ các loại voucher KH đã đổi điểm/ thu thập miễn phí hoặc voucher được tặng</p>
+          <img class="m-points-screen" src="/u-point/layers/mobile-points.png?v=8" alt="Số dư U-Point" />
+          <ul class="m-points-copy"><li>Thể hiện số U-point ở cả 2 nguồn TCB &amp; OneU</li><li>Khi truy cập dẫn đến màn <strong>Số dư điểm, Quản lý Điểm &amp; Lịch sử giao dịch điểm</strong></li></ul>
+          <div class="m-route m-route-left"><h3><span>02</span> Đường dẫn truy cập các tính năng &amp; collection</h3><ul><li>Tính năng đặt món</li><li>Collections “Voucher siêu thị”, “Voucher HOT”,...</li><li>Tất cả tiện ích</li></ul></div>
+          <div class="m-route m-route-right"><h3><span>03</span> Các chương trình ưu đãi theo từng thời kì</h3></div>
+        </section>
+
+        <section class="mobile-pnp-section">
+          <div class="mh-pnp-mask"><img class="mobile-section-heading mh-pnp" src="/u-point/layers/extracted/mobile-pnp-heading.png?v=3" alt="Giao diện PNP đặc quyền" /></div>
+          <img class="mp-phone-a" src="/u-point/layers/transparent/pnp-phone-right.png?v=4" alt="Đặc quyền Allstar" />
+          <img class="mp-phone-b" src="/u-point/layers/transparent/pnp-phone-left.png?v=4" alt="Đặc quyền Allstar" />
+          <p class="mp-copy-left">Chọn “<strong>Đặc quyền hội viên Techcombank Private &amp; Priority</strong>” để khám phá những voucher, ưu đãi dành riêng cho thành viên Allstar Club.</p>
+          <i class="mp-callout mp-callout-left" aria-hidden="true"></i>
+          <i class="mp-callout mp-callout-right" aria-hidden="true"></i>
+          <p class="mp-copy-right"><strong>Giao diện dành cho VIP, khám phá vô vàn ưu đãi từ các hạng mục:</strong> Hàng hiệu, Mua sắm, Ẩm thực,...</p>
+          <a class="mp-cta" href="https://s.oneu.vn/dlp_pnp" target="_blank" rel="noopener noreferrer">Trải nghiệm ngay</a>
+        </section>
+
+        <section class="mobile-features-section">
+          <img class="mobile-section-heading mh-features" src="/u-point/layers/extracted/mobile-features-heading.png?v=3" alt="Các tính năng trên app Techcombank OneU" />
+          <div class="m-feature-grid">
+            {features.map((feature) => (
+              <article class="m-feature"><img src={`/u-point/layers/transparent/${feature.icon}?v=4`} alt="" /><div><h3>{feature.title}</h3><p>{feature.copy}</p></div></article>
+            ))}
+          </div>
+        </section>
+
+        <section class="mobile-programs-section">
+          <article class="m-program m-voucher-card">
+            <h3>Voucher tiền mặt (Cash) &amp; Promo</h3>
+            <p><strong>Đổi điểm lấy voucher của 450++ thương hiệu</strong> với giá giảm tối đa 10-20% tùy từng thời điểm.</p>
+            <p class="m-voucher-update">Các bộ sưu tập voucher được cập nhật liên tục với giá ưu đãi siêu hời</p>
+            <img class="m-voucher-logos" src="/u-point/layers/extracted/voucher-logos.png" alt="Các thương hiệu áp dụng voucher" />
+            <img class="m-voucher-collections" src="/u-point/layers/extracted/voucher-collections.png" alt="Các bộ sưu tập voucher OneU" />
+          </article>
+          <article class="m-program m-sale-card"><img src="/u-point/layers/extracted/sale-artwork.png" alt="Sale sập sàn duy nhất thứ 4" /><div><h3>MEGA SALE/BRAND DAY</h3><p><strong>Ngày sale độc quyền</strong> với loạt voucher promo đổi bằng U-Point.</p></div></article>
+          <article class="m-program m-atvn-card"><img src="/u-point/layers/extracted/atvn-artwork.png?v=2" alt="Anh Trai Vượt Ngàn Chông Gai" /><div><p><strong>Bộ collection độc quyền</strong> dành riêng cho “Gai con”</p></div></article>
+        </section>
+
+        <section class="mobile-link-section">
+          <div class="mh-link-mask"><img class="mobile-section-heading mh-link" src="/u-point/layers/extracted/desktop-link-heading.png?v=1" alt="Liên kết tài khoản" /></div>
+          <ul class="m-link-copy">
+            <li><strong>Đồng bộ hệ điểm U-Point giữa nền tảng ngân hàng</strong> (Techcombank Mobile) và ứng dụng phong cách sống (TCB OneU)</li>
+            <li><strong>Trải nghiệm liền mạch và linh hoạt tiêu điểm U-Point trên các tính năng</strong> của cả TCB Rewards &amp; TCB OneU</li>
+          </ul>
+          <img class="m-link-steps" src="/u-point/layers/transparent/link-steps.png?v=4" alt="Các bước liên kết tài khoản" />
+          <div class="m-note"><strong>Lưu ý:</strong> Thời hạn sử dụng điểm: 12 tháng. Điểm không được chuyển đổi thành tiền mặt, thừa kế, chuyển nhượng.</div>
+        </section>
+      </article>
+    </div>
+  </main>
+  <Footer />
+
+  <script is:inline>
+    (() => {
+      const resize = () => {
+        const mobile = window.innerWidth < 768;
+        const baseWidth = mobile ? 320 : 1440;
+        const baseHeight = mobile ? 3483 : 6704;
+        const shell = document.querySelector(mobile ? '.mobile-shell' : '.desktop-shell');
+        if (!shell) return;
+        const scale = mobile ? window.innerWidth / baseWidth : Math.min(window.innerWidth / baseWidth, 1);
+        shell.style.setProperty('--artboard-scale', String(scale));
+        document.documentElement.style.setProperty('--u-point-desktop-scale', String(scale));
+        shell.style.height = `${baseHeight * scale}px`;
+      };
+      resize();
+      window.addEventListener('resize', resize, { passive: true });
+    })();
+  </script>
+
+  <style>
+    :global(html) { background: #17239a; }
+    :global(body.u-point-page) { margin: 0; overflow-x: hidden; background: #17239a; color: #fff; font-family: Manrope, sans-serif; font-weight: 400; }
+    :global(body.u-point-page nav), :global(body.u-point-page #mobile-menu) { font-family: Manrope, sans-serif; }
+    .u-point-main { padding-top: 80px; min-height: 100vh; background: linear-gradient(180deg, #273ec5 0%, #293fc5 45%, #201b9a 100%); }
+    .artboard-shell { position: relative; margin: 0 auto; overflow: hidden; }
+    .artboard { position: absolute; top: 0; left: 50%; transform: translateX(-50%) scale(var(--artboard-scale, 1)); transform-origin: top center; overflow: hidden; font-family: Manrope, sans-serif; font-weight: 400; font-optical-sizing: auto; color: #fff; }
+    .desktop-shell { display: block; width: 100%; height: 6704px; }
+    /* The hero artwork belongs to the viewport; only its content is constrained to the 1440px artboard. */
+    .desktop-shell::before {
+      content: ''; position: absolute; z-index: 0; inset: 0 0 auto; width: 100%;
+      height: calc(603px * var(--artboard-scale, 1));
+      background:
+        linear-gradient(90deg, rgba(0, 24, 133, .72), rgba(4, 52, 190, .18) 52%, rgba(0, 31, 147, .5)),
+        url('/u-point/layers/hero-background.png') center / 100% 100% no-repeat;
+    }
+    .desktop-shell::after {
+      content: ''; position: absolute; z-index: 2; left: 0; top: calc(591px * var(--artboard-scale, 1)); width: 100%;
+      height: calc(12px * var(--artboard-scale, 1));
+      background: linear-gradient(90deg, #ed3148 0%, #ff6b40 19%, #f5b648 48%, #526ed7 100%);
+      pointer-events: none;
+    }
+    .desktop-artboard { z-index: 1; width: 1440px; height: 6704px; overflow: visible; background: transparent; }
+    .desktop-artboard .hero-bg, .desktop-artboard .hero::after, .desktop-artboard .section-divider { display: none; }
+    .mobile-shell { display: none; }
+    .heading-image { position: absolute; display: block; object-fit: fill; }
+
+    .hero { position: absolute; inset: 0 0 auto; height: 603px; overflow: visible; }
+    .hero::after {
+      content: ''; position: absolute; left: 50%; top: 0; width: calc(100vw / var(--artboard-scale, 1)); height: 603px;
+      transform: translateX(-50%); background: linear-gradient(90deg, rgba(0, 24, 133, .72), rgba(4, 52, 190, .18) 52%, rgba(0, 31, 147, .5)); pointer-events: none;
+    }
+    .hero-bg {
+      position: absolute; left: 50%; top: 0; width: calc(100vw / var(--artboard-scale, 1)); height: 603px;
+      transform: translateX(-50%); object-fit: fill; opacity: .84;
+    }
+    .hero-title, .hero-subtitle { z-index: 1; }
+    .hero-title { left: 54px; top: 204px; width: 977px; height: 147px; }
+    .hero-subtitle {
+      position: absolute; left: 54px; top: 361px; width: 724px; height: 60px;
+      display: flex; align-items: center; box-sizing: border-box; padding: 0 35px;
+      background: linear-gradient(90deg, #d5103d 0%, rgba(190, 18, 65, .96) 29%, rgba(87, 25, 119, .74) 61%, rgba(17, 53, 159, 0) 100%);
+      color: #fff; font: 700 28px/1.2 Manrope, sans-serif; letter-spacing: 1.4px;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, .42); white-space: nowrap;
+    }
+    .section-divider {
+      position: absolute; left: 50%; top: 591px; width: calc(100vw / var(--artboard-scale, 1)); height: 12px;
+      transform: translateX(-50%); background: linear-gradient(90deg, #ed3148 0%, #ff6b40 19%, #f5b648 48%, #526ed7 100%);
+    }
+
+    .oneu-section { position: absolute; left: 0; top: 0; width: 1440px; height: 1825px; }
+    .oneu-heading { left: 276px; top: 663px; width: 864px; height: 102px; object-fit: contain; }
+    .main-phone { position: absolute; left: 120px; top: 830px; width: 362px; height: 729px; object-fit: contain; }
+    .info-pill, .route-block h3 { margin: 0; box-sizing: border-box; border: 1.5px solid #e7b665; border-radius: 28px; background: linear-gradient(105deg, rgba(54, 40, 139, .96), rgba(35, 31, 111, .9)); font-weight: 700; }
+    .voucher-pill { position: absolute; left: 579px; top: 830px; width: 487px; height: 61px; display: flex; align-items: center; justify-content: center; font-size: 26px; }
+    .voucher-screen { position: absolute; left: 569px; top: 939px; width: 251px; height: 457px; object-fit: contain; object-position: top; }
+    .voucher-copy { position: absolute; left: 571px; top: 1415px; width: 299px; margin: 0; font-size: 22px; font-weight: 400; line-height: 1.28; }
+    .points-screen { position: absolute; left: 939px; top: 939px; width: 288px; height: 457px; object-fit: contain; object-position: top; }
+    .points-copy { position: absolute; left: 941px; top: 1415px; width: 347px; margin: 0; padding-left: 28px; list-style: disc outside; font-size: 22px; font-weight: 400; line-height: 1.28; }
+    .points-copy li { margin: 0 0 8px; padding-left: 6px; }
+    .route-block { position: absolute; color: #fff; font-family: Manrope, sans-serif; font-size: 22px; font-weight: 400; line-height: 1.3; }
+    .route-block h3 { min-height: 49px; padding: 11px 26px; font-size: 25px; line-height: 1.1; }
+    .route-block ul { margin: 14px 0 0; padding-left: 31px; list-style: disc outside; }
+    .route-left { left: 120px; top: 1609px; width: 566px; }
+    .route-right { left: 764px; top: 1609px; width: 556px; }
+    .route-right h3 { padding-left: 16px; padding-right: 16px; text-align: center; white-space: nowrap; }
+    .connector { position: absolute; box-sizing: border-box; border: 0; }
+    /* Start at the utility/food-order icon grid, not at the lucky-draw banner above it. */
+    .connector-left { left: 154px; top: 1172px; width: 0; height: 437px; border-left: 4px dashed #f8c426; }
+    .connector-right { left: 393px; top: 1360px; width: 613px; height: 225px; border-left: 4px dashed #f8c426; border-bottom: 4px dashed #f8c426; }
+    .connector-right::after { content: ''; position: absolute; right: -4px; top: 100%; height: 24px; border-right: 4px dashed #f8c426; }
+
+    .pnp-section { position: absolute; inset: 0; }
+    .pnp-title { left: 356px; top: 1869px; width: 728px; height: 65px; object-fit: fill; }
+    .pnp-subtitle { position: absolute; left: 297px; top: 1945px; width: 846px; text-align: center; font: 700 39px/1.2 Manrope, sans-serif; }
+    .pnp-phones-figma { position: absolute; left: 455px; top: 2012px; width: 534px; height: 810px; object-fit: contain; }
+    .pnp-copy { position: absolute; margin: 0; font: 400 27px/1.34 Manrope, sans-serif; }
+    .pnp-copy strong { font-weight: 700; }
+    .pnp-copy-left { left: 8px; top: 2480px; width: 365px; }
+    .pnp-copy-right { left: 1115px; top: 2181px; width: 310px; }
+    .pnp-line { position: absolute; height: 3px; background: #fff; }
+    .pnp-line::before { content: ''; position: absolute; width: 13px; height: 13px; border-radius: 50%; background: #fff; }
+    .pnp-line::after { content: ''; position: absolute; width: 3px; background: #fff; }
+    .line-left { left: 240px; top: 2328px; width: 175px; }.line-left::before { right: -6px; top: -5px; }.line-left::after { left: 0; top: 0; height: 124px; }
+    .line-right { left: 1005px; top: 2450px; width: 232px; }.line-right::before { left: -6px; top: -5px; }.line-right::after { right: 0; top: -60px; height: 60px; }
+    .pnp-cta { position: absolute; z-index: 3; left: 535px; top: 2890px; display: flex; width: 370px; height: 58px; align-items: center; justify-content: center; box-sizing: border-box; border: 2px solid rgba(255, 255, 255, .78); border-radius: 999px; background: linear-gradient(105deg, #ffa94d 0%, #ff833f 45%, #ff263b 100%); box-shadow: 0 5px 12px rgba(6, 17, 105, .35), inset 0 1px 0 rgba(255, 255, 255, .35); color: #fff; cursor: pointer; font: 600 24px/1 Manrope, sans-serif; text-decoration: none; text-shadow: 0 2px 3px rgba(80, 40, 20, .28); transition: transform .18s ease, filter .18s ease, box-shadow .18s ease; }
+    .pnp-cta:hover { filter: brightness(1.08); box-shadow: 0 8px 18px rgba(6, 17, 105, .42), inset 0 1px 0 rgba(255,255,255,.4); transform: translateY(-2px); }
+    .pnp-cta:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+    .pnp-cta:active { filter: brightness(.95); box-shadow: 0 2px 6px rgba(6,17,105,.35), inset 0 2px 5px rgba(112,34,22,.28); transform: translateY(1px) scale(.985); }
+
+    .features-section { position: absolute; inset: 0; }
+    .features-heading { position: absolute; left: 359.5px; top: 2995px; width: 761px; height: 106px; overflow: visible; }
+    .features-heading-line { position: absolute; inset: 0; display: block; width: 761px; height: 106px; object-fit: contain; }
+    .features-heading-line-one { clip-path: inset(0 0 50% 0); }
+    .features-heading-line-two { clip-path: inset(50% 0 0 0); transform: translateX(50px); }
+    .feature-grid { position: absolute; left: 28px; top: 3213px; width: 1384px; display: grid; grid-template-columns: 1fr 1fr; column-gap: 120px; row-gap: 52px; }
+    .feature-item { height: 184px; display: grid; grid-template-columns: 180px 1fr; align-items: center; gap: 18px; }
+    .feature-item img { width: 180px; height: 170px; object-fit: contain; }
+    .feature-item h3 { margin: 0 0 8px; font: 700 27px/1.18 Manrope, sans-serif; }
+    .feature-item p { margin: 0; font: 400 22px/1.32 Manrope, sans-serif; }
+
+    .programs-section { position: absolute; inset: 0; }
+    .programs-heading { position: absolute; left: 339.5px; top: 4265px; width: 761px; height: 106px; overflow: visible; }
+    .programs-heading-line { position: absolute; inset: 0; display: block; width: 761px; height: 106px; object-fit: contain; }
+    .programs-heading-line-one { clip-path: inset(0 0 50% 0); }
+    .programs-heading-line-two { clip-path: inset(50% 0 0 0); transform: translateX(105px); }
+    .program-card { position: absolute; box-sizing: border-box; overflow: hidden; border: 2px solid #e7b665; border-radius: 28px; background: #fff; color: #171717; font-family: Manrope, sans-serif; font-weight: 400; }
+    .program-card h3 { color: #17177f; font-weight: 700; }
+    .program-card strong { font-weight: 700; }
+    .voucher-card { left: 26px; top: 4437px; width: 1388px; height: 450px; padding: 47px 44px; }
+    .voucher-card-copy { display: grid; grid-template-columns: 1fr 1fr; column-gap: 72px; }
+    .voucher-card-copy h3 { grid-column: 1 / -1; margin: 0 0 34px; font-size: 32px; }
+    .voucher-card-copy p { margin: 0; font-size: 27px; line-height: 1.32; }
+    /* The two image groups live in independent columns, matching their copy above. */
+    .voucher-logos { position: absolute; left: 47px; top: 222px; width: 560px; height: 157px; object-fit: contain; object-position: left center; }
+    .voucher-collections { position: absolute; left: 730px; top: 218px; width: 336px; height: 198px; object-fit: contain; object-position: left center; }
+    .sale-card { left: 26px; top: 4907px; width: 680px; height: 500px; }
+    .atvn-card { left: 724px; top: 4907px; width: 690px; height: 500px; }
+    .sale-card > img { display: block; width: 100%; height: 286px; object-fit: contain; background: #fff; }
+    .atvn-card > img { display: block; box-sizing: border-box; width: calc(100% - 56px); height: auto; aspect-ratio: 570.04 / 230.86; margin: 20px 28px 0; object-fit: contain; border-radius: 28px; background: #fff; }
+    .sale-card > div, .atvn-card > div { padding: 28px 48px; }
+    .sale-card h3, .atvn-card h3 { margin: 0 0 16px; font-size: 30px; line-height: 1.2; }
+    .sale-card p, .atvn-card p { margin: 0; font-size: 25px; line-height: 1.38; }
+
+    .link-section { position: absolute; inset: 0; }
+    .link-title { left: 430px; top: 5557px; width: 580px; height: 70px; object-fit: fill; }
+    .link-subtitle { position: absolute; left: 241px; top: 5642px; width: 958px; text-align: center; font: 700 40px/1.2 Manrope, sans-serif; }
+    .link-copy { position: absolute; left: 115px; top: 5762px; width: 1210px; margin: 0; padding-left: 65px; font: 400 30px/1.36 Manrope, sans-serif; list-style: none; }
+    .link-copy li { position: relative; margin-bottom: 55px; }
+    .link-copy li::before { content: '✓'; position: absolute; left: -58px; top: -4px; font-size: 43px; }
+    .link-copy small { display: inline; font-size: 30px; }
+    .link-steps { position: absolute; left: 78px; top: 6060px; width: 1284px; height: 594px; object-fit: contain; }
+    .desktop-note { box-sizing: border-box; min-height: calc(180px * var(--u-point-desktop-scale, 1)); margin-top: calc(56px * var(--u-point-desktop-scale, 1)); padding: calc(46px * var(--u-point-desktop-scale, 1)) 24px; border-top: 2px solid rgba(54, 141, 255, .75); background: linear-gradient(180deg, rgba(12, 66, 184, .9), rgba(9, 48, 157, .98)); color: #fff; text-align: center; font: 500 calc(19px * var(--u-point-desktop-scale, 1))/1.4 Manrope, sans-serif; }
+    .desktop-note strong { font-weight: 700; }
+
+    @media (max-width: 767px) {
+      .desktop-shell { display: none; }
+      .desktop-note { display: none; }
+      .u-point-main { padding-top: 64px; background: #283dc0; }
+      /* Mobile uses a section-based layout. Every section owns its own vertical rhythm. */
+      .mobile-shell { display: block; width: 100%; height: 3483px; overflow: hidden; }
+      .mobile-artboard { width: 320px; height: 3483px; background: linear-gradient(180deg, #293fc5 0%, #293fc5 63%, #201a98 100%); }
+      .mobile-hero { position: relative; height: 360px; overflow: hidden; background: #0625a0; }
+      .mobile-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,26,140,.72), rgba(5,54,188,.18), rgba(0,35,154,.55)); pointer-events:none; }
+      .mobile-hero-bg { position:absolute; inset:0; width:100%; height:360px; object-fit:cover; opacity:.84; }
+      .mobile-title,.mobile-subtitle { z-index:1; }
+      .mobile-title{position:absolute;left:12px;top:112px;width:296px;height:auto;object-fit:contain;}
+      .mobile-subtitle{position:absolute;left:40px;top:252px;width:240px;height:23px;display:flex;align-items:center;justify-content:center;padding:0 8px;box-sizing:border-box;background:linear-gradient(90deg,#d5103d 0%,rgba(190,18,65,.96) 41%,rgba(87,25,119,.72) 68%,rgba(17,53,159,0) 100%);font:700 9px/1.2 Manrope,sans-serif;letter-spacing:.24px;text-align:center;white-space:nowrap;}
+      .mobile-divider{display:none;}
+      /* Every exported mobile title shares an optical height while keeping its original PNG ratio. */
+      .mobile-section-heading{display:block;object-fit:contain;--m-title-height:32px;height:var(--m-title-height);width:auto;}
+
+      .mobile-oneu{position:relative;height:898px;padding:24px 18px 20px;box-sizing:border-box;}
+      .mh-oneu,.mh-features,.mh-programs{height:var(--m-title-height);width:auto;margin:0 auto;}
+      /* The source title layer includes a decorative cyan rule; this page uses text-only titles. */
+      .mh-programs{clip-path:inset(0 0 18% 0);}
+      .m-oneu-callout-group{position:absolute;left:22px;top:70px;width:275px;height:auto;display:block;object-fit:contain;}
+      .m-oneu-title{position:absolute;left:18px;width:284px;margin:0;color:#fff;font:700 12.5px/1.3 Manrope,sans-serif;text-align:left;}
+      .m-oneu-title span,.m-route h3 span{display:inline-block;margin-right:4px;color:#f9dd99;font-weight:800;}
+      .m-oneu-title-1{top:382px;}
+      .m-voucher-screen,.m-points-screen{position:absolute;top:404px;width:132px;height:220px;display:block;object-fit:fill;}
+      .m-voucher-screen{left:18px;}
+      .m-points-screen{left:170px;}
+      .m-screen-badge{position:absolute;z-index:1;display:flex;align-items:center;justify-content:center;color:#151515;font:700 6.5px/1 Manrope,sans-serif;white-space:nowrap;}
+      .m-voucher-badge{left:29px;top:413px;width:75px;height:22px;gap:4px;}
+      .m-voucher-badge b{display:grid;width:14px;height:14px;place-items:center;border-radius:50%;background:#ff1d34;color:#fff;font-size:7px;}
+      .m-points-badge{left:183px;top:408px;width:94px;height:30px;flex-direction:column;align-items:flex-start;padding-left:7px;box-sizing:border-box;}
+      .m-points-badge small{font:400 4.5px/1 Manrope,sans-serif;}
+      .m-points-badge b{font-size:10px;line-height:1;}
+      .m-voucher-copy{position:absolute;left:18px;top:652px;width:132px;margin:0;font:400 11px/1.42 Manrope,sans-serif;}
+      .m-points-copy{position:absolute;left:166px;top:652px;width:140px;margin:0;padding-left:15px;list-style:disc outside;font:400 11px/1.42 Manrope,sans-serif;}
+      .m-points-copy li{margin:0 0 7px;}
+      .m-route{position:absolute;font:400 11px/1.42 Manrope,sans-serif;text-align:left;}
+      .m-route h3{margin:0 0 8px;color:#fff;font:700 12.5px/1.3 Manrope,sans-serif;}
+      .m-route ul{margin:0;padding-left:14px;list-style:disc outside;}
+      .m-route-left{left:18px;top:770px;width:284px;}
+      .m-route-right{left:18px;top:868px;width:284px;}
+
+      .mobile-pnp-section{position:relative;height:575px;padding-top:20px;box-sizing:border-box;}
+      .mobile-pnp-section::before,.mobile-features-section::before,.mobile-programs-section::before,.mobile-link-section::before{display:none;}
+      .mh-pnp-mask{position:absolute;left:45px;top:20px;width:230px;height:32px;overflow:visible;}
+      .mh-pnp{position:absolute;left:0;top:0;height:var(--m-title-height);width:auto;max-width:none;}
+      .mh-pnp-subtitle{position:absolute;left:0;top:58px;width:320px;margin:0;color:#fff;font:700 9px/1.25 Manrope,sans-serif;letter-spacing:.04px;text-align:center;white-space:nowrap;}
+      .mp-phone-a,.mp-phone-b{position:absolute;width:140px;height:282px;object-fit:contain;}
+      .mp-phone-a{left:164px;top:78px;}
+      .mp-phone-b{left:15px;top:210px;}
+      .mp-copy-left,.mp-copy-right{position:absolute;width:126px;margin:0;font:400 11px/1.4 Manrope,sans-serif;}
+      .mp-copy-left{left:15px;top:92px;}
+      .mp-copy-right{left:164px;top:370px;text-align:left;}
+      .mp-copy-left strong,.mp-copy-right strong{font-weight:700;}
+      .mp-callout{display:none;}
+      .mp-callout::after{content:"";position:absolute;width:7px;height:7px;border-radius:50%;background:#fff;}
+      .mp-callout-left{left:24px;top:183px;height:20px;border-width:0 0 0 2px;}
+      .mp-callout-left::after{left:-4.5px;bottom:-3.5px;}
+      .mp-callout-right{left:185px;top:333px;width:84px;height:25px;border-width:0 2px 2px 0;}
+      .mp-callout-right::after{left:-3.5px;bottom:-4.5px;}
+      .mp-cta{position:absolute;left:70px;top:511px;display:flex;width:180px;height:32px;align-items:center;justify-content:center;box-sizing:border-box;border:1px solid rgba(255,255,255,.72);border-radius:16px;background:linear-gradient(105deg,#ffa94d,#ff263b);color:#fff;cursor:pointer;font:600 11px/1 Manrope,sans-serif;text-decoration:none;transition:transform .18s ease,filter .18s ease,box-shadow .18s ease;}
+      .mp-cta:hover{filter:brightness(1.08);box-shadow:0 3px 8px rgba(6,17,105,.35);transform:translateY(-1px);}.mp-cta:focus-visible{outline:2px solid #fff;outline-offset:2px;}.mp-cta:active{filter:brightness(.95);transform:translateY(1px) scale(.985);}
+
+      .mobile-features-section{position:relative;height:390px;padding-top:18px;box-sizing:border-box;}
+      .m-feature-grid{position:absolute;left:15px;top:81px;width:290px;display:grid;grid-template-columns:repeat(6,1fr);column-gap:0;row-gap:20px;}
+      .m-feature{grid-column:span 2;height:90px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:5px;text-align:center;}
+      .m-feature img{width:58px;height:58px;object-fit:contain;}
+      .m-feature h3{margin:0;font:700 8.5px/1.2 Manrope,sans-serif;}
+      .m-feature:nth-child(3){order:4;}.m-feature:nth-child(4){order:3;}.m-feature:nth-child(5){order:5;}.m-feature:nth-child(6){order:6;}
+      .m-feature:nth-child(7){order:7;grid-column:2 / span 2;}.m-feature:nth-child(8){order:8;grid-column:4 / span 2;}
+      .m-feature p{display:none;}
+
+      .mobile-programs-section{position:relative;height:760px;padding-top:20px;box-sizing:border-box;}
+      .m-program{position:absolute;left:15px;width:290px;box-sizing:border-box;overflow:hidden;border:1px solid #e7b665;border-radius:10px;background:#fff;color:#171717;font-family:Manrope,sans-serif;}
+      .m-program h3{margin:0;color:#17177f;font:700 12.5px/1.25 Manrope,sans-serif;}.m-program p{margin:0;font:400 11px/1.42 Manrope,sans-serif;}.m-program strong{font-weight:700;}
+      .m-voucher-card{top:20px;height:385px;padding:13px 12px;}
+      .m-voucher-card>p{width:266px;margin-top:7px;}
+      .m-voucher-card>.m-voucher-update{position:absolute;left:12px;top:165px;width:266px;margin:0;font-size:11px;line-height:1.42;}
+      .m-voucher-logos{position:absolute;left:12px;top:84px;width:266px;height:auto;object-fit:contain;object-position:left top;}
+      .m-voucher-collections{position:absolute;left:12px;top:205px;width:266px;height:auto;object-fit:contain;object-position:left top;}
+      .m-sale-card{top:415px;height:170px;}
+      .m-atvn-card{top:595px;height:145px;}
+      .m-sale-card>img{display:block;width:100%;height:112px;object-fit:contain;background:#fff;}
+      .m-atvn-card>img{display:block;width:100%;height:auto;object-fit:contain;background:transparent;}
+      .m-sale-card>div,.m-atvn-card>div{margin:0;padding:10px 13px;}
+      .m-sale-card h3{display:none;}
+      .m-sale-card p,.m-atvn-card p{font-size:11px;line-height:1.42;}
+
+      .mobile-link-section{position:relative;height:500px;padding-top:18px;box-sizing:border-box;}
+      .mh-link-mask{position:absolute;left:39px;top:18px;width:242px;height:32px;overflow:visible;}
+      .mh-link{position:absolute;left:0;top:0;height:var(--m-title-height);width:auto;max-width:none;}
+      .mh-link-subtitle{position:absolute;left:0;top:57px;width:320px;margin:0;color:#fff;font:700 9px/1.25 Manrope,sans-serif;letter-spacing:.06px;text-align:center;white-space:nowrap;}
+      .m-link-copy{position:absolute;left:24px;top:84px;width:272px;margin:0;padding:0;list-style:none;font:400 11px/1.42 Manrope,sans-serif;}
+      .m-link-copy li{position:relative;margin:0 0 12px;padding-left:21px;}
+      .m-link-copy li::before{content:"✓";position:absolute;left:0;top:-1px;font:700 18px/1 Manrope,sans-serif;}
+      .m-link-copy strong{font-weight:700;}
+      .m-link-steps{position:absolute;left:12px;top:220px;width:296px;height:auto;object-fit:contain;}
+      .m-note{position:absolute;left:0;bottom:0;width:320px;height:65px;box-sizing:border-box;padding:12px 14px;text-align:center;font:500 11px/1.35 Manrope,sans-serif;background:linear-gradient(180deg,#174bac,#12429f);}
+      .m-note strong{font-weight:700;}
+    }
+  </style>
+</BaseLayout>
