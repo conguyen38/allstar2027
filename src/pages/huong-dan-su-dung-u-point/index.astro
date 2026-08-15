@@ -40,6 +40,10 @@ const features = [
         <section class="oneu-section">
           <img class="heading-image oneu-heading" src="/u-point/layers/figma-oneu-heading.png" alt="Giao diện App Techcombank OneU và thông tin điểm" />
           <img class="main-phone" src="/u-point/layers/transparent/desktop-phone.png?v=4" alt="Giao diện ứng dụng Techcombank OneU" />
+          <svg class="balance-connector" viewBox="0 0 1440 1825" aria-hidden="true">
+            <path d="M579 860 H525 L462 950" />
+            <circle cx="462" cy="950" r="6" />
+          </svg>
 
           <div class="info-pill voucher-pill">Kho voucher và Số dư U-point</div>
           <img class="voucher-screen" src="/u-point/layers/voucher-screen-hq.png?v=5" alt="Kho voucher trên OneU" />
@@ -53,6 +57,8 @@ const features = [
 
           <div class="connector connector-left"></div>
           <div class="connector connector-right"></div>
+          <i class="connector-dot dot-left-start" aria-hidden="true"></i>
+          <i class="connector-dot dot-right-start" aria-hidden="true"></i>
           <div class="route-block route-left">
             <h3>Đường dẫn truy cập các tính năng &amp; collection</h3>
             <ul>
@@ -265,6 +271,9 @@ const features = [
     .oneu-section { position: absolute; left: 0; top: 0; width: 1440px; height: 1825px; }
     .oneu-heading { left: 276px; top: 663px; width: 864px; height: 102px; object-fit: contain; }
     .main-phone { position: absolute; left: 120px; top: 830px; width: 362px; height: 729px; object-fit: contain; }
+    .balance-connector { position: absolute; inset: 0; z-index: 1; width: 1440px; height: 1825px; overflow: visible; pointer-events: none; }
+    .balance-connector path { fill: none; stroke: #f8c426; stroke-width: 4; stroke-dasharray: 9 9; stroke-linecap: round; stroke-linejoin: round; }
+    .balance-connector circle { fill: #f8c426; }
     .info-pill, .route-block h3 { margin: 0; box-sizing: border-box; border: 1.5px solid #e7b665; border-radius: 28px; background: linear-gradient(105deg, rgba(54, 40, 139, .96), rgba(35, 31, 111, .9)); font-weight: 700; }
     .voucher-pill { position: absolute; left: 579px; top: 830px; width: 487px; height: 61px; display: flex; align-items: center; justify-content: center; font-size: 26px; }
     .voucher-screen { position: absolute; left: 569px; top: 939px; width: 251px; height: 457px; object-fit: contain; object-position: top; }
@@ -283,6 +292,9 @@ const features = [
     .connector-left { left: 154px; top: 1172px; width: 0; height: 437px; border-left: 4px dashed #f8c426; }
     .connector-right { left: 393px; top: 1360px; width: 613px; height: 225px; border-left: 4px dashed #f8c426; border-bottom: 4px dashed #f8c426; }
     .connector-right::after { content: ''; position: absolute; right: -4px; top: 100%; height: 24px; border-right: 4px dashed #f8c426; }
+    .connector-dot { position: absolute; z-index: 2; width: 12px; height: 12px; border-radius: 50%; background: #f8c426; transform: translate(-50%, -50%); }
+    .dot-left-start { left: 154px; top: 1172px; }
+    .dot-right-start { left: 393px; top: 1360px; }
 
     .pnp-section { position: absolute; inset: 0; }
     .pnp-title { left: 356px; top: 1869px; width: 728px; height: 65px; object-fit: fill; }
