@@ -49,7 +49,7 @@ const features = [
           <img class="voucher-screen" src="/u-point/layers/voucher-screen-hq.png?v=5" alt="Kho voucher trên OneU" />
           <p class="voucher-copy">Kho lưu trữ các loại voucher KH đã đổi điểm/ thu thập miễn phí hoặc voucher được tặng</p>
 
-          <img class="points-screen" src="/u-point/layers/points-screen-hq.png?v=5" alt="Thông tin số dư U-Point" />
+          <img class="points-screen" src="/u-point/layers/allstar-1.png" alt="Thông tin số dư U-Point" />
           <ul class="points-copy">
             <li>Thể hiện số U-point ở cả 2 nguồn TCB &amp; OneU</li>
             <li>Khi truy cập dẫn đến màn <strong>Số dư điểm, Quản lý Điểm &amp; Lịch sử giao dịch điểm</strong></li>
@@ -73,7 +73,7 @@ const features = [
         <section class="pnp-section">
           <img class="heading-image pnp-title" src="/u-point/layers/extracted/pnp-title-hq.png" alt="Giao diện PNP đặc quyền" />
           <div class="pnp-subtitle">DÀNH RIÊNG CHO THÀNH VIÊN ALLSTAR</div>
-          <img class="pnp-phones-figma" src="/u-point/layers/figma-pnp-phones.png?v=1" alt="Giao diện Techcombank Private và Priority dành cho hội viên Allstar" />
+          <img class="pnp-phones-figma" src="/u-point/layers/allstar-2.png" alt="Giao diện Techcombank Private và Priority dành cho hội viên Allstar" />
           <p class="pnp-copy pnp-copy-left">Chọn <strong>“Đặc quyền hội viên Techcombank Private &amp; Priority”</strong> để khám phá những voucher, ưu đãi dành riêng cho thành viên Allstar Club.</p>
           <p class="pnp-copy pnp-copy-right">Giao diện dành cho VIP, khám phá vô vàn ưu đãi từ các hạng mục: Hàng hiệu, Mua sắm, Ẩm thực,...</p>
           <span class="pnp-line line-left"></span>
@@ -205,10 +205,16 @@ const features = [
       const resize = () => {
         const mobile = window.innerWidth < 768;
         const baseWidth = mobile ? 320 : 1440;
-        const baseHeight = mobile ? 3483 : 6704;
+        // Desktop artwork stays within a comfortable reading measure instead of
+        // expanding edge-to-edge on compact laptop screens.
+        const desktopMaxWidth = 1280;
+        const desktopGutter = 64;
+        const baseHeight = mobile ? 3483 : 6232;
         const shell = document.querySelector(mobile ? '.mobile-shell' : '.desktop-shell');
         if (!shell) return;
-        const scale = mobile ? window.innerWidth / baseWidth : Math.min(window.innerWidth / baseWidth, 1);
+        const scale = mobile
+          ? window.innerWidth / baseWidth
+          : Math.min((window.innerWidth - desktopGutter * 2) / baseWidth, desktopMaxWidth / baseWidth);
         shell.style.setProperty('--artboard-scale', String(scale));
         document.documentElement.style.setProperty('--u-point-desktop-scale', String(scale));
         shell.style.height = `${baseHeight * scale}px`;
@@ -225,7 +231,7 @@ const features = [
     .u-point-main { padding-top: 80px; min-height: 100vh; background: linear-gradient(180deg, #273ec5 0%, #293fc5 45%, #201b9a 100%); }
     .artboard-shell { position: relative; margin: 0 auto; overflow: hidden; }
     .artboard { position: absolute; top: 0; left: 50%; transform: translateX(-50%) scale(var(--artboard-scale, 1)); transform-origin: top center; overflow: hidden; font-family: Manrope, sans-serif; font-weight: 400; font-optical-sizing: auto; color: #fff; }
-    .desktop-shell { display: block; width: 100%; height: 6704px; }
+    .desktop-shell { display: block; width: 100%; height: 6232px; }
     /* The hero artwork belongs to the viewport; only its content is constrained to the 1440px artboard. */
     .desktop-shell::before {
       content: ''; position: absolute; z-index: 0; inset: 0 0 auto; width: 100%;
@@ -240,7 +246,7 @@ const features = [
       background: linear-gradient(90deg, #ed3148 0%, #ff6b40 19%, #f5b648 48%, #526ed7 100%);
       pointer-events: none;
     }
-    .desktop-artboard { z-index: 1; width: 1440px; height: 6704px; overflow: visible; background: transparent; }
+    .desktop-artboard { z-index: 1; width: 1440px; height: 6232px; overflow: visible; background: transparent; }
     .desktop-artboard .hero-bg, .desktop-artboard .hero::after, .desktop-artboard .section-divider { display: none; }
     .mobile-shell { display: none; }
     .heading-image { position: absolute; display: block; object-fit: fill; }
@@ -319,13 +325,21 @@ const features = [
     .features-heading-line { position: absolute; inset: 0; display: block; width: 761px; height: 106px; object-fit: contain; }
     .features-heading-line-one { clip-path: inset(0 0 50% 0); }
     .features-heading-line-two { clip-path: inset(50% 0 0 0); transform: translateX(50px); }
-    .feature-grid { position: absolute; left: 28px; top: 3213px; width: 1384px; display: grid; grid-template-columns: 1fr 1fr; column-gap: 120px; row-gap: 52px; }
-    .feature-item { height: 184px; display: grid; grid-template-columns: 180px 1fr; align-items: center; gap: 18px; }
-    .feature-item img { width: 180px; height: 170px; object-fit: contain; }
-    .feature-item h3 { margin: 0 0 8px; font: 700 27px/1.18 Manrope, sans-serif; }
-    .feature-item p { margin: 0; font: 400 22px/1.32 Manrope, sans-serif; }
+    .feature-grid { position: absolute; left: 60px; top: 3213px; width: 1320px; display: grid; grid-template-columns: repeat(4, 1fr); column-gap: 20px; row-gap: 52px; }
+    .feature-item { height: 184px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 10px; text-align: center; }
+    .feature-item img { width: 150px; height: 140px; object-fit: contain; }
+    .feature-item h3 { margin: 0; font: 700 24px/1.18 Manrope, sans-serif; }
+    .feature-item p { display: none; }
+    .feature-item:nth-child(1) { order: 1; }
+    .feature-item:nth-child(5) { order: 2; }
+    .feature-item:nth-child(2) { order: 3; }
+    .feature-item:nth-child(4) { order: 4; }
+    .feature-item:nth-child(3) { order: 5; }
+    .feature-item:nth-child(8) { order: 6; }
+    .feature-item:nth-child(7) { order: 7; }
+    .feature-item:nth-child(6) { order: 8; }
 
-    .programs-section { position: absolute; inset: 0; }
+    .programs-section { position: absolute; inset: 0; transform: translateY(-472px); }
     .programs-heading { position: absolute; left: 339.5px; top: 4265px; width: 761px; height: 106px; overflow: visible; }
     .programs-heading-line { position: absolute; inset: 0; display: block; width: 761px; height: 106px; object-fit: contain; }
     .programs-heading-line-one { clip-path: inset(0 0 50% 0); }
@@ -348,7 +362,7 @@ const features = [
     .sale-card h3, .atvn-card h3 { margin: 0 0 16px; font-size: 30px; line-height: 1.2; }
     .sale-card p, .atvn-card p { margin: 0; font-size: 25px; line-height: 1.38; }
 
-    .link-section { position: absolute; inset: 0; }
+    .link-section { position: absolute; inset: 0; transform: translateY(-472px); }
     .link-title { left: 430px; top: 5557px; width: 580px; height: 70px; object-fit: fill; }
     .link-subtitle { position: absolute; left: 241px; top: 5642px; width: 958px; text-align: center; font: 700 40px/1.2 Manrope, sans-serif; }
     .link-copy { position: absolute; left: 115px; top: 5762px; width: 1210px; margin: 0; padding-left: 65px; font: 400 30px/1.36 Manrope, sans-serif; list-style: none; }
