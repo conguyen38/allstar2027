@@ -53,7 +53,8 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT6vJ7brMTQB
         background: rgba(217, 119, 6, 0.05);
       }
 
-      .wal-option input {
+      .wal-option > input[type='radio'],
+      .wal-option > input[type='checkbox'] {
         margin-top: 0.15rem;
         accent-color: #d97706;
         width: 1.1rem;
@@ -160,7 +161,7 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT6vJ7brMTQB
             <span class="material-symbols-outlined text-sm">campaign</span>
             We Are Listening
           </span>
-          <h1 class="font-display text-3xl md:text-4xl font-black text-textMain tracking-tight mb-4">
+          <h1 class="font-headline text-3xl md:text-4xl font-black text-textMain tracking-tight mb-4">
             Chia sẻ trải nghiệm kỳ chi trả <span class="text-gold">vừa qua</span>
           </h1>
           <p class="text-textSub text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
@@ -298,19 +299,19 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT6vJ7brMTQB
                 <input type="checkbox" name="improve" value="Hướng dẫn nhận/sử dụng U-Point rõ ràng hơn" />
                 <span class="opt-label">Hướng dẫn nhận/sử dụng U-Point rõ ràng hơn</span>
               </label>
-              <label class="wal-option items-center" id="wal-other-option">
+              <label class="wal-option" id="wal-other-option">
                 <input type="checkbox" name="improve" value="Khác" id="wal-other-checkbox" />
-                <span class="opt-label flex items-center gap-3 flex-wrap">
-                  Khác:
+                <div class="flex-1 min-w-0">
+                  <span class="opt-label block mb-2">Khác:</span>
                   <input
                     type="text"
                     id="wal-other-text"
                     name="improve_other"
-                    class="wal-field flex-1 min-w-[10rem] py-1.5"
+                    class="wal-field w-full py-2"
                     placeholder="Nhập nội dung khác..."
                     disabled
                   />
-                </span>
+                </div>
               </label>
             </div>
             <p class="wal-error" data-error-for="improve">Vui lòng chọn tối đa 2 phương án.</p>
@@ -357,7 +358,7 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT6vJ7brMTQB
         <div id="wal-success" class="wal-card rounded-3xl p-10 md:p-14 flex-col items-center text-center gap-4">
           <img alt="Allstar Logo" class="h-16 w-auto object-contain mb-2" src="/prm/assets/images/Logo%20Allstar.webp" />
           <span class="material-symbols-outlined text-5xl text-gold">check_circle</span>
-          <h2 class="font-display text-2xl font-black text-textMain">Cảm ơn Anh/Chị đã chia sẻ phản hồi 💛</h2>
+          <h2 class="font-headline text-2xl font-black text-textMain">Cảm ơn Anh/Chị đã chia sẻ phản hồi 💛</h2>
           <p class="text-textSub text-sm max-w-md">
             BTC Allstar đã ghi nhận thông tin và sẽ rà soát các trường hợp cần hỗ trợ.
           </p>
