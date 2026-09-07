@@ -6,6 +6,11 @@ import Footer from '../../components/Footer.astro';
 const title = 'Hướng dẫn sử dụng U-Point | Allstar Club';
 const description = 'Hướng dẫn sử dụng U-Point và đặc quyền thành viên Allstar trên ứng dụng Techcombank OneU.';
 
+// Upload video ở YouTube Studio (chế độ "Không công khai/Unlisted"), bật "Cho phép nhúng"
+// (Xuất bản > Tùy chọn khác > Cho phép nhúng), rồi thay ID bên dưới bằng ID lấy từ URL video
+// (https://youtu.be/<ID> hoặc studio.youtube.com/video/<ID>/edit).
+const uPointVideoId = 'tZI1Fz2A-qQ';
+
 const features = [
   { icon: 'feature-voucher.png', title: 'Đổi voucher', copy: 'Sử dụng U-Point để đổi voucher giảm giá từ hàng trăm thương hiệu.' },
   { icon: 'feature-food.png', title: 'Đặt món', copy: 'Sử dụng U-Point để đặt đồ ăn tại hàng loạt thương hiệu.' },
@@ -25,6 +30,11 @@ const features = [
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   </Fragment>
   <ProgramHeader program="prm" active="u-point" />
+
+  <button type="button" id="video-jump-btn" class="video-jump-btn" aria-label="Xem video hướng dẫn chi tiết">
+    <span class="video-jump-icon" aria-hidden="true"></span>
+    <span class="video-jump-label">Xem video<br />hướng dẫn</span>
+  </button>
 
   <main class="u-point-main">
     <div class="desktop-shell artboard-shell">
@@ -129,6 +139,19 @@ const features = [
           </ul>
           <img class="link-steps" src="/u-point/layers/transparent/link-steps.png?v=4" alt="Các bước liên kết tài khoản Techcombank Mobile và OneU" />
         </section>
+
+        <section class="video-section">
+          <div class="video-heading" id="video-section-desktop">VIDEO HƯỚNG DẪN CHI TIẾT</div>
+          <div class="video-frame">
+            <iframe
+              src={`https://www.youtube.com/embed/${uPointVideoId}`}
+              title="Video hướng dẫn sử dụng U-Point"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </section>
       </article>
     </div>
     <section class="desktop-note" aria-label="Lưu ý sử dụng điểm U-Point"><strong>Lưu ý:</strong><br />Thời hạn sử dụng điểm: 12 tháng (kể từ ngày phát hành / ngày cuối cùng của tháng)<br />Điểm không được chuyển đổi thành tiền mặt, thừa kế, chuyển nhượng</section>
@@ -195,6 +218,19 @@ const features = [
           <img class="m-link-steps" src="/u-point/layers/transparent/link-steps.png?v=4" alt="Các bước liên kết tài khoản" />
           <div class="m-note"><strong>Lưu ý:</strong> Thời hạn sử dụng điểm: 12 tháng. Điểm không được chuyển đổi thành tiền mặt, thừa kế, chuyển nhượng.</div>
         </section>
+
+        <section class="mobile-video-section" id="video-section-mobile">
+          <h3 class="mv-heading">Video hướng dẫn chi tiết</h3>
+          <div class="mv-frame">
+            <iframe
+              src={`https://www.youtube.com/embed/${uPointVideoId}`}
+              title="Video hướng dẫn sử dụng U-Point"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </section>
       </article>
     </div>
   </main>
@@ -209,7 +245,7 @@ const features = [
         // expanding edge-to-edge on compact laptop screens.
         const desktopMaxWidth = 1280;
         const desktopGutter = 64;
-        const baseHeight = mobile ? 3483 : 6232;
+        const baseHeight = mobile ? 3910 : 7050;
         const shell = document.querySelector(mobile ? '.mobile-shell' : '.desktop-shell');
         if (!shell) return;
         const scale = mobile
@@ -222,6 +258,29 @@ const features = [
       resize();
       window.addEventListener('resize', resize, { passive: true });
     })();
+
+    (() => {
+      const btn = document.getElementById('video-jump-btn');
+      if (!btn) return;
+
+      const getTarget = () =>
+        window.innerWidth < 768
+          ? document.getElementById('video-section-mobile')
+          : document.getElementById('video-section-desktop');
+
+      btn.addEventListener('click', () => {
+        const target = getTarget();
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      // Chỉ hiện nút khi user đang ở đầu trang; ẩn đi ngay khi họ bắt đầu cuộn.
+      const TOP_THRESHOLD = 160;
+      const toggleVisibility = () => {
+        btn.classList.toggle('is-visible', window.scrollY < TOP_THRESHOLD);
+      };
+      toggleVisibility();
+      window.addEventListener('scroll', toggleVisibility, { passive: true });
+    })();
   </script>
 
   <style>
@@ -229,9 +288,41 @@ const features = [
     :global(body.u-point-page) { margin: 0; overflow-x: hidden; background: #17239a; color: #fff; font-family: Manrope, sans-serif; font-weight: 400; }
     :global(body.u-point-page nav), :global(body.u-point-page #mobile-menu) { font-family: Manrope, sans-serif; }
     .u-point-main { padding-top: 80px; min-height: 100vh; background: linear-gradient(180deg, #273ec5 0%, #293fc5 45%, #201b9a 100%); }
+
+    .video-jump-btn {
+      position: fixed; z-index: 40; right: 24px; bottom: 24px; transform: translateY(160%);
+      display: flex; align-items: center; gap: 10px; box-sizing: border-box; padding: 12px 18px 12px 14px;
+      border: 1.5px solid #e7b665; border-radius: 999px;
+      background: linear-gradient(105deg, rgba(54, 40, 139, .96), rgba(35, 31, 111, .92));
+      box-shadow: 0 10px 24px rgba(6, 17, 105, .45), inset 0 1px 0 rgba(255, 255, 255, .12);
+      color: #fff; cursor: pointer; font-family: Manrope, sans-serif;
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s ease, transform .3s ease;
+    }
+    .video-jump-btn.is-visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .video-jump-btn:hover { filter: brightness(1.08); box-shadow: 0 12px 28px rgba(6, 17, 105, .55), inset 0 1px 0 rgba(255, 255, 255, .18); }
+    .video-jump-btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+    .video-jump-btn:active { filter: brightness(.95); }
+    .video-jump-icon {
+      flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%;
+      background: linear-gradient(105deg, #ffa94d 0%, #ff833f 45%, #ff263b 100%);
+      box-shadow: 0 3px 8px rgba(80, 20, 10, .35);
+    }
+    .video-jump-icon::before {
+      content: ''; margin-left: 3px; border-style: solid; border-width: 7px 0 7px 11px;
+      border-color: transparent transparent transparent #fff;
+    }
+    .video-jump-label { font: 700 13px/1.28 Manrope, sans-serif; text-align: left; white-space: nowrap; }
+
+    @media (max-width: 767px) {
+      .video-jump-btn { right: 14px; bottom: 16px; padding: 9px 14px 9px 10px; gap: 8px; }
+      .video-jump-icon { width: 28px; height: 28px; }
+      .video-jump-icon::before { border-width: 6px 0 6px 9px; }
+      .video-jump-label { font-size: 11px; }
+    }
     .artboard-shell { position: relative; margin: 0 auto; overflow: hidden; }
     .artboard { position: absolute; top: 0; left: 50%; transform: translateX(-50%) scale(var(--artboard-scale, 1)); transform-origin: top center; overflow: hidden; font-family: Manrope, sans-serif; font-weight: 400; font-optical-sizing: auto; color: #fff; }
-    .desktop-shell { display: block; width: 100%; height: 6232px; }
+    .desktop-shell { display: block; width: 100%; height: 7050px; }
     /* The hero artwork belongs to the viewport; only its content is constrained to the 1440px artboard. */
     .desktop-shell::before {
       content: ''; position: absolute; z-index: 0; inset: 0 0 auto; width: 100%;
@@ -246,7 +337,7 @@ const features = [
       background: linear-gradient(90deg, #ed3148 0%, #ff6b40 19%, #f5b648 48%, #526ed7 100%);
       pointer-events: none;
     }
-    .desktop-artboard { z-index: 1; width: 1440px; height: 6232px; overflow: visible; background: transparent; }
+    .desktop-artboard { z-index: 1; width: 1440px; height: 7050px; overflow: visible; background: transparent; }
     .desktop-artboard .hero-bg, .desktop-artboard .hero::after, .desktop-artboard .section-divider { display: none; }
     .mobile-shell { display: none; }
     .heading-image { position: absolute; display: block; object-fit: fill; }
@@ -370,6 +461,15 @@ const features = [
     .link-copy li::before { content: '✓'; position: absolute; left: -58px; top: -4px; font-size: 43px; }
     .link-copy small { display: inline; font-size: 30px; }
     .link-steps { position: absolute; left: 78px; top: 6060px; width: 1284px; height: 594px; object-fit: contain; }
+
+    .video-section { position: absolute; inset: 0; }
+    .video-heading { position: absolute; left: 0; top: 6262px; width: 1440px; text-align: center; color: #fff; font: 700 40px/1.2 Manrope, sans-serif; }
+    .video-frame {
+      position: absolute; left: 540px; top: 6332px; width: 360px; aspect-ratio: 9 / 16; overflow: hidden;
+      border: 2px solid #e7b665; border-radius: 28px; background: #0b1257;
+      box-shadow: 0 12px 30px rgba(6, 17, 105, .45);
+    }
+    .video-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
     .desktop-note { box-sizing: border-box; min-height: calc(180px * var(--u-point-desktop-scale, 1)); margin-top: calc(56px * var(--u-point-desktop-scale, 1)); padding: calc(46px * var(--u-point-desktop-scale, 1)) 24px; border-top: 2px solid rgba(54, 141, 255, .75); background: linear-gradient(180deg, rgba(12, 66, 184, .9), rgba(9, 48, 157, .98)); color: #fff; text-align: center; font: 500 calc(19px * var(--u-point-desktop-scale, 1))/1.4 Manrope, sans-serif; }
     .desktop-note strong { font-weight: 700; }
 
@@ -378,8 +478,8 @@ const features = [
       .desktop-note { display: none; }
       .u-point-main { padding-top: 64px; background: #283dc0; }
       /* Mobile uses a section-based layout. Every section owns its own vertical rhythm. */
-      .mobile-shell { display: block; width: 100%; height: 3483px; overflow: hidden; }
-      .mobile-artboard { width: 320px; height: 3483px; background: linear-gradient(180deg, #293fc5 0%, #293fc5 63%, #201a98 100%); }
+      .mobile-shell { display: block; width: 100%; height: 3910px; overflow: hidden; }
+      .mobile-artboard { width: 320px; height: 3910px; background: linear-gradient(180deg, #293fc5 0%, #293fc5 63%, #201a98 100%); }
       .mobile-hero { position: relative; height: 360px; overflow: hidden; background: #0625a0; }
       .mobile-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,26,140,.72), rgba(5,54,188,.18), rgba(0,35,154,.55)); pointer-events:none; }
       .mobile-hero-bg { position:absolute; inset:0; width:100%; height:360px; object-fit:cover; opacity:.84; }
@@ -473,6 +573,11 @@ const features = [
       .m-link-steps{position:absolute;left:12px;top:220px;width:296px;height:auto;object-fit:contain;}
       .m-note{position:absolute;left:0;bottom:0;width:320px;height:65px;box-sizing:border-box;padding:12px 14px;text-align:center;font:500 11px/1.35 Manrope,sans-serif;background:linear-gradient(180deg,#174bac,#12429f);}
       .m-note strong{font-weight:700;}
+
+      .mobile-video-section{position:relative;height:425px;padding:20px 15px;box-sizing:border-box;}
+      .mv-heading{margin:0 0 12px;color:#fff;text-align:center;font:700 14px/1.3 Manrope,sans-serif;}
+      .mv-frame{position:relative;width:200px;margin:0 auto;aspect-ratio:9/16;overflow:hidden;border:1.5px solid #e7b665;border-radius:16px;background:#0b1257;box-shadow:0 6px 16px rgba(6,17,105,.4);}
+      .mv-frame iframe{display:block;width:100%;height:100%;border:0;}
     }
   </style>
 </BaseLayout>

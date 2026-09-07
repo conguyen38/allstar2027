@@ -180,26 +180,6 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT6vJ7brMTQB
             <div class="flex items-start gap-3 mb-4">
               <span class="wal-q-badge">1</span>
               <p class="text-textMain font-semibold pt-1">
-                Anh/Chị đang tham gia Allstar với vai trò:
-              </p>
-            </div>
-            <div class="grid sm:grid-cols-2 gap-3 pl-[2.6rem]">
-              <label class="wal-option">
-                <input type="radio" name="role" value="PRM – Lực lượng tư vấn Techcombank" />
-                <span class="opt-label">PRM – Lực lượng tư vấn Techcombank</span>
-              </label>
-              <label class="wal-option">
-                <input type="radio" name="role" value="Sales In-house – Lực lượng bán OneHousing" />
-                <span class="opt-label">Sales In-house – Lực lượng bán OneHousing</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- Q2 -->
-          <div>
-            <div class="flex items-start gap-3 mb-4">
-              <span class="wal-q-badge">2</span>
-              <p class="text-textMain font-semibold pt-1">
                 Khu vực hoạt động:
               </p>
             </div>
@@ -215,10 +195,10 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT6vJ7brMTQB
             </div>
           </div>
 
-          <!-- Q3 -->
+          <!-- Q2 -->
           <div>
             <div class="flex items-start gap-3 mb-4">
-              <span class="wal-q-badge">3</span>
+              <span class="wal-q-badge">2</span>
               <p class="text-textMain font-semibold pt-1">
                 Trong kỳ vừa rồi, tình trạng của Anh/Chị gần nhất với trường hợp nào?
               </p>
@@ -247,10 +227,10 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT6vJ7brMTQB
             </div>
           </div>
 
-          <!-- Q4 -->
+          <!-- Q3 -->
           <div>
             <div class="flex items-start gap-3 mb-3">
-              <span class="wal-q-badge">4</span>
+              <span class="wal-q-badge">3</span>
               <p class="text-textMain font-semibold pt-1">
                 Anh/Chị đang gặp vấn đề hoặc cần BTC kiểm tra nội dung gì?
               </p>
@@ -269,10 +249,10 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT6vJ7brMTQB
             </div>
           </div>
 
-          <!-- Q5 -->
+          <!-- Q4 -->
           <div>
             <div class="flex items-start gap-3 mb-2">
-              <span class="wal-q-badge">5</span>
+              <span class="wal-q-badge">4</span>
               <p class="text-textMain font-semibold pt-1">
                 Trong kỳ tiếp theo, Anh/Chị muốn Allstar ưu tiên cải thiện nội dung nào?
               </p>
@@ -317,10 +297,10 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT6vJ7brMTQB
             <p class="wal-error" data-error-for="improve">Vui lòng chọn tối đa 2 phương án.</p>
           </div>
 
-          <!-- Q6 -->
+          <!-- Q5 -->
           <div>
             <div class="flex items-start gap-3 mb-4">
-              <span class="wal-q-badge">6</span>
+              <span class="wal-q-badge">5</span>
               <p class="text-textMain font-semibold pt-1">
                 Số điện thoại đăng ký/tham gia chương trình: <span class="text-gold">*</span>
               </p>
@@ -465,7 +445,6 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT6vJ7brMTQB
 
       const payload = {
         timestamp: new Date().toISOString(),
-        role: form.role.value,
         region: form.region.value,
         status: form.status.value,
         issue_detail: form.issue_detail.value.trim(),
