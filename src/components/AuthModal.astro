@@ -1,0 +1,54 @@
+---
+const inputClass =
+  "w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[#ffd16c] focus:ring-1 focus:ring-[#ffd16c] transition-colors";
+const labelClass = "block text-sm font-semibold text-white/70 mb-1.5";
+const submitClass =
+  "w-full rounded-xl bg-[#ffd16c] text-[#1a1300] font-bold py-3 hover:brightness-110 disabled:opacity-60 disabled:cursor-not-allowed transition";
+---
+
+<div id="auth-modal" class="hidden fixed inset-0 z-[60] flex items-center justify-center px-4" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+  <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" data-auth-close></div>
+  <div class="relative w-full max-w-md rounded-2xl bg-[#0d1220] border border-white/10 shadow-[0_0_40px_rgba(0,227,253,0.12)] p-6 md:p-8 font-nav">
+    <button type="button" class="absolute top-3 right-3 w-9 h-9 rounded-lg text-white/60 hover:text-white hover:bg-white/10 flex items-center justify-center" data-auth-close aria-label="Đóng">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+
+    <!-- Bước 1: đăng nhập -->
+    <form id="auth-login-form" class="space-y-4" novalidate>
+      <div>
+        <h2 id="auth-title" class="text-2xl font-extrabold text-white">Đăng nhập</h2>
+        <p class="text-sm text-white/50 mt-1">Dùng email và mật khẩu do Allstar Club cấp cho bạn.</p>
+      </div>
+      <div>
+        <label class={labelClass} for="auth-email">Email</label>
+        <input id="auth-email" name="email" type="email" autocomplete="username" required placeholder="ten@congty.com" class={inputClass} />
+      </div>
+      <div>
+        <label class={labelClass} for="auth-password">Mật khẩu</label>
+        <input id="auth-password" name="password" type="password" autocomplete="current-password" required class={inputClass} />
+      </div>
+      <p class="auth-error hidden text-sm text-[#ff7168]" role="alert"></p>
+      <button type="submit" class={submitClass}>Đăng nhập</button>
+      <p class="text-xs text-white/40 text-center">Quên mật khẩu? Vui lòng liên hệ Allstar Club để được cấp lại.</p>
+    </form>
+
+    <!-- Bước 2: đổi mật khẩu lần đầu -->
+    <form id="auth-change-form" class="hidden space-y-4" novalidate>
+      <div>
+        <h2 class="text-2xl font-extrabold text-white">Đặt mật khẩu mới</h2>
+        <p class="text-sm text-white/50 mt-1">Đây là lần đăng nhập đầu tiên. Bạn cần đổi mật khẩu cố định được cấp để dùng cho các lần sau.</p>
+      </div>
+      <div>
+        <label class={labelClass} for="auth-new-password">Mật khẩu mới</label>
+        <input id="auth-new-password" name="newPassword" type="password" autocomplete="new-password" required minlength="8" class={inputClass} />
+        <p class="text-xs text-white/40 mt-1.5">Tối thiểu 8 ký tự, gồm chữ và số, khác mật khẩu được cấp.</p>
+      </div>
+      <div>
+        <label class={labelClass} for="auth-confirm-password">Nhập lại mật khẩu mới</label>
+        <input id="auth-confirm-password" name="confirmPassword" type="password" autocomplete="new-password" required class={inputClass} />
+      </div>
+      <p class="auth-error hidden text-sm text-[#ff7168]" role="alert"></p>
+      <button type="submit" class={submitClass}>Lưu mật khẩu &amp; vào tài khoản</button>
+    </form>
+  </div>
+</div>

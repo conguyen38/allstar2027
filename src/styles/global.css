@@ -2,9 +2,128 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Chuyển trang mượt (Chrome/Edge): giữ trang cũ cho tới khi trang mới sẵn sàng, header đứng yên. */
+@view-transition {
+  navigation: auto;
+}
+
+/* Vuốt ngang: trang mới trượt đè lên, trang cũ lùi nhẹ và tối dần (đổi chiều khi quay về tab trước) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.55s;
+  animation-timing-function: cubic-bezier(0.77, 0, 0.18, 1);
+  animation-fill-mode: both;
+}
+
+/* Bấm tab: trang mới trượt vào từ trái sang */
+::view-transition-old(root) { animation-name: swipe-out-right; }
+::view-transition-new(root) { animation-name: swipe-in-left; }
+
+/* Bấm Back: trang mới trượt vào từ phải sang */
+:root:active-view-transition-type(back)::view-transition-old(root) { animation-name: swipe-out-left; }
+:root:active-view-transition-type(back)::view-transition-new(root) { animation-name: swipe-in-right; }
+
+@keyframes swipe-out-left { to { transform: translateX(-24%); opacity: 0.35; filter: brightness(0.6); } }
+@keyframes swipe-out-right { to { transform: translateX(24%); opacity: 0.35; filter: brightness(0.6); } }
+@keyframes swipe-in-right { from { transform: translateX(100%); } }
+@keyframes swipe-in-left { from { transform: translateX(-100%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation: none; }
+}
+
 html {
   background-color: #0a0e14;
   scroll-behavior: smooth;
+}
+
+/* Shared static arena surface for program content pages. */
+body.allstar-grid-bg {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse 72% 42% at 50% 10%, rgba(34, 69, 157, 0.38), transparent 72%),
+    radial-gradient(ellipse 54% 34% at 100% 70%, rgba(0, 227, 253, 0.09), transparent 74%),
+    linear-gradient(rgba(0, 227, 253, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 227, 253, 0.045) 1px, transparent 1px),
+    linear-gradient(135deg, #101b46 0%, #0b1535 48%, #10113b 100%) !important;
+  background-size: auto, auto, 72px 72px, 72px 72px, auto !important;
+  background-attachment: fixed !important;
+}
+
+/* Shared contest panels for Overview, Rules and Leaderboard pages. */
+body.allstar-grid-bg .glass-card,
+body.allstar-grid-bg .tactical-leaderboard {
+  --contest-cyan: rgba(0, 227, 253, 0.52);
+  --contest-gold: rgba(255, 209, 108, 0.72);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid var(--contest-cyan) !important;
+  border-radius: 0 !important;
+  clip-path: polygon(0 20px, 20px 0, calc(100% - 36px) 0, 100% 36px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 34px 100%, 0 calc(100% - 34px));
+  background: linear-gradient(112deg, rgba(29, 58, 128, 0.92), rgba(11, 22, 64, 0.94)) !important;
+  box-shadow: inset 0 1px 0 rgba(202, 245, 255, 0.14), 0 18px 36px rgba(2, 10, 40, 0.28) !important;
+}
+
+body.allstar-grid-bg .glass-card::before,
+body.allstar-grid-bg .tactical-leaderboard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom right, transparent 47%, var(--contest-cyan) 48% 52%, transparent 53%) top left / 20px 20px no-repeat,
+    linear-gradient(to bottom left, transparent 48%, var(--contest-cyan) 49% 51%, transparent 52%) top right / 36px 36px no-repeat,
+    linear-gradient(to bottom right, transparent 47%, var(--contest-gold) 48% 52%, transparent 53%) bottom right / 20px 20px no-repeat,
+    linear-gradient(to bottom left, transparent 48%, var(--contest-cyan) 49% 51%, transparent 52%) bottom left / 34px 34px no-repeat,
+    linear-gradient(90deg, var(--contest-cyan), transparent 18%) top left / 100% 1px no-repeat,
+    linear-gradient(270deg, var(--contest-gold), transparent 16%) bottom right / 100% 1px no-repeat;
+}
+
+body.allstar-grid-bg .glass-card > *,
+body.allstar-grid-bg .tactical-leaderboard > * {
+  position: relative;
+  z-index: 1;
+}
+
+body.allstar-grid-bg .data-table {
+  border: 1px solid rgba(0, 227, 253, 0.28) !important;
+  border-radius: 0 !important;
+  background: rgba(8, 19, 58, 0.54) !important;
+}
+
+body.allstar-grid-bg .data-table th {
+  background: linear-gradient(90deg, rgba(0, 227, 253, 0.13), rgba(255, 209, 108, 0.08)) !important;
+  color: #fff !important;
+}
+
+body.allstar-grid-bg .data-table td {
+  border-color: rgba(118, 193, 255, 0.14) !important;
+}
+
+body.allstar-grid-bg .glass,
+body.allstar-grid-bg .region-btn,
+body.allstar-grid-bg .period-btn,
+body.allstar-grid-bg .tracuu-btn,
+body.allstar-grid-bg .search-input {
+  border-radius: 0 !important;
+}
+
+body.allstar-grid-bg .region-btn,
+body.allstar-grid-bg .period-btn,
+body.allstar-grid-bg .tracuu-btn {
+  clip-path: polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%);
+}
+
+/* The static page backgrounds replace the decorative moving light trails. */
+.trails-svg {
+  display: none !important;
+}
+
+.trail-line {
+  animation: none !important;
 }
 
 .material-symbols-outlined {
@@ -50,11 +169,56 @@ a.nav-active:hover {
   color: #ffd16c !important;
 }
 
+/* Menu mobile: panel xanh navy, mỗi mục là một thanh vát góc có số thứ tự kiểu HUD */
+.mobile-panel {
+  background: linear-gradient(180deg, rgba(14, 26, 70, 0.97), rgba(8, 13, 38, 0.98));
+  border-bottom: 1px solid rgba(0, 227, 253, 0.45);
+  box-shadow: 0 18px 40px rgba(2, 8, 30, 0.55);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+a.mobile-nav-link {
+  --pc: rgba(0, 227, 253, 0.3);
+  position: relative;
+  border: 1px solid var(--pc);
+  clip-path: polygon(0 10px, 10px 0, calc(100% - 18px) 0, 100% 18px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 18px 100%, 0 calc(100% - 18px));
+  background: linear-gradient(105deg, rgba(29, 58, 128, 0.55), rgba(11, 22, 64, 0.5));
+}
+
+a.mobile-nav-link:hover {
+  --pc: rgba(0, 227, 253, 0.7);
+  color: #fff;
+  background: linear-gradient(105deg, rgba(38, 74, 156, 0.7), rgba(16, 30, 84, 0.6));
+}
+
+.mobile-nav-idx {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: rgba(0, 227, 253, 0.8);
+}
+
+.mobile-nav-arrow {
+  font-size: 18px;
+  opacity: 0.4;
+  transition: transform 0.25s, opacity 0.25s;
+}
+
+a.mobile-nav-link:hover .mobile-nav-arrow {
+  opacity: 1;
+  transform: translateX(3px);
+}
+
 a.nav-active.mobile-nav-link {
+  --pc: rgba(255, 209, 108, 0.85);
   color: #ffd16c !important;
-  background: rgba(255, 209, 108, 0.05);
-  border-left: 3px solid #ffd16c;
-  padding-left: calc(1rem - 3px) !important;
+  background: linear-gradient(105deg, rgba(122, 86, 22, 0.55), rgba(38, 30, 68, 0.6));
+}
+
+a.nav-active.mobile-nav-link .mobile-nav-idx,
+a.nav-active.mobile-nav-link .mobile-nav-arrow {
+  color: #ffd16c;
+  opacity: 1;
 }
 
 .scroll-reveal {
@@ -92,4 +256,299 @@ a.nav-active.mobile-nav-link {
     filter: none;
     transition: none;
   }
+}
+
+/* Hero trang home: ghim + mờ dần khi cuộn (animation do src/scripts/hero-fade.ts điều khiển).
+ * Bố cục đặt thẳng bằng CSS (không đợi JS) để hero không đổi chiều cao sau khi trang tải → không bị nháy. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-pin {
+    height: calc(100svh - 5rem + 75svh);
+  }
+
+  .hero-pin [data-hero-sticky] {
+    position: sticky;
+    top: 5rem;
+    height: calc(100svh - 5rem);
+    min-height: 450px;
+  }
+
+  /* Phần nội dung ngay sau hero trượt lên chồng vào cuối đoạn mờ → không có khoảng đen trống. */
+  .hero-pin + section {
+    position: relative;
+    z-index: 10;
+    margin-top: -37.5svh; /* = 50% quãng ghim (75svh) */
+  }
+}
+
+[data-hero-logo] {
+  will-change: transform;
+}
+
+/* ───────── Arena: ngôn ngữ thiết kế "giải đấu" ───────── */
+.hud-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #ffd16c;
+}
+
+.hud-label > i {
+  width: 0.55rem;
+  height: 0.55rem;
+  background: currentColor;
+  box-shadow: 0 0 12px currentColor;
+  animation: hud-blink 1.6s steps(2, jump-none) infinite;
+}
+
+@keyframes hud-blink {
+  50% { opacity: 0.25; }
+}
+
+/* Dải chữ chạy ngang */
+.arena-ticker {
+  overflow: hidden;
+  transform: rotate(-1.6deg) scale(1.04);
+  background: #ffd16c;
+  color: #0a0e14;
+  border-block: 3px solid #0a0e14;
+  box-shadow: 0 0 40px rgba(255, 209, 108, 0.35);
+}
+
+.arena-ticker-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.35rem 0;
+  font-size: 1.6rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  animation: arena-marquee 28s linear infinite;
+}
+
+.arena-ticker-track > i {
+  font-style: normal;
+  font-size: 1.1rem;
+}
+
+@keyframes arena-marquee {
+  to { transform: translateX(-50%); }
+}
+
+@media (min-width: 768px) {
+  .arena-ticker-track { font-size: 2.2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arena-ticker-track { animation: none; }
+  .hud-label > i { animation: none; }
+}
+
+.font-wide {
+  font-stretch: 125%;
+}
+
+/* ───────── Chữ lăn khi di chuột (theo header Ink Games) ───────── */
+.nav-roll-clip {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.nav-roll-main,
+.nav-roll-hover {
+  display: block;
+  padding: 0.55rem 0;
+  line-height: 1;
+  white-space: nowrap;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.nav-roll-hover {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateY(100%);
+}
+
+.roll-host:hover .nav-roll-main,
+.roll-host:focus-visible .nav-roll-main {
+  transform: translateY(-100%);
+}
+
+.roll-host:hover .nav-roll-hover,
+.roll-host:focus-visible .nav-roll-hover {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-roll-main,
+  .nav-roll-hover { transition: none; }
+}
+
+/* Khung viền hiện ra khi di chuột (1px, bo 5px, xám tối) — theo header Ink Games */
+.nav-stroke {
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 0 8px;
+  transition:
+    color 0.3s ease,
+    border-color 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.nav-stroke:hover,
+.nav-stroke:focus-visible {
+  border-color: rgb(55, 55, 55);
+}
+
+/* Khung viền chỉ ôm quanh chữ (không kéo dài hết chiều cao header) */
+.menu-item > a.nav-stroke {
+  height: auto;
+}
+
+/* Chữ nội dung dùng font mono (Geist Mono) — co chữ lại một chút cho gọn */
+body { letter-spacing: -0.02em; }
+
+/* ───────── Bục top 3 bảng xếp hạng: panel vát góc, mỗi hạng một màu viền ───────── */
+body.allstar-grid-bg #podium {
+  filter: drop-shadow(0 14px 26px rgba(2, 10, 40, 0.45));
+}
+
+body.allstar-grid-bg .podium-card {
+  --pc: rgba(0, 227, 253, 0.52);
+  --pg: rgba(255, 209, 108, 0.8);
+  position: relative;
+  isolation: isolate;
+  border: 1px solid var(--pc) !important;
+  border-radius: 0 !important;
+  clip-path: polygon(0 16px, 16px 0, calc(100% - 28px) 0, 100% 28px, 100% calc(100% - 16px), calc(100% - 16px) 100%, 28px 100%, 0 calc(100% - 28px));
+  background: linear-gradient(112deg, rgba(29, 58, 128, 0.94), rgba(11, 22, 64, 0.96)) !important;
+  box-shadow: inset 0 1px 0 rgba(202, 245, 255, 0.14) !important;
+  backdrop-filter: none !important;
+  animation: none !important;
+}
+
+body.allstar-grid-bg .podium-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom right, transparent 47%, var(--pc) 48% 52%, transparent 53%) top left / 16px 16px no-repeat,
+    linear-gradient(to bottom left, transparent 48%, var(--pc) 49% 51%, transparent 52%) top right / 28px 28px no-repeat,
+    linear-gradient(to bottom right, transparent 47%, var(--pg) 48% 52%, transparent 53%) bottom right / 16px 16px no-repeat,
+    linear-gradient(to bottom left, transparent 48%, var(--pc) 49% 51%, transparent 52%) bottom left / 28px 28px no-repeat,
+    linear-gradient(90deg, var(--pc), transparent 22%) top left / 100% 2px no-repeat,
+    linear-gradient(270deg, var(--pg), transparent 18%) bottom right / 100% 1px no-repeat;
+}
+
+/* Quầng sáng bên trong, nhấp nháy nhẹ (box-shadow ngoài bị clip-path cắt nên làm ở trong) */
+body.allstar-grid-bg .podium-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 85% 60% at 50% 0%, var(--pglow, rgba(0, 227, 253, 0.2)), transparent 70%);
+  animation: podium-glow 3s ease-in-out infinite;
+}
+
+@keyframes podium-glow {
+  50% { opacity: 0.45; }
+}
+
+body.allstar-grid-bg .podium-card > *:not(.crown) { position: relative; z-index: 1; }
+body.allstar-grid-bg .podium-card > .crown { z-index: 1; }
+
+body.allstar-grid-bg .podium-card.rank-card-1 {
+  --pc: rgba(255, 209, 108, 0.95);
+  --pg: rgba(255, 241, 194, 0.95);
+  --pglow: rgba(255, 209, 108, 0.5);
+  background: linear-gradient(135deg, rgba(122, 86, 22, 0.96), rgba(38, 30, 68, 0.97)) !important;
+}
+
+body.allstar-grid-bg .podium-card.rank-card-2 {
+  --pc: rgba(214, 224, 244, 0.75);
+  --pg: rgba(255, 255, 255, 0.85);
+  --pglow: rgba(200, 212, 240, 0.28);
+}
+
+body.allstar-grid-bg .podium-card.rank-card-3 {
+  --pc: rgba(224, 140, 62, 0.8);
+  --pg: rgba(255, 190, 120, 0.9);
+  --pglow: rgba(224, 140, 62, 0.3);
+  background: linear-gradient(112deg, rgba(88, 50, 28, 0.94), rgba(22, 20, 56, 0.96)) !important;
+}
+
+body.allstar-grid-bg .podium-card .podium-name { font-size: 0.8125rem; letter-spacing: 0.01em; text-transform: uppercase; }
+body.allstar-grid-bg .podium-card .podium-branch { color: rgba(255, 255, 255, 0.6); }
+body.allstar-grid-bg .podium-card.rank-card-1 .podium-avatar { border-color: rgba(255, 209, 108, 0.9); box-shadow: 0 0 22px rgba(255, 209, 108, 0.55); }
+body.allstar-grid-bg .podium-card.rank-card-2 .podium-avatar { border-color: rgba(214, 224, 244, 0.8); }
+body.allstar-grid-bg .podium-card.rank-card-3 .podium-avatar { border-color: rgba(224, 140, 62, 0.85); }
+
+@media (min-width: 768px) {
+  body.allstar-grid-bg .podium-card { max-width: 230px; }
+  body.allstar-grid-bg .podium-card.rank-card-1 {
+    max-width: 250px;
+    height: 17.5rem;
+    grid-template-rows: 5.5rem 2.5em 1.4em auto;
+    row-gap: 0.55rem;
+    padding-top: 1.25rem;
+  }
+  body.allstar-grid-bg .podium-card.rank-card-2 { height: 14.5rem; }
+  body.allstar-grid-bg .podium-card.rank-card-3 { height: 13.5rem; }
+  body.allstar-grid-bg .podium-card.rank-card-1 .podium-avatar { width: 5rem; height: 5rem; }
+  body.allstar-grid-bg .podium-card.rank-card-1 .podium-badge { width: 1.85rem; height: 1.85rem; font-size: 1rem; }
+  body.allstar-grid-bg .podium-card.rank-card-1 .pts { font-size: 2.4rem; line-height: 1.1; }  body.allstar-grid-bg .podium-card.rank-card-1 .podium-name { font-size: 1rem; }
+}
+
+/* Vệt sáng chạy ngang qua tiêu đề một lần khi mở trang (chữ trắng quét sắc cyan, chữ vàng quét sắc trắng) */
+.title-shine,
+.title-shine > span.text-primary {
+  --ts-base: #f1f4fa;
+  --ts-hi: #00e3fd;
+  color: transparent;
+  background-image: linear-gradient(105deg, var(--ts-base) 0 40%, var(--ts-hi) 50%, var(--ts-base) 60% 100%);
+  background-size: 300% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  /* mở rộng khung tô màu để dấu trên/dưới của chữ tiếng Việt không bị cắt */
+  padding-block: 0.1em;
+  animation: title-shine 1.6s 0.35s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.title-shine > span.text-primary {
+  --ts-base: #ffd16c;
+  --ts-hi: #fff;
+}
+
+/* Chờ tiêu đề lọt vào màn hình (title-shine.ts gắn .shine-go) rồi mới chạy */
+.title-shine:not(.shine-go),
+.title-shine:not(.shine-go) > span.text-primary {
+  animation-play-state: paused;
+}
+
+@keyframes title-shine {
+  to { background-position: 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title-shine,
+  .title-shine > span.text-primary { animation: none; background-position: 0 0; }
+}
+
+/* Lớp chấm li ti phủ lên ảnh/video, tạo cảm giác màn hình TV (theo RoPhim) */
+.dot-screen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(rgba(0, 0, 0, 0.22) 0.5px, transparent 0.9px) 0 0 / 3px 3px;
 }

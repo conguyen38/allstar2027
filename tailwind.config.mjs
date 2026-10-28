@@ -70,9 +70,13 @@ export default {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
         display: ['Outfit', 'sans-serif'],
-        headline: ['Open Sans', 'sans-serif'],
-        body: ['Open Sans', 'sans-serif'],
-        label: ['Open Sans', 'sans-serif'],
+        headline: ['Geist Mono', 'JetBrains Mono', 'ui-monospace', 'monospace'],
+        body: ['Geist Mono', 'JetBrains Mono', 'ui-monospace', 'monospace'],
+        label: ['Geist Mono', 'JetBrains Mono', 'ui-monospace', 'monospace'],
+        arena: ['Anton', 'Impact', 'sans-serif'],
+        wide: ['Archivo', 'Arial Black', 'sans-serif'],
+        hud: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+        nav: ['Geist Mono', 'JetBrains Mono', 'ui-monospace', 'monospace'],
       },
       borderRadius: {
         DEFAULT: '0.25rem',

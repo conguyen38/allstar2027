@@ -11,7 +11,7 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
   canonicalPath="/prm/leaderboard-prm/"
   program="prm"
   active="bxh"
-  bodyClass="page-bg text-on-surface antialiased"
+  bodyClass="page-bg allstar-grid-bg text-on-surface antialiased"
 >
   <Fragment slot="head">
 <script is:inline type="application/ld+json">
@@ -30,7 +30,7 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
     /* ── Page background ── */
     body {
       background: #06091a;
-      font-family: 'Open Sans', sans-serif;
+      font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
     }
 
     .page-bg {
@@ -224,7 +224,7 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
       color: #fff;
       font-size: 0.625rem;
       font-weight: 900;
-      font-family: 'Open Sans', sans-serif;
+      font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
     }
 
     .podium-name {
@@ -425,7 +425,7 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
       border-radius: 0.5rem;
       font-size: 0.875rem;
       font-weight: 700;
-      font-family: 'Open Sans', sans-serif;
+      font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
       transition: all 0.15s;
       border: 1px solid rgba(255, 255, 255, 0.08);
       color: rgba(241, 243, 252, 0.5);
@@ -445,9 +445,35 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
 
     /* ── Points highlight ── */
     .pts {
-      font-family: 'Open Sans', sans-serif;
-      font-weight: 800;
+      font-family: 'Archivo', 'Arial Black', sans-serif;
+      font-stretch: 125%;
+      font-style: italic;
+      font-weight: 900;
       color: #ffd16c;
+      letter-spacing: 0.01em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ── Arena: nút chuyển kiểu phím + nhãn LIVE ── */
+    .region-btn,
+    .period-btn,
+    .page-btn {
+      font-family: 'JetBrains Mono', ui-monospace, monospace !important;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .live-dot {
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 9999px;
+      background: #ff3b3b;
+      box-shadow: 0 0 10px #ff3b3b;
+      animation: live-pulse 1.4s ease-in-out infinite;
+    }
+
+    @keyframes live-pulse {
+      50% { opacity: 0.3; transform: scale(0.7); }
     }
 
     /* ── Crown on #1 ── */
@@ -515,35 +541,35 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
     <div class="max-w-6xl mx-auto px-4 md:px-8 pt-10 pb-6">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div class="flex items-center gap-2 mb-2">
+          <div class="flex items-center gap-2 mb-5 md:mb-6">
             <span
-              class="inline-flex items-center gap-1 text-sm font-bold font-['Open_Sans'] uppercase  text-white border border-secondary/30 rounded-full px-3 py-0.5">
-              <span class="material-symbols-outlined text-sm">leaderboard</span>
+              class="inline-flex items-center gap-1 text-sm font-bold font-nav uppercase  text-white border border-secondary/30 rounded-full px-3 py-0.5">
+              <i class="live-dot"></i>
               Live Rankings
             </span>
           </div>
-          <h1 class="font-['Open_Sans'] font-black text-2xl md:text-3xl text-white tracking-tight">
+          <h1 class="title-shine font-arena uppercase text-5xl md:text-7xl leading-[1.18] text-white tracking-wide mt-0">
             Bảng Xếp Hạng <span class="text-primary">PRM Techcombank</span>
           </h1>
-          <p class="text-white/40 text-sm mt-1 font-['Open_Sans']">Allstar Club · Kỳ 2026 · Cập nhật tự động</p>
+          <p class="text-white/40 text-sm mt-1 font-nav">Allstar Club · Kỳ 2026 · Cập nhật tự động</p>
         </div>
         <div class="flex items-center gap-3 flex-wrap">
           <!-- Region toggle -->
           <div class="flex items-center gap-1 p-1 rounded-xl glass">
             <button
-              class="region-btn active rounded-lg px-4 py-2 text-sm font-bold font-['Open_Sans'] uppercase tracking-wider"
+              class="region-btn active rounded-lg px-4 py-2 text-sm font-bold font-nav uppercase tracking-wider"
               onclick="switchRegion('north', this)">
               Miền Bắc
             </button>
             <button
-              class="region-btn rounded-lg px-4 py-2 text-sm font-bold font-['Open_Sans'] uppercase tracking-wider"
+              class="region-btn rounded-lg px-4 py-2 text-sm font-bold font-nav uppercase tracking-wider"
               onclick="switchRegion('south', this)">
               Miền Nam
             </button>
           </div>
           <!-- Tra cứu điểm -->
           <!-- <button
-            class="tracuu-btn flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold font-['Open_Sans']"
+            class="tracuu-btn flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold font-nav"
             onclick="openLookup()">
             <span class="material-symbols-outlined text-[18px]">search</span>
             Tra cứu điểm
@@ -565,16 +591,16 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
 
     <!-- ═══════════════ LEADERBOARD TABLE ═══════════════ -->
     <div class="max-w-7xl mx-auto px-4 md:px-8 pb-16">
-      <div class="glass rounded-2xl overflow-hidden">
+      <div class="glass tactical-leaderboard rounded-2xl overflow-hidden">
 
         <!-- Table toolbar -->
         <div
           class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 px-5 py-4 border-b border-white/5">
           <div class="flex items-center gap-2">
             <span class="material-symbols-outlined text-primary text-[20px]">table_chart</span>
-            <span class="font-['Open_Sans'] font-bold text-white text-sm uppercase tracking-wider">Xếp hạng chi tiết</span>
+            <span class="font-nav font-bold text-white text-sm uppercase tracking-wider">Xếp hạng chi tiết</span>
             <span id="total-badge"
-              class="text-[11px] font-bold bg-white/5 text-white/40 rounded-full px-2.5 py-1 font-['Open_Sans']">—
+              class="text-[11px] font-bold bg-white/5 text-white/40 rounded-full px-2.5 py-1 font-nav">—
               thành viên</span>
           </div>
           
@@ -582,22 +608,22 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
             <!-- Period Selection -->
             <div class="flex items-center gap-1 p-1 rounded-xl glass w-full sm:w-auto overflow-x-auto no-scrollbar">
               <button
-                class="period-btn flex-1 sm:flex-none whitespace-nowrap rounded-lg px-3 py-1.5 text-[10px] font-bold font-['Open_Sans'] uppercase tracking-tight transition-all"
+                class="period-btn flex-1 sm:flex-none whitespace-nowrap rounded-lg px-3 py-1.5 text-[10px] font-bold font-nav uppercase tracking-tight transition-all"
                 onclick="switchPeriod(1, this)">
                 Kỳ 1
               </button>
               <button
-                class="period-btn flex-1 sm:flex-none whitespace-nowrap rounded-lg px-3 py-1.5 text-[10px] font-bold font-['Open_Sans'] uppercase tracking-tight transition-all"
+                class="period-btn flex-1 sm:flex-none whitespace-nowrap rounded-lg px-3 py-1.5 text-[10px] font-bold font-nav uppercase tracking-tight transition-all"
                 onclick="switchPeriod(2, this)">
                 Kỳ 2
               </button>
               <button
-                class="period-btn active flex-1 sm:flex-none whitespace-nowrap rounded-lg px-3 py-1.5 text-[10px] font-bold font-['Open_Sans'] uppercase tracking-tight transition-all"
+                class="period-btn active flex-1 sm:flex-none whitespace-nowrap rounded-lg px-3 py-1.5 text-[10px] font-bold font-nav uppercase tracking-tight transition-all"
                 onclick="switchPeriod(3, this)">
                 Kỳ 3
               </button>
               <button
-                class="period-btn flex-1 sm:flex-none whitespace-nowrap rounded-lg px-3 py-1.5 text-[10px] font-bold font-['Open_Sans'] uppercase tracking-tight transition-all"
+                class="period-btn flex-1 sm:flex-none whitespace-nowrap rounded-lg px-3 py-1.5 text-[10px] font-bold font-nav uppercase tracking-tight transition-all"
                 onclick="switchPeriod(4, this)">
                 Kỳ 4
               </button>
@@ -616,7 +642,7 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
         <div class="overflow-x-auto">
           <!-- Table header -->
           <div
-            class="min-w-[53rem] lg:min-w-0 lg:w-full grid grid-cols-[2.5rem_12rem_4.5rem_8rem_5.25rem_4.5rem_5rem_5.25rem_6rem] lg:grid-cols-[3rem_minmax(12rem,1.65fr)_minmax(5rem,0.55fr)_minmax(8rem,0.95fr)_minmax(6.5rem,0.75fr)_minmax(5.25rem,0.55fr)_minmax(6rem,0.65fr)_minmax(6.5rem,0.7fr)_minmax(8rem,0.8fr)] gap-0 px-3 lg:px-5 py-2 text-[10px] leading-tight font-bold font-['Open_Sans'] uppercase text-white/30 border-b border-white/5">
+            class="min-w-[53rem] lg:min-w-0 lg:w-full grid grid-cols-[2.5rem_12rem_4.5rem_8rem_5.25rem_4.5rem_5rem_5.25rem_6rem] lg:grid-cols-[3rem_minmax(12rem,1.65fr)_minmax(5rem,0.55fr)_minmax(8rem,0.95fr)_minmax(6.5rem,0.75fr)_minmax(5.25rem,0.55fr)_minmax(6rem,0.65fr)_minmax(6.5rem,0.7fr)_minmax(8rem,0.8fr)] gap-0 px-3 lg:px-5 py-2 text-[10px] leading-tight font-bold font-nav uppercase text-white/30 border-b border-white/5">
             <span>#</span>
             <span>Thành viên</span>
             <span>Vùng</span>
@@ -627,7 +653,7 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
             <button
               id="total-sort-btn"
               type="button"
-              class="justify-self-end inline-flex items-center justify-end gap-1 bg-transparent p-0 text-right text-[10px] font-bold font-['Open_Sans'] uppercase text-white/30 transition-colors hover:text-primary"
+              class="justify-self-end inline-flex items-center justify-end gap-1 bg-transparent p-0 text-right text-[10px] font-bold font-nav uppercase text-white/30 transition-colors hover:text-primary"
               onclick="toggleTotalSort()"
               aria-label="Sắp xếp Tổng điểm giảm dần"
               title="Sắp xếp Tổng điểm"
@@ -646,7 +672,7 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
 
         <!-- Pagination -->
         <div class="flex items-center justify-between px-5 py-4 border-t border-white/5">
-          <p id="pagination-info" class="text-sm text-white/30 font-['Open_Sans']"></p>
+          <p id="pagination-info" class="text-sm text-white/30 font-nav"></p>
           <div id="pagination-btns" class="flex items-center gap-1"></div>
         </div>
 
@@ -716,7 +742,7 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
       }
       const tableBody = document.getElementById('table-body');
       if (tableBody) {
-        tableBody.innerHTML = `<div class="py-12 text-center text-white/20 text-sm font-['Open_Sans']">Đang cập nhật bảng xếp hạng...</div>`;
+        tableBody.innerHTML = `<div class="py-12 text-center text-white/20 text-sm font-nav">Đang cập nhật bảng xếp hạng...</div>`;
       }
 
       try {
@@ -883,6 +909,20 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
     }
 
     /* ────────────────── Render Podium ────────────────── */
+    /* Số điểm chạy từ 0 lên giá trị thật, tạo cảm giác "chốt kết quả". */
+    function countUp(el) {
+      const target = parseFloat(el.textContent);
+      if (!isFinite(target) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const start = performance.now();
+      const duration = 900;
+      const tick = (now) => {
+        const t = Math.min(1, (now - start) / duration);
+        el.textContent = (target * (1 - Math.pow(1 - t, 3))).toFixed(1);
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+
     function renderPodium(top3) {
       const podium = document.getElementById('podium');
       podium.innerHTML = '';
@@ -914,12 +954,13 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
       <p class="podium-branch">${person.branch}</p>
       <div class="podium-score">
         <p class="pts text-lg md:text-2xl">${person.points.toFixed(1)}</p>
-        <p class="text-white/35 text-[10px] md:text-sm font-['Open_Sans'] uppercase tracking-wider">U-Point</p>
+        <p class="text-white/35 text-[10px] md:text-sm font-nav uppercase tracking-wider">U-Point</p>
       </div>
     `;
         podium.appendChild(card);
       });
 
+      podium.querySelectorAll('.pts').forEach(countUp);
       document.getElementById('podium-loading')?.remove();
     }
 
@@ -940,7 +981,7 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
       tbody.innerHTML = '';
 
       if (!slice.length) {
-        tbody.innerHTML = `<div class="py-12 text-center text-white/30 text-sm font-['Open_Sans']">Không tìm thấy thành viên nào.</div>`;
+        tbody.innerHTML = `<div class="py-12 text-center text-white/30 text-sm font-nav">Không tìm thấy thành viên nào.</div>`;
         renderPagination(0);
         return;
       }
@@ -950,10 +991,10 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
         row.className = 'lb-row grid grid-cols-[2.5rem_12rem_4.5rem_8rem_5.25rem_4.5rem_5rem_5.25rem_6rem] lg:grid-cols-[3rem_minmax(12rem,1.65fr)_minmax(5rem,0.55fr)_minmax(8rem,0.95fr)_minmax(6.5rem,0.75fr)_minmax(5.25rem,0.55fr)_minmax(6rem,0.65fr)_minmax(6.5rem,0.7fr)_minmax(8rem,0.8fr)] gap-0 items-center px-3 lg:px-5 py-2';
 
         let rankEl = '';
-        if (person.rank === 1) rankEl = `<span class="font-black font-['Open_Sans'] text-base rank-1">1</span>`;
-        else if (person.rank === 2) rankEl = `<span class="font-black font-['Open_Sans'] text-base rank-2">2</span>`;
-        else if (person.rank === 3) rankEl = `<span class="font-black font-['Open_Sans'] text-base rank-3">3</span>`;
-        else rankEl = `<span class="font-bold font-['Open_Sans'] text-sm text-white/40">${person.rank}</span>`;
+        if (person.rank === 1) rankEl = `<span class="font-black font-nav text-base rank-1">1</span>`;
+        else if (person.rank === 2) rankEl = `<span class="font-black font-nav text-base rank-2">2</span>`;
+        else if (person.rank === 3) rankEl = `<span class="font-black font-nav text-base rank-3">3</span>`;
+        else rankEl = `<span class="font-bold font-nav text-sm text-white/40">${person.rank}</span>`;
 
         row.innerHTML = `
       <div>${rankEl}</div>
@@ -970,7 +1011,7 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
       <span class="text-white/50 text-sm text-right pr-2">${formatScore(person.bonusPoints)}</span>
       <div class="text-right">
         <span class="pts text-base">${formatScore(person.totalPoints)}</span>
-        <span class="text-white/30 text-sm font-['Open_Sans'] ml-0.5">pt</span>
+        <span class="text-white/30 text-sm font-nav ml-0.5">pt</span>
       </div>
       <span class="text-white/50 text-sm truncate text-right">${person.updated}</span>
     `;

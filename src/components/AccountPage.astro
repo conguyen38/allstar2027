@@ -1,0 +1,319 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProgramHeader from './ProgramHeader.astro';
+import Footer from './Footer.astro';
+
+interface Props {
+  program: 'prm' | 'sih';
+}
+
+const { program } = Astro.props;
+const programName = program === 'prm' ? 'PRM Techcombank' : 'LLB OneHousing';
+const rulesHref = `/${program}/the-le/`;
+const label = "text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 font-hud";
+---
+
+<BaseLayout
+  title={`Tài khoản của tôi - ${programName} - Allstar Club`}
+  description="Xem điểm, thứ hạng, U-Point chi trả và các mốc thưởng của bạn trong chương trình Allstar Club."
+  canonicalPath={`/${program}/tai-khoan/`}
+  bodyClass="page-bg allstar-grid-bg text-on-surface antialiased font-nav"
+>
+  <Fragment slot="head">
+    <meta name="robots" content="noindex, nofollow" />
+    <style is:global>
+      body { background: #06091a; }
+      .page-bg {
+        background:
+          radial-gradient(ellipse 80% 50% at 20% 20%, rgba(0, 80, 180, 0.18) 0%, transparent 60%),
+          radial-gradient(ellipse 60% 40% at 80% 10%, rgba(0, 227, 253, 0.1) 0%, transparent 50%),
+          radial-gradient(ellipse 50% 60% at 50% 80%, rgba(80, 0, 180, 0.12) 0%, transparent 60%),
+          #06091a;
+        min-height: 100vh;
+      }
+      .trails-svg { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; opacity: 0.45; }
+      @keyframes trail-move {
+        0% { stroke-dashoffset: 1000; opacity: 0; }
+        20% { opacity: 1; }
+        80% { opacity: 0.6; }
+        100% { stroke-dashoffset: 0; opacity: 0; }
+      }
+      .trail-line { stroke-dasharray: 400 600; animation: trail-move 6s linear infinite; }
+      .trail-line:nth-child(2) { animation-delay: 1.5s; animation-duration: 7s; }
+      .trail-line:nth-child(3) { animation-delay: 3s; animation-duration: 5.5s; }
+      .trail-line:nth-child(4) { animation-delay: 0.8s; animation-duration: 8s; }
+      .trail-line:nth-child(5) { animation-delay: 2.2s; animation-duration: 6.5s; }
+      .glass { background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.09); }
+      .glass-gold { background: rgba(255, 209, 108, 0.06); backdrop-filter: blur(20px); border: 1px solid rgba(255, 209, 108, 0.25); }
+      .glass-cyan { background: rgba(0, 227, 253, 0.05); backdrop-filter: blur(16px); border: 1px solid rgba(0, 227, 253, 0.22); }
+      .hero-glow { box-shadow: 0 0 60px rgba(255, 209, 108, 0.12), inset 0 0 40px rgba(255, 209, 108, 0.04); }
+      .badge-gold {
+        background: linear-gradient(135deg, #fff8c5, #ffd700, #b8860b);
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.55), 0 4px 12px rgba(0, 0, 0, 0.4);
+        color: #4a2800;
+      }
+      .gold-text { background: linear-gradient(135deg, #fff1c2, #ffd16c 50%, #ff9d2e); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      .progress-fill { background: linear-gradient(90deg, #00e3fd, #ffd16c); transition: width 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+      .period-picker { position: relative; width: max-content; }
+      .period-trigger {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        min-height: 2.6rem;
+        padding: 0.5rem 0.7rem;
+        border: 1px solid rgba(0, 227, 253, 0.72);
+        border-radius: 0;
+        background: rgba(13, 25, 66, 0.94);
+        color: #fff;
+        box-shadow: none;
+        transition: border-color 0.2s ease, background-color 0.2s ease;
+      }
+      .period-trigger:hover, .period-trigger[aria-expanded="true"] { border-color: #00e3fd; background: #17275b; }
+      .period-trigger:focus-visible { outline: 2px solid #ffd16c; outline-offset: 3px; }
+      .period-menu {
+        position: absolute;
+        z-index: 20;
+        top: calc(100% + 0.4rem);
+        right: 0;
+        display: grid;
+        min-width: 100%;
+        overflow: hidden;
+        border: 1px solid rgba(0, 227, 253, 0.72);
+        border-radius: 0;
+        background: #101b43;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.28);
+      }
+      .period-menu.hidden { display: none; }
+      .period-menu-item {
+        min-width: max-content;
+        padding: 0.65rem 0.85rem;
+        border: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        background: transparent;
+        color: rgba(255, 255, 255, 0.82);
+        font: inherit;
+        font-size: 0.875rem;
+        font-weight: 700;
+        text-align: left;
+        white-space: nowrap;
+      }
+      .period-menu-item:last-child { border-bottom: 0; }
+      .period-menu-item:hover, .period-menu-item:focus-visible { background: rgba(0, 227, 253, 0.12); color: #fff; outline: none; }
+      .period-menu-item[aria-selected="true"] { background: rgba(0, 227, 253, 0.18); color: #fff; }
+      .tracuu-btn { background: linear-gradient(135deg, #ff6d00, #ffd16c); color: #4a2800; font-weight: 800; transition: all 0.25s; }
+       .tracuu-btn:hover { box-shadow: 0 0 20px rgba(255, 160, 0, 0.5), 0 0 40px rgba(255, 100, 0, 0.25); transform: translateY(-1px); }
+
+       /* Account cards use clean right angles for faster scanning. */
+       .account-tactical .glass,
+       .account-tactical .glass-gold,
+       .account-tactical .glass-cyan,
+       .account-tactical [data-cards] > div {
+         --account-cyan: rgba(0, 227, 253, 0.52);
+         --account-gold: rgba(255, 209, 108, 0.72);
+         position: relative;
+         isolation: isolate;
+         overflow: hidden;
+         border: 1px solid var(--account-cyan) !important;
+         border-radius: 0 !important;
+         clip-path: none;
+         background: linear-gradient(112deg, rgba(29, 58, 128, 0.92), rgba(11, 22, 64, 0.94)) !important;
+         box-shadow: inset 0 1px 0 rgba(202, 245, 255, 0.14), 0 16px 30px rgba(2, 10, 40, 0.26) !important;
+       }
+      .account-tactical .glass-gold { border-color: var(--account-gold) !important; background: linear-gradient(112deg, rgba(96, 69, 37, 0.9), rgba(26, 30, 67, 0.95)) !important; }
+       .account-tactical .glass::before,
+       .account-tactical .glass-gold::before,
+       .account-tactical .glass-cyan::before,
+       .account-tactical [data-cards] > div::before {
+         content: none;
+         position: absolute;
+         inset: 0;
+         z-index: 0;
+         pointer-events: none;
+         background:
+           linear-gradient(to bottom right, transparent 47%, var(--account-cyan) 48% 52%, transparent 53%) top left / 18px 18px no-repeat,
+           linear-gradient(to bottom left, transparent 48%, var(--account-cyan) 49% 51%, transparent 52%) top right / 32px 32px no-repeat,
+           linear-gradient(to bottom right, transparent 47%, var(--account-gold) 48% 52%, transparent 53%) bottom right / 18px 18px no-repeat,
+           linear-gradient(to bottom left, transparent 48%, var(--account-cyan) 49% 51%, transparent 52%) bottom left / 30px 30px no-repeat,
+           linear-gradient(90deg, var(--account-cyan), transparent 18%) top left / 100% 1px no-repeat,
+           linear-gradient(270deg, var(--account-gold), transparent 16%) bottom right / 100% 1px no-repeat;
+       }
+       .account-tactical .glass > *,
+       .account-tactical .glass-gold > *,
+       .account-tactical .glass-cyan > *,
+       .account-tactical [data-cards] > div > * { position: relative; z-index: 1; }
+
+      /* Timeline các mốc thưởng */
+      .tl-node { border: 2px solid rgba(255, 255, 255, 0.15); background: #0d1220; color: rgba(255, 255, 255, 0.35); }
+      .tl-node-done { border-color: #ffd16c; background: linear-gradient(135deg, #fff8c5, #ffd700, #b8860b); color: #4a2800; box-shadow: 0 0 18px rgba(255, 215, 0, 0.45); }
+      .tl-node-next { border-color: #00e3fd; color: #00e3fd; box-shadow: 0 0 18px rgba(0, 227, 253, 0.4); animation: tl-pulse 2s ease-in-out infinite; }
+      @keyframes tl-pulse { 50% { box-shadow: 0 0 6px rgba(0, 227, 253, 0.2); } }
+      .tl-list { display: flex; flex-direction: column; }
+      .tl-item { display: flex; flex-direction: row; gap: 1rem; }
+      .tl-rail { display: flex; flex-direction: column; align-items: center; }
+      .tl-line { position: relative; flex: 1 1 auto; min-height: 2rem; width: 2px; margin: 0.5rem 0; border-radius: 9999px; background: rgba(255, 255, 255, 0.12); }
+      .tl-fill { position: absolute; left: 0; top: 0; width: 100%; height: var(--fill, 0%); border-radius: 9999px; background: linear-gradient(180deg, #ffd16c, #00e3fd); transition: height 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+      .tl-body { min-width: 0; padding-bottom: 1.5rem; }
+      .tl-item:last-child .tl-body { padding-bottom: 0; }
+      @media (min-width: 768px) {
+        .tl-scroll { overflow-x: auto; }
+        .tl-list { flex-direction: row; }
+        .tl-item { flex: 1 0 9.5rem; flex-direction: column; gap: 1rem; }
+        .tl-rail { flex-direction: row; width: 100%; }
+        .tl-line { min-height: 0; width: auto; height: 2px; margin: 0 0.75rem; }
+        .tl-fill { width: var(--fill, 0%); height: 100%; background: linear-gradient(90deg, #ffd16c, #00e3fd); transition-property: width; }
+        .tl-body { padding: 0 1rem 0 0; }
+        .tl-scroll.has-more { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 3rem), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 3rem), transparent); }
+      }
+    </style>
+  </Fragment>
+
+  <!-- Neon light trails -->
+  <svg class="trails-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <line class="trail-line" x1="-100" y1="200" x2="1540" y2="180" stroke="rgba(0,227,253,0.4)" stroke-width="1" />
+    <line class="trail-line" x1="-100" y1="450" x2="1540" y2="420" stroke="rgba(255,209,108,0.35)" stroke-width="0.8" />
+    <line class="trail-line" x1="-100" y1="680" x2="1540" y2="700" stroke="rgba(0,100,255,0.3)" stroke-width="1.2" />
+    <line class="trail-line" x1="200" y1="-50" x2="180" y2="950" stroke="rgba(0,227,253,0.25)" stroke-width="0.8" />
+    <line class="trail-line" x1="1100" y1="-50" x2="1120" y2="950" stroke="rgba(255,209,108,0.2)" stroke-width="1" />
+  </svg>
+
+  <ProgramHeader program={program} active="account" />
+
+  <main class="relative z-10 pt-20 pb-20 min-h-[75vh] account-tactical" data-account-root data-account-program={program}>
+    <div class="max-w-6xl mx-auto px-4 md:px-8 pt-10">
+      <p data-account-loading class="text-white/40 text-sm flex items-center gap-2">
+        <span class="material-symbols-outlined text-xl">hourglass_top</span> Đang tải…
+      </p>
+
+      <!-- Chưa đăng nhập -->
+      <section data-account-guest class="hidden max-w-md mx-auto text-center glass rounded-2xl p-8 mt-10 space-y-4">
+        <span class="material-symbols-outlined text-5xl text-primary">lock</span>
+        <h1 class="font-black text-2xl text-white">Vui lòng đăng nhập</h1>
+        <p class="text-white/50 text-sm">Đăng nhập để xem điểm và U-Point của bạn.</p>
+        <button type="button" data-auth-open class="tracuu-btn rounded-xl px-6 py-3 text-sm">Đăng nhập</button>
+      </section>
+
+      <!-- Đã đăng nhập -->
+      <div data-account-view class="hidden space-y-6">
+        <!-- Page header -->
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <h1 class="font-arena uppercase text-4xl md:text-6xl leading-[0.95] text-white tracking-wide">
+              Xin chào, <span class="text-primary" data-field="name"></span>
+            </h1>
+            <p class="text-white/40 text-sm mt-1">
+              <span data-field="role"></span> · <span data-field="area"></span> · <span data-field="branch"></span> · <span data-field="email"></span>
+            </p>
+          </div>
+          <div class="self-start sm:self-auto">
+            <label for="period-select" class={label + ' block mb-1.5 sm:text-right'}>Kỳ tính</label>
+            <div class="period-picker">
+              <button id="period-select" type="button" class="period-trigger" data-period-trigger aria-haspopup="listbox" aria-expanded="false">
+                <span class="material-symbols-outlined text-secondary text-[20px]">event</span>
+                <span data-period-label></span>
+                <span class="material-symbols-outlined text-white/70 text-[20px]">expand_more</span>
+              </button>
+              <div class="period-menu hidden" data-period-menu role="listbox" aria-labelledby="period-select"></div>
+              <select class="hidden" data-period-select aria-hidden="true" tabindex="-1"></select>
+            </div>
+            <p class="text-[11px] font-bold uppercase tracking-wider mt-1.5 sm:text-right text-white/40" data-period-status data-field="periodStatus"></p>
+          </div>
+        </div>
+
+        <!-- Hero: tổng điểm + thứ hạng -->
+        <section class="glass-gold hero-glow rounded-2xl p-5 sm:p-6 md:p-8">
+          <div class="flex flex-row items-center justify-between gap-4 md:gap-6">
+            <div class="min-w-0">
+              <p class={label} data-field="heroLabel"></p>
+              <p class="gold-text font-wide italic font-black text-5xl sm:text-6xl md:text-7xl leading-none mt-2 tracking-tight" data-field="totalPoints"></p>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 rounded-2xl glass px-4 py-3 sm:px-6 sm:py-4 shrink-0 text-center sm:text-left">
+              <div class="badge-gold w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center">
+                <span class="material-symbols-outlined">emoji_events</span>
+              </div>
+              <div>
+                <p class={label}>Thứ hạng</p>
+                <p class="font-wide italic font-black text-2xl sm:text-3xl text-white leading-none mt-1" data-field="rank"></p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6">
+            <div class="h-2 rounded-full bg-white/10 overflow-hidden">
+              <div class="progress-fill h-full rounded-full w-0" data-progress></div>
+            </div>
+            <p class="text-sm text-white/55 mt-2.5" data-field="nextTier"></p>
+          </div>
+        </section>
+
+        <!-- Chi tiết điểm (khác nhau theo chương trình) -->
+        <section class="grid gap-3 sm:gap-4 grid-cols-2 lg:grid-cols-4" data-cards></section>
+        <template data-card-template>
+          <div class="rounded-2xl p-4 sm:p-5 md:p-6">
+            <div class="flex items-start justify-between gap-2">
+              <p class={label + ' leading-snug'} data-card="label"></p>
+              <span class="material-symbols-outlined text-white/35 text-[20px]" data-card="icon"></span>
+            </div>
+            <p class="font-wide italic font-black text-xl sm:text-2xl mt-3 leading-tight" data-card="value"></p>
+            <p class="text-xs text-white/45 mt-2 leading-relaxed" data-card="sub"></p>
+          </div>
+        </template>
+
+        <!-- U-Point chi trả -->
+        <section class="glass rounded-2xl p-5 md:p-6 grid gap-5 lg:gap-8 lg:grid-cols-2 lg:items-center">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 shrink-0 rounded-xl bg-primary/10 border border-primary/25 flex items-center justify-center">
+              <span class="material-symbols-outlined text-primary">payments</span>
+            </div>
+            <div class="min-w-0">
+              <p class={label} data-field="payoutTitle"></p>
+              <p class="font-wide italic font-black text-2xl sm:text-3xl text-white mt-1.5">
+                <span class="gold-text" data-field="uPointPayout"></span>
+                <span class="text-base text-white/50 font-bold whitespace-nowrap">U-Point</span>
+              </p>
+            </div>
+          </div>
+          <div>
+            <ul class="divide-y divide-white/10" data-payout-lines></ul>
+            <p class="text-xs text-white/40 leading-relaxed mt-2">
+              <span data-field="payoutNote"></span>
+              <a href={rulesHref} class="text-secondary hover:underline whitespace-nowrap">Xem thể lệ</a>
+            </p>
+          </div>
+        </section>
+
+        <!-- Các mốc thưởng (ẩn nếu vai trò không áp dụng) -->
+        <section data-tiers-section>
+          <h2 class="font-arena uppercase tracking-wide text-2xl md:text-3xl text-white mb-3 flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary">stairs</span> <span data-field="tiersTitle"></span>
+          </h2>
+          <div class="glass rounded-2xl p-5 md:p-8 tl-scroll">
+            <ol class="tl-list" data-tier-list></ol>
+          </div>
+          <template data-tier-template>
+            <li class="tl-item">
+              <div class="tl-rail">
+                <span class="tl-node shrink-0 w-11 h-11 rounded-full flex items-center justify-center" data-tier="node">
+                  <span class="material-symbols-outlined text-[22px]" data-tier="icon"></span>
+                </span>
+                <span class="tl-line" data-tier="line">
+                  <span class="tl-fill"></span>
+                </span>
+              </div>
+              <div class="tl-body">
+                <p class="font-arena uppercase tracking-wide text-white text-xl leading-tight" data-tier="name"></p>
+                <p class="text-sm text-white/55 mt-1" data-tier="points"></p>
+                <p class="text-sm font-bold text-primary" data-tier="bonus"></p>
+                <p class="text-[11px] font-bold uppercase tracking-wider mt-1.5" data-tier="status"></p>
+              </div>
+            </li>
+          </template>
+        </section>
+
+        <p class="text-xs text-white/30">
+          Cập nhật lần cuối: <span data-field="updatedAt"></span> · Dữ liệu trên trang này đang là dữ liệu mẫu.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

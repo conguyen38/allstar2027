@@ -1,0 +1,253 @@
+---
+/*
+ * Hiệu ứng "cuộn xuống" khi chọn PRM / LLB ở trang gốc:
+ * trang chọn trượt lên và biến mất, trong lúc trang chủ của chương trình trượt từ dưới lên
+ * (dựng sẵn bằng đúng ảnh banner + logo của hero thật) rồi mới chuyển trang, nên mắt thấy liền mạch.
+ */
+const programs = [
+  { key: 'prm', nav: ['Trang chủ', 'Tổng quan chương trình', 'Thể lệ', 'Bảng xếp hạng', 'Refer căn độc quyền', 'Phản hồi', 'Hướng dẫn sử dụng U-Point'] },
+  { key: 'sih', nav: ['Trang chủ', 'Tổng quan chương trình', 'Thể lệ', 'Bảng xếp hạng', 'Phản hồi', 'Hướng dẫn sử dụng U-Point'] },
+];
+---
+
+<div class="pt" aria-hidden="true">
+  {programs.map((p) => (
+    <div class="pt-panel" data-pt={p.key}>
+      <div class="pt-hero" style="background-image:url('/assets/images/allstar-contest-headbanner.webp')">
+        <div class="pt-overlay"></div>
+        <div class="pt-content">
+          <img class="pt-logo" src={`/${p.key}/assets/images/Logo%20Allstar.webp`} alt="" width="620" height="428" />
+        </div>
+        <div class="arena-ticker pt-ticker">
+          <div class="arena-ticker-track font-arena" style="animation:none">
+            {[0, 1, 2, 3].map(() => (
+              <Fragment><span>Allstar Club 2027</span><i>★</i><span>Ghi điểm</span><i>★</i><span>Lên hạng</span><i>★</i><span>Nhận U-Point</span><i>★</i></Fragment>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div class="pt-bar">
+        <img src={`/${p.key}/assets/images/Logo%20Allstar.webp`} alt="" width="620" height="428" />
+        <ul>
+          {p.nav.map((label, i) => <li class={i === 0 ? 'is-active' : ''}>{label}</li>)}
+        </ul>
+        <span class="pt-login"><span class="material-symbols-outlined" style="font-size:20px">account_circle</span><b data-pt-login>Đăng nhập</b></span>
+      </div>
+    </div>
+  ))}
+</div>
+
+<style is:global>
+  .pt {
+    position: fixed;
+    inset: 0;
+    z-index: 900;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .pt-panel {
+    position: absolute;
+    inset: 0;
+    visibility: hidden;
+    transform: translateY(100%);
+    background: #0a0e14;
+    transition: transform 0.95s cubic-bezier(0.77, 0, 0.18, 1);
+    will-change: transform;
+  }
+
+  /* Khu hero nằm dưới thanh menu 5rem, giống hệt trang thật */
+  .pt-hero {
+    position: absolute;
+    top: 5rem;
+    left: 0;
+    right: var(--sbw, 0px); /* trang đích có thanh cuộn dọc → chừa chỗ để logo không bị lệch */
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pt-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(10, 14, 20, 0.8) 0%, rgba(10, 14, 20, 0.2) 50%, rgba(10, 14, 20, 0.8) 100%);
+  }
+
+  .pt-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .pt-logo {
+    width: 16rem;
+    height: auto;
+    filter: drop-shadow(0 0 50px rgba(255, 209, 108, 0.55));
+  }
+
+  @media (min-width: 768px) {
+    .pt-logo { width: 550px; }
+  }
+
+  /* Thanh menu giả */
+  .pt-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: var(--sbw, 0px);
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0 1rem;
+    background: rgba(10, 14, 20, 0.96);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .pt-bar img {
+    height: 3.5rem;
+    width: auto;
+  }
+
+  .pt-bar ul {
+    display: none;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .pt-bar li { padding: 0 8px; border: 1px solid transparent; }
+
+  .pt-bar li.is-active { color: #ffd16c; }
+
+  .pt-login {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    height: 2.5rem;
+    padding: 0 1rem;
+    border: 1px solid rgba(255, 209, 108, 0.6);
+    border-radius: 0.5rem;
+    color: #ffd16c;
+    font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .pt-login b { font-weight: 500; }
+
+  /* Dải chữ giống hệt hero thật (đứng yên, không chạy) */
+  .pt-ticker {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .pt-ticker { bottom: 2.5rem; }
+  }
+
+  @media (min-width: 768px) {
+    .pt-bar { padding: 0 2rem; }
+  }
+
+  @media (min-width: 1380px) {
+    .pt-bar ul { display: flex; }
+  }
+
+  /* ── Khi bấm chọn ── */
+  html.pt-leaving body { overflow: hidden; }
+  html.pt-leaving .pt { pointer-events: auto; }
+
+  html.pt-leaving[data-pt-target='prm'] .pt-panel[data-pt='prm'],
+  html.pt-leaving[data-pt-target='sih'] .pt-panel[data-pt='sih'] {
+    visibility: visible;
+    transform: none;
+  }
+
+  /* Trang chọn trượt lên (nền chậm hơn một nhịp để có chiều sâu) */
+  html.pt-leaving body .logo-wrap,
+  html.pt-leaving body .cards {
+    transform: translateY(-55vh);
+    opacity: 0;
+    transition: transform 0.95s cubic-bezier(0.77, 0, 0.18, 1), opacity 0.6s ease 0.1s;
+  }
+
+  html.pt-leaving body .contest-bg {
+    transform: translateY(-14vh);
+    transition: transform 0.95s cubic-bezier(0.77, 0, 0.18, 1);
+  }
+</style>
+
+<script>
+  const root = document.documentElement;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const links = document.querySelectorAll<HTMLAnchorElement>('a.card-prm, a.card-sih');
+  let leaving = false;
+  const prefetched = new Set<string>();
+
+  // Đo bề rộng thanh cuộn dọc để bản dựng sẵn khớp với trang đích (trang chọn không có thanh cuộn).
+  const probe = document.createElement('div');
+  probe.style.cssText = 'position:absolute;top:-9999px;width:100px;height:100px;overflow:scroll';
+  document.body.appendChild(probe);
+  const scrollbarWidth = probe.offsetWidth - probe.clientWidth;
+  probe.remove();
+  document.querySelector<HTMLElement>('.pt')?.style.setProperty('--sbw', `${scrollbarWidth}px`);
+
+  // Người đã đăng nhập thì nút trên thanh menu giả hiện tên, giống header thật.
+  try {
+    const hint = JSON.parse(localStorage.getItem('allstar_mock_session_v4') || 'null');
+    if (hint && hint.name) document.querySelectorAll('[data-pt-login]').forEach((el) => { el.textContent = hint.name; });
+  } catch (e) { /* bỏ qua */ }
+
+  const prefetch = (href: string) => {
+    if (prefetched.has(href)) return;
+    prefetched.add(href);
+    const l = document.createElement('link');
+    l.rel = 'prefetch';
+    l.href = href;
+    document.head.appendChild(l);
+  };
+
+  links.forEach((a) => {
+    a.addEventListener('pointerenter', () => prefetch(a.href), { once: true });
+    a.addEventListener('click', (e) => {
+      if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+      if (reduceMotion) return;
+      e.preventDefault();
+      if (leaving) return;
+      leaving = true;
+      prefetch(a.href);
+      root.setAttribute('data-pt-target', a.classList.contains('card-prm') ? 'prm' : 'sih');
+      root.classList.add('pt-leaving');
+      window.setTimeout(() => { window.location.href = a.href; }, 980);
+    });
+  });
+
+  // Quay lại bằng nút Back (bfcache): trả trang chọn về trạng thái ban đầu.
+  window.addEventListener('pageshow', (e) => {
+    if (!e.persisted) return;
+    root.classList.remove('pt-leaving');
+    root.removeAttribute('data-pt-target');
+    leaving = false;
+  });
+</script>

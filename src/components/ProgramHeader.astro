@@ -1,7 +1,9 @@
 ---
+import AuthModal from './AuthModal.astro';
+
 interface Props {
   program: 'prm' | 'sih';
-  active?: 'index' | 'tong-quan' | 'the-le' | 'bxh' | 'feedback' | 'refer' | 'u-point';
+  active?: 'index' | 'tong-quan' | 'the-le' | 'bxh' | 'feedback' | 'refer' | 'u-point' | 'account';
 }
 
 const { program, active = 'index' } = Astro.props;
@@ -19,18 +21,18 @@ const navItems = [
 ] as const;
 ---
 
-<nav class="fixed top-0 w-full z-50 bg-[#0a0e14]/80 backdrop-blur-xl border-b border-white/10 shadow-[0_0_20px_rgba(0,227,253,0.05)]">
+<nav style="view-transition-name: site-header" class="fixed top-0 w-full z-50 bg-[#0a0e14]/80 backdrop-blur-xl border-b border-white/10 shadow-[0_0_20px_rgba(0,227,253,0.05)]">
   <div class="flex justify-between items-center px-4 md:px-8 h-20 max-w-full mx-auto">
     <div class="flex items-center gap-6">
-      <a href={programBase + '/'}>
-        <img alt="Star Logo" class="h-14 w-auto object-contain" src={logoSrc} />
+      <a href="/" aria-label="Về trang chọn chương trình">
+        <img alt="Star Logo" class="h-14 w-auto object-contain" src={logoSrc} width="620" height="428" fetchpriority="high" decoding="sync" />
       </a>
-      <div class="hidden lg:flex items-center gap-8 font-['Open_Sans'] font-bold tracking-tight h-full">
+      <div class="hidden min-[1380px]:flex items-center gap-1 font-nav text-[14px] font-medium uppercase tracking-[-0.02em] h-full">
         {navItems.map((item) => (
           <div class="relative group menu-item h-20 flex items-center">
             <a
               class:list={[
-                'text-white/70 hover:text-white flex items-center gap-1 transition-colors cursor-pointer',
+                'roll-host nav-stroke text-white/70 hover:text-white flex items-center gap-1 cursor-pointer',
                 active === item.key && 'nav-active',
               ]}
               href={item.href}
@@ -38,17 +40,45 @@ const navItems = [
               target={item.external ? '_blank' : undefined}
               rel={item.external ? 'noopener noreferrer' : undefined}
             >
-              {item.label}
+              <span class="nav-roll-clip">
+                <span class="nav-roll-main">{item.label}</span>
+                <span class="nav-roll-hover" aria-hidden="true">{item.label}</span>
+              </span>
             </a>
           </div>
         ))}
       </div>
     </div>
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-2 shrink-0">
+      <button
+        type="button"
+        data-auth="guest"
+        data-auth-open
+        class="roll-host flex items-center gap-1.5 whitespace-nowrap shrink-0 rounded-lg border border-[#ffd16c]/60 text-[#ffd16c] hover:bg-[#ffd16c] hover:text-[#1a1300] px-3 md:px-4 h-10 text-[14px] font-medium font-nav uppercase tracking-[-0.02em] transition-colors"
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><circle cx="12" cy="8" r="3.25"/><path d="M5 20c.65-3.35 3.1-5 7-5s6.35 1.65 7 5"/></svg>
+        <span class="nav-roll-clip">
+          <span class="nav-roll-main">Đăng nhập</span>
+          <span class="nav-roll-hover" aria-hidden="true">Đăng nhập</span>
+        </span>
+      </button>
+      <div data-auth="user" class="hidden items-center gap-1 font-nav">
+        <a
+          href="/prm/tai-khoan/"
+          data-auth-account-link
+          class="group flex items-center h-10 max-w-[13rem] border border-[#00e3fd]/45 bg-[#0d1a3d]/90 text-white hover:border-[#00e3fd] hover:bg-[#132654] transition-colors"
+        >
+        <span data-auth-avatar aria-hidden="true" class="w-10 h-10 shrink-0 border-r border-[#00e3fd]/30 bg-[#0d1a3d] bg-cover bg-center"></span>
+          <span class="truncate px-2.5 text-[13px] font-semibold uppercase tracking-[0.02em] text-[#ffd16c]" data-auth-name></span>
+        </a>
+        <button type="button" data-auth-logout class="w-10 h-10 border border-white/15 bg-[#0d1a3d]/60 text-white/55 hover:border-[#ffd16c]/70 hover:bg-[#ffd16c]/10 hover:text-[#ffd16c] flex items-center justify-center transition-colors" aria-label="Đăng xuất" title="Đăng xuất">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5M15 12H3"/></svg>
+        </button>
+      </div>
       <button
         id="mobile-menu-btn"
         onclick="toggleMobileMenu()"
-        class="lg:hidden flex flex-col justify-center gap-[5px] w-10 h-10 rounded-lg hover:bg-white/10 transition-colors p-2"
+        class="min-[1380px]:hidden flex flex-col justify-center gap-[5px] w-10 h-10 rounded-lg hover:bg-white/10 transition-colors p-2"
         aria-label="Mở menu"
       >
         <span id="ham-1" class="block w-full h-0.5 bg-white/80 rounded-full transition-all duration-300 origin-center"></span>
@@ -59,9 +89,9 @@ const navItems = [
   </div>
 </nav>
 
-<div id="mobile-menu" class="hidden fixed inset-0 z-40 lg:hidden">
+<div id="mobile-menu" class="hidden fixed inset-0 z-40 min-[1380px]:hidden">
   <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
-  <div class="absolute top-20 left-0 right-0 bg-[#0a0e14]/97 border-b border-white/10 backdrop-blur-xl px-4 py-6 space-y-1">
+  <div class="mobile-panel absolute top-20 left-0 right-0 px-4 py-5 space-y-2">
     {navItems.map((item, index) => (
       <a
         href={item.href}
@@ -69,12 +99,13 @@ const navItems = [
         target={item.external ? '_blank' : undefined}
         rel={item.external ? 'noopener noreferrer' : undefined}
         class:list={[
-          "mobile-nav-link flex items-center gap-3 px-4 py-4 rounded-xl text-white/70 font-bold font-['Open_Sans'] hover:bg-white/5 hover:text-white transition-colors",
-          index < navItems.length - 1 && 'border-b border-white/5',
+          "mobile-nav-link flex items-center gap-3 px-4 py-4 text-white/75 font-medium font-nav text-[15px] uppercase tracking-[-0.02em] transition-colors",
           active === item.key && 'nav-active',
         ]}
       >
-        {item.label}
+        <span class="mobile-nav-idx">{String(index + 1).padStart(2, '0')}</span>
+        <span class="flex-1">{item.label}</span>
+        <span class="material-symbols-outlined mobile-nav-arrow">arrow_forward</span>
       </a>
     ))}
   </div>
@@ -103,3 +134,21 @@ const navItems = [
     document.body.style.overflow = 'hidden';
   };
 </script>
+
+<script is:inline>
+  // Đặt trạng thái header ngay lập tức từ gợi ý đã lưu, tránh nháy "Đăng nhập" khi chuyển trang.
+  (() => {
+    try {
+      const hint = JSON.parse(localStorage.getItem('allstar_mock_session_v4'));
+      if (!hint || !hint.name) return;
+      document.querySelectorAll('[data-auth="guest"]').forEach((el) => el.classList.add('hidden'));
+      document.querySelectorAll('[data-auth="user"]').forEach((el) => { el.classList.remove('hidden'); el.classList.add('flex'); });
+      document.querySelectorAll('[data-auth-name]').forEach((el) => { el.textContent = hint.name; });
+      document.querySelectorAll('[data-auth-account-link]').forEach((el) => { el.setAttribute('href', '/' + String(hint.program || 'prm').toLowerCase() + '/tai-khoan/'); });
+      const avatarIndex = Array.from(String(hint.email || hint.name)).reduce((hash, char) => ((hash << 5) - hash + char.charCodeAt(0)) | 0, 0);
+      document.querySelectorAll('[data-auth-avatar]').forEach((el) => { el.style.backgroundImage = `url('/assets/images/abstract-avatar-${Math.abs(avatarIndex) % 6}.png')`; });
+    } catch (e) { /* bỏ qua */ }
+  })();
+</script>
+<AuthModal />
+<script src="/assets/auth.js" defer></script>

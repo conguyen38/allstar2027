@@ -1,0 +1,365 @@
+---
+/*
+ * Màn hình opening trước khi vào trang chọn chương trình (PRM / LLB).
+ * - Chỉ hiện 1 lần mỗi phiên (sessionStorage), bỏ qua nếu người dùng bật "giảm chuyển động".
+ * - Tiến độ là thật: chờ logo, font và video nền sẵn sàng (tối đa 5 giây), nhưng luôn chạy tối thiểu ~2,6 giây để kịp xem hiệu ứng.
+ * - Bấm "Bỏ qua", Enter, Space hoặc Esc để vào ngay.
+ */
+---
+
+<script is:inline>
+  // Chạy sớm nhất có thể để màn loading phủ kín từ khung hình đầu tiên, không nháy trang chính.
+  (function () {
+    try {
+      var root = document.documentElement;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (sessionStorage.getItem('allstar_intro_seen')) return;
+      root.classList.add('intro-on');
+    } catch (e) { /* bỏ qua */ }
+  })();
+</script>
+
+<div id="intro" class="intro" aria-hidden="true">
+  <div class="intro-panel intro-panel-l"></div>
+  <div class="intro-panel intro-panel-r"></div>
+  <div class="intro-seam"></div>
+
+  <div class="intro-center">
+    <div class="intro-logo">
+      <img src="/prm/assets/images/Logo%20Allstar.webp" alt="" width="620" height="428" decoding="async" />
+      <span class="intro-sweep"></span>
+    </div>
+
+    <div class="intro-hud">
+      <div class="intro-bar"><span data-intro-bar></span></div>
+      <div class="intro-meta">
+        <span class="intro-status" data-intro-status>Đang tải</span>
+        <span class="intro-count" data-intro-count>000</span>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" class="intro-skip" data-intro-skip>Bỏ qua <b>↵</b></button>
+</div>
+
+<style is:global>
+  .intro { display: none; }
+
+  html.intro-on .intro {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    overflow: hidden;
+    color: #fff;
+    pointer-events: auto;
+  }
+
+  /* Trang chính ẩn đi, đợi mở màn xong mới hiện */
+  html.intro-on:not(.intro-done) .logo-wrap,
+  html.intro-on:not(.intro-done) .cards {
+    opacity: 0;
+    transform: translateY(28px) scale(0.96);
+  }
+
+  html.intro-on .logo-wrap {
+    transition: opacity 1s ease, transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  html.intro-on .cards {
+    transition: opacity 1s ease 0.18s, transform 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.18s;
+  }
+
+  /* Hai cánh cửa */
+  .intro-panel {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50.2%;
+    background:
+      radial-gradient(ellipse 90% 70% at 50% 45%, rgba(40, 60, 160, 0.28), transparent 70%),
+      linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px) 0 0 / 100% 56px,
+      linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px) 0 0 / 56px 100%,
+      #04061a;
+    transition: transform 0.95s cubic-bezier(0.77, 0, 0.18, 1) 0.3s;
+    will-change: transform;
+  }
+
+  .intro-panel-l { left: 0; }
+  .intro-panel-r { right: 0; }
+
+  .intro.is-open .intro-panel-l { transform: translateX(-101%); }
+  .intro.is-open .intro-panel-r { transform: translateX(101%); }
+
+  /* Đường nối giữa hai cánh: chớp sáng rồi mở ra */
+  .intro-seam {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    margin-left: -1px;
+    background: linear-gradient(180deg, transparent, #ffd16c 20%, #ffd16c 80%, transparent);
+    box-shadow: 0 0 24px 4px rgba(255, 209, 108, 0.55);
+    transform: scaleY(0);
+    animation: intro-seam-in 0.9s cubic-bezier(0.65, 0, 0.35, 1) 0.1s forwards;
+    z-index: 2;
+  }
+
+  .intro.is-open .intro-seam {
+    animation: none;
+    transform: scaleY(1);
+    opacity: 0;
+    transition: opacity 0.35s ease 0.3s;
+  }
+
+  @keyframes intro-seam-in {
+    60% { transform: scaleY(1); opacity: 1; }
+    100% { transform: scaleY(1); opacity: 0.22; }
+  }
+
+  .intro-center {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.2rem;
+    padding: 1.5rem;
+    transition: opacity 0.45s ease, transform 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  .intro.is-open .intro-center {
+    opacity: 0;
+    transform: scale(1.18);
+  }
+
+  @keyframes intro-fade-up {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* Logo: lộ dần từ trái sang phải theo vệt sáng */
+  .intro-logo {
+    position: relative;
+    width: min(64vw, 440px);
+    /* Quầng sáng đặt ở lớp ngoài để không bị cắt theo hiệu ứng lộ dần (tránh hiện khung chữ nhật). */
+    filter: drop-shadow(0 0 40px rgba(255, 209, 108, 0.5));
+    animation: intro-glow 2.4s ease-in-out 1.7s infinite;
+  }
+
+  .intro-logo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    clip-path: inset(0 100% 0 0);
+    animation: intro-wipe 1.25s cubic-bezier(0.65, 0, 0.35, 1) 0.45s forwards;
+  }
+
+  @keyframes intro-wipe {
+    to { clip-path: inset(0 0 0 0); }
+  }
+
+  @keyframes intro-glow {
+    50% { filter: drop-shadow(0 0 70px rgba(255, 209, 108, 0.85)); }
+  }
+
+  .intro-sweep {
+    position: absolute;
+    top: -6%;
+    bottom: -6%;
+    left: 0;
+    width: 3px;
+    background: linear-gradient(180deg, transparent, #fff, transparent);
+    box-shadow: 0 0 22px 6px rgba(255, 220, 140, 0.8);
+    opacity: 0;
+    animation: intro-sweep 1.25s cubic-bezier(0.65, 0, 0.35, 1) 0.45s forwards;
+  }
+
+  @keyframes intro-sweep {
+    0% { left: 0; opacity: 1; }
+    92% { opacity: 1; }
+    100% { left: 100%; opacity: 0; }
+  }
+
+  /* Thanh tiến độ + số đếm */
+  .intro-hud {
+    width: min(78vw, 440px);
+    opacity: 0;
+    animation: intro-fade-up 0.7s ease 0.9s forwards;
+  }
+
+  .intro-bar {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+  }
+
+  .intro-bar > span {
+    display: block;
+    height: 100%;
+    width: 100%;
+    transform-origin: left;
+    transform: scaleX(var(--p, 0));
+    background: linear-gradient(90deg, #00e3fd, #ffd16c);
+    box-shadow: 0 0 14px rgba(255, 209, 108, 0.7);
+  }
+
+  .intro-meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-top: 0.7rem;
+  }
+
+  .intro-status {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .intro-status.is-ready {
+    color: #ffd16c;
+    animation: hud-blink 0.5s steps(2, jump-none) 2;
+  }
+
+  .intro-count {
+    font-family: 'Archivo', 'Arial Black', sans-serif;
+    font-stretch: 125%;
+    font-style: italic;
+    font-weight: 900;
+    font-size: 2.4rem;
+    line-height: 1;
+    color: #ffd16c;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .intro-skip {
+    position: absolute;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 4;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.55rem 0.9rem;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 0.4rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+
+  .intro-skip:hover {
+    color: #0a0e14;
+    background: #ffd16c;
+    border-color: #ffd16c;
+  }
+
+  .intro-skip b {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #0a0e14;
+    background: #fff;
+    border-radius: 0.3rem;
+  }
+
+  @media (max-width: 640px) {
+    .intro-center { gap: 1.6rem; }
+    .intro-count { font-size: 1.9rem; }
+  }
+</style>
+
+<script>
+  const root = document.documentElement;
+  const intro = document.getElementById('intro');
+
+  if (intro && root.classList.contains('intro-on')) {
+    const bar = intro.querySelector<HTMLElement>('[data-intro-bar]')!;
+    const count = intro.querySelector<HTMLElement>('[data-intro-count]')!;
+    const status = intro.querySelector<HTMLElement>('[data-intro-status]')!;
+    const skip = intro.querySelector<HTMLElement>('[data-intro-skip]')!;
+
+    const MIN_MS = 2600;
+    const MAX_WAIT_MS = 5000;
+    const start = performance.now();
+    let assetsReady = false;
+    let finished = false;
+    let rafId = 0;
+
+    document.body.style.overflow = 'hidden';
+
+    // Chờ logo, font và video nền thật sự sẵn sàng (có giới hạn thời gian).
+    const logo = intro.querySelector('img') as HTMLImageElement | null;
+    const video = document.querySelector<HTMLVideoElement>('.contest-video');
+    const waits: Promise<unknown>[] = [
+      logo ? logo.decode().catch(() => {}) : Promise.resolve(),
+      document.fonts ? document.fonts.ready : Promise.resolve(),
+      new Promise<void>((resolve) => {
+        if (!video || video.readyState >= 3) return resolve();
+        video.addEventListener('canplay', () => resolve(), { once: true });
+      }),
+    ];
+    Promise.race([Promise.all(waits), new Promise((r) => setTimeout(r, MAX_WAIT_MS))]).then(() => {
+      assetsReady = true;
+    });
+
+    const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+    const render = (p: number) => {
+      bar.style.setProperty('--p', String(p / 100));
+      count.textContent = String(Math.round(p)).padStart(3, '0');
+    };
+
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      cancelAnimationFrame(rafId);
+      render(100);
+      status.textContent = 'Sẵn sàng';
+      status.classList.add('is-ready');
+      try { sessionStorage.setItem('allstar_intro_seen', '1'); } catch (e) { /* bỏ qua */ }
+
+      window.setTimeout(() => {
+        intro.classList.add('is-open');
+        window.setTimeout(() => root.classList.add('intro-done'), 450);
+        window.setTimeout(() => {
+          document.body.style.overflow = '';
+          intro.remove();
+        }, 1500);
+      }, 650);
+    };
+
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / MIN_MS);
+      const timed = easeOut(t) * 100;
+      // Chưa tải xong thì dừng ở 88% cho đúng thực tế.
+      const p = assetsReady ? timed : Math.min(timed, 88);
+      render(p);
+      if (t >= 1 && assetsReady) return finish();
+      rafId = requestAnimationFrame(tick);
+    };
+    rafId = requestAnimationFrame(tick);
+
+    skip.addEventListener('click', finish);
+    window.addEventListener('keydown', (e) => {
+      if (['Enter', ' ', 'Escape'].includes(e.key)) {
+        e.preventDefault();
+        finish();
+      }
+    });
+  }
+</script>
