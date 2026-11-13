@@ -17,7 +17,7 @@ const label = "text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 f
   title={`Tài khoản của tôi - ${programName} - Allstar Club`}
   description="Xem điểm, thứ hạng, U-Point chi trả và các mốc thưởng của bạn trong chương trình Allstar Club."
   canonicalPath={`/${program}/tai-khoan/`}
-  bodyClass="page-bg allstar-grid-bg text-on-surface antialiased font-nav"
+  bodyClass="page-bg allstar-grid-bg text-on-surface antialiased font-body"
 >
   <Fragment slot="head">
     <meta name="robots" content="noindex, nofollow" />
@@ -130,10 +130,6 @@ const label = "text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 f
          z-index: 0;
          pointer-events: none;
          background:
-           linear-gradient(to bottom right, transparent 47%, var(--account-cyan) 48% 52%, transparent 53%) top left / 18px 18px no-repeat,
-           linear-gradient(to bottom left, transparent 48%, var(--account-cyan) 49% 51%, transparent 52%) top right / 32px 32px no-repeat,
-           linear-gradient(to bottom right, transparent 47%, var(--account-gold) 48% 52%, transparent 53%) bottom right / 18px 18px no-repeat,
-           linear-gradient(to bottom left, transparent 48%, var(--account-cyan) 49% 51%, transparent 52%) bottom left / 30px 30px no-repeat,
            linear-gradient(90deg, var(--account-cyan), transparent 18%) top left / 100% 1px no-repeat,
            linear-gradient(270deg, var(--account-gold), transparent 16%) bottom right / 100% 1px no-repeat;
        }
@@ -141,6 +137,67 @@ const label = "text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 f
        .account-tactical .glass-gold > *,
        .account-tactical .glass-cyan > *,
        .account-tactical [data-cards] > div > * { position: relative; z-index: 1; }
+
+      /* Thẻ điểm bấm để mở chi tiết */
+      .card-expandable { cursor: pointer; padding-bottom: 2rem; }
+      .card-expandable:hover { border-color: rgba(0, 227, 253, 0.85) !important; }
+      .card-expandable:focus-visible { outline: 2px solid #ffd16c; outline-offset: 2px; }
+      .card-chev { position: absolute; right: 0.6rem; bottom: 0.4rem; transition: transform 0.25s; }
+      .card-expandable[aria-expanded="true"] .card-chev { transform: rotate(180deg); }
+
+      /* Danh sách căn ghi nhận */
+      .units-th { padding: 0.75rem 1rem; text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255, 255, 255, 0.5); border-bottom: 1px solid rgba(0, 227, 253, 0.3); white-space: nowrap; }
+      .units-th.text-right { text-align: right; }
+      .units-td { padding: 0.7rem 1rem; color: rgba(255, 255, 255, 0.78); white-space: nowrap; }
+      .units-row { border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+      .units-row:last-child { border-bottom: 0; }
+      .units-row:hover { background: rgba(0, 227, 253, 0.05); }
+      .unit-paid { color: #4ade80; }
+      .unit-unpaid { color: #f87171; }
+
+      /* Thanh tiến độ chia theo mốc: mỗi đoạn là một mốc, đoạn nào qua rồi thì đầy */
+      .prog-row { display: flex; gap: 4px; }
+      .prog-seg { position: relative; flex: 1 1 0; height: 10px; background: rgba(255, 255, 255, 0.12); overflow: hidden; }
+      .prog-seg-fill { height: 100%; width: 0; background: linear-gradient(90deg, #00e3fd, #ffd16c); transition: width 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+      .prog-seg-done .prog-seg-fill { background: linear-gradient(90deg, #ffd16c, #ffb347); }
+      .prog-seg-now { outline: 1px solid rgba(0, 227, 253, 0.8); outline-offset: 1px; }
+      .prog-label { flex: 1 1 0; min-width: 0; text-align: right; line-height: 1.25; color: rgba(255, 255, 255, 0.42); }
+      .prog-label-n { display: block; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; }
+      .prog-label-v { display: block; font-size: 13px; font-weight: 700; }
+      .prog-label-on { color: #ffd16c; }
+      @media (max-width: 640px) { .prog-label-n { display: none; } .prog-label-v { font-size: 11px; } }
+
+      /* Dòng trạng thái cập nhật dữ liệu, đặt ngay dưới tên để người dùng thấy ngay số liệu mới tới đâu */
+      .update-chip { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.75rem; font-size: 0.8125rem; color: rgba(255, 255, 255, 0.7); border: 1px solid rgba(0, 227, 253, 0.4); background: rgba(0, 227, 253, 0.07); }
+      .update-chip b { font-weight: 700; color: #fff; }
+
+      /* Chọn năm */
+      .year-tab { padding: 0.35rem 0.8rem; font: inherit; font-size: 0.8rem; font-weight: 700; color: rgba(255, 255, 255, 0.6); border: 1px solid rgba(255, 255, 255, 0.18); background: transparent; cursor: pointer; transition: color 0.2s, border-color 0.2s, background 0.2s; }
+      .year-tab:hover { color: #fff; border-color: rgba(0, 227, 253, 0.6); }
+      .year-tab[aria-pressed="true"] { color: #fff; border-color: #00e3fd; background: rgba(0, 227, 253, 0.16); }
+      .year-tab:focus-visible { outline: 2px solid #ffd16c; outline-offset: 2px; }
+
+      /* Hành trình du lịch */
+      .journey-win { border-color: rgba(255, 209, 108, 0.7) !important; }
+      .journey-win .journey-msg { color: #ffd16c; }
+      .journey-miss .journey-msg { color: #fda4af; }
+      .journey-card:not(.journey-win):not(.journey-miss) .journey-msg { color: #00e3fd; }
+      .journey-road { position: relative; margin: 3.5rem 0.9rem 0.25rem; height: 14px; }
+      .journey-track { position: absolute; inset: 3px 0; border-radius: 9999px; background: rgba(255, 255, 255, 0.12); overflow: hidden; }
+      .journey-fill { height: 100%; border-radius: 9999px; background: linear-gradient(90deg, #00e3fd, #ffd16c); transition: width 1.1s cubic-bezier(0.16, 1, 0.3, 1); }
+      .journey-stop { position: absolute; top: 50%; z-index: 2; width: 30px; height: 30px; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; border-radius: 9999px; background: #0d1220; border: 2px solid rgba(255, 255, 255, 0.22); color: rgba(255, 255, 255, 0.4); }
+      .journey-stop-on { border-color: #ffd16c; color: #4a2800; background: linear-gradient(135deg, #fff8c5, #ffd700, #b8860b); box-shadow: 0 0 16px rgba(255, 215, 0, 0.45); }
+      .journey-plane { display: block; transform: rotate(90deg); } /* icon máy bay mặc định hướng lên → quay sang phải theo chiều đi */
+      .journey-rider { position: absolute; top: -46px; z-index: 3; transform: translateX(-50%); color: #00e3fd; transition: left 1.1s cubic-bezier(0.16, 1, 0.3, 1); filter: drop-shadow(0 0 8px rgba(0, 227, 253, 0.7)); }
+
+      /* Các mốc bonus theo kỳ */
+      .bp-chip { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.3rem 0.6rem; font-size: 12px; font-weight: 700; border: 1px solid; }
+      .bp-chip-on { color: #ffd16c; border-color: rgba(255, 209, 108, 0.7); background: rgba(255, 209, 108, 0.1); }
+      .bp-chip-off { color: rgba(255, 255, 255, 0.4); border-color: rgba(255, 255, 255, 0.14); }
+
+      /* Pop-up cảnh báo duy trì thành viên */
+      .warn-panel { border: 1px solid rgba(255, 209, 108, 0.8); background: linear-gradient(112deg, rgba(60, 44, 24, 0.97), rgba(14, 22, 62, 0.98)); box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55); }
+      .warn-item { border-left: 3px solid #f87171; padding-left: 0.75rem; }
 
       /* Timeline các mốc thưởng */
       .tl-node { border: 2px solid rgba(255, 255, 255, 0.15); background: #0d1220; color: rgba(255, 255, 255, 0.35); }
@@ -200,12 +257,15 @@ const label = "text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 f
             <h1 class="font-arena uppercase text-4xl md:text-6xl leading-[0.95] text-white tracking-wide">
               Xin chào, <span class="text-primary" data-field="name"></span>
             </h1>
-            <p class="text-white/40 text-sm mt-1">
-              <span data-field="role"></span> · <span data-field="area"></span> · <span data-field="branch"></span> · <span data-field="email"></span>
+            <p class="text-white/40 text-sm mt-1" data-field="profileLine"></p>
+            <p class="update-chip mt-3">
+              <span class="material-symbols-outlined text-[16px] text-secondary">update</span>
+              <span>Cập nhật lần cuối: <b data-field="updatedAt"></b></span>
             </p>
           </div>
-          <div class="self-start sm:self-auto">
-            <label for="period-select" class={label + ' block mb-1.5 sm:text-right'}>Kỳ tính</label>
+          <div class="flex flex-col items-end self-start sm:self-auto">
+            <div class="flex gap-1.5 mb-3 hidden" data-year-tabs role="group" aria-label="Chọn năm"></div>
+            <label for="period-select" class={label + ' block mb-1.5 text-right'}>Kỳ tính</label>
             <div class="period-picker">
               <button id="period-select" type="button" class="period-trigger" data-period-trigger aria-haspopup="listbox" aria-expanded="false">
                 <span class="material-symbols-outlined text-secondary text-[20px]">event</span>
@@ -215,7 +275,7 @@ const label = "text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 f
               <div class="period-menu hidden" data-period-menu role="listbox" aria-labelledby="period-select"></div>
               <select class="hidden" data-period-select aria-hidden="true" tabindex="-1"></select>
             </div>
-            <p class="text-[11px] font-bold uppercase tracking-wider mt-1.5 sm:text-right text-white/40" data-period-status data-field="periodStatus"></p>
+            <p class="text-[11px] font-bold uppercase tracking-wider mt-1.5 text-right text-white/40" data-period-status data-field="periodStatus"></p>
           </div>
         </div>
 
@@ -231,29 +291,37 @@ const label = "text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 f
                 <span class="material-symbols-outlined">emoji_events</span>
               </div>
               <div>
-                <p class={label}>Thứ hạng</p>
+                <p class={label} data-field="rankLabel">Thứ hạng</p>
                 <p class="font-wide italic font-black text-2xl sm:text-3xl text-white leading-none mt-1" data-field="rank"></p>
               </div>
             </div>
           </div>
           <div class="mt-6">
-            <div class="h-2 rounded-full bg-white/10 overflow-hidden">
-              <div class="progress-fill h-full rounded-full w-0" data-progress></div>
-            </div>
-            <p class="text-sm text-white/55 mt-2.5" data-field="nextTier"></p>
+            <div data-progress-segments></div>
+            <p class="text-sm text-white/55 mt-3" data-field="nextTier"></p>
           </div>
         </section>
 
+        <!-- Hành trình du lịch theo nửa năm (chỉ PRM) -->
+        <section data-journey-section class="hidden">
+          <h2 class="font-arena uppercase tracking-wide text-2xl md:text-3xl text-white mb-3 flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary">travel_explore</span> Hành trình du lịch
+          </h2>
+          <div class="grid gap-3 sm:gap-4 md:grid-cols-2" data-journey></div>
+        </section>
+
         <!-- Chi tiết điểm (khác nhau theo chương trình) -->
-        <section class="grid gap-3 sm:gap-4 grid-cols-2 lg:grid-cols-4" data-cards></section>
+        <section class="grid gap-3 sm:gap-4 grid-cols-2 lg:grid-cols-5 items-stretch" data-cards></section>
         <template data-card-template>
-          <div class="rounded-2xl p-4 sm:p-5 md:p-6">
+          <div class="rounded-2xl p-4 sm:p-5">
             <div class="flex items-start justify-between gap-2">
               <p class={label + ' leading-snug'} data-card="label"></p>
               <span class="material-symbols-outlined text-white/35 text-[20px]" data-card="icon"></span>
             </div>
             <p class="font-wide italic font-black text-xl sm:text-2xl mt-3 leading-tight" data-card="value"></p>
             <p class="text-xs text-white/45 mt-2 leading-relaxed" data-card="sub"></p>
+            <div class="hidden mt-3 pt-2 border-t border-white/10" data-card="detail"></div>
+            <span class="material-symbols-outlined card-chev text-white/40 text-[18px]" data-card="chev">expand_more</span>
           </div>
         </template>
 
@@ -280,36 +348,52 @@ const label = "text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 f
           </div>
         </section>
 
-        <!-- Các mốc thưởng (ẩn nếu vai trò không áp dụng) -->
+        <!-- Danh sách căn ghi nhận (SM: căn của cả team) -->
+        <section data-units-section>
+          <h2 class="font-arena uppercase tracking-wide text-2xl md:text-3xl text-white mb-1 flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary">domain</span> <span data-field="unitsTitle"></span>
+          </h2>
+          <p class="text-xs text-white/45 mb-3">
+            <span data-field="unitsSub"></span>
+            <span class="unit-paid font-bold">Chữ xanh: đã chi trả</span> ·
+            <span class="unit-unpaid font-bold">Chữ đỏ: chưa chi trả &amp; đối soát</span>
+          </p>
+          <div class="glass rounded-2xl overflow-x-auto">
+            <table class="w-full text-sm min-w-[640px]">
+              <thead data-units-head></thead>
+              <tbody data-units-body></tbody>
+            </table>
+            <p class="hidden text-sm text-white/45 px-5 py-6" data-units-empty>Chưa có căn nào được ghi nhận.</p>
+          </div>
+        </section>
+
+        <!-- Các mốc bonus theo kỳ (ẩn nếu vai trò không áp dụng) -->
         <section data-tiers-section>
           <h2 class="font-arena uppercase tracking-wide text-2xl md:text-3xl text-white mb-3 flex items-center gap-2">
             <span class="material-symbols-outlined text-secondary">stairs</span> <span data-field="tiersTitle"></span>
           </h2>
-          <div class="glass rounded-2xl p-5 md:p-8 tl-scroll">
-            <ol class="tl-list" data-tier-list></ol>
-          </div>
-          <template data-tier-template>
-            <li class="tl-item">
-              <div class="tl-rail">
-                <span class="tl-node shrink-0 w-11 h-11 rounded-full flex items-center justify-center" data-tier="node">
-                  <span class="material-symbols-outlined text-[22px]" data-tier="icon"></span>
-                </span>
-                <span class="tl-line" data-tier="line">
-                  <span class="tl-fill"></span>
-                </span>
-              </div>
-              <div class="tl-body">
-                <p class="font-arena uppercase tracking-wide text-white text-xl leading-tight" data-tier="name"></p>
-                <p class="text-sm text-white/55 mt-1" data-tier="points"></p>
-                <p class="text-sm font-bold text-primary" data-tier="bonus"></p>
-                <p class="text-[11px] font-bold uppercase tracking-wider mt-1.5" data-tier="status"></p>
-              </div>
-            </li>
-          </template>
+          <div class="grid gap-3 sm:gap-4 md:grid-cols-2" data-bonus-periods></div>
         </section>
 
+        <!-- Cảnh báo duy trì thành viên -->
+        <div data-warn-modal class="hidden fixed inset-0 z-[80] flex items-center justify-center p-4" role="alertdialog" aria-modal="true" aria-labelledby="warn-title">
+          <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" data-warn-close></div>
+          <div class="warn-panel relative w-full max-w-md p-6 md:p-7">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[32px] text-primary">warning</span>
+              <h2 id="warn-title" class="font-arena uppercase tracking-wide text-2xl text-white leading-none">Cảnh báo duy trì thành viên</h2>
+            </div>
+            <ul class="mt-4 space-y-3" data-warn-list></ul>
+            <p class="text-sm text-white/65 mt-4">
+              Vui lòng kiểm tra điều kiện duy trì trong <a href={rulesHref} class="text-secondary hover:underline">Thể lệ</a>
+              và phát sinh thêm điểm / HBK để giữ quyền lợi thành viên. Cần hỗ trợ, hãy liên hệ quản lý trực tiếp của bạn.
+            </p>
+            <button type="button" data-warn-close class="tracuu-btn rounded-xl px-6 py-3 text-sm mt-5 w-full">Đã hiểu</button>
+          </div>
+        </div>
+
         <p class="text-xs text-white/30">
-          Cập nhật lần cuối: <span data-field="updatedAt"></span> · Dữ liệu trên trang này đang là dữ liệu mẫu.
+          Dữ liệu trên trang này đang là dữ liệu mẫu.
         </p>
       </div>
     </div>

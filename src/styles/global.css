@@ -61,7 +61,7 @@ body.allstar-grid-bg .tactical-leaderboard {
   overflow: hidden;
   border: 1px solid var(--contest-cyan) !important;
   border-radius: 0 !important;
-  clip-path: polygon(0 20px, 20px 0, calc(100% - 36px) 0, 100% 36px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 34px 100%, 0 calc(100% - 34px));
+  clip-path: none;
   background: linear-gradient(112deg, rgba(29, 58, 128, 0.92), rgba(11, 22, 64, 0.94)) !important;
   box-shadow: inset 0 1px 0 rgba(202, 245, 255, 0.14), 0 18px 36px rgba(2, 10, 40, 0.28) !important;
 }
@@ -74,10 +74,6 @@ body.allstar-grid-bg .tactical-leaderboard::before {
   z-index: 0;
   pointer-events: none;
   background:
-    linear-gradient(to bottom right, transparent 47%, var(--contest-cyan) 48% 52%, transparent 53%) top left / 20px 20px no-repeat,
-    linear-gradient(to bottom left, transparent 48%, var(--contest-cyan) 49% 51%, transparent 52%) top right / 36px 36px no-repeat,
-    linear-gradient(to bottom right, transparent 47%, var(--contest-gold) 48% 52%, transparent 53%) bottom right / 20px 20px no-repeat,
-    linear-gradient(to bottom left, transparent 48%, var(--contest-cyan) 49% 51%, transparent 52%) bottom left / 34px 34px no-repeat,
     linear-gradient(90deg, var(--contest-cyan), transparent 18%) top left / 100% 1px no-repeat,
     linear-gradient(270deg, var(--contest-gold), transparent 16%) bottom right / 100% 1px no-repeat;
 }
@@ -114,7 +110,7 @@ body.allstar-grid-bg .search-input {
 body.allstar-grid-bg .region-btn,
 body.allstar-grid-bg .period-btn,
 body.allstar-grid-bg .tracuu-btn {
-  clip-path: polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%);
+  clip-path: none;
 }
 
 /* The static page backgrounds replace the decorative moving light trails. */
@@ -182,7 +178,7 @@ a.mobile-nav-link {
   --pc: rgba(0, 227, 253, 0.3);
   position: relative;
   border: 1px solid var(--pc);
-  clip-path: polygon(0 10px, 10px 0, calc(100% - 18px) 0, 100% 18px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 18px 100%, 0 calc(100% - 18px));
+  clip-path: none;
   background: linear-gradient(105deg, rgba(29, 58, 128, 0.55), rgba(11, 22, 64, 0.5));
 }
 
@@ -412,8 +408,6 @@ a.nav-active.mobile-nav-link .mobile-nav-arrow {
   height: auto;
 }
 
-/* Chữ nội dung dùng font mono (Geist Mono) — co chữ lại một chút cho gọn */
-body { letter-spacing: -0.02em; }
 
 /* ───────── Bục top 3 bảng xếp hạng: panel vát góc, mỗi hạng một màu viền ───────── */
 body.allstar-grid-bg #podium {
@@ -427,7 +421,7 @@ body.allstar-grid-bg .podium-card {
   isolation: isolate;
   border: 1px solid var(--pc) !important;
   border-radius: 0 !important;
-  clip-path: polygon(0 16px, 16px 0, calc(100% - 28px) 0, 100% 28px, 100% calc(100% - 16px), calc(100% - 16px) 100%, 28px 100%, 0 calc(100% - 28px));
+  clip-path: none;
   background: linear-gradient(112deg, rgba(29, 58, 128, 0.94), rgba(11, 22, 64, 0.96)) !important;
   box-shadow: inset 0 1px 0 rgba(202, 245, 255, 0.14) !important;
   backdrop-filter: none !important;
@@ -441,10 +435,6 @@ body.allstar-grid-bg .podium-card::before {
   z-index: 0;
   pointer-events: none;
   background:
-    linear-gradient(to bottom right, transparent 47%, var(--pc) 48% 52%, transparent 53%) top left / 16px 16px no-repeat,
-    linear-gradient(to bottom left, transparent 48%, var(--pc) 49% 51%, transparent 52%) top right / 28px 28px no-repeat,
-    linear-gradient(to bottom right, transparent 47%, var(--pg) 48% 52%, transparent 53%) bottom right / 16px 16px no-repeat,
-    linear-gradient(to bottom left, transparent 48%, var(--pc) 49% 51%, transparent 52%) bottom left / 28px 28px no-repeat,
     linear-gradient(90deg, var(--pc), transparent 22%) top left / 100% 2px no-repeat,
     linear-gradient(270deg, var(--pg), transparent 18%) bottom right / 100% 1px no-repeat;
 }
@@ -498,7 +488,7 @@ body.allstar-grid-bg .podium-card.rank-card-3 .podium-avatar { border-color: rgb
   body.allstar-grid-bg .podium-card.rank-card-1 {
     max-width: 250px;
     height: 17.5rem;
-    grid-template-rows: 5.5rem 2.5em 1.4em auto;
+    grid-template-rows: 5.5rem 3em 1.4em auto;
     row-gap: 0.55rem;
     padding-top: 1.25rem;
   }
@@ -520,8 +510,10 @@ body.allstar-grid-bg .podium-card.rank-card-3 .podium-avatar { border-color: rgb
   background-position: 100% 0;
   -webkit-background-clip: text;
   background-clip: text;
-  /* mở rộng khung tô màu để dấu trên/dưới của chữ tiếng Việt không bị cắt */
-  padding-block: 0.1em;
+  /* Nền chỉ tô trong khung chữ nên phải nới khung để dấu của chữ hoa tiếng Việt (Ả, Ế, Ạ…) không bị cắt.
+     Lề trên âm bù lại phần đệm trên, giữ nguyên bố cục (không đụng tới lề dưới mb-*). */
+  padding-block: 0.38em 0.12em;
+  margin-top: -0.38em;
   animation: title-shine 1.6s 0.35s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
@@ -551,4 +543,39 @@ body.allstar-grid-bg .podium-card.rank-card-3 .podium-avatar { border-color: rgb
   inset: 0;
   pointer-events: none;
   background: radial-gradient(rgba(0, 0, 0, 0.22) 0.5px, transparent 0.9px) 0 0 / 3px 3px;
+}
+
+/* Tên trên bục top 3: ô bị cắt (line-clamp) nên nới khung phía trên để dấu chồng của chữ hoa (Ễ, Ề, Ự…) không mất nét */
+.podium-card .podium-name {
+  padding-top: 0.5em;
+  margin-top: -0.5em;
+}
+
+/* Tiêu đề Anton rất cao (dấu chồng + chấm dưới) nên khoảng cách dòng phải đủ rộng, nếu không khi rớt dòng
+   dòng trên đè lên dấu của dòng dưới. Đặt ở đây để thắng các leading-[0.95]/leading-none rải rác trong từng trang. */
+h1.font-arena,
+h2.font-arena,
+h3.font-arena {
+  line-height: 1.32;
+}
+
+/* Góc vuông toàn site: khối, bảng, thẻ, nhãn chữ đều vuông. Bo tròn chỉ còn cho hình tròn thật (avatar, chấm, nút icon).
+   Lớp bọc bo góc còn cắt mất đường viền của bảng/thẻ bên trong nên phải bỏ hẳn. */
+:is(body.page-bg, body.allstar-grid-bg) :is(.rounded, .rounded-md, .rounded-lg, .rounded-xl, .rounded-2xl, .rounded-3xl, .chip) {
+  border-radius: 0 !important;
+}
+
+/* nhãn chữ dạng viên thuốc (có padding ngang) cũng vuông; hình tròn có kích thước cố định (w-/h-) thì giữ nguyên */
+:is(body.page-bg, body.allstar-grid-bg) .rounded-full[class*="px-"] {
+  border-radius: 0 !important;
+}
+
+/* các khối/nhãn bo góc do CSS riêng của từng trang (không dùng lớp rounded-*) */
+:is(body.page-bg, body.allstar-grid-bg) :is(.info-box, .example-box, .badge-th, .page-btn, .sec-heading-bar) {
+  border-radius: 0 !important;
+}
+
+/* thanh vàng nhỏ cạnh tiêu đề mục (w-1.5 h-8) là thanh chữ nhật, không phải viên thuốc */
+:is(body.page-bg, body.allstar-grid-bg) .rounded-full[class*="w-1.5"][class*="h-8"] {
+  border-radius: 0 !important;
 }

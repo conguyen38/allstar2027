@@ -215,7 +215,7 @@ const programs = [
 
   // Người đã đăng nhập thì nút trên thanh menu giả hiện tên, giống header thật.
   try {
-    const hint = JSON.parse(localStorage.getItem('allstar_mock_session_v4') || 'null');
+    const hint = JSON.parse(localStorage.getItem('allstar_mock_session_v6') || 'null');
     if (hint && hint.name) document.querySelectorAll('[data-pt-login]').forEach((el) => { el.textContent = hint.name; });
   } catch (e) { /* bỏ qua */ }
 

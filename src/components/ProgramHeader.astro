@@ -16,7 +16,7 @@ const navItems = [
   { key: 'the-le', label: 'Thể lệ', href: `${programBase}/the-le/`, external: false },
   { key: 'bxh', label: 'Bảng xếp hạng', href: leaderboardHref, external: false },
   ...(program === 'prm' ? [{ key: 'refer', label: 'Refer căn độc quyền', href: `${programBase}/refer-onetrust/`, external: false }] : []),
-  { key: 'feedback', label: 'Phản hồi', href: 'https://onehousing.club/we-are-listening', external: true },
+  { key: 'feedback', label: 'Phản hồi', href: '/phan-hoi/', external: false },
   { key: 'u-point', label: 'Hướng dẫn sử dụng U-Point', href: '/huong-dan-su-dung-u-point/', external: false },
 ] as const;
 ---
@@ -68,7 +68,7 @@ const navItems = [
           data-auth-account-link
           class="group flex items-center h-10 max-w-[13rem] border border-[#00e3fd]/45 bg-[#0d1a3d]/90 text-white hover:border-[#00e3fd] hover:bg-[#132654] transition-colors"
         >
-        <span data-auth-avatar aria-hidden="true" class="w-10 h-10 shrink-0 border-r border-[#00e3fd]/30 bg-[#0d1a3d] bg-cover bg-center"></span>
+        <span data-auth-avatar aria-hidden="true" class="w-10 self-stretch shrink-0 border-r border-[#00e3fd]/30 bg-[#0d1a3d] bg-cover bg-center"></span>
           <span class="truncate px-2.5 text-[13px] font-semibold uppercase tracking-[0.02em] text-[#ffd16c]" data-auth-name></span>
         </a>
         <button type="button" data-auth-logout class="w-10 h-10 border border-white/15 bg-[#0d1a3d]/60 text-white/55 hover:border-[#ffd16c]/70 hover:bg-[#ffd16c]/10 hover:text-[#ffd16c] flex items-center justify-center transition-colors" aria-label="Đăng xuất" title="Đăng xuất">
@@ -139,7 +139,7 @@ const navItems = [
   // Đặt trạng thái header ngay lập tức từ gợi ý đã lưu, tránh nháy "Đăng nhập" khi chuyển trang.
   (() => {
     try {
-      const hint = JSON.parse(localStorage.getItem('allstar_mock_session_v4'));
+      const hint = JSON.parse(localStorage.getItem('allstar_mock_session_v6'));
       if (!hint || !hint.name) return;
       document.querySelectorAll('[data-auth="guest"]').forEach((el) => el.classList.add('hidden'));
       document.querySelectorAll('[data-auth="user"]').forEach((el) => { el.classList.remove('hidden'); el.classList.add('flex'); });

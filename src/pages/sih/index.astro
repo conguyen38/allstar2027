@@ -42,7 +42,7 @@ const description = "Chương trình loyalty Allstar Club dành cho Lực lượ
             --panel-gold: rgba(255, 209, 108, 0.82);
             border: 1px solid var(--panel-cyan) !important;
             border-radius: 0 !important;
-            clip-path: polygon(0 22px, 22px 0, calc(100% - 42px) 0, 100% 42px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 38px 100%, 0 calc(100% - 38px));
+            clip-path: none;
             background:
                 linear-gradient(105deg, rgba(31, 62, 132, 0.96), rgba(13, 25, 72, 0.94)),
                 linear-gradient(90deg, rgba(0, 227, 253, 0.06), transparent 38%);
@@ -59,10 +59,6 @@ const description = "Chương trình loyalty Allstar Club dành cho Lực lượ
             z-index: 0;
             opacity: 0.75;
             background:
-                linear-gradient(to bottom right, transparent 47%, var(--panel-cyan) 48% 52%, transparent 53%) top left / 22px 22px no-repeat,
-                linear-gradient(to bottom left, transparent 48%, var(--panel-cyan) 49% 51%, transparent 52%) top right / 42px 42px no-repeat,
-                linear-gradient(to bottom right, transparent 47%, var(--panel-gold) 48% 52%, transparent 53%) bottom right / 20px 20px no-repeat,
-                linear-gradient(to bottom left, transparent 48%, var(--panel-cyan) 49% 51%, transparent 52%) bottom left / 38px 38px no-repeat,
                 linear-gradient(90deg, var(--panel-cyan), transparent 18%) top left / 100% 1px no-repeat,
                 linear-gradient(270deg, var(--panel-gold), transparent 16%) bottom right / 100% 1px no-repeat,
                 repeating-linear-gradient(90deg, transparent 0 23px, rgba(120, 216, 255, 0.045) 24px 25px);
@@ -88,7 +84,7 @@ const description = "Chương trình loyalty Allstar Club dành cho Lực lượ
         .score-card__label {
             border: 1px solid rgba(0, 227, 253, 0.26);
             border-radius: 0 !important;
-            clip-path: polygon(9px 0, 100% 0, calc(100% - 9px) 100%, 0 100%);
+            clip-path: none;
             background: linear-gradient(90deg, rgba(0, 227, 253, 0.12), rgba(26, 37, 86, 0.86)) !important;
             box-shadow: inset 0 1px 0 rgba(214, 249, 255, 0.1);
             letter-spacing: 0.05em;
@@ -108,11 +104,26 @@ const description = "Chương trình loyalty Allstar Club dành cho Lực lượ
         /* ── Page background & Neon trails ── */
         .page-bg {
             background:
-                radial-gradient(ellipse 80% 50% at 20% 20%, rgba(0, 80, 180, 0.18) 0%, transparent 60%),
-                radial-gradient(ellipse 60% 40% at 80% 10%, rgba(0, 227, 253, 0.1) 0%, transparent 50%),
-                radial-gradient(ellipse 50% 60% at 50% 80%, rgba(80, 0, 180, 0.12) 0%, transparent 60%),
-                #06091a;
+                radial-gradient(ellipse 72% 42% at 50% 10%, rgba(34, 69, 157, 0.38), transparent 72%),
+                radial-gradient(ellipse 54% 34% at 100% 70%, rgba(0, 227, 253, 0.09), transparent 74%),
+                linear-gradient(rgba(0, 227, 253, 0.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 227, 253, 0.045) 1px, transparent 1px),
+                linear-gradient(135deg, #101b46 0%, #0b1535 48%, #10113b 100%);
+            background-size: auto, auto, 72px 72px, 72px 72px, auto;
+            background-attachment: fixed;
             min-height: 100vh;
+        }
+
+        /* Cùng bề mặt với nền nội dung: hero ghim tan vào nền mà không có mép cứng. */
+        .hero-page-fade {
+            background:
+                radial-gradient(ellipse 72% 42% at 50% 10%, rgba(34, 69, 157, 0.38), transparent 72%),
+                radial-gradient(ellipse 54% 34% at 100% 70%, rgba(0, 227, 253, 0.09), transparent 74%),
+                linear-gradient(rgba(0, 227, 253, 0.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 227, 253, 0.045) 1px, transparent 1px),
+                linear-gradient(135deg, #101b46 0%, #0b1535 48%, #10113b 100%);
+            background-size: auto, auto, 72px 72px, 72px 72px, auto;
+            background-attachment: fixed;
         }
 
         .trails-svg {
@@ -123,7 +134,7 @@ const description = "Chương trình loyalty Allstar Club dành cho Lực lượ
             height: 100%;
             pointer-events: none;
             z-index: 0;
-            opacity: 0.45;
+            opacity: 0.72;
         }
 
         @keyframes trail-move {
@@ -207,7 +218,7 @@ const description = "Chương trình loyalty Allstar Club dành cho Lực lượ
             </div>
             <!-- Lớp phủ màu nền trang (nằm dưới logo): chỉ nền mờ dần theo cuộn -->
             <div class="dot-screen z-[3]" aria-hidden="true"></div>
-            <div class="absolute inset-0 z-[5] pointer-events-none bg-[#0a0e14] opacity-0" data-hero-fade></div>
+            <div class="absolute inset-0 z-[5] pointer-events-none hero-page-fade opacity-0" data-hero-fade></div>
         </section>
         </div>
         <!-- Cách thức ghi điểm -->
@@ -215,7 +226,7 @@ const description = "Chương trình loyalty Allstar Club dành cho Lực lượ
             <div class="mb-10 md:mb-16">
                 <h2 class="font-arena uppercase tracking-wide leading-[0.95] text-4xl md:text-6xl text-on-background mb-3" style="">Cơ chế tính
                     điểm & Phần thưởng</h2>
-                <p class="text-white font-label font-semibold  text-sm" style="">Tùytính theo
+                <p class="text-white font-label font-normal text-sm" style="">Tùytính theo
                     vai trò, SIH sẽ nhận điểm thưởng và điểm bonus khi đạt các mốc tương ứng - 1 điểm = 1,000,000
                     U-Point</p>
             </div>
@@ -308,31 +319,31 @@ const description = "Chương trình loyalty Allstar Club dành cho Lực lượ
                             <tbody class="divide-y divide-white/5">
                                 <tr>
                                     <td class="py-3 px-3 text-center font-black text-primary text-lg">A1</td>
-                                    <td class="py-3 px-3 text-center font-bold text-white/80">Vượt trội</td>
+                                    <td class="py-3 px-3 text-center font-normal text-white/85">Vượt trội</td>
                                     <td class="py-3 px-3 text-center font-bold text-white">Quy đổi <span
                                             class="text-primary text-lg">110%</span> tổng điểm</td>
                                 </tr>
                                 <tr>
                                     <td class="py-3 px-3 text-center font-black text-primary text-lg">A2</td>
-                                    <td class="py-3 px-3 text-center font-bold text-white/80">Xuất sắc</td>
+                                    <td class="py-3 px-3 text-center font-normal text-white/85">Xuất sắc</td>
                                     <td class="py-3 px-3 text-center font-bold text-white">Quy đổi <span
                                             class="text-primary text-lg">105%</span> tổng điểm</td>
                                 </tr>
                                 <tr>
                                     <td class="py-3 px-3 text-center font-black text-primary text-lg">A3</td>
-                                    <td class="py-3 px-3 text-center font-bold text-white/80">Đạt yêu cầu</td>
+                                    <td class="py-3 px-3 text-center font-normal text-white/85">Đạt yêu cầu</td>
                                     <td class="py-3 px-3 text-center font-bold text-white">Quy đổi <span
                                             class="text-primary text-lg">100%</span> tổng điểm</td>
                                 </tr>
                                 <tr>
                                     <td class="py-3 px-3 text-center font-black text-primary text-lg">B</td>
-                                    <td class="py-3 px-3 text-center font-bold text-white/80">Cần cải thiện</td>
+                                    <td class="py-3 px-3 text-center font-normal text-white/85">Cần cải thiện</td>
                                     <td class="py-3 px-3 text-center font-bold text-white">Quy đổi <span
                                             class="text-primary text-lg">80%</span> tổng điểm</td>
                                 </tr>
                                 <tr>
                                     <td class="py-3 px-3 text-center font-black text-primary text-lg">C</td>
-                                    <td class="py-3 px-3 text-center font-bold text-white/80">Không đạt yêu cầu</td>
+                                    <td class="py-3 px-3 text-center font-normal text-white/85">Không đạt yêu cầu</td>
                                     <td class="py-3 px-3 text-center font-bold text-white italic text-sm">Không áp dụng quy đổi</td>
                                 </tr>
                             </tbody>
@@ -354,7 +365,7 @@ const description = "Chương trình loyalty Allstar Club dành cho Lực lượ
                 backdrop-filter: blur(12px);
                 border: 1px solid var(--accordion-frame);
                 border-radius: 0;
-                clip-path: polygon(0 13px, 13px 0, calc(100% - 22px) 0, 100% 22px, 100% calc(100% - 13px), calc(100% - 13px) 100%, 22px 100%, 0 calc(100% - 22px));
+                clip-path: none;
                 overflow: hidden;
                 position: relative;
                 isolation: isolate;
@@ -368,10 +379,6 @@ const description = "Chương trình loyalty Allstar Club dành cho Lực lượ
                 z-index: 0;
                 pointer-events: none;
                 background:
-                    linear-gradient(to bottom right, transparent 47%, var(--accordion-frame) 48% 52%, transparent 53%) top left / 13px 13px no-repeat,
-                    linear-gradient(to bottom left, transparent 48%, var(--accordion-frame) 49% 51%, transparent 52%) top right / 22px 22px no-repeat,
-                    linear-gradient(to bottom right, transparent 47%, rgba(255, 209, 108, 0.65) 48% 52%, transparent 53%) bottom right / 13px 13px no-repeat,
-                    linear-gradient(to bottom left, transparent 48%, var(--accordion-frame) 49% 51%, transparent 52%) bottom left / 22px 22px no-repeat,
                     linear-gradient(90deg, var(--accordion-frame), transparent 18%) top left / 100% 1px no-repeat;
             }
 
@@ -396,7 +403,7 @@ const description = "Chương trình loyalty Allstar Club dành cho Lực lượ
                 gap: 1rem;
                 padding: 1.25rem 1.5rem;
                 text-align: left;
-                font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
+                font-family: "Roboto", sans-serif;
                 font-weight: 700;
                 font-size: 0.95rem;
                 color: rgba(255, 255, 255, 0.85);

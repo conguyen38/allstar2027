@@ -11,7 +11,7 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
   canonicalPath="/prm/refer-onetrust/"
   program="prm"
   active="refer"
-  bodyClass="bg-[#06090f] text-on-surface font-body antialiased"
+  bodyClass="page-bg allstar-grid-bg text-on-surface font-body antialiased"
 >
   <Fragment slot="head">
 <script is:inline type="application/ld+json">
@@ -27,11 +27,88 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
     }
     </script>
 <style>
-        .glass-card {
-            background: rgba(32, 38, 47, 0.4);
-            backdrop-filter: blur(12px);
-            border-top: 1px solid rgba(68, 72, 79, 0.3);
-            border-left: 1px solid rgba(68, 72, 79, 0.3);
+        /* ───────── Giao diện contest: panel vát góc, ô nhập góc vuông + vát nhỏ ───────── */
+        body.allstar-grid-bg {
+            --bevel: polygon(0 8px, 8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px));
+            --field-line: rgba(0, 227, 253, 0.34);
+            --field-bg: rgba(13, 25, 66, 0.72);
+        }
+
+        .form-input,
+        .custom-select-button,
+        .radio-option,
+        .drop-zone,
+        .btn-primary,
+        #fileList li {
+            /* Góc vuông, viền đủ 4 cạnh. Không cắt vát ở đây vì viền 1px bị mất ở 4 góc khi clip-path. */
+            border-radius: 0 !important;
+        }
+
+        .form-input,
+        .custom-select-button {
+            background: var(--field-bg) !important;
+            border: 1px solid var(--field-line) !important;
+        }
+
+        .form-input:hover,
+        .custom-select-button:hover {
+            border-color: rgba(0, 227, 253, 0.6) !important;
+        }
+
+        .form-input:focus,
+        .custom-select-button:focus-visible,
+        .custom-select-button[aria-expanded="true"] {
+            border-color: #00e3fd !important;
+            background: rgba(20, 38, 92, 0.85) !important;
+            box-shadow: none !important;
+        }
+
+        .form-label {
+            font-family: 'JetBrains Mono', ui-monospace, monospace;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        .step-num {
+            width: 1.75rem;
+            height: 1.75rem;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Anton', Impact, sans-serif;
+            font-size: 1rem;
+            color: #4a2800;
+            background: linear-gradient(135deg, #fff8c5, #ffd700, #b8860b);
+            clip-path: none;
+        }
+
+        .step-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(0, 227, 253, 0.5), transparent);
+        }
+
+        .refer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            font-family: 'JetBrains Mono', ui-monospace, monospace;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #ffd16c;
+            border: 1px solid rgba(255, 209, 108, 0.45);
+            background: rgba(255, 209, 108, 0.08);
+        }
+
+        .form-note {
+            border: 1px solid rgba(0, 227, 253, 0.3);
+            background: rgba(0, 227, 253, 0.06);
         }
 
         .form-input {
@@ -113,11 +190,10 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
             max-height: 240px;
             overflow-y: auto;
             padding: 6px;
-            border-radius: 14px;
-            border: 1px solid rgba(68, 72, 79, 0.78);
-            background: rgba(21, 26, 33, 0.98);
-            box-shadow: 0 18px 42px rgba(0, 0, 0, 0.38);
-            backdrop-filter: blur(14px);
+            border-radius: 0;
+            border: 1px solid rgba(0, 227, 253, 0.6);
+            background: #101b43;
+            box-shadow: 0 18px 42px rgba(0, 0, 0, 0.45);
         }
 
         .custom-select-menu.hidden {
@@ -126,7 +202,7 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
 
         .custom-select-option {
             width: 100%;
-            border-radius: 10px;
+            border-radius: 0;
             padding: 10px 12px;
             color: #f1f3fc;
             text-align: left;
@@ -148,8 +224,8 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
 
         /* Radio custom style */
         .radio-option {
-            border: 1px solid rgba(68, 72, 79, 0.6);
-            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--field-line);
+            background: var(--field-bg);
             transition: all 0.2s;
             cursor: pointer;
             position: relative;
@@ -178,27 +254,46 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
         }
 
         .radio-indicator {
-            width: 1rem;
-            height: 1rem;
+            position: relative;
+            width: 1.15rem;
+            height: 1.15rem;
             border-radius: 9999px;
-            border: 2px solid rgba(241, 243, 252, 0.9);
-            background: rgba(241, 243, 252, 0.95);
-            box-shadow: inset 0 0 0 4px rgba(21, 26, 33, 0.95);
+            border: 1.5px solid rgba(0, 227, 253, 0.65);
+            background: rgba(6, 12, 40, 0.9);
             transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+        }
+
+        .radio-indicator::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            margin: auto;
+            width: 0.45rem;
+            height: 0.45rem;
+            border-radius: 9999px;
+            background: #4a2800;
+            transform: scale(0);
+            transition: transform 0.15s ease;
+        }
+
+        .radio-option:hover .radio-indicator {
+            border-color: #00e3fd;
         }
 
         .radio-option input[type="radio"]:checked + .radio-indicator {
             border-color: #ffd16c;
             background: #ffd16c;
-            box-shadow:
-                inset 0 0 0 4px rgba(21, 26, 33, 0.95),
-                0 0 14px rgba(255, 209, 108, 0.35);
+            box-shadow: 0 0 10px rgba(255, 209, 108, 0.45);
+        }
+
+        .radio-option input[type="radio"]:checked + .radio-indicator::after {
+            transform: scale(1);
         }
 
         /* File upload drop zone */
         .drop-zone {
-            border: 2px dashed rgba(68, 72, 79, 0.6);
-            background: rgba(255, 255, 255, 0.02);
+            border: 2px dashed rgba(0, 227, 253, 0.4);
+            background: rgba(13, 25, 66, 0.45);
             transition: all 0.25s;
         }
 
@@ -210,16 +305,17 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
 
         /* Submit button */
         .btn-primary {
-            background: linear-gradient(135deg, #fdc003, #ecb200);
-            color: #3d2b00;
-            font-weight: 700;
-            transition: all 0.25s;
-            box-shadow: 0 0 20px rgba(253, 192, 3, 0.2);
+            background: linear-gradient(135deg, #ff6d00, #ffd16c);
+            color: #4a2800;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: filter 0.25s, transform 0.25s;
         }
 
         .btn-primary:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 4px 24px rgba(253, 192, 3, 0.35);
+            filter: brightness(1.1) drop-shadow(0 6px 14px rgba(255, 160, 0, 0.4));
         }
 
         .btn-primary:disabled {
@@ -245,15 +341,9 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
 <main class="pt-20 min-h-screen">
 
         <!-- Page Header -->
-        <section class="relative py-16 px-4 overflow-hidden"
-            style="background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255,209,108,0.07) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 80% 100%, rgba(0,227,253,0.05) 0%, transparent 60%), #06090f;">
-            <div class="absolute inset-0 pointer-events-none">
-                <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[100px]"></div>
-                <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-secondary/5 rounded-full blur-[100px]"></div>
-            </div>
+        <section class="relative pt-14 pb-6 md:pt-16 px-4">
             <div class="relative max-w-3xl mx-auto text-center">
-                <div
-                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-bold uppercase  mb-6">
+                <div class="refer-badge mb-6">
                     <span class="material-symbols-outlined text-[14px]">assignment</span>
                     Hỗ trợ PRM
                 </div>
@@ -261,7 +351,7 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
                     class="title-shine font-arena uppercase tracking-wide text-4xl md:text-6xl text-on-background leading-[1.18] mb-4">
                     Refer <span class="text-primary">Căn cho OneTrust</span>
                 </h1>
-                <p class="text-on-surface-variant text-base md:text-lg max-w-xl mx-auto">
+                <p class="text-white/70 text-base md:text-lg max-w-xl mx-auto">
                     Điền thông tin khách hàng và tải lên hồ sơ căn khách muốn bán. Dữ liệu sẽ được lưu tự động vào hệ
                     thống.
                 </p>
@@ -269,21 +359,18 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
         </section>
 
         <!-- Form Section -->
-        <section class="py-12 px-4 max-w-2xl mx-auto">
-            <div class="glass-card rounded-2xl p-6 md:p-10 shadow-xl border border-white/5">
+        <section class="pt-6 pb-24 px-4 max-w-2xl mx-auto">
+            <div class="glass-card p-6 md:p-10">
 
                 <form id="referForm" novalidate>
 
                     <!-- ── Section 1: Thông tin PRM ── -->
                     <div class="mb-8">
                         <div class="flex items-center gap-2 mb-5">
-                            <div
-                                class="w-6 h-6 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center shrink-0">
-                                <span class="text-primary text-xs font-black">1</span>
-                            </div>
-                            <h3 class="text-sm font-bold text-on-surface tracking-wide uppercase">Thông tin PRM/ Người
+                            <div class="step-num">1</div>
+                            <h3 class="font-arena uppercase tracking-wide text-xl text-white leading-none">Thông tin PRM/ Người
                                 giới thiệu</h3>
-                            <div class="flex-1 h-px bg-outline-variant/40"></div>
+                            <div class="step-line"></div>
                         </div>
 
                         <!-- Họ và tên -->
@@ -353,13 +440,10 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
                     <!-- ── Section 2: Thông tin căn refer ── -->
                     <div class="mb-8">
                         <div class="flex items-center gap-2 mb-5">
-                            <div
-                                class="w-6 h-6 rounded-full bg-secondary/20 border border-secondary/40 flex items-center justify-center shrink-0">
-                                <span class="text-white text-xs font-black">2</span>
-                            </div>
-                            <h3 class="text-sm font-bold text-on-surface tracking-wide uppercase">Thông tin căn refer
+                            <div class="step-num">2</div>
+                            <h3 class="font-arena uppercase tracking-wide text-xl text-white leading-none">Thông tin căn refer
                             </h3>
-                            <div class="flex-1 h-px bg-outline-variant/40"></div>
+                            <div class="step-line"></div>
                         </div>
 
                         <!-- Dự án -->
@@ -491,12 +575,12 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
                 <!-- Success State -->
                 <div id="successMsg" class="hidden text-center py-10 px-2">
                     <div
-                        class="w-16 h-16 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center mx-auto mb-5">
+                        class="w-16 h-16 flex items-center justify-center mx-auto mb-5 border border-primary/60 bg-primary/10">
                         <span class="material-symbols-outlined text-3xl text-primary">check_circle</span>
                     </div>
-                    <h3 class="text-xl font-bold text-on-surface mb-6">Gửi thành công!</h3>
+                    <h3 class="font-arena uppercase tracking-wide text-3xl text-white mb-6 leading-none">Gửi thành công!</h3>
                     <div
-                        class="flex items-start gap-3 px-5 py-4 rounded-xl border border-secondary/30 bg-secondary/5 text-left w-full max-w-sm mx-auto mb-8">
+                        class="form-note flex items-start gap-3 px-5 py-4 text-left w-full max-w-sm mx-auto mb-8">
                         <span class="material-symbols-outlined text-white text-[20px] shrink-0 mt-0.5">chat</span>
                         <p class="text-sm text-on-surface leading-relaxed">
                             Hãy <span class="text-white font-semibold">follow Zalo OA</span> – chúng tôi sẽ liên hệ
@@ -504,13 +588,13 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
                         </p>
                     </div>
                     <button onclick="resetForm()"
-                        class="w-full max-w-sm px-6 py-3 rounded-xl border border-primary/30 text-primary text-sm font-semibold hover:bg-primary/10 transition-colors">
+                        class="w-full max-w-sm px-6 py-3 border border-primary/60 text-primary text-sm font-bold uppercase tracking-wider hover:bg-primary/10 transition-colors">
                         Gửi thêm hồ sơ
                     </button>
                 </div>
 
                 <!-- Error State -->
-                <div id="errorMsg" class="hidden mt-4 p-4 rounded-xl border border-tertiary/30 bg-tertiary/5">
+                <div id="errorMsg" class="hidden mt-4 p-4 border border-tertiary/50 bg-tertiary/10">
                     <div class="flex items-center gap-2 text-tertiary text-sm font-semibold mb-1">
                         <span class="material-symbols-outlined text-[16px]">error</span>
                         Gửi thất bại

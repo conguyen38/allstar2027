@@ -45,7 +45,7 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
       gap: 80px;
       padding: 48px 20px;
       overflow-x: hidden;
-      font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
+      font-family: 'Roboto', sans-serif;
     }
 
     /* ── Background ── */
@@ -245,7 +245,7 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
       /* Khung vát góc như panel điểm ở trang PRM, nền kính xanh để vẫn nhìn xuyên video */
       border: 1px solid var(--panel-cyan);
       border-radius: 0;
-      clip-path: polygon(0 14px, 14px 0, calc(100% - 26px) 0, 100% 26px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 26px 100%, 0 calc(100% - 26px));
+      clip-path: none;
       background: linear-gradient(105deg, rgba(31, 62, 132, 0.62), rgba(13, 25, 72, 0.5));
       -webkit-backdrop-filter: blur(24px) saturate(1.4);
       backdrop-filter: blur(24px) saturate(1.4);
@@ -260,10 +260,6 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
       z-index: 0;
       opacity: 0.85;
       background:
-        linear-gradient(to bottom right, transparent 47%, var(--panel-cyan) 48% 52%, transparent 53%) top left / 14px 14px no-repeat,
-        linear-gradient(to bottom left, transparent 48%, var(--panel-cyan) 49% 51%, transparent 52%) top right / 26px 26px no-repeat,
-        linear-gradient(to bottom right, transparent 47%, var(--panel-gold) 48% 52%, transparent 53%) bottom right / 14px 14px no-repeat,
-        linear-gradient(to bottom left, transparent 48%, var(--panel-cyan) 49% 51%, transparent 52%) bottom left / 26px 26px no-repeat,
         linear-gradient(90deg, var(--panel-cyan), transparent 18%) top left / 100% 1px no-repeat,
         linear-gradient(270deg, var(--panel-gold), transparent 16%) bottom right / 100% 1px no-repeat;
       transition: opacity 0.25s;

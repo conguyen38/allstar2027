@@ -1,92 +1,538 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import ProgramLayout from '../layouts/ProgramLayout.astro';
 
 const title = 'Phản hồi - Allstar Club';
-const description = 'Gửi phản hồi cho chương trình Allstar Club.';
-const tallyEmbedUrl = 'https://tally.so/embed/44qO0d?hideTitle=0&transparentBackground=0&dynamicHeight=1';
+const description = 'BTC Allstar ghi nhận phản hồi của Anh/Chị về kỳ chi trả vừa qua để kịp thời rà soát các trường hợp cần hỗ trợ và cải thiện trải nghiệm.';
+
+// Web App của Google Apps Script: mỗi phản hồi được ghi thành một dòng vào Google Sheet.
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT6vJ7brMTQB165E3PQuhQykxoxJwGC0VCzxoRCugknNOHLjtWsF4ZQ0CGz0Z8cMmuuQ/exec';
 ---
 
-<BaseLayout
+<ProgramLayout
   title={title}
   description={description}
   canonicalPath="/phan-hoi/"
-  bodyClass="bg-white text-on-surface antialiased"
+  program="prm"
+  active="feedback"
+  bodyClass="page-bg allstar-grid-bg text-on-surface font-body antialiased"
 >
   <Fragment slot="head">
     <style is:global>
-      body {
-        min-height: 100vh;
-        font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
-        background: #ffffff;
+      .wal-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.4rem 1rem;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.6875rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #ffd16c;
+        border: 1px solid rgba(255, 209, 108, 0.45);
+        background: rgba(255, 209, 108, 0.08);
       }
 
-      .feedback-shell {
-        min-height: 100vh;
-        background: #ffffff;
+      .wal-q-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.85rem;
+        height: 1.85rem;
+        flex-shrink: 0;
+        font-family: 'Anton', Impact, sans-serif;
+        font-size: 1rem;
+        color: #4a2800;
+        background: linear-gradient(135deg, #fff8c5, #ffd700, #b8860b);
       }
 
-      .feedback-frame-wrap {
-        min-height: 100vh;
-        padding: 8rem 1.5rem 4rem;
-        background: #ffffff;
+      .wal-q-title {
+        color: #fff;
+        font-weight: 500;
+        font-size: 1.05rem;
+        line-height: 1.5;
+        padding-top: 0.2rem;
       }
 
-      .feedback-frame-inner {
+      .wal-hint {
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 0.8rem;
+        line-height: 1.6;
+      }
+
+      .wal-option {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 0.9rem 1.05rem;
+        border: 1px solid rgba(0, 227, 253, 0.34);
+        background: rgba(13, 25, 66, 0.72);
+        cursor: pointer;
+        transition: border-color 0.2s ease, background 0.2s ease;
+      }
+
+      .wal-option:hover {
+        border-color: rgba(0, 227, 253, 0.7);
+        background: rgba(20, 38, 92, 0.85);
+      }
+
+      /* Ô chọn tự vẽ (không dùng kiểu mặc định của trình duyệt): checkbox vuông, radio tròn */
+      .wal-option > input[type='radio'],
+      .wal-option > input[type='checkbox'] {
+        appearance: none;
+        -webkit-appearance: none;
+        margin: 0.2rem 0 0;
+        width: 1.15rem;
+        height: 1.15rem;
+        flex-shrink: 0;
+        display: grid;
+        place-content: center;
+        border: 1.5px solid rgba(0, 227, 253, 0.65);
+        background: rgba(6, 12, 40, 0.9);
+        cursor: pointer;
+        transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+      }
+
+      .wal-option > input[type='radio'] { border-radius: 9999px; }
+      .wal-option > input[type='checkbox'] { border-radius: 0; }
+
+      .wal-option:hover > input:not(:disabled) { border-color: #00e3fd; }
+
+      .wal-option > input:checked {
+        border-color: #ffd16c;
+        background: #ffd16c;
+        box-shadow: 0 0 10px rgba(255, 209, 108, 0.45);
+      }
+
+      /* dấu tích (checkbox) */
+      .wal-option > input[type='checkbox']::after {
+        content: '';
+        width: 0.6rem;
+        height: 0.32rem;
+        border-left: 2px solid #4a2800;
+        border-bottom: 2px solid #4a2800;
+        transform: translateY(-1px) rotate(-45deg) scale(0);
+        transition: transform 0.15s ease;
+      }
+
+      .wal-option > input[type='checkbox']:checked::after {
+        transform: translateY(-1px) rotate(-45deg) scale(1);
+      }
+
+      /* chấm tròn (radio) */
+      .wal-option > input[type='radio']::after {
+        content: '';
+        width: 0.45rem;
+        height: 0.45rem;
+        border-radius: 9999px;
+        background: #4a2800;
+        transform: scale(0);
+        transition: transform 0.15s ease;
+      }
+
+      .wal-option > input[type='radio']:checked::after {
+        transform: scale(1);
+      }
+
+      .wal-option:has(input:checked) {
+        border-color: #ffd16c;
+        background: rgba(255, 209, 108, 0.1);
+      }
+
+      .wal-option:has(input:focus-visible) {
+        outline: 2px solid #00e3fd;
+        outline-offset: 2px;
+      }
+
+      .wal-option:has(input:disabled) {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+
+      .wal-option .opt-label {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .wal-field {
         width: 100%;
-        max-width: 64rem;
-        margin: 0 auto;
+        border: 1px solid rgba(0, 227, 253, 0.34);
+        background: rgba(13, 25, 66, 0.72);
+        color: #f1f3fc;
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+        transition: border-color 0.2s ease, background 0.2s ease;
       }
 
-      .feedback-frame {
+      .wal-field::placeholder {
+        color: rgba(200, 203, 210, 0.7);
+      }
+
+      .wal-field:hover {
+        border-color: rgba(0, 227, 253, 0.6);
+      }
+
+      .wal-field:focus {
+        outline: none;
+        border-color: #00e3fd;
+        background: rgba(20, 38, 92, 0.85);
+      }
+
+      .wal-field:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
+
+      .wal-error {
+        display: none;
+        color: #fda4af;
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
+      }
+
+      .wal-error.show {
         display: block;
-        width: 100%;
-        min-height: calc(100vh - 12rem);
-        border: 0;
-        background: #ffffff;
       }
 
-      @media (max-width: 768px) {
-        .feedback-frame-wrap {
-          padding: 6.5rem 0 2rem;
-        }
+      .wal-submit {
+        background: linear-gradient(135deg, #ff6d00, #ffd16c);
+        color: #4a2800;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition: filter 0.25s, transform 0.25s;
+      }
 
-        .feedback-frame-inner {
-          max-width: none;
-        }
+      .wal-submit:hover:not(:disabled) {
+        transform: translateY(-2px);
+        filter: brightness(1.1) drop-shadow(0 6px 14px rgba(255, 160, 0, 0.4));
+      }
+
+      .wal-submit:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      #wal-success {
+        display: none;
+      }
+
+      #wal-success.show {
+        display: flex;
+      }
+
+      #wal-form.hide {
+        display: none;
       }
     </style>
-    <script src="https://tally.so/widgets/embed.js" defer></script>
   </Fragment>
 
-  <div class="feedback-shell">
-    <nav class="fixed top-0 w-full z-50 bg-[#0a0e14]/80 backdrop-blur-xl border-b border-white/10 shadow-[0_0_20px_rgba(0,227,253,0.05)]">
-      <div class="flex justify-between items-center px-4 md:px-8 h-20 max-w-full mx-auto">
-        <a href="/" class="flex items-center">
-          <img alt="Star Logo" class="h-14 w-auto object-contain" src="/prm/assets/images/Logo%20Allstar.webp" />
-        </a>
-        <div class="flex items-center gap-6 font-nav font-bold tracking-tight">
-          <a class="text-white/70 hover:text-white transition-colors" href="/prm/">PRM</a>
-          <a class="text-white/70 hover:text-white transition-colors" href="/sih/">SIH</a>
-          <span class="text-primary">Phản hồi</span>
+  <main class="pt-20 min-h-screen">
+    <section class="relative pt-14 pb-6 md:pt-16 px-4">
+      <div class="relative max-w-3xl mx-auto text-center">
+        <div class="wal-badge mb-6">
+          <span class="material-symbols-outlined text-[14px]">campaign</span>
+          We Are Listening
         </div>
+        <h1 class="font-arena uppercase tracking-wide text-4xl md:text-6xl text-on-background mb-4">
+          Chia sẻ trải nghiệm kỳ chi trả <span class="text-primary">vừa qua</span>
+        </h1>
+        <p class="text-white/70 text-base md:text-lg max-w-2xl mx-auto">
+          BTC Allstar mong muốn ghi nhận phản hồi của Anh/Chị về kỳ chi trả vừa qua để kịp thời rà soát
+          các trường hợp cần hỗ trợ và cải thiện trải nghiệm trong những kỳ tiếp theo.
+        </p>
       </div>
-    </nav>
+    </section>
 
-    <main class="feedback-frame-wrap">
-      <div class="feedback-frame-inner">
-        <iframe
-          title="Phản hồi Allstar Club"
-          src={tallyEmbedUrl}
-          data-tally-src={tallyEmbedUrl}
-          width="100%"
-          height="900"
-          frameborder="0"
-          marginheight="0"
-          marginwidth="0"
-          loading="eager"
-          class="feedback-frame"
-        ></iframe>
+    <section class="pt-6 pb-24 px-4 max-w-3xl mx-auto">
+      <!-- Form -->
+      <form id="wal-form" class="glass-card p-6 md:p-10 space-y-10" novalidate>
+        <!-- honeypot -->
+        <input type="text" name="company" hidden tabindex="-1" autocomplete="off" />
+
+        <!-- Q1 -->
+        <div>
+          <div class="flex items-start gap-3 mb-4">
+            <span class="wal-q-badge">1</span>
+            <p class="wal-q-title">Khu vực hoạt động:</p>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-3 md:pl-[2.6rem]">
+            <label class="wal-option">
+              <input type="radio" name="region" value="Miền Bắc" />
+              <span class="opt-label">Miền Bắc</span>
+            </label>
+            <label class="wal-option">
+              <input type="radio" name="region" value="Miền Nam" />
+              <span class="opt-label">Miền Nam</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div>
+          <div class="flex items-start gap-3 mb-4">
+            <span class="wal-q-badge">2</span>
+            <p class="wal-q-title">Trong kỳ vừa rồi, tình trạng của Anh/Chị gần nhất với trường hợp nào?</p>
+          </div>
+          <div class="space-y-3 md:pl-[2.6rem]">
+            <label class="wal-option">
+              <input type="radio" name="status" value="Đã nhận thưởng và kết quả đúng như kỳ vọng" />
+              <span class="opt-label">Đã nhận thưởng và kết quả đúng như kỳ vọng</span>
+            </label>
+            <label class="wal-option">
+              <input type="radio" name="status" value="Đã nhận thưởng nhưng có nội dung tôi chưa rõ, cần kiểm tra" />
+              <span class="opt-label">Đã nhận thưởng nhưng có nội dung tôi chưa rõ, cần kiểm tra</span>
+            </label>
+            <label class="wal-option">
+              <input type="radio" name="status" value="Kỳ vọng được nhận nhưng hiện chưa nhận được" />
+              <span class="opt-label">Kỳ vọng được nhận nhưng hiện chưa nhận được</span>
+            </label>
+            <label class="wal-option">
+              <input type="radio" name="status" value="Không phát sinh quyền lợi trong kỳ này" />
+              <span class="opt-label">Không phát sinh quyền lợi trong kỳ này</span>
+            </label>
+            <label class="wal-option">
+              <input type="radio" name="status" value="Chưa xác định được, cần BTC hỗ trợ kiểm tra" />
+              <span class="opt-label">Chưa xác định được, cần BTC hỗ trợ kiểm tra</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div>
+          <div class="flex items-start gap-3 mb-3">
+            <span class="wal-q-badge">3</span>
+            <p class="wal-q-title">Anh/Chị đang gặp vấn đề hoặc cần BTC kiểm tra nội dung gì?</p>
+          </div>
+          <div class="md:pl-[2.6rem] space-y-2">
+            <p class="wal-hint">
+              Vui lòng mô tả ngắn gọn vấn đề Anh/Chị gặp phải. Nếu cần BTC tra soát trường hợp cụ thể, vui lòng
+              cung cấp: <span class="text-white/85">Họ và tên – Mã nhân sự – Team/Chi nhánh/Vùng – Mã căn/Mã order (nếu có)</span>.
+            </p>
+            <textarea
+              name="issue_detail"
+              rows="4"
+              class="wal-field"
+              placeholder="Mô tả vấn đề của Anh/Chị tại đây..."
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div>
+          <div class="flex items-start gap-3 mb-2">
+            <span class="wal-q-badge">4</span>
+            <p class="wal-q-title">Trong kỳ tiếp theo, Anh/Chị muốn Allstar ưu tiên cải thiện nội dung nào?</p>
+          </div>
+          <p class="wal-hint md:pl-[2.6rem] mb-4">Có thể chọn tối đa 2 phương án.</p>
+          <div class="space-y-3 md:pl-[2.6rem]" id="wal-improve-group">
+            <label class="wal-option">
+              <input type="checkbox" name="improve" value="Thông tin về điều kiện và kỳ chi trả rõ ràng hơn" />
+              <span class="opt-label">Thông tin về điều kiện và kỳ chi trả rõ ràng hơn</span>
+            </label>
+            <label class="wal-option">
+              <input type="checkbox" name="improve" value="Dễ dàng tra cứu và đối chiếu kết quả hơn" />
+              <span class="opt-label">Dễ dàng tra cứu và đối chiếu kết quả hơn</span>
+            </label>
+            <label class="wal-option">
+              <input type="checkbox" name="improve" value="Làm rõ trạng thái điểm trước khi chi trả" />
+              <span class="opt-label">Làm rõ trạng thái điểm trước khi chi trả</span>
+            </label>
+            <label class="wal-option">
+              <input type="checkbox" name="improve" value="Quy trình tiếp nhận và xử lý tra soát nhanh hơn" />
+              <span class="opt-label">Quy trình tiếp nhận và xử lý tra soát nhanh hơn</span>
+            </label>
+            <label class="wal-option">
+              <input type="checkbox" name="improve" value="Hướng dẫn nhận/sử dụng U-Point rõ ràng hơn" />
+              <span class="opt-label">Hướng dẫn nhận/sử dụng U-Point rõ ràng hơn</span>
+            </label>
+            <label class="wal-option" id="wal-other-option">
+              <input type="checkbox" name="improve" value="Khác" id="wal-other-checkbox" />
+              <div class="flex-1 min-w-0">
+                <span class="opt-label block mb-2">Khác:</span>
+                <input
+                  type="text"
+                  id="wal-other-text"
+                  name="improve_other"
+                  class="wal-field w-full py-2"
+                  placeholder="Nhập nội dung khác..."
+                  disabled
+                />
+              </div>
+            </label>
+          </div>
+          <p class="wal-error md:pl-[2.6rem]" data-error-for="improve">Vui lòng chọn tối đa 2 phương án.</p>
+        </div>
+
+        <!-- Q5 -->
+        <div>
+          <div class="flex items-start gap-3 mb-4">
+            <span class="wal-q-badge">5</span>
+            <p class="wal-q-title">
+              Số điện thoại đăng ký/tham gia chương trình: <span class="text-primary">*</span>
+            </p>
+          </div>
+          <div class="md:pl-[2.6rem] space-y-2">
+            <input
+              type="tel"
+              name="phone"
+              class="wal-field max-w-sm"
+              placeholder="VD: 0912345678"
+              required
+              inputmode="numeric"
+            />
+            <p class="wal-hint">
+              Thông tin được sử dụng để BTC liên hệ khi cần xác minh hoặc phản hồi về nội dung Anh/Chị đã gửi
+              và không sử dụng cho mục đích khác.
+            </p>
+            <p class="wal-error" data-error-for="phone">Vui lòng nhập số điện thoại hợp lệ (10 số).</p>
+          </div>
+        </div>
+
+        <p id="wal-submit-error" class="wal-error text-center"></p>
+
+        <button
+          type="submit"
+          id="wal-submit-btn"
+          class="wal-submit w-full flex items-center justify-center gap-2 py-4"
+        >
+          <span class="material-symbols-outlined">send</span>
+          <span id="wal-submit-label">Gửi phản hồi</span>
+        </button>
+      </form>
+
+      <!-- Success state -->
+      <div id="wal-success" class="glass-card p-10 md:p-14 flex-col items-center text-center gap-4">
+        <img alt="Allstar Logo" class="h-16 w-auto object-contain mb-2" src="/prm/assets/images/Logo%20Allstar.webp" />
+        <span class="material-symbols-outlined text-5xl text-primary">check_circle</span>
+        <h2 class="font-arena uppercase tracking-wide text-3xl text-white">Cảm ơn Anh/Chị đã chia sẻ phản hồi</h2>
+        <p class="text-white/70 text-sm max-w-md">
+          BTC Allstar đã ghi nhận thông tin và sẽ rà soát các trường hợp cần hỗ trợ.
+        </p>
       </div>
-    </main>
-  </div>
-</BaseLayout>
+    </section>
+  </main>
+
+  <script define:vars={{ GOOGLE_SCRIPT_URL }}>
+    const form = document.getElementById('wal-form');
+    const success = document.getElementById('wal-success');
+    const submitBtn = document.getElementById('wal-submit-btn');
+    const submitLabel = document.getElementById('wal-submit-label');
+    const submitError = document.getElementById('wal-submit-error');
+    const improveGroup = document.getElementById('wal-improve-group');
+    const otherCheckbox = document.getElementById('wal-other-checkbox');
+    const otherText = document.getElementById('wal-other-text');
+
+    const MAX_IMPROVE = 2;
+
+    function improveCheckboxes() {
+      return Array.from(improveGroup.querySelectorAll('input[name="improve"]'));
+    }
+
+    function syncImproveState() {
+      const boxes = improveCheckboxes();
+      const checkedCount = boxes.filter((b) => b.checked).length;
+      boxes.forEach((b) => {
+        b.disabled = !b.checked && checkedCount >= MAX_IMPROVE;
+      });
+      otherText.disabled = !otherCheckbox.checked;
+      if (!otherCheckbox.checked) otherText.value = '';
+      clearError('improve');
+    }
+
+    improveCheckboxes().forEach((b) => b.addEventListener('change', syncImproveState));
+
+    function clearError(field) {
+      const el = form.querySelector(`[data-error-for="${field}"]`);
+      if (el) el.classList.remove('show');
+    }
+
+    function showError(field) {
+      const el = form.querySelector(`[data-error-for="${field}"]`);
+      if (el) el.classList.add('show');
+    }
+
+    form.querySelectorAll('input[type="radio"], textarea').forEach((el) => {
+      el.addEventListener('change', () => clearError(el.name));
+    });
+
+    function validate() {
+      let valid = true;
+
+      const improveChecked = improveCheckboxes().filter((b) => b.checked);
+      if (improveChecked.length > MAX_IMPROVE) {
+        showError('improve');
+        valid = false;
+      } else {
+        clearError('improve');
+      }
+
+      const phoneInput = form.querySelector('input[name="phone"]');
+      const phoneDigits = phoneInput.value.replace(/\D/g, '');
+      const phoneOk = /^(0|84)\d{9}$/.test(phoneDigits);
+      if (!phoneOk) {
+        showError('phone');
+        valid = false;
+      } else {
+        clearError('phone');
+      }
+
+      return valid;
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitError.classList.remove('show');
+      submitError.textContent = '';
+
+      // honeypot
+      if (form.company.value) return;
+
+      if (!validate()) {
+        form.querySelector('.wal-error.show')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      const improveValues = improveCheckboxes()
+        .filter((b) => b.checked)
+        .map((b) => (b.value === 'Khác' ? `Khác: ${otherText.value.trim() || '(không ghi rõ)'}` : b.value));
+
+      const payload = {
+        timestamp: new Date().toISOString(),
+        region: form.region.value,
+        status: form.status.value,
+        issue_detail: form.issue_detail.value.trim(),
+        improve: improveValues.join(' | '),
+        phone: form.phone.value.trim(),
+        page: window.location.href,
+      };
+
+      submitBtn.disabled = true;
+      submitLabel.textContent = 'Đang gửi...';
+
+      try {
+        if (GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes('REPLACE_WITH_YOUR_DEPLOYMENT_ID')) {
+          await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors', // Apps Script Web App không trả CORS header
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(payload),
+          });
+        } else {
+          console.warn('[phan-hoi] GOOGLE_SCRIPT_URL chưa được cấu hình, phản hồi chỉ log ra console.', payload);
+        }
+
+        form.classList.add('hide');
+        success.classList.add('show');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (err) {
+        submitError.textContent = 'Có lỗi khi gửi phản hồi. Vui lòng thử lại sau.';
+        submitError.classList.add('show');
+      } finally {
+        submitBtn.disabled = false;
+        submitLabel.textContent = 'Gửi phản hồi';
+      }
+    });
+  </script>
+</ProgramLayout>

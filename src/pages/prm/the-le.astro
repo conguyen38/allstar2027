@@ -100,7 +100,7 @@ const description = "Chi tiết thời gian ghi nhận và chi trả thưởng, 
       gap: 0.5rem;
       padding: 0.7rem 1rem;
       border-radius: 0.75rem;
-      font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
+      font-family: 'Roboto', sans-serif;
       font-weight: 600;
       font-size: 0.875rem;
       color: rgba(241, 243, 252, 0.5);
@@ -124,7 +124,7 @@ const description = "Chi tiết thời gian ghi nhận và chi trả thưởng, 
       background: rgba(255, 209, 108, 0.12);
       border-radius: 0.25rem;
       padding: 1px 5px;
-      font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
+      font-family: 'Roboto', sans-serif;
     }
 
     /* ── White card (matches Cách thức ghi điểm) ── */
@@ -137,7 +137,7 @@ const description = "Chi tiết thời gian ghi nhận và chi trả thưởng, 
 
     /* ── Section heading ── */
     .sec-heading {
-      font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
+      font-family: 'Roboto', sans-serif;
       font-weight: 800;
       font-size: 0.9rem;
       text-transform: uppercase;
@@ -171,7 +171,7 @@ const description = "Chi tiết thời gian ghi nhận và chi trả thưởng, 
     .data-table th {
       background: rgba(255, 255, 255, 0.05);
       color: rgba(255, 255, 255, 0.6);
-      font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
+      font-family: 'Roboto', sans-serif;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
@@ -193,9 +193,6 @@ const description = "Chi tiết thời gian ghi nhận và chi trả thưởng, 
       border-bottom: none;
     }
 
-    .data-table tbody tr:hover td {
-      background: rgba(255, 255, 255, 0.03);
-    }
 
     .row-danger td {
       background: rgba(255, 113, 104, 0.05) !important;
@@ -215,7 +212,7 @@ const description = "Chi tiết thời gian ghi nhận và chi trả thưởng, 
       border-radius: 0.375rem;
       font-size: 0.875rem;
       font-weight: 800;
-      font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
+      font-family: 'Roboto', sans-serif;
       text-transform: uppercase;
     }
 
@@ -257,7 +254,7 @@ const description = "Chi tiết thời gian ghi nhận và chi trả thưởng, 
       border-radius: 999px;
       font-size: 0.875rem;
       font-weight: 700;
-      font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
+      font-family: 'Roboto', sans-serif;
     }
 
     .chip-gold {
@@ -299,7 +296,7 @@ const description = "Chi tiết thời gian ghi nhận và chi trả thưởng, 
       border-radius: 50%;
       font-size: 0.875rem;
       font-weight: 800;
-      font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
+      font-family: 'Roboto', sans-serif;
       margin-top: 1px;
     }
 
@@ -413,18 +410,18 @@ const description = "Chi tiết thời gian ghi nhận và chi trả thưởng, 
             <div class="info-box flex items-start gap-3">
               <span class="material-symbols-outlined text-secondary mt-0.5 text-[22px]">calendar_today</span>
               <div>
-                <p class="text-white/50 text-sm font-nav uppercase tracking-wider mb-1">Thời gian ghi
+                <p class="text-white/50 text-sm font-body uppercase tracking-wider mb-1">Thời gian ghi
                   nhận</p>
-                <p class="text-white font-bold font-nav text-base">01/02/2026 – 31/12/2026</p>
+                <p class="text-white font-bold font-body text-base">01/02/2026 – 31/12/2026</p>
               </div>
             </div>
             <!-- Thời gian chi trả -->
             <div class="example-box flex items-start gap-3">
               <span class="material-symbols-outlined text-amber-500 mt-0.5 text-[22px]">payments</span>
               <div>
-                <p class="text-white/50 text-sm font-nav uppercase tracking-wider mb-1">Thời gian chi
+                <p class="text-white/50 text-sm font-body uppercase tracking-wider mb-1">Thời gian chi
                   trả</p>
-                <p class="text-primary font-bold font-nav text-base">4 đợt trong năm</p>
+                <p class="text-primary font-bold font-body text-base">4 đợt trong năm</p>
               </div>
             </div>
           </div>
@@ -444,25 +441,25 @@ const description = "Chi tiết thời gian ghi nhận và chi trả thưởng, 
                 <tr>
                   <td><span class="chip chip-gold">Đợt 1</span></td>
                   <td>Quý 1 · H1 (02–03/2026)</td>
-                  <td class="font-bold font-nav text-white">15/05/2026</td>
+                  <td class="font-normal font-body text-white">15/05/2026</td>
                   <!-- <td class="text-white/50">80% U-Point Q1</td> -->
                 </tr>
                 <tr>
                   <td><span class="chip chip-gold">Đợt 2</span></td>
                   <td>Quý 2 · H1 (04–06/2026)</td>
-                  <td class="font-bold font-nav text-white">15/08/2026</td>
+                  <td class="font-normal font-body text-white">15/08/2026</td>
                   <!-- <td class="text-white/50">80% U-Point Q2 + 20% tạm khóa H1 (nếu đủ ĐK)</td> -->
                 </tr>
                 <tr>
                   <td><span class="chip chip-gold">Đợt 3</span></td>
                   <td>Quý 3 · H2 (07–09/2026)</td>
-                  <td class="font-bold font-nav text-white">15/11/2026</td>
+                  <td class="font-normal font-body text-white">15/11/2026</td>
                   <!-- <td class="text-white/50">80% U-Point Q3 + giải tỏa H1 còn lại</td> -->
                 </tr>
                 <tr>
                   <td><span class="chip chip-gold">Đợt 4</span></td>
                   <td>Quý 4 · H2 (10–12/2026)</td>
-                  <td class="font-bold font-nav text-white">15/02/2027</td>
+                  <td class="font-normal font-body text-white">15/02/2027</td>
                   <!-- <td class="text-white/50">80% U-Point Q4 + 20% tạm khóa H2 (nếu đủ ĐK)</td> -->
                 </tr>
               </tbody>
@@ -482,7 +479,7 @@ const description = "Chi tiết thời gian ghi nhận và chi trả thưởng, 
             <div class="rounded-xl border border-white/10 bg-white/5 p-5">
               <div class="flex items-center gap-2 mb-3">
                 <span class="material-symbols-outlined text-green-400 text-[20px]">check_circle</span>
-                <p class="text-white/90 font-nav font-bold text-sm uppercase tracking-wider">Áp dụng
+                <p class="text-white/90 font-body font-bold text-sm uppercase tracking-wider">Áp dụng
                   cho</p>
               </div>
               <ul class="space-y-2">
@@ -495,7 +492,7 @@ const description = "Chi tiết thời gian ghi nhận và chi trả thưởng, 
             <div class="rounded-xl border border-white/10 bg-white/5 p-5">
               <div class="flex items-center gap-2 mb-3">
                 <span class="material-symbols-outlined text-tertiary text-[20px]">cancel</span>
-                <p class="text-white/90 font-nav font-bold text-sm uppercase tracking-wider">Ngoại trừ
+                <p class="text-white/90 font-body font-bold text-sm uppercase tracking-wider">Ngoại trừ
                 </p>
               </div>
               <ul class="space-y-2">
@@ -557,7 +554,7 @@ const description = "Chi tiết thời gian ghi nhận và chi trả thưởng, 
           <div class="example-box flex items-start gap-3">
             <span class="material-symbols-outlined text-amber-500 text-[20px] mt-0.5 shrink-0">lightbulb</span>
             <div>
-              <p class="text-primary font-nav font-bold text-sm uppercase tracking-wider mb-1">Ví dụ
+              <p class="text-primary font-body font-bold text-sm uppercase tracking-wider mb-1">Ví dụ
                 minh họa</p>
               <p class="text-sm text-white/70 leading-relaxed">
                 GMV NET = <strong class="text-white">5.67 tỷ VNĐ</strong>
@@ -581,13 +578,13 @@ const description = "Chi tiết thời gian ghi nhận và chi trả thưởng, 
           <!-- Tỷ lệ tổng quan -->
           <div class="grid grid-cols-2 gap-3 mb-8">
             <div class="rounded-xl bg-white/5 border-white/10 p-4 text-center">
-              <p class="text-4xl font-black font-nav text-[#4ade80]">80%</p>
-              <p class="text-sm text-white/60 mt-1 font-nav uppercase tracking-wider">Chi trả theo kỳ
+              <p class="text-4xl font-black font-body text-[#4ade80]">80%</p>
+              <p class="text-sm text-white/60 mt-1 font-body uppercase tracking-wider">Chi trả theo kỳ
                 chi trả gần nhất</p>
             </div>
             <div class="rounded-xl bg-white/5 border-white/10 p-4 text-center">
-              <p class="text-4xl font-black font-nav text-primary">20%</p>
-              <p class="text-sm text-white/60 mt-1 font-nav uppercase tracking-wider">Tạm khóa · Chi
+              <p class="text-4xl font-black font-body text-primary">20%</p>
+              <p class="text-sm text-white/60 mt-1 font-body uppercase tracking-wider">Tạm khóa · Chi
                 trả có điều kiện</p>
             </div>
           </div>
@@ -595,7 +592,7 @@ const description = "Chi tiết thời gian ghi nhận và chi trả thưởng, 
           <!-- Table 1: 80% khả dụng -->
           <div class="mb-8">
             <div class="flex items-center gap-2 mb-3">
-              <p class="text-sm font-bold text-white/80 font-nav uppercase"><strong
+              <p class="text-sm font-bold text-white/80 font-body uppercase"><strong
                   class="text-white">1.</strong> 80% U-POINT KHẢ DỤNG – LỊCH CHI TRẢ THEO QUÝ</p>
             </div>
             <div class="overflow-x-auto rounded-xl">
@@ -612,30 +609,30 @@ const description = "Chi tiết thời gian ghi nhận và chi trả thưởng, 
                 <tbody>
                   <tr>
                     <td><span class="chip chip-gold">H1</span></td>
-                    <td class="text-white/90 font-semibold">Quý 1</td>
+                    <td class="text-white/90 font-normal">Quý 1</td>
                     <td class="text-white/50">01/02 – 31/03/2026</td>
-                    <td class="font-bold text-white font-nav">15/05/2026</td>
+                    <td class="font-normal text-white font-body">15/05/2026</td>
                     <td style="text-align:center"><span class="chip chip-cyan">80%</span></td>
                   </tr>
                   <tr>
                     <td><span class="chip chip-gold">H1</span></td>
-                    <td class="text-white/90 font-semibold">Quý 2</td>
+                    <td class="text-white/90 font-normal">Quý 2</td>
                     <td class="text-white/50">01/04 – 30/06/2026</td>
-                    <td class="font-bold text-white font-nav">15/08/2026</td>
+                    <td class="font-normal text-white font-body">15/08/2026</td>
                     <td style="text-align:center"><span class="chip chip-cyan">80%</span></td>
                   </tr>
                   <tr>
                     <td><span class="chip chip-cyan">H2</span></td>
-                    <td class="text-white/90 font-semibold">Quý 3</td>
+                    <td class="text-white/90 font-normal">Quý 3</td>
                     <td class="text-white/50">01/07 – 30/09/2026</td>
-                    <td class="font-bold text-white font-nav">15/11/2026</td>
+                    <td class="font-normal text-white font-body">15/11/2026</td>
                     <td style="text-align:center"><span class="chip chip-cyan">80%</span></td>
                   </tr>
                   <tr>
                     <td><span class="chip chip-cyan">H2</span></td>
-                    <td class="text-white/90 font-semibold">Quý 4</td>
+                    <td class="text-white/90 font-normal">Quý 4</td>
                     <td class="text-white/50">01/10 – 31/12/2026</td>
-                    <td class="font-bold text-white font-nav">15/02/2027</td>
+                    <td class="font-normal text-white font-body">15/02/2027</td>
                     <td style="text-align:center"><span class="chip chip-cyan">80%</span></td>
                   </tr>
                 </tbody>
@@ -646,7 +643,7 @@ const description = "Chi tiết thời gian ghi nhận và chi trả thưởng, 
           <!-- Table 2: 20% tạm khóa H1 -->
           <div class="mb-8">
             <div class="flex items-center gap-2 mb-1">
-              <p class="text-sm font-bold text-white/80 font-nav"><strong class="text-white">2.</strong> CHI
+              <p class="text-sm font-normal text-white/85 font-body"><strong class="text-white">2.</strong> CHI
                 TRẢ 20% U-POINT TẠM KHÓA H1</p>
             </div>
             <!-- <p class="text-xs text-white/50 mb-3 ml-1">Unlock dựa trên HBK mới phát sinh trong H2/2026. Kết quả xử
@@ -688,7 +685,7 @@ const description = "Chi tiết thời gian ghi nhận và chi trả thưởng, 
           <!-- Table 3: 20% tạm khóa H2 -->
           <div>
             <div class="flex items-center gap-2 mb-1">
-              <p class="text-sm font-bold text-white/80 font-nav"><strong class="text-white">3.</strong> CHI
+              <p class="text-sm font-normal text-white/85 font-body"><strong class="text-white">3.</strong> CHI
                 TRẢ 20% U-POINT TẠM KHÓA H2</p>
             </div>
             <!-- <p class="text-xs text-white/50 mb-3 ml-1">Unlock dựa trên HBK mới phát sinh trong Q1/2027. Kết quả xử

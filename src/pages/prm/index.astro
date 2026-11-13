@@ -46,7 +46,7 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
             --panel-gold: rgba(255, 209, 108, 0.82);
             border: 1px solid var(--panel-cyan) !important;
             border-radius: 0 !important;
-            clip-path: polygon(0 22px, 22px 0, calc(100% - 42px) 0, 100% 42px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 38px 100%, 0 calc(100% - 38px));
+            clip-path: none;
             background:
                 linear-gradient(105deg, rgba(31, 62, 132, 0.96), rgba(13, 25, 72, 0.94)),
                 linear-gradient(90deg, rgba(0, 227, 253, 0.06), transparent 38%);
@@ -63,10 +63,6 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
             z-index: 0;
             opacity: 0.75;
             background:
-                linear-gradient(to bottom right, transparent 47%, var(--panel-cyan) 48% 52%, transparent 53%) top left / 22px 22px no-repeat,
-                linear-gradient(to bottom left, transparent 48%, var(--panel-cyan) 49% 51%, transparent 52%) top right / 42px 42px no-repeat,
-                linear-gradient(to bottom right, transparent 47%, var(--panel-gold) 48% 52%, transparent 53%) bottom right / 20px 20px no-repeat,
-                linear-gradient(to bottom left, transparent 48%, var(--panel-cyan) 49% 51%, transparent 52%) bottom left / 38px 38px no-repeat,
                 linear-gradient(90deg, var(--panel-cyan), transparent 18%) top left / 100% 1px no-repeat,
                 linear-gradient(270deg, var(--panel-gold), transparent 16%) bottom right / 100% 1px no-repeat,
                 repeating-linear-gradient(90deg, transparent 0 23px, rgba(120, 216, 255, 0.045) 24px 25px);
@@ -92,7 +88,7 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
         .score-card__label {
             border: 1px solid rgba(0, 227, 253, 0.26);
             border-radius: 0 !important;
-            clip-path: polygon(9px 0, 100% 0, calc(100% - 9px) 100%, 0 100%);
+            clip-path: none;
             background: linear-gradient(90deg, rgba(0, 227, 253, 0.12), rgba(26, 37, 86, 0.86)) !important;
             box-shadow: inset 0 1px 0 rgba(214, 249, 255, 0.1);
             letter-spacing: 0.05em;
@@ -121,7 +117,7 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
             isolation: isolate;
             border: 1px solid var(--frame-cyan) !important;
             border-radius: 0 !important;
-            clip-path: polygon(0 24px, 24px 0, calc(100% - 42px) 0, 100% 42px, 100% calc(100% - 24px), calc(100% - 24px) 100%, 38px 100%, 0 calc(100% - 38px));
+            clip-path: none;
             background: linear-gradient(110deg, rgba(27, 55, 120, 0.94), rgba(11, 24, 69, 0.95)) !important;
             filter: drop-shadow(0 18px 30px rgba(2, 10, 40, 0.3));
         }
@@ -133,10 +129,6 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
             z-index: 0;
             pointer-events: none;
             background:
-                linear-gradient(to bottom right, transparent 47%, var(--frame-cyan) 48% 52%, transparent 53%) top left / 24px 24px no-repeat,
-                linear-gradient(to bottom left, transparent 48%, var(--frame-cyan) 49% 51%, transparent 52%) top right / 42px 42px no-repeat,
-                linear-gradient(to bottom right, transparent 47%, var(--frame-gold) 48% 52%, transparent 53%) bottom right / 24px 24px no-repeat,
-                linear-gradient(to bottom left, transparent 48%, var(--frame-cyan) 49% 51%, transparent 52%) bottom left / 38px 38px no-repeat,
                 linear-gradient(90deg, var(--frame-cyan), transparent 18%) top left / 100% 1px no-repeat,
                 linear-gradient(270deg, var(--frame-gold), transparent 16%) bottom right / 100% 1px no-repeat;
         }
@@ -148,7 +140,7 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
 
         .tactical-frame td > .inline-block {
             border-radius: 0 !important;
-            clip-path: polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%);
+            clip-path: none;
             background: linear-gradient(90deg, rgba(255, 209, 108, 0.18), rgba(48, 38, 47, 0.72)) !important;
         }
 
@@ -338,7 +330,7 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
             <div class="mb-10 md:mb-16">
                 <h2 class="font-arena uppercase tracking-wide leading-[0.95] text-4xl md:text-6xl text-on-background mb-3" style="">Ghi điểm qua
                     GMV bán Dự án</h2>
-                <p class="text-white font-label font-semibold  text-sm" style="">Với mỗi 1
+                <p class="text-white font-label font-normal text-sm" style="">Với mỗi 1
                     tỷ GMV đạt được (giá trước VAT & KPBT) & 1 điểm = 1Tr U-Point</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
@@ -389,7 +381,7 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
             <div class="mb-10 md:mb-16">
                 <h2 class="font-arena uppercase tracking-wide leading-[0.95] text-4xl md:text-6xl text-on-background mb-3" style="">Ghi điểm qua
                     hình thức khác</h2>
-                <p class="text-white font-label font-semibold  text-sm" style="">Khuyến
+                <p class="text-white font-label font-normal text-sm" style="">Khuyến
                     khích LLTV tham gia các hoạt động tăng tích lũy điểm</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
@@ -455,7 +447,7 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
                     <div>
                         <h2 class="font-arena uppercase tracking-wide leading-[0.95] text-4xl md:text-6xl text-on-background mb-3" style="">Bảng
                             mốc thưởng</h2>
-                        <p class="text-white font-label font-semibold  text-sm" style="">
+                        <p class="text-white font-label font-normal text-sm" style="">
                             Điểm bonus sẽ được cộng dồn
                             khi đạt các mốc điểm tương ứng của chương trình.</p>
                     </div>
@@ -477,7 +469,7 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-white/5">
-                                <tr class="hover:bg-white/5 transition-colors group">
+                                <tr>
                                     <td class="px-3 md:px-12 py-3 md:py-6" style="">
                                         <div class="flex items-center gap-4">
                                             <div class="w-2 h-2 rounded-full bg-primary"></div>
@@ -497,7 +489,7 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
                                             style="">5</span>
                                     </td>
                                 </tr>
-                                <tr class="hover:bg-white/5 transition-colors group">
+                                <tr>
                                     <td class="px-3 md:px-12 py-3 md:py-6" style="">
                                         <div class="flex items-center gap-4">
                                             <div class="w-2 h-2 rounded-full bg-primary"></div>
@@ -517,7 +509,7 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
                                             style="">13</span>
                                     </td>
                                 </tr>
-                                <tr class="hover:bg-white/5 transition-colors group">
+                                <tr>
                                     <td class="px-3 md:px-12 py-3 md:py-6" style="">
                                         <div class="flex items-center gap-4">
                                             <div class="w-2 h-2 rounded-full bg-primary"></div>
@@ -537,7 +529,7 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
                                             style="">25</span>
                                     </td>
                                 </tr>
-                                <tr class="hover:bg-white/5 transition-colors group">
+                                <tr>
                                     <td class="px-3 md:px-12 py-3 md:py-6" style="">
                                         <div class="flex items-center gap-4">
                                             <div class="w-2 h-2 rounded-full bg-primary"></div>
@@ -557,7 +549,7 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
                                             style="">65</span>
                                     </td>
                                 </tr>
-                                <tr class="hover:bg-white/5 transition-colors group">
+                                <tr>
                                     <td class="px-3 md:px-12 py-3 md:py-6" style="">
                                         <div class="flex items-center gap-4">
                                             <div class="w-2 h-2 rounded-full bg-primary"></div>
@@ -577,7 +569,7 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
                                             style="">97</span>
                                     </td>
                                 </tr>
-                                <tr class="hover:bg-white/5 transition-colors group">
+                                <tr>
                                     <td class="px-3 md:px-12 py-3 md:py-6" style="">
                                         <div class="flex items-center gap-4">
                                             <div class="w-2 h-2 rounded-full bg-primary"></div>
@@ -597,7 +589,7 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
                                             style="">165</span>
                                     </td>
                                 </tr>
-                                <tr class="hover:bg-white/5 transition-colors group">
+                                <tr>
                                     <td class="px-3 md:px-12 py-3 md:py-6" style="">
                                         <div class="flex items-center gap-4">
                                             <div class="w-2 h-2 rounded-full bg-primary"></div>
@@ -643,7 +635,7 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
                 backdrop-filter: blur(12px);
                 border: 1px solid var(--accordion-frame);
                 border-radius: 0;
-                clip-path: polygon(0 13px, 13px 0, calc(100% - 22px) 0, 100% 22px, 100% calc(100% - 13px), calc(100% - 13px) 100%, 22px 100%, 0 calc(100% - 22px));
+                clip-path: none;
                 overflow: hidden;
                 position: relative;
                 isolation: isolate;
@@ -657,10 +649,6 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
                 z-index: 0;
                 pointer-events: none;
                 background:
-                    linear-gradient(to bottom right, transparent 47%, var(--accordion-frame) 48% 52%, transparent 53%) top left / 13px 13px no-repeat,
-                    linear-gradient(to bottom left, transparent 48%, var(--accordion-frame) 49% 51%, transparent 52%) top right / 22px 22px no-repeat,
-                    linear-gradient(to bottom right, transparent 47%, rgba(255, 209, 108, 0.65) 48% 52%, transparent 53%) bottom right / 13px 13px no-repeat,
-                    linear-gradient(to bottom left, transparent 48%, var(--accordion-frame) 49% 51%, transparent 52%) bottom left / 22px 22px no-repeat,
                     linear-gradient(90deg, var(--accordion-frame), transparent 18%) top left / 100% 1px no-repeat;
             }
 
@@ -685,7 +673,7 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
                 gap: 1rem;
                 padding: 1.25rem 1.5rem;
                 text-align: left;
-                font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
+                font-family: "Roboto", sans-serif;
                 font-weight: 700;
                 font-size: 0.95rem;
                 color: rgba(255, 255, 255, 0.85);
