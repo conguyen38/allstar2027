@@ -142,7 +142,7 @@ const programs = [
     height: 2.5rem;
     padding: 0 1rem;
     border: 1px solid rgba(255, 209, 108, 0.6);
-    border-radius: 0.5rem;
+    border-radius: 0;
     color: #ffd16c;
     font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
     font-weight: 500;
@@ -153,6 +153,23 @@ const programs = [
   }
 
   .pt-login b { font-weight: 500; }
+
+  /* Đã đăng nhập: giống hệt chip tài khoản của header thật (ô avatar + tên, nút đăng xuất) */
+  .pt-user { margin-left: auto; display: inline-flex; align-items: stretch; gap: 0.25rem; height: 2.5rem; }
+  .pt-user-chip {
+    display: flex; align-items: center; max-width: 13rem;
+    border: 1px solid rgba(0, 227, 253, 0.45); background: rgba(13, 26, 61, 0.9);
+  }
+  .pt-user-avatar { width: 2.5rem; align-self: stretch; flex-shrink: 0; border-right: 1px solid rgba(0, 227, 253, 0.3); background: #0d1a3d center / cover; }
+  .pt-user-name {
+    padding: 0 0.625rem; color: #ffd16c; font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .pt-user-out {
+    width: 2.5rem; display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.15); background: rgba(13, 26, 61, 0.6); color: rgba(255, 255, 255, 0.55);
+  }
 
   /* Dải chữ giống hệt hero thật (đứng yên, không chạy) */
   .pt-ticker {
@@ -213,10 +230,30 @@ const programs = [
   probe.remove();
   document.querySelector<HTMLElement>('.pt')?.style.setProperty('--sbw', `${scrollbarWidth}px`);
 
-  // Người đã đăng nhập thì nút trên thanh menu giả hiện tên, giống header thật.
+  // Người đã đăng nhập thì thay nút giả bằng đúng chip tài khoản của header thật.
   try {
     const hint = JSON.parse(localStorage.getItem('allstar_mock_session_v6') || 'null');
-    if (hint && hint.name) document.querySelectorAll('[data-pt-login]').forEach((el) => { el.textContent = hint.name; });
+    if (hint && hint.name) {
+      const avatarIndex = Array.from(String(hint.email || hint.name)).reduce((hash, char) => ((hash << 5) - hash + char.charCodeAt(0)) | 0, 0);
+      document.querySelectorAll('.pt-login').forEach((el) => {
+        const box = document.createElement('span');
+        box.className = 'pt-user';
+        const chip = document.createElement('span');
+        chip.className = 'pt-user-chip';
+        const av = document.createElement('span');
+        av.className = 'pt-user-avatar';
+        av.style.backgroundImage = `url('/assets/images/abstract-avatar-${Math.abs(avatarIndex) % 6}.png')`;
+        const nm = document.createElement('span');
+        nm.className = 'pt-user-name';
+        nm.textContent = hint.name;
+        chip.append(av, nm);
+        const out = document.createElement('span');
+        out.className = 'pt-user-out';
+        out.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5M15 12H3"/></svg>';
+        box.append(chip, out);
+        el.replaceWith(box);
+      });
+    }
   } catch (e) { /* bỏ qua */ }
 
   const prefetch = (href: string) => {
