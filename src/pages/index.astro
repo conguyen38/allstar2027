@@ -59,7 +59,7 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
     .contest-bg {
       z-index: 0;
       overflow: hidden;
-      background: #06091a url('/assets/images/allstar-contest-arena.png') center / cover no-repeat;
+      background: #06091a url('/assets/images/allstar-contest-arena.webp') center / cover no-repeat;
     }
 
     .contest-video {
@@ -450,7 +450,7 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
   <ProgramTransition />
 
   <div class="contest-bg" aria-hidden="true">
-    <video class="contest-video" autoplay muted loop playsinline preload="auto">
+    <video class="contest-video" autoplay muted loop playsinline preload="auto" poster="/assets/images/allstar-contest-arena.webp">
       <source src="/assets/images/allstar-contest-arena-loop.mp4" type="video/mp4" />
     </video>
   </div>

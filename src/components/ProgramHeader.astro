@@ -7,6 +7,8 @@ interface Props {
 }
 
 const { program, active = 'index' } = Astro.props;
+// Mỗi lần build có số khác nhau → trình duyệt/CDN không giữ bản auth.js cũ khi trang HTML đã là bản mới.
+const authBuild = import.meta.env.PROD ? Date.now().toString(36) : 'dev';
 const programBase = `/${program}`;
 const leaderboardHref = program === 'prm' ? `${programBase}/leaderboard-prm/` : `${programBase}/leaderboard-sih/`;
 const logoSrc = `${programBase}/assets/images/Logo%20Allstar.webp`;
@@ -151,4 +153,4 @@ const navItems = [
   })();
 </script>
 <AuthModal />
-<script src="/assets/auth.js" defer></script>
+<script src={`/assets/auth.js?v=${authBuild}`} defer></script>

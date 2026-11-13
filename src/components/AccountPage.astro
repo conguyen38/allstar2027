@@ -142,7 +142,8 @@ const label = "text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 f
       .card-expandable { cursor: pointer; padding-bottom: 2rem; }
       .card-expandable:hover { border-color: rgba(0, 227, 253, 0.85) !important; }
       .card-expandable:focus-visible { outline: 2px solid #ffd16c; outline-offset: 2px; }
-      .card-chev { position: absolute; right: 0.6rem; bottom: 0.4rem; transition: transform 0.25s; }
+      /* selector dài để thắng rule ".account-tactical [data-cards] > div > * { position: relative }" của thẻ */
+      .account-tactical [data-cards] > div > .card-chev { position: absolute; right: 0.6rem; bottom: 0.4rem; transition: transform 0.25s; }
       .card-expandable[aria-expanded="true"] .card-chev { transform: rotate(180deg); }
 
       /* Danh sách căn ghi nhận */
@@ -377,7 +378,7 @@ const label = "text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 f
 
         <!-- Cảnh báo duy trì thành viên -->
         <div data-warn-modal class="hidden fixed inset-0 z-[80] flex items-center justify-center p-4" role="alertdialog" aria-modal="true" aria-labelledby="warn-title">
-          <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" data-warn-close></div>
+          <div class="absolute inset-0 bg-black/50" data-warn-close></div>
           <div class="warn-panel relative w-full max-w-md p-6 md:p-7">
             <div class="flex items-center gap-3">
               <span class="material-symbols-outlined text-[32px] text-primary">warning</span>

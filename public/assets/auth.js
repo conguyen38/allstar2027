@@ -43,8 +43,8 @@
     C: { label: 'Không đạt yêu cầu', factor: 0 },
   };
   // Gamification "hành trình du lịch" (PRM, theo nửa năm). CÁC SỐ NÀY LÀ GIÁ TRỊ MẪU – thay bằng quy tắc thật.
-  var TICKET_POINTS = 10;   // cứ 10 điểm = 1 vé
-  var TRIP_MIN_TICKETS = 3; // cần tối thiểu 3 vé trong nửa năm để được đi du lịch
+  // Mỗi chương trình có thang điểm khác nhau nên quy tắc vé cũng khác: PRM 10 điểm = 1 vé (cần 3 vé), SIH 20 điểm = 1 vé (cần 4 vé).
+  var JOURNEY_RULES = { PRM: { ticket: 10, min: 3 }, SIH: { ticket: 20, min: 4 } };
   var MIN_POINTS = 5;       // dưới mức này bị cảnh báo duy trì thành viên
   var MAX_MONTHS_NO_HBK = 6; // quá số tháng liên tiếp không có HBK thì bị cảnh báo
   var LOCK_H1 = '20% tạm khóa H1, giải tỏa theo thể lệ nếu Quý 3 (hoặc Quý 4) phát sinh ít nhất 1 HBK.';
@@ -164,9 +164,17 @@
     return { email: user.email, name: user.name, profile: user.profile, membership: user.membership, periods: user.periods };
   }
 
+  // Dữ liệu lưu từ phiên bản cũ (thiếu ngày kỳ, thiếu hồ sơ…) sẽ làm trang tài khoản lỗi giữa chừng → nạp lại từ dữ liệu mẫu.
+  function validUsers(users) {
+    return Array.isArray(users) && users.length > 0 && users.every(function (u) {
+      return u && u.passHash && u.profile && u.membership && Array.isArray(u.periods) && u.periods.length > 0 &&
+        u.periods.every(function (p) { return p && p.from && p.to && Array.isArray(p.units); });
+    });
+  }
+
   function loadUsers() {
     var users = read(USERS_KEY);
-    if (users) return Promise.resolve(users);
+    if (validUsers(users)) return Promise.resolve(users);
     return Promise.all(SEED.map(function (seed) {
       return sha256(seed.email + ':' + seed.tempPassword).then(function (hash) {
         return { email: seed.email, name: seed.name, passHash: hash, mustChange: seed.mustChange, profile: seed.profile, membership: seed.membership, periods: seed.periods };
@@ -705,10 +713,11 @@
     };
   }
 
-  /* ───────────── Hành trình du lịch (gamification, PRM, theo nửa năm) ─────────────
-   * Vé = điểm / TICKET_POINTS (làm tròn xuống); đủ TRIP_MIN_TICKETS vé trong nửa năm thì được đi du lịch.
-   * % quãng đường = điểm / (TRIP_MIN_TICKETS × TICKET_POINTS). */
+  /* ───────────── Hành trình du lịch (gamification, theo nửa năm, PRM và SIH) ─────────────
+   * Vé = điểm / số điểm mỗi vé (làm tròn xuống); đủ số vé tối thiểu trong nửa năm thì được đi du lịch.
+   * % quãng đường = điểm / (số vé tối thiểu × số điểm mỗi vé). PRM gộp 2 quý thành nửa năm, SIH vốn tính theo H1/H2. */
   function buildJourney(scoped) {
+    var rule = JOURNEY_RULES[scoped.profile.program] || JOURNEY_RULES.PRM;
     var halves = [{ key: 'H1', months: [0, 5] }, { key: 'H2', months: [6, 11] }];
     var year = scoped.periods.length ? periodYear(scoped.periods[0]) : null;
     return halves.map(function (h) {
@@ -717,21 +726,22 @@
         return m >= h.months[0] && m <= h.months[1];
       });
       var points = list.reduce(function (s, p) { return s + periodStats(scoped, p).total; }, 0);
-      var tickets = Math.floor(points / TICKET_POINTS + 1e-9);
+      var tickets = Math.floor(points / rule.ticket + 1e-9);
       var states = list.map(periodState);
       var state = !list.length || states.every(function (s) { return s === 'upcoming'; }) ? 'upcoming'
         : (states.indexOf('current') >= 0 || states.indexOf('upcoming') >= 0 ? 'ongoing' : 'closed');
-      var reached = tickets >= TRIP_MIN_TICKETS;
+      var reached = tickets >= rule.min;
       var message;
       if (state === 'upcoming') message = 'Hành trình ' + h.key + ' chưa bắt đầu.';
       else if (state === 'ongoing') message = reached
         ? 'Bạn đã đủ vé cho chuyến đi ' + h.key + ', tiếp tục tích thêm nhé!'
-        : 'Còn ' + (TRIP_MIN_TICKETS - tickets) + ' vé nữa để lên đường, cố lên!';
+        : 'Còn ' + (rule.min - tickets) + ' vé nữa để lên đường, cố lên!';
       else if (reached) message = 'Ôi vui quá, bạn thật tuyệt vời! Hẹn bạn trên chuyến du lịch ' + h.key + '.';
       else message = h.key === 'H1' ? 'Ôi buồn quá, bạn chờ tiếp H2 nhé!' : 'Rất tiếc, hẹn bạn ở mùa giải sau nhé!';
       return {
         key: h.key, year: year, state: state, reached: reached, tickets: tickets, points: points,
-        percent: Math.min(100, Math.round(points / (TRIP_MIN_TICKETS * TICKET_POINTS) * 100)), message: message,
+        min: rule.min, ticketPoints: rule.ticket,
+        percent: Math.min(100, Math.round(points / (rule.min * rule.ticket) * 100)), message: message,
       };
     });
   }
@@ -739,7 +749,6 @@
   function renderJourney(scoped) {
     var section = $('[data-journey-section]');
     if (!section) return;
-    if (scoped.profile.program !== 'PRM') { section.classList.add('hidden'); return; }
     section.classList.remove('hidden');
     var wrap = $('[data-journey]');
     wrap.textContent = '';
@@ -768,10 +777,10 @@
       var fill = el('div', 'journey-fill');
       fill.style.width = '0%';
       track.appendChild(fill);
-      for (var i = 1; i <= TRIP_MIN_TICKETS; i += 1) {
+      for (var i = 1; i <= j.min; i += 1) {
         var stop = el('span', 'journey-stop ' + (j.tickets >= i ? 'journey-stop-on' : ''));
-        stop.style.left = (i / TRIP_MIN_TICKETS * 100) + '%';
-        stop.appendChild(el('span', 'material-symbols-outlined text-[16px]', i === TRIP_MIN_TICKETS ? 'beach_access' : 'confirmation_number'));
+        stop.style.left = (i / j.min * 100) + '%';
+        stop.appendChild(el('span', 'material-symbols-outlined text-[16px]', i === j.min ? 'beach_access' : 'confirmation_number'));
         road.appendChild(stop);
       }
       var rider = el('span', 'journey-rider');
@@ -787,7 +796,7 @@
       }); });
 
       card.appendChild(el('p', 'text-sm text-white/65 mt-6',
-        'Đã đi ' + j.percent + '% quãng đường · ' + j.tickets + '/' + TRIP_MIN_TICKETS + ' vé tối thiểu (' + fmtPts(j.points) + ' điểm, ' + TICKET_POINTS + ' điểm = 1 vé)'));
+        'Đã đi ' + j.percent + '% quãng đường · ' + j.tickets + '/' + j.min + ' vé tối thiểu (' + fmtPts(j.points) + ' điểm, ' + j.ticketPoints + ' điểm = 1 vé)'));
       card.appendChild(el('p', 'journey-msg mt-3 font-bold', j.message));
       wrap.appendChild(card);
     });
@@ -990,7 +999,19 @@
 
     api.me().then(function (user) {
       renderHeader(user);
-      if ($('[data-account-root]')) renderAccount(user);
+      if ($('[data-account-root]')) {
+        try {
+          renderAccount(user);
+        } catch (err) {
+          // Không để trang trống im lặng: báo rõ và hướng dẫn cách xử lý
+          console.error('[account]', err);
+          var box = $('[data-account-loading]');
+          if (box) {
+            box.classList.remove('hidden');
+            box.textContent = 'Không tải được dữ liệu tài khoản. Vui lòng tải lại trang (Ctrl + F5); nếu vẫn lỗi, hãy đăng xuất rồi đăng nhập lại.';
+          }
+        }
+      }
     });
   }
 
