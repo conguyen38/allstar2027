@@ -29,14 +29,14 @@ const description = "Chi tiết thời gian ghi nhận, kênh áp dụng và cá
 <style>
     /* ── Hero ── */
     .hero-banner {
-      background-image: url('/assets/images/allstar-contest-headbanner.webp');
+      background-image: url('/assets/images/allstar-sunset.webp');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
     }
 
     .hero-overlay {
-      background: linear-gradient(to bottom, rgba(10, 14, 20, 0.8) 0%, rgba(10, 14, 20, 0.2) 50%, rgba(10, 14, 20, 0.8) 100%);
+      background: linear-gradient(to bottom, rgba(17, 10, 20, 0.8) 0%, rgba(17, 10, 20, 0.2) 50%, rgba(17, 10, 20, 0.8) 100%);
     }
 
 
@@ -58,8 +58,8 @@ const description = "Chi tiết thời gian ghi nhận, kênh áp dụng và cá
     }
 
     @keyframes trophy-glow {
-      0%, 100% { filter: drop-shadow(0 0 28px rgba(255, 209, 108, 0.55)) drop-shadow(0 0 56px rgba(255, 160, 0, 0.28)); }
-      50% { filter: drop-shadow(0 0 56px rgba(255, 209, 108, 0.9)) drop-shadow(0 0 100px rgba(255, 160, 0, 0.5)); }
+      0%, 100% { filter: drop-shadow(0 0 28px rgba(255, 196, 153, 0.55)) drop-shadow(0 0 56px rgba(255, 140, 110, 0.28)); }
+      50% { filter: drop-shadow(0 0 56px rgba(255, 196, 153, 0.9)) drop-shadow(0 0 100px rgba(255, 140, 110, 0.5)); }
     }
 
     .trophy-anim {
@@ -68,10 +68,10 @@ const description = "Chi tiết thời gian ghi nhận, kênh áp dụng và cá
 
     /* ── Glass card (Dark mode) ── */
     .glass-card {
-      background: rgba(32, 38, 47, 0.4);
+      background: rgba(45, 26, 53, 0.4);
       backdrop-filter: blur(12px);
-      border-top: 1px solid rgba(68, 72, 79, 0.3);
-      border-left: 1px solid rgba(68, 72, 79, 0.3);
+      border-top: 1px solid rgba(79, 68, 77, 0.3);
+      border-left: 1px solid rgba(79, 68, 77, 0.3);
     }
 
     /* ── Tables (Dark mode) ── */
@@ -129,21 +129,21 @@ const description = "Chi tiết thời gian ghi nhận, kênh áp dụng và cá
       text-transform: uppercase;
     }
 
-    .badge-th1 { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
-    .badge-th2 { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+    .badge-th1 { background: rgba(255, 141, 180, 0.15); color: #ff8db4; }
+    .badge-th2 { background: rgba(255, 170, 120, 0.15); color: #ffb784; }
     .badge-th3 { background: rgba(239, 68, 68, 0.15); color: #f87171; }
 
     /* ── Misc boxes ── */
     .info-box {
-      background: rgba(59, 130, 246, 0.05);
-      border: 1px solid rgba(59, 130, 246, 0.15);
+      background: rgba(255, 141, 180, 0.05);
+      border: 1px solid rgba(255, 141, 180, 0.15);
       border-radius: 0.75rem;
       padding: 1rem 1.125rem;
     }
 
     .example-box {
-      background: rgba(245, 158, 11, 0.05);
-      border: 1px solid rgba(245, 158, 11, 0.15);
+      background: rgba(255, 170, 120, 0.05);
+      border: 1px solid rgba(255, 170, 120, 0.15);
       border-radius: 0.75rem;
       padding: 1rem 1.125rem;
     }
@@ -159,8 +159,8 @@ const description = "Chi tiết thời gian ghi nhận, kênh áp dụng và cá
       font-family: 'Roboto', sans-serif;
     }
 
-    .chip-gold { background: #ffd16c; color: #604700; }
-    .chip-cyan { background: #00e3fd; color: #004a54; }
+    .chip-gold { background: #ffc499; color: #45152f; }
+    .chip-cyan { background: #ff8db4; color: #301c38; }
     .chip-red { background: #ff7168; color: #601410; }
 
     .list-item {
@@ -180,8 +180,8 @@ const description = "Chi tiết thời gian ghi nhận, kênh áp dụng và cá
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #ffd16c, #ff9500);
-      color: #604700;
+      background: linear-gradient(135deg, #ffc499, #ff9d7a);
+      color: #45152f;
       border-radius: 50%;
       font-size: 0.875rem;
       font-weight: 800;
@@ -235,11 +235,11 @@ const description = "Chi tiết thời gian ghi nhận, kênh áp dụng và cá
 <!-- Neon light trails -->
     <svg class="trails-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none"
         xmlns="http://www.w3.org/2000/svg" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; opacity:0.45;">
-        <line class="trail-line" x1="-100" y1="200" x2="1540" y2="180" stroke="rgba(0,227,253,0.4)" stroke-width="1" />
-        <line class="trail-line" x1="-100" y1="450" x2="1540" y2="420" stroke="rgba(255,209,108,0.35)" stroke-width="0.8" />
-        <line class="trail-line" x1="-100" y1="680" x2="1540" y2="700" stroke="rgba(0,100,255,0.3)" stroke-width="1.2" />
-        <line class="trail-line" x1="200" y1="-50" x2="180" y2="950" stroke="rgba(0,227,253,0.25)" stroke-width="0.8" />
-        <line class="trail-line" x1="1100" y1="-50" x2="1120" y2="950" stroke="rgba(255,209,108,0.2)" stroke-width="1" />
+        <line class="trail-line" x1="-100" y1="200" x2="1540" y2="180" stroke="rgba(255, 141, 180,0.4)" stroke-width="1" />
+        <line class="trail-line" x1="-100" y1="450" x2="1540" y2="420" stroke="rgba(255, 196, 153,0.35)" stroke-width="0.8" />
+        <line class="trail-line" x1="-100" y1="680" x2="1540" y2="700" stroke="rgba(255, 141, 180,0.3)" stroke-width="1.2" />
+        <line class="trail-line" x1="200" y1="-50" x2="180" y2="950" stroke="rgba(255, 141, 180,0.25)" stroke-width="0.8" />
+        <line class="trail-line" x1="1100" y1="-50" x2="1120" y2="950" stroke="rgba(255, 196, 153,0.2)" stroke-width="1" />
     </svg>
   </Fragment>
 
@@ -260,7 +260,7 @@ const description = "Chi tiết thời gian ghi nhận, kênh áp dụng và cá
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <!-- Thời gian ghi nhận -->
             <div class="info-box flex items-start gap-3">
-              <span class="material-symbols-outlined text-blue-400 mt-0.5 text-[22px]">calendar_today</span>
+              <span class="material-symbols-outlined text-primary mt-0.5 text-[22px]">calendar_today</span>
               <div>
                 <p class="text-white/40 text-sm font-body uppercase tracking-wider mb-1">Thời gian ghi
                   nhận</p>
@@ -269,7 +269,7 @@ const description = "Chi tiết thời gian ghi nhận, kênh áp dụng và cá
             </div>
             <!-- Thời gian chi trả -->
             <div class="example-box flex items-start gap-3">
-              <span class="material-symbols-outlined text-amber-400 mt-0.5 text-[22px]">payments</span>
+              <span class="material-symbols-outlined text-primary mt-0.5 text-[22px]">payments</span>
               <div>
                 <p class="text-white/40 text-sm font-body uppercase tracking-wider mb-1">Thời gian chi
                   trả</p>
@@ -362,9 +362,9 @@ const description = "Chi tiết thời gian ghi nhận, kênh áp dụng và cá
 
           <!-- Example box -->
           <div class="example-box flex items-start gap-3">
-            <span class="material-symbols-outlined text-amber-400 text-[20px] mt-0.5 shrink-0">lightbulb</span>
+            <span class="material-symbols-outlined text-primary text-[20px] mt-0.5 shrink-0">lightbulb</span>
             <div>
-              <p class="text-amber-400 font-body font-bold text-sm uppercase tracking-wider mb-1">Ví dụ
+              <p class="text-primary font-body font-bold text-sm uppercase tracking-wider mb-1">Ví dụ
                 minh họa</p>
               <p class="text-sm text-white/70 leading-relaxed">
                 GMV NET = <strong class="text-white">5.67 tỷ VNĐ</strong>
@@ -386,7 +386,7 @@ const description = "Chi tiết thời gian ghi nhận, kênh áp dụng và cá
         <div class="glass-card p-6 md:p-10 rounded-3xl shadow-xl">
           <!-- Tỷ lệ tổng quan -->
           <div class="grid grid-cols-2 gap-4 mb-8">
-            <div class="rounded-xl bg-blue-400/5 border border-secondary/20 p-4 text-center">
+            <div class="rounded-xl bg-secondary/5 border border-secondary/20 p-4 text-center">
               <p class="text-4xl font-black font-body text-[#4ade80]">80%</p>
               <p class="text-sm text-white/40 mt-1 font-body uppercase tracking-wider">Chi trả theo kỳ
                 chi trả gần nhất</p>

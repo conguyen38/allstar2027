@@ -28,9 +28,9 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT6vJ7brMTQB
         font-weight: 700;
         letter-spacing: 0.18em;
         text-transform: uppercase;
-        color: #ffd16c;
-        border: 1px solid rgba(255, 209, 108, 0.45);
-        background: rgba(255, 209, 108, 0.08);
+        color: #ffc499;
+        border: 1px solid rgba(255, 196, 153, 0.45);
+        background: rgba(255, 196, 153, 0.08);
       }
 
       .wal-q-badge {
@@ -42,8 +42,8 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT6vJ7brMTQB
         flex-shrink: 0;
         font-family: 'Anton', Impact, sans-serif;
         font-size: 1rem;
-        color: #4a2800;
-        background: linear-gradient(135deg, #fff8c5, #ffd700, #b8860b);
+        color: #45152f;
+        background: linear-gradient(135deg, #ffe3c4, #ffb784, #e8846b);
       }
 
       .wal-q-title {
@@ -65,15 +65,15 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT6vJ7brMTQB
         align-items: flex-start;
         gap: 0.75rem;
         padding: 0.9rem 1.05rem;
-        border: 1px solid rgba(0, 227, 253, 0.34);
-        background: rgba(13, 25, 66, 0.72);
+        border: 1px solid rgba(255, 141, 180, 0.34);
+        background: rgba(45, 26, 53, 0.72);
         cursor: pointer;
         transition: border-color 0.2s ease, background 0.2s ease;
       }
 
       .wal-option:hover {
-        border-color: rgba(0, 227, 253, 0.7);
-        background: rgba(20, 38, 92, 0.85);
+        border-color: rgba(255, 141, 180, 0.7);
+        background: rgba(75, 37, 75, 0.85);
       }
 
       /* Ô chọn tự vẽ (không dùng kiểu mặc định của trình duyệt): checkbox vuông, radio tròn */
@@ -87,8 +87,8 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT6vJ7brMTQB
         flex-shrink: 0;
         display: grid;
         place-content: center;
-        border: 1.5px solid rgba(0, 227, 253, 0.65);
-        background: rgba(6, 12, 40, 0.9);
+        border: 1.5px solid rgba(255, 141, 180, 0.65);
+        background: rgba(26, 15, 31, 0.9);
         cursor: pointer;
         transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
       }
@@ -96,12 +96,12 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT6vJ7brMTQB
       .wal-option > input[type='radio'] { border-radius: 9999px; }
       .wal-option > input[type='checkbox'] { border-radius: 0; }
 
-      .wal-option:hover > input:not(:disabled) { border-color: #00e3fd; }
+      .wal-option:hover > input:not(:disabled) { border-color: #ff8db4; }
 
       .wal-option > input:checked {
-        border-color: #ffd16c;
-        background: #ffd16c;
-        box-shadow: 0 0 10px rgba(255, 209, 108, 0.45);
+        border-color: #ffc499;
+        background: #ffc499;
+        box-shadow: 0 0 10px rgba(255, 196, 153, 0.45);
       }
 
       /* dấu tích (checkbox) */
@@ -109,8 +109,8 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT6vJ7brMTQB
         content: '';
         width: 0.6rem;
         height: 0.32rem;
-        border-left: 2px solid #4a2800;
-        border-bottom: 2px solid #4a2800;
+        border-left: 2px solid #45152f;
+        border-bottom: 2px solid #45152f;
         transform: translateY(-1px) rotate(-45deg) scale(0);
         transition: transform 0.15s ease;
       }
@@ -125,7 +125,7 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT6vJ7brMTQB
         width: 0.45rem;
         height: 0.45rem;
         border-radius: 9999px;
-        background: #4a2800;
+        background: #45152f;
         transform: scale(0);
         transition: transform 0.15s ease;
       }
@@ -135,12 +135,12 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT6vJ7brMTQB
       }
 
       .wal-option:has(input:checked) {
-        border-color: #ffd16c;
-        background: rgba(255, 209, 108, 0.1);
+        border-color: #ffc499;
+        background: rgba(255, 196, 153, 0.1);
       }
 
       .wal-option:has(input:focus-visible) {
-        outline: 2px solid #00e3fd;
+        outline: 2px solid #ff8db4;
         outline-offset: 2px;
       }
 
@@ -157,26 +157,26 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT6vJ7brMTQB
 
       .wal-field {
         width: 100%;
-        border: 1px solid rgba(0, 227, 253, 0.34);
-        background: rgba(13, 25, 66, 0.72);
-        color: #f1f3fc;
+        border: 1px solid rgba(255, 141, 180, 0.34);
+        background: rgba(45, 26, 53, 0.72);
+        color: #fff2e6;
         padding: 0.75rem 1rem;
         font-size: 0.95rem;
         transition: border-color 0.2s ease, background 0.2s ease;
       }
 
       .wal-field::placeholder {
-        color: rgba(200, 203, 210, 0.7);
+        color: rgba(209, 201, 208, 0.7);
       }
 
       .wal-field:hover {
-        border-color: rgba(0, 227, 253, 0.6);
+        border-color: rgba(255, 141, 180, 0.6);
       }
 
       .wal-field:focus {
         outline: none;
-        border-color: #00e3fd;
-        background: rgba(20, 38, 92, 0.85);
+        border-color: #ff8db4;
+        background: rgba(75, 37, 75, 0.85);
       }
 
       .wal-field:disabled {
@@ -196,8 +196,8 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT6vJ7brMTQB
       }
 
       .wal-submit {
-        background: linear-gradient(135deg, #ff6d00, #ffd16c);
-        color: #4a2800;
+        background: linear-gradient(135deg, #ff7f6b, #ffc499);
+        color: #45152f;
         font-weight: 800;
         letter-spacing: 0.08em;
         text-transform: uppercase;
@@ -206,7 +206,7 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT6vJ7brMTQB
 
       .wal-submit:hover:not(:disabled) {
         transform: translateY(-2px);
-        filter: brightness(1.1) drop-shadow(0 6px 14px rgba(255, 160, 0, 0.4));
+        filter: brightness(1.1) drop-shadow(0 6px 14px rgba(255, 140, 110, 0.4));
       }
 
       .wal-submit:disabled {
@@ -404,7 +404,7 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT6vJ7brMTQB
 
       <!-- Success state -->
       <div id="wal-success" class="glass-card p-10 md:p-14 flex-col items-center text-center gap-4">
-        <img alt="Allstar Logo" class="h-16 w-auto object-contain mb-2" src="/prm/assets/images/Logo%20Allstar.webp" />
+        <img alt="Allstar Logo" class="h-16 w-auto object-contain mb-2" src="/assets/images/allstar-27.webp" />
         <span class="material-symbols-outlined text-5xl text-primary">check_circle</span>
         <h2 class="font-arena uppercase tracking-wide text-3xl text-white">Cảm ơn Anh/Chị đã chia sẻ phản hồi</h2>
         <p class="text-white/70 text-sm max-w-md">

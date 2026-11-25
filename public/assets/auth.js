@@ -279,13 +279,6 @@
     });
     $all('[data-auth-name]').forEach(function (el) { el.textContent = user ? user.name : ''; });
     $all('[data-auth-account-link]').forEach(function (el) { el.setAttribute('href', accountUrl(user)); });
-    $all('[data-auth-avatar]').forEach(function (el) {
-      if (!user) { el.style.backgroundImage = ''; return; }
-      var hash = 0;
-      var identity = String(user.email || user.name);
-      for (var i = 0; i < identity.length; i += 1) hash = ((hash << 5) - hash + identity.charCodeAt(i)) | 0;
-      el.style.backgroundImage = "url('/assets/images/abstract-avatar-" + (Math.abs(hash) % 6) + ".png')";
-    });
   }
 
   function validateNewPassword(newPw, confirmPw, currentPw) {
@@ -532,7 +525,7 @@
         row.state === 'current' ? 'Kỳ đang diễn ra' : (row.state === 'closed' ? 'Kỳ đã hoàn thành' : 'Chưa bắt đầu')));
       head.appendChild(left);
       var right = el('div', 'text-right');
-      right.appendChild(el('p', 'text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 font-hud', 'Tổng điểm tạm tính'));
+      right.appendChild(el('p', 'text-xs font-bold uppercase tracking-normal text-white/65 font-body', 'Tổng điểm tạm tính'));
       right.appendChild(el('p', 'font-wide italic font-black text-2xl text-white leading-tight', fmtPts(row.total)));
       head.appendChild(right);
       card.appendChild(head);
@@ -766,7 +759,7 @@
       right.appendChild(el('span', 'material-symbols-outlined text-[26px] text-primary', 'confirmation_number'));
       var num = el('div', 'text-right');
       num.appendChild(el('p', 'font-wide italic font-black text-3xl text-white leading-none', String(j.tickets)));
-      num.appendChild(el('p', 'text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 font-hud', 'vé'));
+      num.appendChild(el('p', 'text-xs font-bold uppercase tracking-normal text-white/65 font-body', 'vé'));
       right.appendChild(num);
       head.appendChild(right);
       card.appendChild(head);

@@ -13,21 +13,9 @@ const programs = [
 <div class="pt" aria-hidden="true">
   {programs.map((p) => (
     <div class="pt-panel" data-pt={p.key}>
-      <div class="pt-hero" style="background-image:url('/assets/images/allstar-contest-headbanner.webp')">
-        <div class="pt-overlay"></div>
-        <div class="pt-content">
-          <img class="pt-logo" src={`/${p.key}/assets/images/Logo%20Allstar.webp`} alt="" width="620" height="428" />
-        </div>
-        <div class="arena-ticker pt-ticker">
-          <div class="arena-ticker-track font-arena" style="animation:none">
-            {[0, 1, 2, 3].map(() => (
-              <Fragment><span>Allstar Club 2027</span><i>★</i><span>Ghi điểm</span><i>★</i><span>Lên hạng</span><i>★</i><span>Nhận U-Point</span><i>★</i></Fragment>
-            ))}
-          </div>
-        </div>
-      </div>
+      <div class="pt-hero"></div>
       <div class="pt-bar">
-        <img src={`/${p.key}/assets/images/Logo%20Allstar.webp`} alt="" width="620" height="428" />
+        <img src="/assets/images/allstar-27.webp" alt="" width="1024" height="872" />
         <ul>
           {p.nav.map((label, i) => <li class={i === 0 ? 'is-active' : ''}>{label}</li>)}
         </ul>
@@ -51,7 +39,7 @@ const programs = [
     inset: 0;
     visibility: hidden;
     transform: translateY(100%);
-    background: #0a0e14;
+    background: #110a14;
     transition: transform 0.95s cubic-bezier(0.77, 0, 0.18, 1);
     will-change: transform;
   }
@@ -63,18 +51,14 @@ const programs = [
     left: 0;
     right: var(--sbw, 0px); /* trang đích có thanh cuộn dọc → chừa chỗ để logo không bị lệch */
     bottom: 0;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    /* Nền tối trơn: trang thật mở ra từ đây (tranh nền phóng từ 1.42 → 1 kèm mờ dần hiện) */
+    background: #1b1024;
   }
 
   .pt-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(10, 14, 20, 0.8) 0%, rgba(10, 14, 20, 0.2) 50%, rgba(10, 14, 20, 0.8) 100%);
+    background: linear-gradient(to bottom, rgba(17, 10, 20, 0.8) 0%, rgba(17, 10, 20, 0.2) 50%, rgba(17, 10, 20, 0.8) 100%);
   }
 
   .pt-content {
@@ -88,7 +72,7 @@ const programs = [
   .pt-logo {
     width: 16rem;
     height: auto;
-    filter: drop-shadow(0 0 50px rgba(255, 209, 108, 0.55));
+    filter: drop-shadow(0 0 50px rgba(255, 196, 153, 0.55));
   }
 
   @media (min-width: 768px) {
@@ -106,7 +90,7 @@ const programs = [
     align-items: center;
     gap: 1.5rem;
     padding: 0 1rem;
-    background: rgba(10, 14, 20, 0.96);
+    background: rgba(17, 10, 20, 0.96);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
@@ -132,7 +116,7 @@ const programs = [
 
   .pt-bar li { padding: 0 8px; border: 1px solid transparent; }
 
-  .pt-bar li.is-active { color: #ffd16c; }
+  .pt-bar li.is-active { color: #ffc499; }
 
   .pt-login {
     margin-left: auto;
@@ -141,9 +125,9 @@ const programs = [
     gap: 0.375rem;
     height: 2.5rem;
     padding: 0 1rem;
-    border: 1px solid rgba(255, 209, 108, 0.6);
+    border: 1px solid rgba(255, 196, 153, 0.6);
     border-radius: 0;
-    color: #ffd16c;
+    color: #ffc499;
     font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
     font-weight: 500;
     font-size: 14px;
@@ -158,17 +142,16 @@ const programs = [
   .pt-user { margin-left: auto; display: inline-flex; align-items: stretch; gap: 0.25rem; height: 2.5rem; }
   .pt-user-chip {
     display: flex; align-items: center; max-width: 13rem;
-    border: 1px solid rgba(0, 227, 253, 0.45); background: rgba(13, 26, 61, 0.9);
+    border: 1px solid rgba(255, 141, 180, 0.45); background: rgba(42, 24, 50, 0.9);
   }
-  .pt-user-avatar { width: 2.5rem; align-self: stretch; flex-shrink: 0; border-right: 1px solid rgba(0, 227, 253, 0.3); background: #0d1a3d center / cover; }
   .pt-user-name {
-    padding: 0 0.625rem; color: #ffd16c; font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
+    padding: 0 0.625rem; color: #ffc499; font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
     font-size: 13px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
   .pt-user-out {
     width: 2.5rem; display: flex; align-items: center; justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.15); background: rgba(13, 26, 61, 0.6); color: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.15); background: rgba(42, 24, 50, 0.6); color: rgba(255, 255, 255, 0.55);
   }
 
   /* Dải chữ giống hệt hero thật (đứng yên, không chạy) */
@@ -234,19 +217,15 @@ const programs = [
   try {
     const hint = JSON.parse(localStorage.getItem('allstar_mock_session_v6') || 'null');
     if (hint && hint.name) {
-      const avatarIndex = Array.from(String(hint.email || hint.name)).reduce((hash, char) => ((hash << 5) - hash + char.charCodeAt(0)) | 0, 0);
       document.querySelectorAll('.pt-login').forEach((el) => {
         const box = document.createElement('span');
         box.className = 'pt-user';
         const chip = document.createElement('span');
         chip.className = 'pt-user-chip';
-        const av = document.createElement('span');
-        av.className = 'pt-user-avatar';
-        av.style.backgroundImage = `url('/assets/images/abstract-avatar-${Math.abs(avatarIndex) % 6}.png')`;
         const nm = document.createElement('span');
         nm.className = 'pt-user-name';
         nm.textContent = hint.name;
-        chip.append(av, nm);
+        chip.append(nm);
         const out = document.createElement('span');
         out.className = 'pt-user-out';
         out.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5M15 12H3"/></svg>';

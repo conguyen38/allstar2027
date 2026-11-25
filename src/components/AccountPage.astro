@@ -10,7 +10,7 @@ interface Props {
 const { program } = Astro.props;
 const programName = program === 'prm' ? 'PRM Techcombank' : 'LLB OneHousing';
 const rulesHref = `/${program}/the-le/`;
-const label = "text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 font-hud";
+const label = "text-xs font-bold uppercase tracking-normal text-white/65 font-body";
 ---
 
 <BaseLayout
@@ -22,13 +22,13 @@ const label = "text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 f
   <Fragment slot="head">
     <meta name="robots" content="noindex, nofollow" />
     <style is:global>
-      body { background: #06091a; }
+      body { background: #120b15; }
       .page-bg {
         background:
-          radial-gradient(ellipse 80% 50% at 20% 20%, rgba(0, 80, 180, 0.18) 0%, transparent 60%),
-          radial-gradient(ellipse 60% 40% at 80% 10%, rgba(0, 227, 253, 0.1) 0%, transparent 50%),
-          radial-gradient(ellipse 50% 60% at 50% 80%, rgba(80, 0, 180, 0.12) 0%, transparent 60%),
-          #06091a;
+          radial-gradient(ellipse 80% 50% at 20% 20%, rgba(121, 59, 121, 0.18) 0%, transparent 60%),
+          radial-gradient(ellipse 60% 40% at 80% 10%, rgba(255, 141, 180, 0.1) 0%, transparent 50%),
+          radial-gradient(ellipse 50% 60% at 50% 80%, rgba(121, 59, 121, 0.12) 0%, transparent 60%),
+          #120b15;
         min-height: 100vh;
       }
       .trails-svg { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; opacity: 0.45; }
@@ -44,16 +44,16 @@ const label = "text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 f
       .trail-line:nth-child(4) { animation-delay: 0.8s; animation-duration: 8s; }
       .trail-line:nth-child(5) { animation-delay: 2.2s; animation-duration: 6.5s; }
       .glass { background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.09); }
-      .glass-gold { background: rgba(255, 209, 108, 0.06); backdrop-filter: blur(20px); border: 1px solid rgba(255, 209, 108, 0.25); }
-      .glass-cyan { background: rgba(0, 227, 253, 0.05); backdrop-filter: blur(16px); border: 1px solid rgba(0, 227, 253, 0.22); }
-      .hero-glow { box-shadow: 0 0 60px rgba(255, 209, 108, 0.12), inset 0 0 40px rgba(255, 209, 108, 0.04); }
+      .glass-gold { background: rgba(255, 196, 153, 0.06); backdrop-filter: blur(20px); border: 1px solid rgba(255, 196, 153, 0.25); }
+      .glass-cyan { background: rgba(255, 141, 180, 0.05); backdrop-filter: blur(16px); border: 1px solid rgba(255, 141, 180, 0.22); }
+      .hero-glow { box-shadow: 0 0 60px rgba(255, 196, 153, 0.12), inset 0 0 40px rgba(255, 196, 153, 0.04); }
       .badge-gold {
-        background: linear-gradient(135deg, #fff8c5, #ffd700, #b8860b);
-        box-shadow: 0 0 20px rgba(255, 215, 0, 0.55), 0 4px 12px rgba(0, 0, 0, 0.4);
-        color: #4a2800;
+        background: linear-gradient(135deg, #ffe3c4, #ffb784, #e8846b);
+        box-shadow: 0 0 20px rgba(255, 183, 132, 0.55), 0 4px 12px rgba(0, 0, 0, 0.4);
+        color: #45152f;
       }
-      .gold-text { background: linear-gradient(135deg, #fff1c2, #ffd16c 50%, #ff9d2e); -webkit-background-clip: text; background-clip: text; color: transparent; }
-      .progress-fill { background: linear-gradient(90deg, #00e3fd, #ffd16c); transition: width 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+      .gold-text { background: linear-gradient(135deg, #ffe8d4, #ffc499 50%, #ff8d78); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      .progress-fill { background: linear-gradient(90deg, #ff8db4, #ffc499); transition: width 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
       .period-picker { position: relative; width: max-content; }
       .period-trigger {
         display: flex;
@@ -61,15 +61,15 @@ const label = "text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 f
         gap: 0.5rem;
         min-height: 2.6rem;
         padding: 0.5rem 0.7rem;
-        border: 1px solid rgba(0, 227, 253, 0.72);
+        border: 1px solid rgba(255, 141, 180, 0.72);
         border-radius: 0;
-        background: rgba(13, 25, 66, 0.94);
+        background: rgba(45, 26, 53, 0.94);
         color: #fff;
         box-shadow: none;
         transition: border-color 0.2s ease, background-color 0.2s ease;
       }
-      .period-trigger:hover, .period-trigger[aria-expanded="true"] { border-color: #00e3fd; background: #17275b; }
-      .period-trigger:focus-visible { outline: 2px solid #ffd16c; outline-offset: 3px; }
+      .period-trigger:hover, .period-trigger[aria-expanded="true"] { border-color: #ff8db4; background: #4c264c; }
+      .period-trigger:focus-visible { outline: 2px solid #ffc499; outline-offset: 3px; }
       .period-menu {
         position: absolute;
         z-index: 20;
@@ -78,9 +78,9 @@ const label = "text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 f
         display: grid;
         min-width: 100%;
         overflow: hidden;
-        border: 1px solid rgba(0, 227, 253, 0.72);
+        border: 1px solid rgba(255, 141, 180, 0.72);
         border-radius: 0;
-        background: #101b43;
+        background: #2f1b38;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.28);
       }
       .period-menu.hidden { display: none; }
@@ -98,28 +98,28 @@ const label = "text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 f
         white-space: nowrap;
       }
       .period-menu-item:last-child { border-bottom: 0; }
-      .period-menu-item:hover, .period-menu-item:focus-visible { background: rgba(0, 227, 253, 0.12); color: #fff; outline: none; }
-      .period-menu-item[aria-selected="true"] { background: rgba(0, 227, 253, 0.18); color: #fff; }
-      .tracuu-btn { background: linear-gradient(135deg, #ff6d00, #ffd16c); color: #4a2800; font-weight: 800; transition: all 0.25s; }
-       .tracuu-btn:hover { box-shadow: 0 0 20px rgba(255, 160, 0, 0.5), 0 0 40px rgba(255, 100, 0, 0.25); transform: translateY(-1px); }
+      .period-menu-item:hover, .period-menu-item:focus-visible { background: rgba(255, 141, 180, 0.12); color: #fff; outline: none; }
+      .period-menu-item[aria-selected="true"] { background: rgba(255, 141, 180, 0.18); color: #fff; }
+      .tracuu-btn { background: linear-gradient(135deg, #ff7f6b, #ffc499); color: #45152f; font-weight: 800; transition: all 0.25s; }
+       .tracuu-btn:hover { box-shadow: 0 0 20px rgba(255, 140, 110, 0.5), 0 0 40px rgba(255, 120, 100, 0.25); transform: translateY(-1px); }
 
        /* Account cards use clean right angles for faster scanning. */
        .account-tactical .glass,
        .account-tactical .glass-gold,
        .account-tactical .glass-cyan,
        .account-tactical [data-cards] > div {
-         --account-cyan: rgba(0, 227, 253, 0.52);
-         --account-gold: rgba(255, 209, 108, 0.72);
+         --account-cyan: rgba(255, 141, 180, 0.52);
+         --account-gold: rgba(255, 196, 153, 0.72);
          position: relative;
          isolation: isolate;
          overflow: hidden;
          border: 1px solid var(--account-cyan) !important;
          border-radius: 0 !important;
          clip-path: none;
-         background: linear-gradient(112deg, rgba(29, 58, 128, 0.92), rgba(11, 22, 64, 0.94)) !important;
-         box-shadow: inset 0 1px 0 rgba(202, 245, 255, 0.14), 0 16px 30px rgba(2, 10, 40, 0.26) !important;
+         background: linear-gradient(112deg, rgba(70, 37, 70, 0.92), rgba(40, 25, 53, 0.94)) !important;
+         box-shadow: inset 0 1px 0 rgba(255, 220, 205, 0.14), 0 16px 30px rgba(24, 14, 28, 0.26) !important;
        }
-      .account-tactical .glass-gold { border-color: var(--account-gold) !important; background: linear-gradient(112deg, rgba(96, 69, 37, 0.9), rgba(26, 30, 67, 0.95)) !important; }
+      .account-tactical .glass-gold { border-color: var(--account-gold) !important; background: linear-gradient(112deg, rgba(112, 56, 66, 0.9), rgba(44, 24, 54, 0.95)) !important; }
        .account-tactical .glass::before,
        .account-tactical .glass-gold::before,
        .account-tactical .glass-cyan::before,
@@ -140,76 +140,76 @@ const label = "text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 f
 
       /* Thẻ điểm bấm để mở chi tiết */
       .card-expandable { cursor: pointer; padding-bottom: 2rem; }
-      .card-expandable:hover { border-color: rgba(0, 227, 253, 0.85) !important; }
-      .card-expandable:focus-visible { outline: 2px solid #ffd16c; outline-offset: 2px; }
+      .card-expandable:hover { border-color: rgba(255, 141, 180, 0.85) !important; }
+      .card-expandable:focus-visible { outline: 2px solid #ffc499; outline-offset: 2px; }
       /* selector dài để thắng rule ".account-tactical [data-cards] > div > * { position: relative }" của thẻ */
       .account-tactical [data-cards] > div > .card-chev { position: absolute; right: 0.6rem; bottom: 0.4rem; transition: transform 0.25s; }
       .card-expandable[aria-expanded="true"] .card-chev { transform: rotate(180deg); }
 
       /* Danh sách căn ghi nhận */
-      .units-th { padding: 0.75rem 1rem; text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255, 255, 255, 0.5); border-bottom: 1px solid rgba(0, 227, 253, 0.3); white-space: nowrap; }
+      .units-th { padding: 0.75rem 1rem; text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255, 255, 255, 0.5); border-bottom: 1px solid rgba(255, 141, 180, 0.3); white-space: nowrap; }
       .units-th.text-right { text-align: right; }
       .units-td { padding: 0.7rem 1rem; color: rgba(255, 255, 255, 0.78); white-space: nowrap; }
       .units-row { border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
       .units-row:last-child { border-bottom: 0; }
-      .units-row:hover { background: rgba(0, 227, 253, 0.05); }
+      .units-row:hover { background: rgba(255, 141, 180, 0.05); }
       .unit-paid { color: #4ade80; }
       .unit-unpaid { color: #f87171; }
 
       /* Thanh tiến độ chia theo mốc: mỗi đoạn là một mốc, đoạn nào qua rồi thì đầy */
       .prog-row { display: flex; gap: 4px; }
       .prog-seg { position: relative; flex: 1 1 0; height: 10px; background: rgba(255, 255, 255, 0.12); overflow: hidden; }
-      .prog-seg-fill { height: 100%; width: 0; background: linear-gradient(90deg, #00e3fd, #ffd16c); transition: width 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
-      .prog-seg-done .prog-seg-fill { background: linear-gradient(90deg, #ffd16c, #ffb347); }
-      .prog-seg-now { outline: 1px solid rgba(0, 227, 253, 0.8); outline-offset: 1px; }
+      .prog-seg-fill { height: 100%; width: 0; background: linear-gradient(90deg, #ff8db4, #ffc499); transition: width 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+      .prog-seg-done .prog-seg-fill { background: linear-gradient(90deg, #ffc499, #ff9d7a); }
+      .prog-seg-now { outline: 1px solid rgba(255, 141, 180, 0.8); outline-offset: 1px; }
       .prog-label { flex: 1 1 0; min-width: 0; text-align: right; line-height: 1.25; color: rgba(255, 255, 255, 0.42); }
-      .prog-label-n { display: block; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; }
+      .prog-label-n { display: block; font-family: 'Roboto', Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: normal; text-transform: uppercase; }
       .prog-label-v { display: block; font-size: 13px; font-weight: 700; }
-      .prog-label-on { color: #ffd16c; }
+      .prog-label-on { color: #ffc499; }
       @media (max-width: 640px) { .prog-label-n { display: none; } .prog-label-v { font-size: 11px; } }
 
       /* Dòng trạng thái cập nhật dữ liệu, đặt ngay dưới tên để người dùng thấy ngay số liệu mới tới đâu */
-      .update-chip { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.75rem; font-size: 0.8125rem; color: rgba(255, 255, 255, 0.7); border: 1px solid rgba(0, 227, 253, 0.4); background: rgba(0, 227, 253, 0.07); }
+      .update-chip { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.75rem; font-size: 0.8125rem; color: rgba(255, 255, 255, 0.7); border: 1px solid rgba(255, 141, 180, 0.4); background: rgba(255, 141, 180, 0.07); }
       .update-chip b { font-weight: 700; color: #fff; }
 
       /* Chọn năm */
       .year-tab { padding: 0.35rem 0.8rem; font: inherit; font-size: 0.8rem; font-weight: 700; color: rgba(255, 255, 255, 0.6); border: 1px solid rgba(255, 255, 255, 0.18); background: transparent; cursor: pointer; transition: color 0.2s, border-color 0.2s, background 0.2s; }
-      .year-tab:hover { color: #fff; border-color: rgba(0, 227, 253, 0.6); }
-      .year-tab[aria-pressed="true"] { color: #fff; border-color: #00e3fd; background: rgba(0, 227, 253, 0.16); }
-      .year-tab:focus-visible { outline: 2px solid #ffd16c; outline-offset: 2px; }
+      .year-tab:hover { color: #fff; border-color: rgba(255, 141, 180, 0.6); }
+      .year-tab[aria-pressed="true"] { color: #fff; border-color: #ff8db4; background: rgba(255, 141, 180, 0.16); }
+      .year-tab:focus-visible { outline: 2px solid #ffc499; outline-offset: 2px; }
 
       /* Hành trình du lịch */
-      .journey-win { border-color: rgba(255, 209, 108, 0.7) !important; }
-      .journey-win .journey-msg { color: #ffd16c; }
+      .journey-win { border-color: rgba(255, 196, 153, 0.7) !important; }
+      .journey-win .journey-msg { color: #ffc499; }
       .journey-miss .journey-msg { color: #fda4af; }
-      .journey-card:not(.journey-win):not(.journey-miss) .journey-msg { color: #00e3fd; }
+      .journey-card:not(.journey-win):not(.journey-miss) .journey-msg { color: #ff8db4; }
       .journey-road { position: relative; margin: 3.5rem 0.9rem 0.25rem; height: 14px; }
       .journey-track { position: absolute; inset: 3px 0; border-radius: 9999px; background: rgba(255, 255, 255, 0.12); overflow: hidden; }
-      .journey-fill { height: 100%; border-radius: 9999px; background: linear-gradient(90deg, #00e3fd, #ffd16c); transition: width 1.1s cubic-bezier(0.16, 1, 0.3, 1); }
-      .journey-stop { position: absolute; top: 50%; z-index: 2; width: 30px; height: 30px; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; border-radius: 9999px; background: #0d1220; border: 2px solid rgba(255, 255, 255, 0.22); color: rgba(255, 255, 255, 0.4); }
-      .journey-stop-on { border-color: #ffd16c; color: #4a2800; background: linear-gradient(135deg, #fff8c5, #ffd700, #b8860b); box-shadow: 0 0 16px rgba(255, 215, 0, 0.45); }
+      .journey-fill { height: 100%; border-radius: 9999px; background: linear-gradient(90deg, #ff8db4, #ffc499); transition: width 1.1s cubic-bezier(0.16, 1, 0.3, 1); }
+      .journey-stop { position: absolute; top: 50%; z-index: 2; width: 30px; height: 30px; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; border-radius: 9999px; background: #1a0f1e; border: 2px solid rgba(255, 255, 255, 0.22); color: rgba(255, 255, 255, 0.4); }
+      .journey-stop-on { border-color: #ffc499; color: #45152f; background: linear-gradient(135deg, #ffe3c4, #ffb784, #e8846b); box-shadow: 0 0 16px rgba(255, 183, 132, 0.45); }
       .journey-plane { display: block; transform: rotate(90deg); } /* icon máy bay mặc định hướng lên → quay sang phải theo chiều đi */
-      .journey-rider { position: absolute; top: -46px; z-index: 3; transform: translateX(-50%); color: #00e3fd; transition: left 1.1s cubic-bezier(0.16, 1, 0.3, 1); filter: drop-shadow(0 0 8px rgba(0, 227, 253, 0.7)); }
+      .journey-rider { position: absolute; top: -46px; z-index: 3; transform: translateX(-50%); color: #ff8db4; transition: left 1.1s cubic-bezier(0.16, 1, 0.3, 1); filter: drop-shadow(0 0 8px rgba(255, 141, 180, 0.7)); }
 
       /* Các mốc bonus theo kỳ */
       .bp-chip { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.3rem 0.6rem; font-size: 12px; font-weight: 700; border: 1px solid; }
-      .bp-chip-on { color: #ffd16c; border-color: rgba(255, 209, 108, 0.7); background: rgba(255, 209, 108, 0.1); }
+      .bp-chip-on { color: #ffc499; border-color: rgba(255, 196, 153, 0.7); background: rgba(255, 196, 153, 0.1); }
       .bp-chip-off { color: rgba(255, 255, 255, 0.4); border-color: rgba(255, 255, 255, 0.14); }
 
       /* Pop-up cảnh báo duy trì thành viên */
-      .warn-panel { border: 1px solid rgba(255, 209, 108, 0.8); background: linear-gradient(112deg, rgba(60, 44, 24, 0.97), rgba(14, 22, 62, 0.98)); box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55); }
+      .warn-panel { border: 1px solid rgba(255, 196, 153, 0.8); background: linear-gradient(112deg, rgba(84, 40, 56, 0.97), rgba(43, 25, 51, 0.98)); box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55); }
       .warn-item { border-left: 3px solid #f87171; padding-left: 0.75rem; }
 
       /* Timeline các mốc thưởng */
-      .tl-node { border: 2px solid rgba(255, 255, 255, 0.15); background: #0d1220; color: rgba(255, 255, 255, 0.35); }
-      .tl-node-done { border-color: #ffd16c; background: linear-gradient(135deg, #fff8c5, #ffd700, #b8860b); color: #4a2800; box-shadow: 0 0 18px rgba(255, 215, 0, 0.45); }
-      .tl-node-next { border-color: #00e3fd; color: #00e3fd; box-shadow: 0 0 18px rgba(0, 227, 253, 0.4); animation: tl-pulse 2s ease-in-out infinite; }
-      @keyframes tl-pulse { 50% { box-shadow: 0 0 6px rgba(0, 227, 253, 0.2); } }
+      .tl-node { border: 2px solid rgba(255, 255, 255, 0.15); background: #1a0f1e; color: rgba(255, 255, 255, 0.35); }
+      .tl-node-done { border-color: #ffc499; background: linear-gradient(135deg, #ffe3c4, #ffb784, #e8846b); color: #45152f; box-shadow: 0 0 18px rgba(255, 183, 132, 0.45); }
+      .tl-node-next { border-color: #ff8db4; color: #ff8db4; box-shadow: 0 0 18px rgba(255, 141, 180, 0.4); animation: tl-pulse 2s ease-in-out infinite; }
+      @keyframes tl-pulse { 50% { box-shadow: 0 0 6px rgba(255, 141, 180, 0.2); } }
       .tl-list { display: flex; flex-direction: column; }
       .tl-item { display: flex; flex-direction: row; gap: 1rem; }
       .tl-rail { display: flex; flex-direction: column; align-items: center; }
       .tl-line { position: relative; flex: 1 1 auto; min-height: 2rem; width: 2px; margin: 0.5rem 0; border-radius: 9999px; background: rgba(255, 255, 255, 0.12); }
-      .tl-fill { position: absolute; left: 0; top: 0; width: 100%; height: var(--fill, 0%); border-radius: 9999px; background: linear-gradient(180deg, #ffd16c, #00e3fd); transition: height 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+      .tl-fill { position: absolute; left: 0; top: 0; width: 100%; height: var(--fill, 0%); border-radius: 9999px; background: linear-gradient(180deg, #ffc499, #ff8db4); transition: height 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
       .tl-body { min-width: 0; padding-bottom: 1.5rem; }
       .tl-item:last-child .tl-body { padding-bottom: 0; }
       @media (min-width: 768px) {
@@ -218,7 +218,7 @@ const label = "text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 f
         .tl-item { flex: 1 0 9.5rem; flex-direction: column; gap: 1rem; }
         .tl-rail { flex-direction: row; width: 100%; }
         .tl-line { min-height: 0; width: auto; height: 2px; margin: 0 0.75rem; }
-        .tl-fill { width: var(--fill, 0%); height: 100%; background: linear-gradient(90deg, #ffd16c, #00e3fd); transition-property: width; }
+        .tl-fill { width: var(--fill, 0%); height: 100%; background: linear-gradient(90deg, #ffc499, #ff8db4); transition-property: width; }
         .tl-body { padding: 0 1rem 0 0; }
         .tl-scroll.has-more { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 3rem), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 3rem), transparent); }
       }
@@ -227,11 +227,11 @@ const label = "text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 f
 
   <!-- Neon light trails -->
   <svg class="trails-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <line class="trail-line" x1="-100" y1="200" x2="1540" y2="180" stroke="rgba(0,227,253,0.4)" stroke-width="1" />
-    <line class="trail-line" x1="-100" y1="450" x2="1540" y2="420" stroke="rgba(255,209,108,0.35)" stroke-width="0.8" />
-    <line class="trail-line" x1="-100" y1="680" x2="1540" y2="700" stroke="rgba(0,100,255,0.3)" stroke-width="1.2" />
-    <line class="trail-line" x1="200" y1="-50" x2="180" y2="950" stroke="rgba(0,227,253,0.25)" stroke-width="0.8" />
-    <line class="trail-line" x1="1100" y1="-50" x2="1120" y2="950" stroke="rgba(255,209,108,0.2)" stroke-width="1" />
+    <line class="trail-line" x1="-100" y1="200" x2="1540" y2="180" stroke="rgba(255, 141, 180,0.4)" stroke-width="1" />
+    <line class="trail-line" x1="-100" y1="450" x2="1540" y2="420" stroke="rgba(255, 196, 153,0.35)" stroke-width="0.8" />
+    <line class="trail-line" x1="-100" y1="680" x2="1540" y2="700" stroke="rgba(255, 141, 180,0.3)" stroke-width="1.2" />
+    <line class="trail-line" x1="200" y1="-50" x2="180" y2="950" stroke="rgba(255, 141, 180,0.25)" stroke-width="0.8" />
+    <line class="trail-line" x1="1100" y1="-50" x2="1120" y2="950" stroke="rgba(255, 196, 153,0.2)" stroke-width="1" />
   </svg>
 
   <ProgramHeader program={program} active="account" />
@@ -316,7 +316,7 @@ const label = "text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 f
         <template data-card-template>
           <div class="rounded-2xl p-4 sm:p-5">
             <div class="flex items-start justify-between gap-2">
-              <p class={label + ' leading-snug'} data-card="label"></p>
+              <p class="font-body text-xs font-bold uppercase tracking-normal text-white/65 leading-snug" data-card="label"></p>
               <span class="material-symbols-outlined text-white/35 text-[20px]" data-card="icon"></span>
             </div>
             <p class="font-wide italic font-black text-xl sm:text-2xl mt-3 leading-tight" data-card="value"></p>
@@ -359,7 +359,7 @@ const label = "text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 f
             <span class="unit-paid font-bold">Chữ xanh: đã chi trả</span> ·
             <span class="unit-unpaid font-bold">Chữ đỏ: chưa chi trả &amp; đối soát</span>
           </p>
-          <div class="glass rounded-2xl overflow-x-auto">
+          <div class="glass rounded-2xl overflow-x-auto" tabindex="0" role="region" aria-label="Bảng thông tin, kéo ngang để xem đầy đủ">
             <table class="w-full text-sm min-w-[640px]">
               <thead data-units-head></thead>
               <tbody data-units-body></tbody>

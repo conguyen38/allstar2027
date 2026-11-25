@@ -40,7 +40,7 @@ const features = [
     <div class="desktop-shell artboard-shell">
       <article class="desktop-artboard artboard" aria-label="Hướng dẫn sử dụng U-Point">
         <section class="hero">
-          <img class="hero-bg" src="/u-point/layers/hero-background.webp" alt="" />
+          <img class="hero-bg" src="/assets/images/allstar-upoint-saigon.webp" alt="" />
           <img class="heading-image hero-title" src="/u-point/layers/figma-desktop-hero-title.webp" alt="Hướng dẫn sử dụng U-Point và đặc quyền thành viên Allstar" />
           <div class="hero-subtitle">TRÊN ỨNG DỤNG TECHCOMBANK ONEU</div>
         </section>
@@ -159,7 +159,7 @@ const features = [
     <div class="mobile-shell artboard-shell">
       <article class="mobile-artboard artboard" aria-label="Hướng dẫn sử dụng U-Point trên thiết bị di động">
         <section class="mobile-hero">
-          <img class="mobile-hero-bg" src="/u-point/layers/hero-background.webp" alt="" />
+          <img class="mobile-hero-bg" src="/assets/images/allstar-upoint-saigon.webp" alt="" />
           <img class="mobile-title" src="/u-point/layers/extracted/mobile-hero-title.webp?v=3" alt="Hướng dẫn sử dụng U-Point và đặc quyền thành viên Allstar" />
           <div class="mobile-subtitle">TRÊN ỨNG DỤNG TECHCOMBANK ONEU</div>
         </section>
@@ -239,7 +239,7 @@ const features = [
   <script is:inline>
     (() => {
       const resize = () => {
-        const mobile = window.innerWidth < 768;
+        const mobile = window.innerWidth < 1024;
         const baseWidth = mobile ? 320 : 1440;
         // Desktop artwork stays within a comfortable reading measure instead of
         // expanding edge-to-edge on compact laptop screens.
@@ -249,7 +249,7 @@ const features = [
         const shell = document.querySelector(mobile ? '.mobile-shell' : '.desktop-shell');
         if (!shell) return;
         const scale = mobile
-          ? window.innerWidth / baseWidth
+          ? Math.min(window.innerWidth / baseWidth, 1.5)
           : Math.min((window.innerWidth - desktopGutter * 2) / baseWidth, desktopMaxWidth / baseWidth);
         shell.style.setProperty('--artboard-scale', String(scale));
         document.documentElement.style.setProperty('--u-point-desktop-scale', String(scale));
@@ -264,7 +264,7 @@ const features = [
       if (!btn) return;
 
       const getTarget = () =>
-        window.innerWidth < 768
+        window.innerWidth < 1024
           ? document.getElementById('video-section-mobile')
           : document.getElementById('video-section-desktop');
 
@@ -328,8 +328,8 @@ const features = [
       content: ''; position: absolute; z-index: 0; inset: 0 0 auto; width: 100%;
       height: calc(603px * var(--artboard-scale, 1));
       background:
-        linear-gradient(90deg, rgba(0, 24, 133, .72), rgba(4, 52, 190, .18) 52%, rgba(0, 31, 147, .5)),
-        url('/u-point/layers/hero-background.webp') center / 100% 100% no-repeat;
+        linear-gradient(90deg, rgba(50, 15, 51, .76), rgba(53, 24, 51, .22) 52%, rgba(43, 19, 49, .52)),
+        url('/assets/images/allstar-upoint-saigon.webp') center / cover no-repeat;
     }
     .desktop-shell::after {
       content: ''; position: absolute; z-index: 2; left: 0; top: calc(591px * var(--artboard-scale, 1)); width: 100%;
@@ -473,10 +473,10 @@ const features = [
     .desktop-note { box-sizing: border-box; min-height: calc(180px * var(--u-point-desktop-scale, 1)); margin-top: calc(56px * var(--u-point-desktop-scale, 1)); padding: calc(46px * var(--u-point-desktop-scale, 1)) 24px; border-top: 2px solid rgba(54, 141, 255, .75); background: linear-gradient(180deg, rgba(12, 66, 184, .9), rgba(9, 48, 157, .98)); color: #fff; text-align: center; font: 500 calc(19px * var(--u-point-desktop-scale, 1))/1.4 Manrope, sans-serif; }
     .desktop-note strong { font-weight: 700; }
 
-    @media (max-width: 767px) {
+    @media (max-width: 1023px) {
       .desktop-shell { display: none; }
       .desktop-note { display: none; }
-      .u-point-main { padding-top: 64px; background: #283dc0; }
+      .u-point-main { padding-top: 80px; background: #283dc0; }
       /* Mobile uses a section-based layout. Every section owns its own vertical rhythm. */
       .mobile-shell { display: block; width: 100%; height: 3910px; overflow: hidden; }
       .mobile-artboard { width: 320px; height: 3910px; background: linear-gradient(180deg, #293fc5 0%, #293fc5 63%, #201a98 100%); }

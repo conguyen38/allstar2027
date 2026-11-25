@@ -1,0 +1,39 @@
+---
+interface Props { program: 'prm' | 'sih'; }
+const { program } = Astro.props;
+const label = program === 'prm' ? 'PRM Techcombank' : 'LLB OneHousing';
+---
+<script is:inline>
+  // Chỉ phát hiệu ứng mở khi vào từ trang chọn chương trình hoặc mở thẳng trang (không phát khi bấm tab trong chương trình).
+  (function () {
+    try {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var ref = document.referrer;
+      var internal = ref && new URL(ref).origin === location.origin && new URL(ref).pathname !== '/';
+      if (internal) return;
+      document.documentElement.classList.add('hero-intro', 'hero-lock');
+      // Phòng hờ: nếu script chính không chạy được thì tự gỡ để hero không bị ẩn mãi.
+      setTimeout(function () {
+        if (!window.__heroIntroStarted) document.documentElement.classList.remove('hero-intro', 'hero-lock');
+      }, 4500);
+    } catch (e) {}
+  })();
+</script>
+<div class="hero-pin" data-hero-pin>
+  <section class="club-cover program-cover" data-program={program} data-hero-sticky aria-label={label}>
+    <img class="club-scene" src="/assets/images/allstar-masterise-banner.webp" alt="" width="1862" height="845" fetchpriority="high" />
+    <div class="hero-pieces" aria-hidden="true">
+      {[0, 1, 2, 3, 4, 5].map((index) => (
+        <div class:list={['hero-piece', `hero-piece-${index}`]}>
+          <img src="/assets/images/allstar-masterise-banner.webp" alt="" width="1862" height="845" decoding="async" />
+        </div>
+      ))}
+    </div>
+    <div class="club-caption" data-hero-logo>
+      <div class="program-logo">
+        <img class="club-wordmark" src="/assets/images/allstar-27.webp" alt="Allstar" width="1024" height="872" />
+      </div>
+      <h1>{label}</h1>
+    </div>
+  </section>
+</div>

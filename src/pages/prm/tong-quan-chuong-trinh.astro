@@ -28,31 +28,31 @@ const description = "Tìm hiểu chi tiết về chương trình loyalty dành c
     </script>
 <style>
         .glass-card {
-            background: rgba(32, 38, 47, 0.4);
+            background: rgba(45, 26, 53, 0.4);
             backdrop-filter: blur(12px);
-            border-top: 1px solid rgba(68, 72, 79, 0.3);
-            border-left: 1px solid rgba(68, 72, 79, 0.3);
+            border-top: 1px solid rgba(79, 68, 77, 0.3);
+            border-left: 1px solid rgba(79, 68, 77, 0.3);
         }
 
         /* Dropdown */
 
         /* Hero background */
         .hero-banner {
-            background-image: url('/assets/images/allstar-contest-headbanner.webp');
+            background-image: url('/assets/images/allstar-sunset.webp');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
 
         .hero-overlay {
-            background: linear-gradient(to bottom, rgba(10, 14, 20, 0.8) 0%, rgba(10, 14, 20, 0.2) 50%, rgba(10, 14, 20, 0.8) 100%);
+            background: linear-gradient(to bottom, rgba(17, 10, 20, 0.8) 0%, rgba(17, 10, 20, 0.2) 50%, rgba(17, 10, 20, 0.8) 100%);
         }
 
         /* Perspective grid */
         .perspective-grid {
             background-image:
-                linear-gradient(rgba(0, 227, 253, 0.06) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 227, 253, 0.06) 1px, transparent 1px);
+                linear-gradient(rgba(255, 141, 180, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 141, 180, 0.06) 1px, transparent 1px);
             background-size: 60px 60px;
             animation: grid-move 4s linear infinite;
             transform: perspective(600px) rotateX(55deg) scaleX(2.5);
@@ -64,34 +64,34 @@ const description = "Tìm hiểu chi tiết về chương trình loyalty dành c
             position: absolute;
             height: 1px;
             border-radius: 9999px;
-            background: linear-gradient(90deg, transparent, rgba(0, 227, 253, 0.5), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 141, 180, 0.5), transparent);
             animation: speed-line 1.8s linear infinite;
         }
 
         /* Neon border cards */
         .card-neon-gold {
-            border: 1px solid rgba(255, 209, 108, 0.35);
-            box-shadow: 0 0 20px rgba(255, 209, 108, 0.08), inset 0 0 20px rgba(255, 209, 108, 0.03);
-            background: rgba(255, 209, 108, 0.04);
+            border: 1px solid rgba(255, 196, 153, 0.35);
+            box-shadow: 0 0 20px rgba(255, 196, 153, 0.08), inset 0 0 20px rgba(255, 196, 153, 0.03);
+            background: rgba(255, 196, 153, 0.04);
             backdrop-filter: blur(16px);
         }
 
         .card-neon-gold:hover {
-            border-color: rgba(255, 209, 108, 0.65);
-            box-shadow: 0 0 40px rgba(255, 209, 108, 0.18), inset 0 0 30px rgba(255, 209, 108, 0.06);
+            border-color: rgba(255, 196, 153, 0.65);
+            box-shadow: 0 0 40px rgba(255, 196, 153, 0.18), inset 0 0 30px rgba(255, 196, 153, 0.06);
             transform: translateY(-4px);
         }
 
         .card-neon-cyan {
-            border: 1px solid rgba(0, 227, 253, 0.35);
-            box-shadow: 0 0 20px rgba(0, 227, 253, 0.08), inset 0 0 20px rgba(0, 227, 253, 0.03);
-            background: rgba(0, 227, 253, 0.04);
+            border: 1px solid rgba(255, 141, 180, 0.35);
+            box-shadow: 0 0 20px rgba(255, 141, 180, 0.08), inset 0 0 20px rgba(255, 141, 180, 0.03);
+            background: rgba(255, 141, 180, 0.04);
             backdrop-filter: blur(16px);
         }
 
         .card-neon-cyan:hover {
-            border-color: rgba(0, 227, 253, 0.65);
-            box-shadow: 0 0 40px rgba(0, 227, 253, 0.18), inset 0 0 30px rgba(0, 227, 253, 0.06);
+            border-color: rgba(255, 141, 180, 0.65);
+            box-shadow: 0 0 40px rgba(255, 141, 180, 0.18), inset 0 0 30px rgba(255, 141, 180, 0.06);
             transform: translateY(-4px);
         }
 
@@ -125,7 +125,7 @@ const description = "Tìm hiểu chi tiết về chương trình loyalty dành c
         }
 
         .rule-item-gold:hover {
-            border-color: #ffd16c;
+            border-color: #ffc499;
         }
 
         .rule-item-cyan:hover {
@@ -139,10 +139,10 @@ const description = "Tìm hiểu chi tiết về chương trình loyalty dành c
         /* ── Page background & Neon trails ── */
         .page-bg {
             background:
-                radial-gradient(ellipse 80% 50% at 20% 20%, rgba(0, 80, 180, 0.18) 0%, transparent 60%),
-                radial-gradient(ellipse 60% 40% at 80% 10%, rgba(0, 227, 253, 0.1) 0%, transparent 50%),
-                radial-gradient(ellipse 50% 60% at 50% 80%, rgba(80, 0, 180, 0.12) 0%, transparent 60%),
-                #06091a;
+                radial-gradient(ellipse 80% 50% at 20% 20%, rgba(121, 59, 121, 0.18) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 80% 10%, rgba(255, 141, 180, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse 50% 60% at 50% 80%, rgba(121, 59, 121, 0.12) 0%, transparent 60%),
+                #120b15;
             min-height: 100vh;
         }
 
@@ -208,13 +208,13 @@ const description = "Tìm hiểu chi tiết về chương trình loyalty dành c
 <!-- Neon light trails -->
     <svg class="trails-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none"
         xmlns="http://www.w3.org/2000/svg">
-        <line class="trail-line" x1="-100" y1="200" x2="1540" y2="180" stroke="rgba(0,227,253,0.4)" stroke-width="1" />
-        <line class="trail-line" x1="-100" y1="450" x2="1540" y2="420" stroke="rgba(255,209,108,0.35)"
+        <line class="trail-line" x1="-100" y1="200" x2="1540" y2="180" stroke="rgba(255, 141, 180,0.4)" stroke-width="1" />
+        <line class="trail-line" x1="-100" y1="450" x2="1540" y2="420" stroke="rgba(255, 196, 153,0.35)"
             stroke-width="0.8" />
-        <line class="trail-line" x1="-100" y1="680" x2="1540" y2="700" stroke="rgba(0,100,255,0.3)"
+        <line class="trail-line" x1="-100" y1="680" x2="1540" y2="700" stroke="rgba(255, 141, 180,0.3)"
             stroke-width="1.2" />
-        <line class="trail-line" x1="200" y1="-50" x2="180" y2="950" stroke="rgba(0,227,253,0.25)" stroke-width="0.8" />
-        <line class="trail-line" x1="1100" y1="-50" x2="1120" y2="950" stroke="rgba(255,209,108,0.2)"
+        <line class="trail-line" x1="200" y1="-50" x2="180" y2="950" stroke="rgba(255, 141, 180,0.25)" stroke-width="0.8" />
+        <line class="trail-line" x1="1100" y1="-50" x2="1120" y2="950" stroke="rgba(255, 196, 153,0.2)"
             stroke-width="1" />
     </svg>
 
@@ -238,14 +238,14 @@ const description = "Tìm hiểu chi tiết về chương trình loyalty dành c
 
                 <!-- Card 1: Điều kiện tham gia -->
                 <div
-                    class="glass-card p-8 rounded-3xl shadow-2xl border border-white/5 relative overflow-hidden group hover:shadow-xl transition-all duration-300 text-center flex flex-col items-center">
+                    class="glass-card p-8 rounded-3xl shadow-2xl border border-white/5 relative overflow-hidden group hover:shadow-xl transition-all duration-300 flex flex-col">
                     <div class="mb-4">
                         <span class="material-symbols-outlined text-4xl text-primary"
                             style="font-variation-settings:'FILL' 1,'wght' 400;">badge</span>
                     </div>
-                    <div class="bg-[#1e293b]/50 text-white px-6 py-1 rounded-full text-sm font-bold uppercase mb-4">
+                    <h3 class="score-card__label">
                         Điều kiện tham gia
-                    </div>
+                    </h3>
                     <div class="w-full space-y-3 mt-4">
                         <div class="flex justify-between items-center py-2">
                             <span class="font-normal text-white/85 text-sm">LLTV cần đạt tối thiểu 05 điểm hợp lệ trong kỳ
@@ -256,14 +256,14 @@ const description = "Tìm hiểu chi tiết về chương trình loyalty dành c
 
                 <!-- Card 2: Duy trì thành viên -->
                 <div
-                    class="glass-card p-8 rounded-3xl shadow-2xl border border-white/5 relative overflow-hidden group hover:shadow-xl transition-all duration-300 text-center flex flex-col items-center">
+                    class="glass-card p-8 rounded-3xl shadow-2xl border border-white/5 relative overflow-hidden group hover:shadow-xl transition-all duration-300 flex flex-col">
                     <div class="mb-4">
                         <span class="material-symbols-outlined text-4xl text-primary"
                             style="font-variation-settings:'FILL' 1,'wght' 400;">trending_up</span>
                     </div>
-                    <div class="bg-[#1e293b]/50 text-white px-6 py-1 rounded-full text-sm font-bold uppercase mb-4">
+                    <h3 class="score-card__label">
                         Duy trì thành viên
-                    </div>
+                    </h3>
                     <div class="w-full space-y-3 mt-4">
                         <div class="flex justify-between items-center py-2">
                             <span class="font-normal text-white/85 text-sm">Cần phát sinh tối thiểu 01 HBK trong H1 và H2
@@ -274,14 +274,14 @@ const description = "Tìm hiểu chi tiết về chương trình loyalty dành c
 
                 <!-- Card 3: Quy định chuyển điểm -->
                 <div
-                    class="glass-card p-8 rounded-3xl shadow-2xl border border-white/5 relative overflow-hidden group hover:shadow-xl transition-all duration-300 text-center flex flex-col items-center sm:col-span-2 lg:col-span-1">
+                    class="glass-card p-8 rounded-3xl shadow-2xl border border-white/5 relative overflow-hidden group hover:shadow-xl transition-all duration-300 flex flex-col sm:col-span-2 lg:col-span-1">
                     <div class="mb-4">
                         <span class="material-symbols-outlined text-4xl text-primary"
                             style="font-variation-settings:'FILL' 1,'wght' 400;">swap_horiz</span>
                     </div>
-                    <div class="bg-[#1e293b]/50 text-white px-6 py-1 rounded-full text-sm font-bold uppercase mb-4">
+                    <h3 class="score-card__label">
                         Quy định chuyển điểm
-                    </div>
+                    </h3>
                     <div class="w-full space-y-3 mt-4">
                         <div class="flex justify-between items-center border-b border-white/5 py-2">
                             <span class="font-normal text-white/85 text-sm">Điểm sẽ được ghi nhận cho chi nhánh cũ tới

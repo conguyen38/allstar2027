@@ -1,0 +1,276 @@
+/* Allstar Club's sunset campaign */
+.allstar-sunset {
+  --night: #1b1024;
+  --cream: #fff2dc;
+  --coral: #ffab8c;
+  --panel: linear-gradient(125deg, #43243c, #24172f);
+  --edge: rgb(255 168 150 / 35%);
+}
+.club-entry { margin: 0; background: var(--night); color: var(--cream); font-family: Roboto, Arial, sans-serif; }
+.club-cover {
+  position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: center; justify-content: center;
+  min-height: 100vh; min-height: 100svh; box-sizing: border-box;
+  padding: clamp(30px, 6vw, 110px); color: var(--cream); background: var(--night);
+}
+.club-scene, .club-cover::after { position: absolute; inset: 0; width: 100%; height: 100%; }
+.club-scene { z-index: -3; object-fit: cover; object-position: 63% center; }
+.club-cover::after {
+  content: ''; z-index: -2;
+  background: linear-gradient(0deg, rgb(21 9 29 / 94%), transparent 65%), linear-gradient(90deg, rgb(41 14 47 / 40%), transparent 65%);
+}
+.club-caption { width: min(100%, 36rem); display: flex; flex-direction: column; align-items: center; }
+.club-wordmark { display: block; width: min(44vw, 38svh, 330px); height: auto; margin: 10px 0 16px; }
+.club-caption h1 { margin: 0; }
+.club-programs { width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.club-programs a {
+  position: relative;
+  display: flex; align-items: center; justify-content: center; gap: .8rem;
+  min-height: 56px; box-sizing: border-box; padding: 14px 2.5rem;
+  border: 1px solid rgb(255 241 222 / 85%); border-radius: 999px;
+  background: rgb(52 24 57 / 62%);
+  color: #fff8ee; text-decoration: none;
+  backdrop-filter: blur(8px);
+  transition: background .2s, border-color .2s, transform .2s;
+}
+.club-programs a:hover, .club-programs a:focus-visible { background: rgb(75 35 75 / 82%); border-color: #fff8ee; transform: translateY(-2px); }
+.club-programs a:focus-visible { outline: 2px solid #fff8ee; outline-offset: 4px; }
+.club-programs strong { font: 700 clamp(1.15rem, 1.5vw, 1.4rem)/1.2 'Barlow Condensed', 'Arial Narrow', sans-serif; letter-spacing: .035em; text-transform: uppercase; text-align: center; }
+.club-programs-prompt {
+  margin: 0 0 -.5rem; color: #fff8ee; text-align: center;
+  font: 700 clamp(1rem, 1.25vw, 1.2rem)/1.4 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  letter-spacing: .06em; text-transform: uppercase;
+  text-shadow: 0 2px 8px rgb(25 10 35 / 85%);
+}
+.home-cover .club-scene { object-position: center center; }
+.home-video { position: absolute; inset: 0; z-index: -3; width: 100%; height: 100%; object-fit: cover; object-position: center; pointer-events: none; opacity: 0; transition: opacity .4s ease; }
+.home-video.is-playing { opacity: 1; }
+.home-cover::after { background: radial-gradient(rgba(0, 0, 0, .24) .5px, transparent .9px) 0 0 / 3px 3px, linear-gradient(0deg, rgb(21 9 29 / 75%), transparent 42%); pointer-events: none; }
+.home-cover .club-caption {
+  position: absolute; inset: 0; width: auto;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: clamp(1rem, 2.5svh, 1.5rem);
+  padding: 1.25rem;
+}
+.home-cover .home-logo { position: relative; width: min(35vw, 34svh, 330px); }
+.home-cover .club-wordmark { width: 100%; margin: 0; }
+.home-logo-light {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(115deg, transparent 38%, rgb(255 255 255 / 0) 43%, rgb(255 255 255 / 85%) 49%, rgb(255 203 235 / 60%) 53%, transparent 60%) 150% 0 / 250% 100% no-repeat;
+  -webkit-mask: url('/assets/images/allstar-27.webp') center / contain no-repeat;
+  mask: url('/assets/images/allstar-27.webp') center / contain no-repeat;
+  animation: home-logo-sweep 5s ease-in-out infinite;
+}
+@keyframes home-logo-sweep { 0%, 18% { background-position: 150% 0; opacity: 0; } 25% { opacity: .85; } 60% { background-position: -100% 0; opacity: .85; } 70%, 100% { background-position: -100% 0; opacity: 0; } }
+.home-cover .club-programs { max-width: 36rem; }
+.program-cover {
+  background: transparent;
+  min-height: calc(100svh - 5rem);
+  text-align: center;
+}
+.club-cover.program-cover::after {
+  background: radial-gradient(rgba(0, 0, 0, .24) .5px, transparent .9px) 0 0 / 3px 3px,
+    linear-gradient(0deg, rgb(21 9 29 / 94%), transparent 65%),
+    linear-gradient(90deg, rgb(41 14 47 / 40%), transparent 65%);
+  pointer-events: none;
+}
+.program-cover .club-caption {
+  width: min(44vw, 38svh, 330px);
+  gap: .5rem;
+}
+.program-logo { position: relative; isolation: isolate; width: 100%; }
+.program-logo::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: -28% -30%;
+  background: radial-gradient(ellipse, rgb(255 119 192 / 55%) 0%, rgb(166 71 214 / 35%) 30%, transparent 70%);
+  opacity: .65;
+  pointer-events: none;
+  animation: program-logo-glow 4s ease-in-out infinite;
+}
+@keyframes program-logo-glow {
+  0%, 100% { opacity: .5; transform: scale(.94); }
+  50% { opacity: .95; transform: scale(1.08); }
+}
+.program-cover .club-wordmark { width: 100%; margin: 0; }
+.program-cover h1 {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 2.5rem;
+  border: 1px solid rgb(255 241 222 / 85%);
+  border-radius: 999px;
+  background: rgb(52 24 57 / 62%);
+  backdrop-filter: blur(8px);
+  color: #fff8ee;
+  font: 700 clamp(1.15rem, 1.5vw, 1.4rem)/1.2 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+}
+.program-cover h1::before, .program-cover h1::after,
+.club-programs a::before, .club-programs a::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  transform: translateY(-50%);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff2dc' fill-rule='evenodd' d='M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm0 3.5 2.47 5.03 5.55.8-4.01 3.91.95 5.52L12 16.15l-4.96 2.61.95-5.52-4.01-3.91 5.55-.8z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.program-cover h1::before, .club-programs a::before { left: 15px; }
+.program-cover h1::after, .club-programs a::after { right: 15px; }
+.program-cover .club-scene, .program-cover::after { opacity: var(--scene-opacity, 1); }
+.hero-pieces { position: absolute; inset: 0; z-index: -3; overflow: hidden; pointer-events: none; visibility: hidden; }
+.hero-piece { position: absolute; inset: 0; }
+.hero-piece img { width: 100%; height: 100%; object-fit: cover; object-position: 63% center; }
+.hero-piece-0 { clip-path: polygon(0 0, 25% 0, 21% 63%, 0 63%); }
+.hero-piece-1 { clip-path: polygon(25% 0, 77% 0, 74% 57%, 21% 70%, 21% 63%); }
+.hero-piece-2 { clip-path: polygon(77% 0, 100% 0, 100% 48%, 74% 57%); }
+.hero-piece-3 { clip-path: polygon(0 63%, 21% 63%, 29% 69%, 26% 100%, 0 100%); }
+.hero-piece-4 { clip-path: polygon(21% 70%, 74% 57%, 71% 100%, 26% 100%, 29% 69%); }
+.hero-piece-5 { clip-path: polygon(74% 57%, 100% 48%, 100% 100%, 71% 100%); }
+.program-info { isolation: isolate; }
+.program-info::before {
+  content: '';
+  position: fixed;
+  inset: 5rem 0 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(rgb(21 12 41 / 12%), rgb(34 13 44 / 36%)),
+    #392950 url('/assets/images/allstar-palm-dusk.webp') center / 100% 100% no-repeat;
+}
+.sunset-opening[open] {
+  position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none;
+  margin: 0; border: 0; padding: 6vw; overflow: hidden; display: grid; place-items: center;
+  background: radial-gradient(ellipse at 50% 34%, #19192f, #0e0e20 80%); color: #fff2dc;
+  opacity: 1; transition: opacity .5s ease;
+}
+.sunset-opening[open].is-closing { opacity: 0; }
+.sunset-opening::backdrop { background: transparent; }
+.opening-mark { position: relative; width: min(29vw, 23svh, 170px); aspect-ratio: 1024 / 872; }
+.opening-mark img { display: block; width: 100%; height: 100%; filter: grayscale(1) brightness(1.35); opacity: .08; animation: opening-emblem 2.8s ease both; }
+.opening-light {
+  position: absolute; inset: 0;
+  background: linear-gradient(115deg, transparent 32%, #f0d3ff 45%, #fff 49%, #ffabd8 53%, transparent 65%) 150% 0 / 240% 100% no-repeat;
+  -webkit-mask: url('/assets/images/allstar-27.webp') center / contain no-repeat;
+  mask: url('/assets/images/allstar-27.webp') center / contain no-repeat;
+  animation: opening-sweep 2.4s .15s ease-in-out both;
+}
+@keyframes opening-emblem { 0%, 100% { opacity: .04; } 45%, 75% { opacity: .18; } }
+@keyframes opening-sweep { 0% { background-position: 150% 0; opacity: 0; } 18% { opacity: .9; } 80% { opacity: .85; } 100% { background-position: -90% 0; opacity: 0; } }
+@media (max-width: 700px) {
+  .club-cover { padding: 24px 20px max(28px, env(safe-area-inset-bottom)); }
+  .club-scene { object-position: 43% top; }
+  .hero-piece img { object-position: 43% top; }
+  .club-wordmark { width: min(44vw, 25svh, 210px); }
+  .program-cover .club-caption { width: min(44vw, 25svh, 210px); }
+  .club-wordmark { margin: 8px 0 12px; }
+  .club-cover::after { background: linear-gradient(0deg, #1b1024 0%, #211127da 18%, transparent 62%); }
+  .home-cover .club-scene { object-position: center center; }
+  .home-cover::after { background: radial-gradient(rgba(0, 0, 0, .24) .5px, transparent .9px) 0 0 / 3px 3px, linear-gradient(0deg, rgb(21 9 29 / 80%), transparent 45%); }
+  .home-cover .home-logo { width: min(54vw, 30svh, 250px); }
+  .club-programs { max-width: 24rem; grid-template-columns: 1fr; gap: 7px; }
+  .club-programs a { padding: 9px 2.5rem; }
+}
+.allstar-sunset body.page-bg, .allstar-sunset body.allstar-grid-bg {
+  background: radial-gradient(ellipse at 8% 0%, #48223e, transparent 52%), var(--night) !important;
+}
+.allstar-sunset nav.fixed, .allstar-sunset #mobile-menu, .allstar-sunset footer { background: #201324f5 !important; border-color: var(--edge); }
+.allstar-sunset .trails-svg { display: none; }
+.allstar-sunset body:is(.allstar-grid-bg,.page-bg) :is(.glass-card,.tactical-frame,.tactical-leaderboard,.podium-card,.glass,.data-table) {
+  background: var(--panel) !important; border-color: var(--edge) !important;
+  --contest-cyan: #ffb19b88; --contest-gold: #ff81ae99;
+  --panel-cyan: #ffa2c488; --panel-gold: #ffbf9d;
+}
+.score-card, .reward-card, .program-info .accordion-item {
+  border: 1px solid rgb(255 202 185 / 30%);
+  border-radius: 1.25rem;
+  background: linear-gradient(145deg, rgb(70 37 70 / 96%), rgb(40 25 53 / 95%) 74%);
+  box-shadow: 0 12px 30px rgb(35 12 42 / 18%);
+}
+.score-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: clamp(1.25rem, 2.5vw, 2.25rem);
+}
+.reward-card { padding: .55rem clamp(1rem, 2.5vw, 2.25rem); overflow-x: auto; }
+.reward-card table { width: 100%; border-collapse: collapse; color: var(--cream); font-variant-numeric: tabular-nums; }
+.reward-card :is(th, td) { padding: .9rem .25rem; text-align: center; }
+.reward-card tr > :first-child { text-align: left; }
+.reward-card tr > :last-child { text-align: right; }
+.reward-card thead { font: 800 clamp(.94rem, 1.5vw, 1.2rem)/1.3 Archivo, Arial, sans-serif; }
+.reward-card tbody tr { border-top: 1px solid rgb(250 209 213 / 17%); }
+.reward-card tbody td { font-weight: 700; }
+.reward-card tbody td:first-of-type { color: #ffc499; }
+.program-info .accordion-item { overflow: hidden; }
+.program-info .accordion-trigger {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  width: 100%; padding: 1.15rem clamp(1.25rem, 2.5vw, 2.25rem);
+  text-align: left; color: var(--cream); background: transparent;
+  font: 700 clamp(1rem, 1.3vw, 1.2rem)/1.5 Roboto, Arial, sans-serif;
+}
+.program-info .accordion-trigger:focus-visible { outline: 2px solid #ffc499; outline-offset: -4px; border-radius: inherit; }
+.program-info .accordion-trigger:hover, .program-info .is-open .accordion-trigger { color: #ffc499; }
+.program-info .accordion-icon { flex: none; color: #ffc499; transition: transform .2s ease; }
+.program-info .is-open .accordion-icon { transform: rotate(45deg); }
+.program-info .accordion-body { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows .25s ease, visibility .25s; }
+.program-info .is-open .accordion-body { grid-template-rows: 1fr; visibility: visible; }
+.program-info .accordion-content { min-height: 0; overflow: hidden; margin-inline: clamp(1.25rem, 2.5vw, 2.25rem); color: #ebdae5; line-height: 1.65; }
+.program-info .accordion-content > :first-child { border-top: 1px solid rgb(250 209 213 / 17%); padding-top: .85rem; }
+.program-info .accordion-content > :last-child { margin-bottom: 1.25rem; }
+@media (prefers-reduced-motion: reduce) {
+  .program-info :is(.accordion-icon, .accordion-body) { transition: none; }
+}
+.score-card__label {
+  margin: 0 0 .65rem;
+  font: 800 clamp(1.2rem, 1.6vw, 1.55rem)/1.25 Archivo, Arial, sans-serif;
+  letter-spacing: -.025em;
+  color: var(--cream);
+}
+.score-card > p { color: #ebdae5; line-height: 1.55; }
+.score-card .space-y-3 > .flex {
+  margin: 0;
+  padding-block: .8rem;
+  gap: 1rem;
+  border-color: rgb(250 209 213 / 17%);
+}
+.score-card .space-y-3 > .flex > :first-child { color: #f2e2ed; }
+.score-card .text-primary {
+  color: #ffc499;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.score-card > p:last-child {
+  margin: auto 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgb(250 209 213 / 20%);
+  font-size: .82rem;
+}
+.allstar-sunset .u-point-main, .allstar-sunset .mobile-artboard { background: var(--panel) !important; }
+.allstar-sunset .u-point-page :is(.desktop-note,.m-note,.info-pill,.route-block h3,.video-jump-btn) { background: #442741 !important; }
+.club-briefing body { background: #fbe9df; }
+.club-briefing .glass-panel, .club-briefing .premium-container { background: #fff9f2; border-color: #dfbdbd; }
+.club-briefing header h1 { color: #522242; }
+.club-briefing header {
+  padding: clamp(32px, 6vw, 80px) 16px;
+  border-radius: 1.5rem;
+  background: linear-gradient(90deg, #27142cdd, #32172c99), url('/assets/images/allstar-sunset.webp') center 40% / cover;
+}
+.club-briefing header :is(h1, p) { color: #fff2df; }
+.club-briefing header h1 span { color: #ffaeac; }
+.allstar-sunset body.allstar-grid-bg {
+  --field-bg: #302034;
+  --field-line: var(--edge);
+}
+.allstar-sunset #auth-modal > .relative,
+.allstar-sunset #mobile-menu .menu-item { background: var(--panel); }
+.allstar-sunset .u-point-page .mobile-hero::after { background: linear-gradient(90deg, #311735b0, #32172866); }
+@media (prefers-reduced-motion: reduce) {
+  .sunset-opening, .opening-mark img, .opening-light, .club-programs a, .home-cover .home-logo, .home-logo-light, .program-logo::before { animation: none; transition: none; }
+  .home-video { transition: none; }
+}

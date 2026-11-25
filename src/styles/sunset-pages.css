@@ -1,0 +1,294 @@
+/* Áp theme hoàng hôn cho mọi trang trong chương trình: cùng nền cọ, thẻ bo góc, bảng, form như trang chủ.
+   Nạp sau global.css và sunset.css. Màu viết riêng của từng trang nằm trong file trang đó. */
+.allstar-sunset {
+  --card-bg: linear-gradient(145deg, rgb(70 37 70 / 96%), rgb(40 25 53 / 95%) 74%);
+  --card-edge: rgb(255 202 185 / 30%);
+  --card-shadow: 0 12px 30px rgb(35 12 42 / 18%);
+  --hairline: rgb(250 209 213 / 17%);
+  --peach: #ffc499;
+  --inset-bg: rgb(255 214 200 / 6%);
+}
+html.allstar-sunset { background-color: #392950; }
+
+/* ── Nền cọ hoàng hôn cố định ── */
+.allstar-sunset body:is(.page-bg, .allstar-grid-bg) { background: transparent !important; isolation: isolate; }
+.allstar-sunset body:is(.page-bg, .allstar-grid-bg)::before {
+  content: '';
+  position: fixed;
+  inset: 5rem 0 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(rgb(21 12 41 / 12%), rgb(34 13 44 / 36%)),
+    #392950 url('/assets/images/allstar-palm-dusk.webp') center / 100% 100% no-repeat;
+}
+
+/* ── Tiêu đề: chữ kem, vệt sáng hồng đào ── */
+.allstar-sunset .title-shine { --ts-base: #fff2dc; --ts-hi: #ff8db4; }
+.allstar-sunset .title-shine > span.text-primary { --ts-base: #ffc499; --ts-hi: #fff2dc; }
+
+/* Chữ phụ nằm thẳng trên nền tranh hoặc trên thẻ mận: đủ sáng để đọc */
+.allstar-sunset body.allstar-grid-bg :is(.text-white\/30, .text-white\/35, .text-white\/40, .text-white\/45) { color: rgb(242 226 237 / 75%); }
+.allstar-sunset body.allstar-grid-bg :is(.text-white\/50, .text-white\/55, .text-white\/60, .text-on-surface-variant) { color: rgb(242 226 237 / 85%); }
+
+/* ── Thẻ ── */
+.allstar-sunset body.allstar-grid-bg :is(.glass-card, .tactical-frame, .tactical-leaderboard, .podium-card),
+.allstar-sunset body.allstar-grid-bg .account-tactical :is(.glass, .glass-gold, .glass-cyan),
+.allstar-sunset body.allstar-grid-bg .account-tactical [data-cards] > div {
+  border: 1px solid var(--card-edge) !important;
+  border-radius: 1.25rem !important;
+  background: var(--card-bg) !important;
+  box-shadow: var(--card-shadow) !important;
+}
+.allstar-sunset body.allstar-grid-bg :is(.glass-card, .tactical-leaderboard, .podium-card)::before { content: none; }
+.allstar-sunset body.allstar-grid-bg .podium-card {
+  grid-template-rows: auto auto auto auto;
+}
+.allstar-sunset body.allstar-grid-bg .podium-rank {
+  font: 800 1rem/1 Roboto, sans-serif;
+  color: var(--peach);
+}
+
+/* Bục xếp hạng lấy màu và kiểu chữ từ poster hoàng hôn. */
+.allstar-sunset body.allstar-grid-bg #podium { filter: none; }
+.allstar-sunset body.allstar-grid-bg #podium .podium-card {
+  --podium-accent: #f9a3c0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-end;
+  min-height: 12.5rem;
+  height: auto;
+  padding: 1.35rem 1.5rem;
+  border: 1px solid rgb(255 229 218 / 30%) !important;
+  border-radius: 1rem !important;
+  background: linear-gradient(155deg, rgb(77 38 80 / 97%), rgb(28 18 42 / 98%) 75%) !important;
+  box-shadow: 0 12px 30px rgb(23 10 35 / 25%) !important;
+  text-align: left;
+  overflow: hidden;
+}
+.allstar-sunset body.allstar-grid-bg #podium .podium-card.rank-card-1 {
+  --podium-accent: #ffc991;
+  background: linear-gradient(155deg, #ad596d, #52263f 54%, #25172f) !important;
+}
+.allstar-sunset body.allstar-grid-bg #podium .podium-card.rank-card-3 { --podium-accent: #ffa889; }
+.allstar-sunset body.allstar-grid-bg #podium .podium-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, var(--podium-accent), #ff71a8, transparent);
+}
+.allstar-sunset body.allstar-grid-bg #podium .podium-card::after { content: none; }
+.allstar-sunset body.allstar-grid-bg #podium .podium-rank {
+  align-self: flex-start;
+  margin-bottom: auto;
+  padding-bottom: .65rem;
+  background: none;
+  color: var(--podium-accent);
+  font: 400 clamp(2.2rem, 4vw, 3.5rem)/1 Anton, Impact, sans-serif;
+}
+.allstar-sunset body.allstar-grid-bg #podium .podium-card > * {
+  flex-shrink: 0;
+}
+.allstar-sunset body.allstar-grid-bg #podium .podium-name {
+  width: 100%; min-height: 0; margin: 0; padding: 0;
+  font: 700 1rem/1.3 Roboto, sans-serif;
+  color: #fff5e9;
+  display: block; overflow: visible; white-space: normal; overflow-wrap: anywhere;
+  -webkit-line-clamp: unset; line-clamp: unset;
+}
+.allstar-sunset body.allstar-grid-bg #podium .podium-branch {
+  width: 100%; margin: .2rem 0 .8rem;
+  color: #ecd5e2; font: 400 .85rem/1.35 Roboto, sans-serif;
+  white-space: normal; overflow-wrap: anywhere;
+}
+.allstar-sunset body.allstar-grid-bg #podium .podium-score {
+  width: 100%; display: flex; flex-direction: row; align-items: baseline;
+  justify-content: space-between; gap: .5rem;
+  padding-top: .7rem; border-top: 1px solid rgb(255 235 226 / 22%);
+}
+.allstar-sunset body.allstar-grid-bg #podium .pts { margin: 0; color: var(--podium-accent); font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1; }
+@media (min-width: 768px) {
+  .allstar-sunset body.allstar-grid-bg #podium .podium-card.rank-card-1 { height: auto; min-height: 17.5rem; }
+  .allstar-sunset body.allstar-grid-bg #podium .podium-card.rank-card-2 { height: auto; min-height: 14.5rem; }
+  .allstar-sunset body.allstar-grid-bg #podium .podium-card.rank-card-3 { height: auto; min-height: 13.5rem; }
+}
+@media (max-width: 767px) {
+  .allstar-sunset body.allstar-grid-bg #podium .podium-card { max-width: none; min-height: 0; }
+  .allstar-sunset body.allstar-grid-bg #podium .rank-card-1 { order: 1; }
+  .allstar-sunset body.allstar-grid-bg #podium .rank-card-2 { order: 2; }
+  .allstar-sunset body.allstar-grid-bg #podium .rank-card-3 { order: 3; }
+}
+.allstar-sunset body.allstar-grid-bg .account-tactical .glass-gold {
+  border-color: rgb(255 196 153 / 55%) !important;
+  background: linear-gradient(125deg, rgb(122 58 74 / 96%), rgb(58 30 62 / 96%) 74%) !important;
+}
+.allstar-sunset body.allstar-grid-bg .account-tactical :is(.glass, .glass-gold) .glass {
+  border-radius: 1rem !important;
+  background: rgb(27 16 36 / 45%) !important;
+  box-shadow: none !important;
+}
+.allstar-sunset body.allstar-grid-bg main:not(.account-tactical) .glass:not(.tactical-leaderboard) { background: rgb(27 16 36 / 55%) !important; }
+
+/* ── Khối con, nhãn, nút: bo theo thẻ ── */
+.allstar-sunset body:is(.page-bg, .allstar-grid-bg) :is(.rounded, .rounded-md, .chip, .badge-th) { border-radius: .5rem !important; }
+.allstar-sunset body:is(.page-bg, .allstar-grid-bg) :is(.rounded-lg, .rounded-xl, .info-box, .example-box, .page-btn, .region-btn, .period-btn, .search-input, .period-trigger, .period-menu, .year-tab) { border-radius: .7rem !important; }
+.allstar-sunset body.allstar-grid-bg .glass.rounded-xl { border-radius: .95rem !important; }
+.allstar-sunset body:is(.page-bg, .allstar-grid-bg) .rounded-full[class*="px-"],
+.allstar-sunset body:is(.page-bg, .allstar-grid-bg) .rounded-full[class*="w-1.5"][class*="h-8"],
+.allstar-sunset body.allstar-grid-bg :is(.update-chip, .bp-chip) { border-radius: 999px !important; }
+.allstar-sunset body.allstar-grid-bg :is(.info-box, .example-box) {
+  border: 1px solid var(--hairline) !important;
+  background: var(--inset-bg) !important;
+}
+
+/* ── Bảng: kẻ mảnh như bảng mốc thưởng trang chủ. Khung viền đặt ở lớp bọc để góc bo không mất nét ── */
+.allstar-sunset body.allstar-grid-bg .overflow-x-auto:has(> .data-table) {
+  border: 1px solid var(--hairline);
+  border-radius: 1rem !important;
+  background: rgb(27 16 36 / 32%);
+}
+.allstar-sunset body.allstar-grid-bg .data-table {
+  border: 0 !important;
+  background: transparent !important;
+}
+.allstar-sunset body.allstar-grid-bg .data-table thead tr { background: rgb(255 196 153 / 9%) !important; }
+.allstar-sunset body.allstar-grid-bg .data-table th { background: transparent !important; color: var(--cream) !important; }
+.allstar-sunset body.allstar-grid-bg .data-table td { border-color: var(--hairline) !important; }
+
+/* ── Nút chính ── */
+.allstar-sunset body.allstar-grid-bg :is(.tracuu-btn, .wal-submit, .submit-btn) {
+  border-radius: 999px !important;
+  background: linear-gradient(100deg, #ff8f7a, #ffc499) !important;
+  color: #45152f !important;
+}
+
+/* ── Phản hồi, Refer ── */
+.allstar-sunset .wal-badge { border-radius: 999px; }
+.allstar-sunset :is(.wal-option, .wal-field) { border-radius: .85rem; border-color: var(--card-edge); background: rgb(27 16 36 / 42%); }
+.allstar-sunset .wal-option:hover { border-color: #ffc499; background: rgb(255 196 153 / 8%); }
+.allstar-sunset .wal-field:hover { border-color: rgb(255 196 153 / 60%); }
+.allstar-sunset .wal-field:focus { border-color: #ffc499; background: rgb(27 16 36 / 60%); }
+.allstar-sunset .wal-option:has(input:checked) { border-color: #ffc499; background: rgb(255 196 153 / 13%); }
+.allstar-sunset .wal-option > input:is([type='radio'], [type='checkbox']) { border-color: rgb(255 196 153 / 70%); background: #1b1024; }
+.allstar-sunset .wal-option > input[type='checkbox'] { border-radius: .3rem; }
+.allstar-sunset .wal-option > input:is([type='radio'], [type='checkbox']):checked { border-color: #ffc499; background: #ffc499; }
+.allstar-sunset .wal-q-badge { border-radius: .55rem; }
+
+/* ── Header, menu mobile, đăng nhập ── */
+.allstar-sunset nav.fixed :is([data-auth-open], [data-auth-account-link], [data-auth-logout]) { border-radius: .7rem !important; overflow: hidden; }
+.allstar-sunset nav.fixed [data-auth-account-link] { border-color: var(--card-edge); }
+.allstar-sunset .mobile-panel { background: linear-gradient(180deg, #2b1832, #1b1024); border-color: var(--card-edge); }
+.allstar-sunset .mobile-panel {
+  max-height: calc(100dvh - 5rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
+}
+.allstar-sunset a.mobile-nav-link { border-radius: .85rem; }
+.allstar-sunset #auth-modal > .relative { border-color: var(--card-edge); border-radius: 1.25rem !important; }
+.allstar-sunset #auth-modal > .relative { max-height: calc(100dvh - 2rem); overflow-y: auto; overscroll-behavior: contain; }
+.allstar-sunset #auth-modal :is(input, button[type='submit']) { border-radius: .75rem !important; }
+
+@media (max-width: 767px) {
+  .allstar-sunset nav.fixed [data-auth-account-link] { max-width: min(38vw, 10rem); }
+  .allstar-sunset :is(.page-bg, .allstar-grid-bg) :is(h1, h2, h3, .accordion-trigger, .wal-option, .custom-select-value) {
+    overflow-wrap: anywhere;
+  }
+  .allstar-sunset :is(.page-bg, .allstar-grid-bg) :is(input:not([type='checkbox']):not([type='radio']):not([type='file']):not([type='hidden']), select, textarea) {
+    font-size: 16px;
+  }
+  .allstar-sunset :is(.page-bg, .allstar-grid-bg) .overflow-x-auto {
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Refer: ô nhập, lựa chọn, khung tải tệp */
+.allstar-sunset body.allstar-grid-bg :is(.form-input, .custom-select-button, .radio-option, .drop-zone, .custom-select-menu, #fileList li) { border-radius: .85rem !important; }
+.allstar-sunset body.allstar-grid-bg :is(.form-input, .custom-select-button, .radio-option) { background: rgb(27 16 36 / 42%) !important; border-color: var(--card-edge) !important; }
+.allstar-sunset body.allstar-grid-bg :is(.form-input, .custom-select-button):hover,
+.allstar-sunset body.allstar-grid-bg .radio-option:hover { border-color: rgb(255 196 153 / 60%) !important; }
+.allstar-sunset body.allstar-grid-bg :is(.form-input:focus, .custom-select-button:focus-visible, .custom-select-button[aria-expanded='true'], .radio-option:has(input:checked)) { border-color: #ffc499 !important; }
+.allstar-sunset body.allstar-grid-bg .radio-option:has(input:checked) { background: rgb(255 196 153 / 13%) !important; }
+.allstar-sunset .radio-indicator { border-color: rgb(255 196 153 / 70%); background: #1b1024; }
+.allstar-sunset .drop-zone { border-color: rgb(255 196 153 / 45%); background: rgb(27 16 36 / 35%); }
+.allstar-sunset .custom-select-menu { border-color: var(--card-edge); background: #2b1832; }
+.allstar-sunset .custom-select-option { border-radius: .6rem; }
+.allstar-sunset .refer-badge { border-radius: 999px; }
+.allstar-sunset .step-num { border-radius: .55rem; }
+.allstar-sunset .step-line { background: linear-gradient(90deg, rgb(255 196 153 / 50%), transparent); }
+.allstar-sunset body.allstar-grid-bg .btn-primary {
+  border-radius: 999px !important;
+  background: linear-gradient(100deg, #ff8f7a, #ffc499);
+  color: #45152f;
+}
+
+/* ── Hướng dẫn U-Point: cùng nền cọ, phủ mận nhẹ để chữ và ảnh chụp app vẫn rõ ── */
+.allstar-sunset body:has(.u-point-main) { background: transparent !important; isolation: isolate; }
+.allstar-sunset body:has(.u-point-main)::before {
+  content: '';
+  position: fixed;
+  inset: 4rem 0 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(rgb(27 16 36 / 45%), rgb(27 16 36 / 60%)),
+    #392950 url('/assets/images/allstar-palm-dusk.webp') center / 100% 100% no-repeat;
+}
+.allstar-sunset .u-point-main, .allstar-sunset .u-point-main :is(.desktop-artboard, .mobile-artboard) { background: transparent !important; }
+
+/* ── Trang briefing: nền cọ và thẻ mận ── */
+.club-briefing { background: #392950; }
+.club-briefing body { background: transparent; color: #fff2dc; isolation: isolate; }
+.club-briefing body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(rgb(21 12 41 / 12%), rgb(34 13 44 / 36%)),
+    #392950 url('/assets/images/allstar-palm-dusk.webp') center / 100% 100% no-repeat;
+}
+.club-briefing body :is(.glass-panel, .premium-container) {
+  border-color: rgb(255 202 185 / 30%);
+  background: linear-gradient(145deg, rgb(70 37 70 / 96%), rgb(40 25 53 / 95%) 74%);
+  box-shadow: 0 12px 30px rgb(35 12 42 / 18%);
+}
+.club-briefing body :is(.bg-white, .bg-slate-50, .bg-slate-50\/50, .bg-slate-100, .bg-blue-50, .bg-amber-50) { background-color: rgb(255 214 200 / 7%); }
+.club-briefing body :is(.bg-slate-200, .bg-slate-300) { background-color: rgb(255 214 200 / 20%); }
+.club-briefing body :is(.border-slate-100, .border-slate-200, .border-blue-100, .border-blue-200) { border-color: rgb(250 209 213 / 17%); }
+.club-briefing body :is(.text-slate-900, .text-slate-800, .text-slate-700) { color: #fff2dc; }
+.club-briefing body :is(.text-slate-600, .text-slate-500, .text-slate-400) { color: #e3cfdb; }
+.club-briefing body :is(.text-blue-600, .text-blue-800) { color: #ffc499; }
+
+/* ── Bục top 3: giữ phân biệt hạng vàng, bạc, đồng trên nền mận ── */
+.allstar-sunset body.allstar-grid-bg .podium-card.rank-card-1 {
+  border-color: rgb(255 205 150 / 85%) !important;
+  background: linear-gradient(150deg, rgb(158 84 74 / 97%), rgb(62 30 62 / 97%) 78%) !important;
+}
+.allstar-sunset body.allstar-grid-bg .podium-card.rank-card-2 { border-color: rgb(226 220 240 / 60%) !important; }
+.allstar-sunset body.allstar-grid-bg .podium-card.rank-card-3 {
+  border-color: rgb(224 140 92 / 70%) !important;
+  background: linear-gradient(150deg, rgb(106 52 58 / 97%), rgb(44 25 53 / 97%) 78%) !important;
+}
+.allstar-sunset body.allstar-grid-bg .podium-card::after { border-radius: inherit; }
+.allstar-sunset body.allstar-grid-bg .search-input { background-color: rgb(27 16 36 / 60%) !important; border-color: var(--card-edge); }
+.allstar-sunset body.allstar-grid-bg .search-input:focus { border-color: #ffc499 !important; }
+
+/* Pop-up */
+.allstar-sunset .warn-panel { border-radius: 1.25rem; }
+.allstar-sunset #auth-modal :is(.text-white\/40, .text-white\/50) { color: rgb(242 226 237 / 75%); }
+
+/* Màu nhấn của trang briefing: bản sáng để đọc được trên thẻ mận */
+.club-briefing body :is(.text-accent1, .text-accent3) { color: #ffb0c8; }
+.club-briefing body .text-accent2 { color: #ff9c94; }
+.club-briefing body .text-accent4 { color: #7fdcae; }
+.club-briefing body .text-gold { color: #ffc499; }
+.club-briefing body :is(.bg-accent1\/10, .bg-accent2\/10, .bg-accent3\/10, .bg-gold\/10) { background-color: rgb(255 196 153 / 13%); }
+.club-briefing body .bg-accent4\/10 { background-color: rgb(127 220 174 / 14%); }
+.club-briefing body :is(.bg-accent1, .bg-accent3) { background-color: #ff8db4; }
+.club-briefing body .bg-accent2 { background-color: #ff8f7a; }
+.club-briefing body .progress-container { background: rgb(255 214 200 / 18%); }
+.club-briefing body :is(.bg-gold:not([class*='bg-gold/']), .bg-gradient-to-r.from-accent1.text-white),
+.club-briefing body .bg-gradient-to-r.from-accent1.text-white * { color: #45152f !important; }
+.allstar-sunset body .chip { white-space: nowrap; }

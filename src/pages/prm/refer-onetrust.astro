@@ -30,8 +30,8 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
         /* ───────── Giao diện contest: panel vát góc, ô nhập góc vuông + vát nhỏ ───────── */
         body.allstar-grid-bg {
             --bevel: polygon(0 8px, 8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px));
-            --field-line: rgba(0, 227, 253, 0.34);
-            --field-bg: rgba(13, 25, 66, 0.72);
+            --field-line: rgba(255, 141, 180, 0.34);
+            --field-bg: rgba(45, 26, 53, 0.72);
         }
 
         .form-input,
@@ -52,14 +52,14 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
 
         .form-input:hover,
         .custom-select-button:hover {
-            border-color: rgba(0, 227, 253, 0.6) !important;
+            border-color: rgba(255, 141, 180, 0.6) !important;
         }
 
         .form-input:focus,
         .custom-select-button:focus-visible,
         .custom-select-button[aria-expanded="true"] {
-            border-color: #00e3fd !important;
-            background: rgba(20, 38, 92, 0.85) !important;
+            border-color: #ff8db4 !important;
+            background: rgba(75, 37, 75, 0.85) !important;
             box-shadow: none !important;
         }
 
@@ -80,15 +80,15 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
             justify-content: center;
             font-family: 'Anton', Impact, sans-serif;
             font-size: 1rem;
-            color: #4a2800;
-            background: linear-gradient(135deg, #fff8c5, #ffd700, #b8860b);
+            color: #45152f;
+            background: linear-gradient(135deg, #ffe3c4, #ffb784, #e8846b);
             clip-path: none;
         }
 
         .step-line {
             flex: 1;
             height: 1px;
-            background: linear-gradient(90deg, rgba(0, 227, 253, 0.5), transparent);
+            background: linear-gradient(90deg, rgba(255, 141, 180, 0.5), transparent);
         }
 
         .refer-badge {
@@ -101,44 +101,44 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
             font-weight: 700;
             letter-spacing: 0.18em;
             text-transform: uppercase;
-            color: #ffd16c;
-            border: 1px solid rgba(255, 209, 108, 0.45);
-            background: rgba(255, 209, 108, 0.08);
+            color: #ffc499;
+            border: 1px solid rgba(255, 196, 153, 0.45);
+            background: rgba(255, 196, 153, 0.08);
         }
 
         .form-note {
-            border: 1px solid rgba(0, 227, 253, 0.3);
-            background: rgba(0, 227, 253, 0.06);
+            border: 1px solid rgba(255, 141, 180, 0.3);
+            background: rgba(255, 141, 180, 0.06);
         }
 
         .form-input {
             background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(68, 72, 79, 0.6);
-            color: #f1f3fc;
+            border: 1px solid rgba(79, 68, 77, 0.6);
+            color: #fff2e6;
             transition: border-color 0.2s, box-shadow 0.2s;
         }
 
         .form-input:focus {
             outline: none;
-            border-color: rgba(0, 227, 253, 0.6);
-            box-shadow: 0 0 0 3px rgba(0, 227, 253, 0.08);
+            border-color: rgba(255, 141, 180, 0.6);
+            box-shadow: 0 0 0 3px rgba(255, 141, 180, 0.08);
         }
 
         .form-input::placeholder {
-            color: rgba(200, 203, 210, 0.85);
+            color: rgba(209, 201, 208, 0.85);
         }
 
         .form-input option {
-            background: #151a21;
-            color: #f1f3fc;
+            background: #1f1224;
+            color: #fff2e6;
         }
 
         html:not(.dark) .form-input::placeholder {
-            color: rgba(100, 110, 125, 0.6);
+            color: rgba(122, 103, 118, 0.6);
         }
 
         .form-label {
-            color: #a8abb3;
+            color: #b4a7b2;
             font-size: 0.75rem;
             font-weight: 600;
             letter-spacing: 0.05em;
@@ -152,25 +152,25 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
         .custom-select-button {
             min-height: 50px;
             background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(68, 72, 79, 0.6);
-            color: #f1f3fc;
+            border: 1px solid rgba(79, 68, 77, 0.6);
+            color: #fff2e6;
             transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
         }
 
         .custom-select-button:hover {
-            border-color: rgba(255, 209, 108, 0.38);
+            border-color: rgba(255, 196, 153, 0.38);
             background: rgba(255, 255, 255, 0.055);
         }
 
         .custom-select-button:focus-visible,
         .custom-select-button[aria-expanded="true"] {
             outline: none;
-            border-color: rgba(0, 227, 253, 0.6);
-            box-shadow: 0 0 0 3px rgba(0, 227, 253, 0.08);
+            border-color: rgba(255, 141, 180, 0.6);
+            box-shadow: 0 0 0 3px rgba(255, 141, 180, 0.08);
         }
 
         .custom-select-button[data-placeholder="true"] .custom-select-value {
-            color: rgba(200, 203, 210, 0.85);
+            color: rgba(209, 201, 208, 0.85);
         }
 
         .custom-select-button .material-symbols-outlined {
@@ -191,8 +191,8 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
             overflow-y: auto;
             padding: 6px;
             border-radius: 0;
-            border: 1px solid rgba(0, 227, 253, 0.6);
-            background: #101b43;
+            border: 1px solid rgba(255, 141, 180, 0.6);
+            background: #2f1b38;
             box-shadow: 0 18px 42px rgba(0, 0, 0, 0.45);
         }
 
@@ -204,7 +204,7 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
             width: 100%;
             border-radius: 0;
             padding: 10px 12px;
-            color: #f1f3fc;
+            color: #fff2e6;
             text-align: left;
             font-size: 0.875rem;
             transition: background 0.16s, color 0.16s;
@@ -213,13 +213,13 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
         .custom-select-option:hover,
         .custom-select-option:focus-visible {
             outline: none;
-            background: rgba(255, 209, 108, 0.09);
-            color: #ffd16c;
+            background: rgba(255, 196, 153, 0.09);
+            color: #ffc499;
         }
 
         .custom-select-option[aria-selected="true"] {
-            background: rgba(0, 227, 253, 0.09);
-            color: #e8fbff;
+            background: rgba(255, 141, 180, 0.09);
+            color: #ffece0;
         }
 
         /* Radio custom style */
@@ -232,19 +232,19 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
         }
 
         .radio-option:has(input:checked) {
-            border-color: rgba(255, 209, 108, 0.7);
-            background: rgba(255, 209, 108, 0.06);
-            box-shadow: 0 0 16px rgba(255, 209, 108, 0.08);
+            border-color: rgba(255, 196, 153, 0.7);
+            background: rgba(255, 196, 153, 0.06);
+            box-shadow: 0 0 16px rgba(255, 196, 153, 0.08);
         }
 
         .radio-option:has(input:focus-visible) {
-            border-color: rgba(0, 227, 253, 0.6);
-            box-shadow: 0 0 0 3px rgba(0, 227, 253, 0.08);
+            border-color: rgba(255, 141, 180, 0.6);
+            box-shadow: 0 0 0 3px rgba(255, 141, 180, 0.08);
         }
 
         .radio-option:hover {
-            border-color: rgba(255, 209, 108, 0.4);
-            background: rgba(255, 209, 108, 0.03);
+            border-color: rgba(255, 196, 153, 0.4);
+            background: rgba(255, 196, 153, 0.03);
         }
 
         .radio-option input[type="radio"] {
@@ -258,8 +258,8 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
             width: 1.15rem;
             height: 1.15rem;
             border-radius: 9999px;
-            border: 1.5px solid rgba(0, 227, 253, 0.65);
-            background: rgba(6, 12, 40, 0.9);
+            border: 1.5px solid rgba(255, 141, 180, 0.65);
+            background: rgba(26, 15, 31, 0.9);
             transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
         }
 
@@ -271,19 +271,19 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
             width: 0.45rem;
             height: 0.45rem;
             border-radius: 9999px;
-            background: #4a2800;
+            background: #45152f;
             transform: scale(0);
             transition: transform 0.15s ease;
         }
 
         .radio-option:hover .radio-indicator {
-            border-color: #00e3fd;
+            border-color: #ff8db4;
         }
 
         .radio-option input[type="radio"]:checked + .radio-indicator {
-            border-color: #ffd16c;
-            background: #ffd16c;
-            box-shadow: 0 0 10px rgba(255, 209, 108, 0.45);
+            border-color: #ffc499;
+            background: #ffc499;
+            box-shadow: 0 0 10px rgba(255, 196, 153, 0.45);
         }
 
         .radio-option input[type="radio"]:checked + .radio-indicator::after {
@@ -292,21 +292,21 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
 
         /* File upload drop zone */
         .drop-zone {
-            border: 2px dashed rgba(0, 227, 253, 0.4);
-            background: rgba(13, 25, 66, 0.45);
+            border: 2px dashed rgba(255, 141, 180, 0.4);
+            background: rgba(45, 26, 53, 0.45);
             transition: all 0.25s;
         }
 
         .drop-zone:hover,
         .drop-zone.dragover {
-            border-color: rgba(0, 227, 253, 0.5);
-            background: rgba(0, 227, 253, 0.04);
+            border-color: rgba(255, 141, 180, 0.5);
+            background: rgba(255, 141, 180, 0.04);
         }
 
         /* Submit button */
         .btn-primary {
-            background: linear-gradient(135deg, #ff6d00, #ffd16c);
-            color: #4a2800;
+            background: linear-gradient(135deg, #ff7f6b, #ffc499);
+            color: #45152f;
             font-weight: 800;
             letter-spacing: 0.08em;
             text-transform: uppercase;
@@ -315,7 +315,7 @@ const description = "Hỗ trợ lực lượng bán Techcombank và OneHousing g
 
         .btn-primary:hover:not(:disabled) {
             transform: translateY(-2px);
-            filter: brightness(1.1) drop-shadow(0 6px 14px rgba(255, 160, 0, 0.4));
+            filter: brightness(1.1) drop-shadow(0 6px 14px rgba(255, 140, 110, 0.4));
         }
 
         .btn-primary:disabled {

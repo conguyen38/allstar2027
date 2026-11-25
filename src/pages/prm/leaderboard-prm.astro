@@ -29,16 +29,16 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
 <style is:global>
     /* ── Page background ── */
     body {
-      background: #06091a;
+      background: #120b15;
       font-family: 'Roboto', sans-serif;
     }
 
     .page-bg {
       background:
-        radial-gradient(ellipse 80% 50% at 20% 20%, rgba(0, 80, 180, 0.18) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 40% at 80% 10%, rgba(0, 227, 253, 0.1) 0%, transparent 50%),
-        radial-gradient(ellipse 50% 60% at 50% 80%, rgba(80, 0, 180, 0.12) 0%, transparent 60%),
-        #06091a;
+        radial-gradient(ellipse 80% 50% at 20% 20%, rgba(121, 59, 121, 0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 10%, rgba(255, 141, 180, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 60% at 50% 80%, rgba(121, 59, 121, 0.12) 0%, transparent 60%),
+        #120b15;
       min-height: 100vh;
     }
 
@@ -107,9 +107,9 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
     }
 
     .glass-gold {
-      background: rgba(255, 209, 108, 0.06);
+      background: rgba(255, 196, 153, 0.06);
       backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 209, 108, 0.25);
+      border: 1px solid rgba(255, 196, 153, 0.25);
     }
 
     .glass-silver {
@@ -145,11 +145,11 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
 
       0%,
       100% {
-        box-shadow: 0 0 20px rgba(255, 209, 108, 0.3);
+        box-shadow: 0 0 20px rgba(255, 196, 153, 0.3);
       }
 
       50% {
-        box-shadow: 0 0 50px rgba(255, 209, 108, 0.7), 0 0 80px rgba(255, 160, 0, 0.3);
+        box-shadow: 0 0 50px rgba(255, 196, 153, 0.7), 0 0 80px rgba(255, 140, 110, 0.3);
       }
     }
 
@@ -312,7 +312,7 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
     }
 
     .lb-row:hover {
-      background: rgba(0, 227, 253, 0.04);
+      background: rgba(255, 141, 180, 0.04);
     }
 
     .lb-row:last-child {
@@ -343,7 +343,7 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
 
     /* ── Search input ── */
     .search-input {
-      background-color: #0d1117 !important;
+      background-color: #140c18 !important;
       border: 1px solid rgba(255, 255, 255, 0.15);
       color: #ffffff !important;
       outline: none !important;
@@ -356,9 +356,9 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
     }
 
     .search-input:focus {
-      background-color: #06090f !important;
-      border-color: rgba(0, 227, 253, 0.8) !important;
-      box-shadow: 0 0 20px rgba(0, 227, 253, 0.25), inset 0 0 10px rgba(0, 227, 253, 0.05) !important;
+      background-color: #0c070e !important;
+      border-color: rgba(255, 141, 180, 0.8) !important;
+      box-shadow: 0 0 20px rgba(255, 141, 180, 0.25), inset 0 0 10px rgba(255, 141, 180, 0.05) !important;
     }
 
     /* ── Region toggle ── */
@@ -367,18 +367,18 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
     }
 
     .region-btn.active {
-      background: linear-gradient(135deg, #ff9500, #ffd16c);
-      color: #4a2800;
+      background: linear-gradient(135deg, #ff9d7a, #ffc499);
+      color: #45152f;
     }
 
     .region-btn:not(.active) {
       background: rgba(255, 255, 255, 0.06);
-      color: rgba(241, 243, 252, 0.6);
+      color: rgba(255, 242, 230, 0.6);
     }
 
     .region-btn:not(.active):hover {
       background: rgba(255, 255, 255, 0.1);
-      color: #f1f3fc;
+      color: #fff2e6;
     }
 
     /* ── Period selection ── */
@@ -388,8 +388,8 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
 
     .period-btn.active {
       background: rgba(255, 255, 255, 0.15);
-      color: #ffd16c;
-      box-shadow: inset 0 0 10px rgba(255, 209, 108, 0.1);
+      color: #ffc499;
+      box-shadow: inset 0 0 10px rgba(255, 196, 153, 0.1);
     }
 
     .period-btn:not(.active) {
@@ -403,14 +403,14 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
 
     /* ── Tra cứu button ── */
     .tracuu-btn {
-      background: linear-gradient(135deg, #ff6d00, #ffd16c);
-      color: #4a2800;
+      background: linear-gradient(135deg, #ff7f6b, #ffc499);
+      color: #45152f;
       font-weight: 800;
       transition: all 0.25s;
     }
 
     .tracuu-btn:hover {
-      box-shadow: 0 0 20px rgba(255, 160, 0, 0.5), 0 0 40px rgba(255, 100, 0, 0.25);
+      box-shadow: 0 0 20px rgba(255, 140, 110, 0.5), 0 0 40px rgba(255, 120, 100, 0.25);
       transform: translateY(-1px);
     }
 
@@ -428,18 +428,18 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
       font-family: 'Roboto', sans-serif;
       transition: all 0.15s;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      color: rgba(241, 243, 252, 0.5);
+      color: rgba(255, 242, 230, 0.5);
       background: transparent;
     }
 
     .page-btn:hover {
       background: rgba(255, 255, 255, 0.07);
-      color: #f1f3fc;
+      color: #fff2e6;
     }
 
     .page-btn.active {
-      background: linear-gradient(135deg, #ff9500, #ffd16c);
-      color: #4a2800;
+      background: linear-gradient(135deg, #ff9d7a, #ffc499);
+      color: #45152f;
       border-color: transparent;
     }
 
@@ -449,19 +449,24 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
       font-stretch: 125%;
       font-style: italic;
       font-weight: 900;
-      color: #ffd16c;
+      color: #ffc499;
       letter-spacing: 0.01em;
       font-variant-numeric: tabular-nums;
     }
 
     /* ── Arena: nút chuyển kiểu phím + nhãn LIVE ── */
-    .region-btn,
-    .period-btn,
-    .page-btn {
+  .page-btn {
       font-family: 'JetBrains Mono', ui-monospace, monospace !important;
       letter-spacing: 0.08em;
       white-space: nowrap;
     }
+
+  .period-btn,
+  .region-btn {
+    font-family: 'Roboto', Arial, sans-serif !important;
+    letter-spacing: normal;
+    white-space: nowrap;
+  }
 
     .live-dot {
       width: 0.55rem;
@@ -525,11 +530,11 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
 <!-- Neon light trails -->
   <svg class="trails-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none"
     xmlns="http://www.w3.org/2000/svg">
-    <line class="trail-line" x1="-100" y1="200" x2="1540" y2="180" stroke="rgba(0,227,253,0.4)" stroke-width="1" />
-    <line class="trail-line" x1="-100" y1="450" x2="1540" y2="420" stroke="rgba(255,209,108,0.35)" stroke-width="0.8" />
-    <line class="trail-line" x1="-100" y1="680" x2="1540" y2="700" stroke="rgba(0,100,255,0.3)" stroke-width="1.2" />
-    <line class="trail-line" x1="200" y1="-50" x2="180" y2="950" stroke="rgba(0,227,253,0.25)" stroke-width="0.8" />
-    <line class="trail-line" x1="1100" y1="-50" x2="1120" y2="950" stroke="rgba(255,209,108,0.2)" stroke-width="1" />
+    <line class="trail-line" x1="-100" y1="200" x2="1540" y2="180" stroke="rgba(255, 141, 180,0.4)" stroke-width="1" />
+    <line class="trail-line" x1="-100" y1="450" x2="1540" y2="420" stroke="rgba(255, 196, 153,0.35)" stroke-width="0.8" />
+    <line class="trail-line" x1="-100" y1="680" x2="1540" y2="700" stroke="rgba(255, 141, 180,0.3)" stroke-width="1.2" />
+    <line class="trail-line" x1="200" y1="-50" x2="180" y2="950" stroke="rgba(255, 141, 180,0.25)" stroke-width="0.8" />
+    <line class="trail-line" x1="1100" y1="-50" x2="1120" y2="950" stroke="rgba(255, 196, 153,0.2)" stroke-width="1" />
   </svg>
 
   <!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
@@ -891,22 +896,6 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
       renderTable();
     }
 
-    /* ────────────────── Avatar URL ────────────────── */
-    function avatarUrl(name, rank) {
-      const colors = ['1a1a2e', '1a2e1a', '2e1a1a', '1a1f2e', '2a1a2e'];
-      const avatarName = removeVietnameseMarks(name) || 'Allstar';
-      const bg = colors[(avatarName.charCodeAt(0) || 0) % colors.length];
-      return `https://ui-avatars.com/api/?name=${encodeURIComponent(avatarName)}&background=${bg}&color=ffffff&bold=true&size=64`;
-    }
-
-    function removeVietnameseMarks(value) {
-      return String(value ?? '')
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .replace(/đ/g, 'd')
-        .replace(/Đ/g, 'D')
-        .trim();
-    }
 
     /* ────────────────── Render Podium ────────────────── */
     /* Số điểm chạy từ 0 lên giá trị thật, tạo cảm giác "chốt kết quả". */
@@ -930,26 +919,21 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
 
       const order = [1, 0, 2]; // display: 2nd, 1st, 3rd (Desktop)
       const configs = [
-        { glassClass: 'glass-gold', badgeClass: 'badge-gold', rankClass: 'rank-card-1', glowClass: 'glow-gold' },
-        { glassClass: 'glass-silver', badgeClass: 'badge-silver', rankClass: 'rank-card-2', glowClass: 'glow-silver' },
-        { glassClass: 'glass-bronze', badgeClass: 'badge-bronze', rankClass: 'rank-card-3', glowClass: 'glow-bronze' },
+        { glassClass: 'glass-gold', rankClass: 'rank-card-1', glowClass: 'glow-gold' },
+        { glassClass: 'glass-silver', rankClass: 'rank-card-2', glowClass: 'glow-silver' },
+        { glassClass: 'glass-bronze', rankClass: 'rank-card-3', glowClass: 'glow-bronze' },
       ];
 
       order.forEach((dataIdx, displayIdx) => {
         const person = top3[dataIdx];
         if (!person) return;
         const cfg = configs[dataIdx];
-        const isFirst = dataIdx === 0;
 
         const card = document.createElement('div');
         card.className = `podium-card ${cfg.rankClass} ${cfg.glassClass} ${cfg.glowClass}`;
 
         card.innerHTML = `
-      ${isFirst ? `<div class="absolute top-2 right-3 text-lg crown">👑</div>` : ''}
-      <div class="mb-2 md:mb-3 relative">
-        <img src="${avatarUrl(person.name, dataIdx + 1)}" class="avatar podium-avatar" alt="${person.name}" loading="lazy">
-        <div class="podium-badge ${cfg.badgeClass}">${dataIdx + 1}</div>
-      </div>
+      <div class="podium-rank">${dataIdx + 1}</div>
       <p class="podium-name">${person.name}</p>
       <p class="podium-branch">${person.branch}</p>
       <div class="podium-score">
@@ -999,7 +983,6 @@ const description = "Theo dõi bảng xếp hạng trực tiếp của lực lư
         row.innerHTML = `
       <div>${rankEl}</div>
       <div class="flex items-center gap-3 min-w-0">
-        <img src="${avatarUrl(person.name, person.rank)}" class="avatar w-8 h-8 shrink-0" alt="${person.name}">
         <div class="min-w-0">
           <p class="font-semibold text-white text-sm leading-[1.6] truncate py-[8px] px-[2px] -my-[8px] -mx-[2px]">${person.name}</p>
         </div>

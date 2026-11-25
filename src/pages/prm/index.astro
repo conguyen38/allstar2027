@@ -1,8 +1,19 @@
 ﻿---
+import SunsetBanner from '../../components/SunsetBanner.astro';
 import ProgramLayout from '../../layouts/ProgramLayout.astro';
 
 const title = "Allstar Club - Chương trình loyalty dành cho lực lượng bán Techcombank và OneHousing";
 const description = "Allstar Club là chương trình loyalty dành cho lực lượng bán Techcombank và OneHousing. Ghi điểm qua GMV bán dự án Premium, Branded và các hoạt động trên OneHub để nhận thưởng hấp dẫn.";
+
+const milestones = [
+  { points: 10, bonus: 5, total: 5 },
+  { points: 18, bonus: 8, total: 13 },
+  { points: 32, bonus: 12, total: 25 },
+  { points: 80, bonus: 40, total: 65 },
+  { points: 150, bonus: 32, total: 97 },
+  { points: 320, bonus: 68, total: 165 },
+  { points: 680, bonus: 138, total: 303 },
+];
 ---
 
 <ProgramLayout
@@ -14,6 +25,7 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
   bodyClass="page-bg text-on-surface font-body selection:bg-primary/30 selection:text-primary overflow-x-hidden"
 >
   <Fragment slot="head">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet" />
 <script is:inline type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -26,73 +38,20 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
         "name": "OneHousing",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://allstar26.vercel.app/prm/assets/images/Logo%20Allstar.webp"
+          "url": "https://allstar26.vercel.app/assets/images/allstar-27.webp"
         }
       }
     }
     </script>
 <style type="text/css">
         .glass-card {
-            background: linear-gradient(145deg, rgba(26, 48, 101, 0.82), rgba(20, 25, 72, 0.74));
+            background: linear-gradient(145deg, rgba(85, 42, 85, 0.82), rgba(52, 30, 62, 0.74));
             backdrop-filter: blur(12px);
-            border-top: 1px solid rgba(111, 187, 255, 0.34);
-            border-left: 1px solid rgba(111, 187, 255, 0.24);
-            box-shadow: inset 0 1px 0 rgba(194, 227, 255, 0.08), 0 18px 48px rgba(12, 21, 78, 0.26);
+            border-top: 1px solid rgba(255, 141, 180, 0.34);
+            border-left: 1px solid rgba(255, 141, 180, 0.24);
+            box-shadow: inset 0 1px 0 rgba(255, 220, 205, 0.08), 0 18px 48px rgba(51, 30, 60, 0.26);
         }
 
-        /* Scoring cards: angular contest panels instead of soft rounded cards. */
-        .score-card {
-            --panel-cyan: rgba(0, 227, 253, 0.58);
-            --panel-gold: rgba(255, 209, 108, 0.82);
-            border: 1px solid var(--panel-cyan) !important;
-            border-radius: 0 !important;
-            clip-path: none;
-            background:
-                linear-gradient(105deg, rgba(31, 62, 132, 0.96), rgba(13, 25, 72, 0.94)),
-                linear-gradient(90deg, rgba(0, 227, 253, 0.06), transparent 38%);
-            box-shadow: inset 0 1px 0 rgba(198, 245, 255, 0.18), inset 0 -1px 0 rgba(0, 227, 253, 0.18) !important;
-            filter: drop-shadow(0 16px 28px rgba(2, 10, 40, 0.34));
-            isolation: isolate;
-        }
-
-        .score-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.75;
-            background:
-                linear-gradient(90deg, var(--panel-cyan), transparent 18%) top left / 100% 1px no-repeat,
-                linear-gradient(270deg, var(--panel-gold), transparent 16%) bottom right / 100% 1px no-repeat,
-                repeating-linear-gradient(90deg, transparent 0 23px, rgba(120, 216, 255, 0.045) 24px 25px);
-        }
-
-        .score-card::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            width: 58px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--panel-gold));
-            box-shadow: 0 0 14px rgba(255, 209, 108, 0.48);
-            z-index: 1;
-        }
-
-        .score-card > * {
-            position: relative;
-            z-index: 2;
-        }
-
-        .score-card__label {
-            border: 1px solid rgba(0, 227, 253, 0.26);
-            border-radius: 0 !important;
-            clip-path: none;
-            background: linear-gradient(90deg, rgba(0, 227, 253, 0.12), rgba(26, 37, 86, 0.86)) !important;
-            box-shadow: inset 0 1px 0 rgba(214, 249, 255, 0.1);
-            letter-spacing: 0.05em;
-        }
 
         /* Keep a single, predictable rhythm between each homepage content block. */
         .home-content-section {
@@ -110,54 +69,21 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
             }
         }
 
-        .tactical-frame {
-            --frame-cyan: rgba(0, 227, 253, 0.56);
-            --frame-gold: rgba(255, 209, 108, 0.72);
-            position: relative;
-            isolation: isolate;
-            border: 1px solid var(--frame-cyan) !important;
-            border-radius: 0 !important;
-            clip-path: none;
-            background: linear-gradient(110deg, rgba(27, 55, 120, 0.94), rgba(11, 24, 69, 0.95)) !important;
-            filter: drop-shadow(0 18px 30px rgba(2, 10, 40, 0.3));
-        }
-
-        .tactical-frame::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            background:
-                linear-gradient(90deg, var(--frame-cyan), transparent 18%) top left / 100% 1px no-repeat,
-                linear-gradient(270deg, var(--frame-gold), transparent 16%) bottom right / 100% 1px no-repeat;
-        }
-
-        .tactical-frame > table {
-            position: relative;
-            z-index: 1;
-        }
-
-        .tactical-frame td > .inline-block {
-            border-radius: 0 !important;
-            clip-path: none;
-            background: linear-gradient(90deg, rgba(255, 209, 108, 0.18), rgba(48, 38, 47, 0.72)) !important;
-        }
 
         .hero-banner {
-            background-image: url('/assets/images/allstar-contest-headbanner.webp');
+            background-image: url('/assets/images/allstar-sunset.webp');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
 
         .hero-overlay {
-            background: linear-gradient(to bottom, rgba(10, 14, 20, 0.8) 0%, rgba(10, 14, 20, 0.2) 50%, rgba(10, 14, 20, 0.8) 100%);
+            background: linear-gradient(to bottom, rgba(17, 10, 20, 0.8) 0%, rgba(17, 10, 20, 0.2) 50%, rgba(17, 10, 20, 0.8) 100%);
         }
 
         /* Specific styles for the requested milestone table */
         .milestone-table-row:last-child {
-            background: linear-gradient(90deg, rgba(253, 192, 3, 0.05), rgba(0, 227, 253, 0.05));
+            background: linear-gradient(90deg, rgba(255, 183, 132, 0.05), rgba(255, 141, 180, 0.05));
         }
 
         /* Table responsive */
@@ -181,11 +107,11 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
         /* ── Page background & Neon trails ── */
         :global(body.page-bg) {
             background:
-                radial-gradient(ellipse 72% 42% at 50% 10%, rgba(34, 69, 157, 0.38), transparent 72%),
-                radial-gradient(ellipse 54% 34% at 100% 70%, rgba(0, 227, 253, 0.09), transparent 74%),
-                linear-gradient(rgba(0, 227, 253, 0.045) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 227, 253, 0.045) 1px, transparent 1px),
-                linear-gradient(135deg, #101b46 0%, #0b1535 48%, #10113b 100%);
+                radial-gradient(ellipse 72% 42% at 50% 10%, rgba(128, 63, 128, 0.38), transparent 72%),
+                radial-gradient(ellipse 54% 34% at 100% 70%, rgba(255, 141, 180, 0.09), transparent 74%),
+                linear-gradient(rgba(255, 141, 180, 0.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 141, 180, 0.045) 1px, transparent 1px),
+                linear-gradient(135deg, #311c3a 0%, #24152b 48%, #2b1932 100%);
             background-size: auto, auto, 72px 72px, 72px 72px, auto;
             background-attachment: fixed;
             min-height: 100vh;
@@ -194,11 +120,11 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
         /* Same surface as the content background: the pinned hero can dissolve into it without a hard edge. */
         .hero-page-fade {
             background:
-                radial-gradient(ellipse 72% 42% at 50% 10%, rgba(34, 69, 157, 0.38), transparent 72%),
-                radial-gradient(ellipse 54% 34% at 100% 70%, rgba(0, 227, 253, 0.09), transparent 74%),
-                linear-gradient(rgba(0, 227, 253, 0.045) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 227, 253, 0.045) 1px, transparent 1px),
-                linear-gradient(135deg, #101b46 0%, #0b1535 48%, #10113b 100%);
+                radial-gradient(ellipse 72% 42% at 50% 10%, rgba(128, 63, 128, 0.38), transparent 72%),
+                radial-gradient(ellipse 54% 34% at 100% 70%, rgba(255, 141, 180, 0.09), transparent 74%),
+                linear-gradient(rgba(255, 141, 180, 0.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 141, 180, 0.045) 1px, transparent 1px),
+                linear-gradient(135deg, #311c3a 0%, #24152b 48%, #2b1932 100%);
             background-size: auto, auto, 72px 72px, 72px 72px, auto;
             background-attachment: fixed;
         }
@@ -265,66 +191,21 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
 <!-- Neon light trails -->
     <svg class="trails-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none"
         xmlns="http://www.w3.org/2000/svg">
-        <line class="trail-line" x1="-100" y1="200" x2="1540" y2="180" stroke="rgba(0,227,253,0.4)" stroke-width="1" />
-        <line class="trail-line" x1="-100" y1="450" x2="1540" y2="420" stroke="rgba(255,209,108,0.35)"
+        <line class="trail-line" x1="-100" y1="200" x2="1540" y2="180" stroke="rgba(255, 141, 180,0.4)" stroke-width="1" />
+        <line class="trail-line" x1="-100" y1="450" x2="1540" y2="420" stroke="rgba(255, 196, 153,0.35)"
             stroke-width="0.8" />
-        <line class="trail-line" x1="-100" y1="680" x2="1540" y2="700" stroke="rgba(0,100,255,0.3)"
+        <line class="trail-line" x1="-100" y1="680" x2="1540" y2="700" stroke="rgba(255, 141, 180,0.3)"
             stroke-width="1.2" />
-        <line class="trail-line" x1="200" y1="-50" x2="180" y2="950" stroke="rgba(0,227,253,0.25)" stroke-width="0.8" />
-        <line class="trail-line" x1="1100" y1="-50" x2="1120" y2="950" stroke="rgba(255,209,108,0.2)"
+        <line class="trail-line" x1="200" y1="-50" x2="180" y2="950" stroke="rgba(255, 141, 180,0.25)" stroke-width="0.8" />
+        <line class="trail-line" x1="1100" y1="-50" x2="1120" y2="950" stroke="rgba(255, 196, 153,0.2)"
             stroke-width="1" />
     </svg>
     <!-- TopNavBar -->
   </Fragment>
 
-<main class="pt-20">
+<main class="pt-20 program-info">
         <!-- Hero Banner -->
-        <div class="hero-pin" data-hero-pin>
-        <section data-hero-sticky
-            class="relative min-h-[450px] md:h-[921px] py-12 md:py-0 flex items-center justify-center overflow-hidden hero-banner">
-            <!-- Overlay for better text readability -->
-            <div class="absolute inset-0 z-0 hero-overlay"></div>
-            <div class="relative z-10 w-full max-w-screen-2xl px-4 md:px-12 flex flex-col items-center justify-center">
-                <!-- Center Logo -->
-                <div class="relative flex-shrink-0 flex items-center justify-center" data-hero-logo>
-                    <div class="animate-float">
-                        <img alt="Allstar Logo"
-                            class="w-64 md:w-[550px] h-auto object-contain transition-all duration-500 hover:scale-105 animate-pulse-glow cursor-pointer drop-shadow-[0_0_50px_rgba(255,209,108,0.55)]"
-                            src="/prm/assets/images/Logo%20Allstar.webp" width="620" height="428" fetchpriority="high" decoding="async" style="">
-                    </div>
-                    <!-- Orbital ring 1 -->
-                    <div class="absolute inset-[-20px] md:inset-[-32px] rounded-full border border-primary/15 pointer-events-none"
-                        style="animation: spin 12s linear infinite;">
-                        <div
-                            class="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-primary/60 shadow-[0_0_8px_#ffd16c]">
-                        </div>
-                    </div>
-                    <!-- Orbital ring 2 -->
-                    <div class="absolute inset-[-42px] md:inset-[-60px] rounded-full border border-secondary/10 pointer-events-none"
-                        style="animation: spin 20s linear infinite reverse;">
-                        <div
-                            class="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-secondary/50 shadow-[0_0_6px_#00e3fd]">
-                        </div>
-                    </div>
-                    <!-- Glow behind logo -->
-                    <div class="absolute inset-0 bg-primary/15 blur-[80px] rounded-full -z-10 pointer-events-none">
-                    </div>
-                </div>
-            </div>
-            <!-- Dải chạy chữ kiểu giải đấu (nằm dưới lớp phủ nên tối dần cùng nền) -->
-            <div class="arena-ticker absolute left-0 right-0 bottom-6 md:bottom-10 z-[4]" aria-hidden="true">
-                <div class="arena-ticker-track font-arena">
-                    <span>Allstar Club 2027</span><i>★</i><span>Ghi điểm</span><i>★</i><span>Lên hạng</span><i>★</i><span>Nhận U-Point</span><i>★</i>
-                    <span>Allstar Club 2027</span><i>★</i><span>Ghi điểm</span><i>★</i><span>Lên hạng</span><i>★</i><span>Nhận U-Point</span><i>★</i>
-                    <span>Allstar Club 2027</span><i>★</i><span>Ghi điểm</span><i>★</i><span>Lên hạng</span><i>★</i><span>Nhận U-Point</span><i>★</i>
-                    <span>Allstar Club 2027</span><i>★</i><span>Ghi điểm</span><i>★</i><span>Lên hạng</span><i>★</i><span>Nhận U-Point</span><i>★</i>
-                </div>
-            </div>
-            <!-- Lớp phủ màu nền trang (nằm dưới logo): chỉ nền mờ dần theo cuộn -->
-            <div class="dot-screen z-[3]" aria-hidden="true"></div>
-            <div class="absolute inset-0 z-[5] pointer-events-none hero-page-fade opacity-0" data-hero-fade></div>
-        </section>
-        </div>
+        <SunsetBanner program="prm" />
         <!-- Cách thức ghi điểm -->
         <section class="home-content-section pt-16 px-4 md:px-8 max-w-7xl mx-auto">
             <div class="mb-10 md:mb-16">
@@ -336,11 +217,10 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
                 <!-- Card 1: Dự án Premium -->
                 <div
-                    class="glass-card score-card p-8 rounded-3xl shadow-2xl border border-white/5 relative overflow-hidden group hover:shadow-xl transition-all duration-300 text-center flex flex-col items-center">
-                    <div class="score-card__label bg-[#1e293b]/50 text-white px-6 py-1 rounded-full text-sm font-bold uppercase mb-4"
-                        style="">
+                    class="score-card">
+                    <h3 class="score-card__label">
                         Dự án Premium
-                    </div>
+                    </h3>
                     <div class="w-full space-y-3 mt-4">
                         <div class="flex justify-between items-center border-b border-white/5 py-2">
                             <span class="text-white/70 text-sm font-medium" style="">Cá nhân</span>
@@ -354,11 +234,10 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
                 </div>
                 <!-- Card 2: Dự án Branded -->
                 <div
-                    class="glass-card score-card p-8 rounded-3xl shadow-2xl border border-white/5 relative overflow-hidden group hover:shadow-xl transition-all duration-300 text-center flex flex-col items-center">
-                    <div class="score-card__label bg-[#1e293b]/50 text-white px-6 py-1 rounded-full text-sm font-bold uppercase mb-4"
-                        style="">
+                    class="score-card">
+                    <h3 class="score-card__label">
                         Dự án Branded
-                    </div>
+                    </h3>
                     <div class="w-full space-y-3 mt-4">
                         <div class="flex justify-between items-center border-b border-white/5 py-2">
                             <span class="text-white/70 text-sm font-medium" style="">Cá nhân (LLTV)</span>
@@ -387,12 +266,11 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
                 <!-- Card 3: Refer to OneTrust -->
                 <div
-                    class="glass-card score-card p-8 rounded-3xl shadow-2xl border border-white/5 relative overflow-hidden group hover:shadow-xl transition-all duration-300 text-center flex flex-col items-center">
+                    class="score-card">
 
-                    <div class="score-card__label bg-[#1e293b]/50 text-white px-6 py-1 rounded-full text-sm font-bold uppercase mb-4"
-                        style="">
+                    <h3 class="score-card__label">
                         Refer căn chuyển nhượng cho OneTrust
-                    </div>
+                    </h3>
                     <p class="text-white text-sm font-medium mb-2" style="">Mỗi 1 tỷ GMV (NET) được chốt sẽ quy đổi:
                     </p>
                     <div class="w-full space-y-3 mt-4">
@@ -411,12 +289,11 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
                 </div>
                 <!-- Card 4: OneHub activities -->
                 <div
-                    class="glass-card score-card p-8 rounded-3xl shadow-2xl border border-white/5 relative overflow-hidden group hover:shadow-xl transition-all duration-300 text-center flex flex-col items-center">
+                    class="score-card">
 
-                    <div class="score-card__label bg-[#1e293b]/50 text-white px-6 py-1 rounded-full text-sm font-bold uppercase mb-4"
-                        style="">
+                    <h3 class="score-card__label">
                         Hoạt động trên OneHub
-                    </div>
+                    </h3>
                     <p class="text-white text-sm font-medium mb-2" style="">Mỗi hoạt động trên nền tảng OneHub sẽ quy
                         đổi:
                     </p>
@@ -455,170 +332,15 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
                     Xem chi tiết <span class="material-symbols-outlined" style="">arrow_forward</span>
 </button> -->
                 </div>
-                <div class="overflow-x-auto shadow-2xl">
-                    <div class="overflow-hidden glass-card tactical-frame border border-white/5 w-full">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr class="border-b border-white/5">
-                                    <th class="px-3 md:px-12 py-4 md:py-8 font-headline font-bold text-white uppercase  text-sm"
-                                        style="">Mốc điểm</th>
-                                    <th class="px-4 md:px-12 py-5 md:py-8 font-headline font-bold text-white uppercase  text-sm text-center"
-                                        style="">Bonus</th>
-                                    <th class="px-4 md:px-12 py-5 md:py-8 font-headline font-bold text-white uppercase  text-sm text-right"
-                                        style="">Tổng bonus</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-white/5">
-                                <tr>
-                                    <td class="px-3 md:px-12 py-3 md:py-6" style="">
-                                        <div class="flex items-center gap-4">
-                                            <div class="w-2 h-2 rounded-full bg-primary"></div>
-                                            <span class="text-xl md:text-3xl font-black text-primary font-headline"
-                                                style="">10</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-3 md:px-12 py-3 md:py-6 text-center" style="">
-                                        <div
-                                            class="inline-block px-4 py-1.5 rounded-lg bg-[#553e00]/30 border border-primary/20">
-                                            <span class="text-base md:text-xl font-bold text-primary font-headline"
-                                                style="">+5</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-3 md:px-12 py-3 md:py-6 text-right" style="">
-                                        <span class="text-xl md:text-3xl font-black text-[#ffffff] font-headline"
-                                            style="">5</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-3 md:px-12 py-3 md:py-6" style="">
-                                        <div class="flex items-center gap-4">
-                                            <div class="w-2 h-2 rounded-full bg-primary"></div>
-                                            <span class="text-xl md:text-3xl font-black text-primary font-headline"
-                                                style="">18</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-3 md:px-12 py-3 md:py-6 text-center" style="">
-                                        <div
-                                            class="inline-block px-4 py-1.5 rounded-lg bg-[#553e00]/30 border border-primary/20">
-                                            <span class="text-base md:text-xl font-bold text-primary font-headline"
-                                                style="">+8</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-3 md:px-12 py-3 md:py-6 text-right" style="">
-                                        <span class="text-xl md:text-3xl font-black text-[#ffffff] font-headline"
-                                            style="">13</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-3 md:px-12 py-3 md:py-6" style="">
-                                        <div class="flex items-center gap-4">
-                                            <div class="w-2 h-2 rounded-full bg-primary"></div>
-                                            <span class="text-xl md:text-3xl font-black text-primary font-headline"
-                                                style="">32</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-3 md:px-12 py-3 md:py-6 text-center" style="">
-                                        <div
-                                            class="inline-block px-4 py-1.5 rounded-lg bg-[#553e00]/30 border border-primary/20">
-                                            <span class="text-base md:text-xl font-bold text-primary font-headline"
-                                                style="">+12</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-3 md:px-12 py-3 md:py-6 text-right" style="">
-                                        <span class="text-xl md:text-3xl font-black text-[#ffffff] font-headline"
-                                            style="">25</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-3 md:px-12 py-3 md:py-6" style="">
-                                        <div class="flex items-center gap-4">
-                                            <div class="w-2 h-2 rounded-full bg-primary"></div>
-                                            <span class="text-xl md:text-3xl font-black text-primary font-headline"
-                                                style="">80</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-3 md:px-12 py-3 md:py-6 text-center" style="">
-                                        <div
-                                            class="inline-block px-4 py-1.5 rounded-lg bg-[#553e00]/30 border border-primary/20">
-                                            <span class="text-base md:text-xl font-bold text-primary font-headline"
-                                                style="">+40</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-3 md:px-12 py-3 md:py-6 text-right" style="">
-                                        <span class="text-xl md:text-3xl font-black text-[#ffffff] font-headline"
-                                            style="">65</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-3 md:px-12 py-3 md:py-6" style="">
-                                        <div class="flex items-center gap-4">
-                                            <div class="w-2 h-2 rounded-full bg-primary"></div>
-                                            <span class="text-xl md:text-3xl font-black text-primary font-headline"
-                                                style="">150</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-3 md:px-12 py-3 md:py-6 text-center" style="">
-                                        <div
-                                            class="inline-block px-4 py-1.5 rounded-lg bg-[#553e00]/30 border border-primary/20">
-                                            <span class="text-base md:text-xl font-bold text-primary font-headline"
-                                                style="">+32</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-3 md:px-12 py-3 md:py-6 text-right" style="">
-                                        <span class="text-xl md:text-3xl font-black text-[#ffffff] font-headline"
-                                            style="">97</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-3 md:px-12 py-3 md:py-6" style="">
-                                        <div class="flex items-center gap-4">
-                                            <div class="w-2 h-2 rounded-full bg-primary"></div>
-                                            <span class="text-xl md:text-3xl font-black text-primary font-headline"
-                                                style="">320</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-3 md:px-12 py-3 md:py-6 text-center" style="">
-                                        <div
-                                            class="inline-block px-4 py-1.5 rounded-lg bg-[#553e00]/30 border border-primary/20">
-                                            <span class="text-base md:text-xl font-bold text-primary font-headline"
-                                                style="">+68</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-3 md:px-12 py-3 md:py-6 text-right" style="">
-                                        <span class="text-xl md:text-3xl font-black text-[#ffffff] font-headline"
-                                            style="">165</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-3 md:px-12 py-3 md:py-6" style="">
-                                        <div class="flex items-center gap-4">
-                                            <div class="w-2 h-2 rounded-full bg-primary"></div>
-                                            <span class="text-xl md:text-3xl font-black text-primary font-headline"
-                                                style="">680</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-3 md:px-12 py-3 md:py-6 text-center" style="">
-                                        <div
-                                            class="inline-block px-4 py-1.5 rounded-lg bg-[#553e00]/30 border border-primary/20">
-                                            <span class="text-base md:text-xl font-bold text-primary font-headline"
-                                                style="">+138</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-3 md:px-12 py-3 md:py-6 text-right" style="">
-                                        <span class="text-xl md:text-3xl font-black text-[#ffffff] font-headline"
-                                            style="">303</span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <!-- <div class="py-8 border-t border-white/5 bg-surface-container-highest/30 text-center">
-<p class="font-headline font-bold text-on-surface-variant flex items-center justify-center gap-4" style="">
-<span class="uppercase  text-sm" style="">Tổng Bonus Tối Đa</span>
-<span class="text-2xl md:text-4xl font-black text-[#ffffff]" style="">303</span>
-<span class="text-sm" style="">điểm</span>
-</p>
-</div> -->
-                    </div>
+                <div class="reward-card">
+                    <table aria-label="Bảng mốc thưởng">
+                        <thead><tr><th scope="col">Mốc điểm</th><th scope="col">Bonus</th><th scope="col">Tổng bonus</th></tr></thead>
+                        <tbody>
+                            {milestones.map(({ points, bonus, total }) => (
+                                <tr><th scope="row">{points}</th><td>+{bonus}</td><td>{total}</td></tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
@@ -628,100 +350,6 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
                 hỏi thường gặp</h2>
             <div id="faq-accordion" class="flex flex-col gap-3"></div>
         </section>
-        <style is:global>
-            .accordion-item {
-                --accordion-frame: rgba(0, 227, 253, 0.46);
-                background: linear-gradient(105deg, rgba(22, 45, 102, 0.88), rgba(14, 23, 63, 0.92));
-                backdrop-filter: blur(12px);
-                border: 1px solid var(--accordion-frame);
-                border-radius: 0;
-                clip-path: none;
-                overflow: hidden;
-                position: relative;
-                isolation: isolate;
-                transition: border-color 0.2s, background 0.2s;
-            }
-
-            .accordion-item::before {
-                content: '';
-                position: absolute;
-                inset: 0;
-                z-index: 0;
-                pointer-events: none;
-                background:
-                    linear-gradient(90deg, var(--accordion-frame), transparent 18%) top left / 100% 1px no-repeat;
-            }
-
-            .accordion-item > * {
-                position: relative;
-                z-index: 1;
-            }
-
-            .accordion-item:hover {
-                --accordion-frame: rgba(0, 227, 253, 0.76);
-            }
-
-            .accordion-item.is-open {
-                --accordion-frame: rgba(255, 209, 108, 0.72);
-            }
-
-            .accordion-trigger {
-                width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 1rem;
-                padding: 1.25rem 1.5rem;
-                text-align: left;
-                font-family: "Roboto", sans-serif;
-                font-weight: 700;
-                font-size: 0.95rem;
-                color: rgba(255, 255, 255, 0.85);
-                background: transparent;
-                border: none;
-                cursor: pointer;
-                transition: color 0.2s;
-            }
-
-            .accordion-trigger:hover {
-                color: #fff;
-            }
-
-            .accordion-item.is-open .accordion-trigger {
-                color: #ffd16c;
-            }
-
-            .accordion-icon {
-                flex-shrink: 0;
-                width: 1.25rem;
-                height: 1.25rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: transform 0.3s ease;
-            }
-
-            .accordion-item.is-open .accordion-icon {
-                transform: rotate(45deg);
-            }
-
-            .accordion-body {
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.4s ease;
-            }
-
-            .accordion-item.is-open .accordion-body {
-                max-height: 900px;
-            }
-
-            .accordion-content {
-                padding: 0 1.5rem 1.25rem;
-                color: #fff;
-                font-size: 0.95rem;
-                line-height: 1.7;
-            }
-        </style>
         <script is:inline>
             var faqData = [
                 {
@@ -860,5 +488,6 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
         setActiveNav();
     </script>
     
-<script>import '../../scripts/hero-fade';</script>
+<script>import '../../scripts/hero-intro';
+import '../../scripts/hero-fade';</script>
 </ProgramLayout>

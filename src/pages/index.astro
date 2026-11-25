@@ -1,13 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import IntroLoader from '../components/IntroLoader.astro';
-import ProgramTransition from '../components/ProgramTransition.astro';
+
 
 const title = "Allstar Club - Chương trình Loyalty lực lượng bán Techcombank & OneHousing";
 const description = "Allstar Club là chương trình loyalty dành cho lực lượng bán Techcombank và OneHousing. Khám phá các chương trình PRM Techcombank và LLB OneHousing để nhận thưởng U-Point hấp dẫn.";
 ---
 
-<BaseLayout title={title} description={description} canonicalPath="/" bodyClass="" scrollEffects={true}>
+<BaseLayout title={title} description={description} canonicalPath="/" bodyClass="club-entry">
   <Fragment slot="head">
 <script is:inline type="application/ld+json">
   {
@@ -21,498 +21,44 @@ const description = "Allstar Club là chương trình loyalty dành cho lực l�
       "name": "OneHousing",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://allstar26.vercel.app/prm/assets/images/Logo%20Allstar.webp"
+        "url": "https://allstar26.vercel.app/assets/images/allstar-27.webp"
       }
     }
   }
   </script>
-<style>
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      min-height: 100vh;
-      background: #06091a;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 80px;
-      padding: 48px 20px;
-      overflow-x: hidden;
-      font-family: 'Roboto', sans-serif;
-    }
-
-    /* ── Background ── */
-    .contest-bg,
-    .contest-bg::after {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-    }
-
-    .contest-bg {
-      z-index: 0;
-      overflow: hidden;
-      background: #06091a url('/assets/images/allstar-contest-arena.webp') center / cover no-repeat;
-    }
-
-    .contest-video {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* Darken the visual centre so the logo and programme choices stay legible. */
-    .contest-bg::after {
-      content: '';
-      z-index: 1;
-      background:
-        radial-gradient(rgba(0, 0, 0, 0.22) 0.5px, transparent 0.9px) 0 0 / 3px 3px,
-        radial-gradient(ellipse 58% 58% at 50% 43%, rgba(5, 8, 30, 0.72) 0%, rgba(5, 8, 30, 0.38) 50%, transparent 78%),
-        linear-gradient(180deg, rgba(4, 6, 28, 0.28) 0%, rgba(4, 6, 28, 0.06) 42%, rgba(4, 6, 28, 0.52) 100%);
-    }
-
-    @media (max-width: 640px) {
-      .contest-bg::after {
-        background:
-          radial-gradient(rgba(0, 0, 0, 0.22) 0.5px, transparent 0.9px) 0 0 / 3px 3px,
-          radial-gradient(ellipse 92% 52% at 50% 42%, rgba(5, 8, 30, 0.8) 0%, rgba(5, 8, 30, 0.45) 62%, transparent 90%),
-          linear-gradient(180deg, rgba(4, 6, 28, 0.42), rgba(4, 6, 28, 0.54));
-      }
-    }
-
-    /* ── Logo ── */
-    .logo-wrap {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2;
-      /* Kích thước logo: lớn theo màn hình nhưng không đẩy hai thẻ chương trình ra khỏi khung nhìn. */
-      --logo-size: clamp(280px, min(40vw, 46vh), 520px);
-      width: var(--logo-size);
-      height: var(--logo-size);
-    }
-
-    @media (max-width: 640px) {
-      .logo-wrap {
-        --logo-size: min(82vw, 40vh, 340px);
-      }
-    }
-
-    .logo-content {
-      position: relative;
-      z-index: 2;
-      animation: float 4s ease-in-out infinite;
-      transition: transform 0.5s;
-      cursor: pointer;
-    }
-
-    .logo-content:hover {
-      transform: scale(1.05);
-    }
-
-    .logo-wrap img {
-      width: var(--logo-size);
-      height: var(--logo-size);
-      object-fit: contain;
-      filter: drop-shadow(0 0 50px rgba(255, 209, 108, 0.55));
-      animation: pulse-glow 4s ease-in-out infinite;
-    }
-
-    .logo-glow-bg {
-      position: absolute;
-      inset: 0;
-      background: rgba(255, 209, 108, 0.15);
-      border-radius: 50%;
-      filter: blur(80px);
-      z-index: -10;
-      pointer-events: none;
-    }
-
-    @keyframes pulse-glow {
-
-      0%,
-      100% {
-        filter: drop-shadow(0 0 24px rgba(255, 209, 108, 0.5));
-      }
-
-      50% {
-        filter: drop-shadow(0 0 60px rgba(255, 209, 108, 0.9));
-      }
-    }
-
-    @keyframes spin {
-      from {
-        transform: rotate(0deg);
-      }
-
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes float {
-
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-11px);
-      }
-    }
-
-    /* ── Cards container ── */
-    .cards {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      width: 100%;
-      max-width: 500px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .cards-title {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      margin-bottom: 6px;
-      text-align: center;
-      font-family: 'JetBrains Mono', ui-monospace, monospace;
-      font-size: clamp(0.78rem, 1.15vw, 0.95rem);
-      font-weight: 700;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: #fff;
-      text-shadow: 0 2px 14px rgba(3, 6, 24, 0.7);
-    }
-
-    /* Màn hình hẹp: thu khoảng cách chữ để câu nằm gọn một dòng */
-    @media (max-width: 480px) {
-      .cards-title {
-        font-size: 0.72rem;
-        letter-spacing: 0.14em;
-      }
-    }
-
-    /* Desktop: hai lựa chọn nằm cùng một hàng */
-    @media (min-width: 900px) {
-      .cards {
-        flex-direction: row;
-        flex-wrap: wrap;
-        max-width: 980px;
-        gap: 20px;
-      }
-
-      .cards .cards-title {
-        flex: 0 0 100%;
-        margin-bottom: 0;
-      }
-
-      .cards .card {
-        flex: 1 1 0;
-        min-width: 0;
-      }
-    }
-
-    /* ── Card ── */
-    .card {
-      --panel-cyan: rgba(0, 227, 253, 0.58);
-      --panel-gold: rgba(255, 209, 108, 0.82);
-      position: relative;
-      isolation: isolate;
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      padding: 22px 24px;
-      text-decoration: none;
-      overflow: hidden;
-      transition: transform 0.25s ease, background 0.25s ease;
-      /* Khung vát góc như panel điểm ở trang PRM, nền kính xanh để vẫn nhìn xuyên video */
-      border: 1px solid var(--panel-cyan);
-      border-radius: 0;
-      clip-path: none;
-      background: linear-gradient(105deg, rgba(31, 62, 132, 0.62), rgba(13, 25, 72, 0.5));
-      -webkit-backdrop-filter: blur(24px) saturate(1.4);
-      backdrop-filter: blur(24px) saturate(1.4);
-    }
-
-    /* Đường chéo ở 4 góc + vạch sáng cạnh trên/dưới (giống panel PRM) */
-    .card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.85;
-      background:
-        linear-gradient(90deg, var(--panel-cyan), transparent 18%) top left / 100% 1px no-repeat,
-        linear-gradient(270deg, var(--panel-gold), transparent 16%) bottom right / 100% 1px no-repeat;
-      transition: opacity 0.25s;
-    }
-
-    .card:hover::before {
-      opacity: 1;
-    }
-
-    /* Ánh màu theo chương trình */
-    .card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background: var(--card-bg);
-      transition: opacity 0.25s;
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-      background: linear-gradient(105deg, rgba(38, 74, 156, 0.72), rgba(16, 30, 84, 0.58));
-    }
-
-    /* Card 1 – PRM / cyan */
-    .card-prm {
-      --border-grad: linear-gradient(135deg, rgba(0, 227, 253, 0.6), rgba(0, 227, 253, 0.1) 60%, transparent);
-      --card-bg: linear-gradient(135deg, rgba(0, 227, 253, 0.16) 0%, rgba(255, 255, 255, 0) 70%);
-      --card-shadow: 0 12px 40px rgba(0, 227, 253, 0.18);
-      --accent: #00e3fd;
-      --tag-bg: rgba(0, 227, 253, 0.12);
-      --tag-color: #ffffff;
-    }
-
-    /* Card 2 – SIH / gold */
-    .card-sih {
-      --border-grad: linear-gradient(135deg, rgba(255, 209, 108, 0.6), rgba(255, 209, 108, 0.1) 60%, transparent);
-      --card-bg: linear-gradient(135deg, rgba(255, 209, 108, 0.18) 0%, rgba(255, 255, 255, 0) 70%);
-      --card-shadow: 0 12px 40px rgba(255, 209, 108, 0.15);
-      --accent: #ffd16c;
-      --tag-bg: rgba(255, 209, 108, 0.12);
-      --tag-color: #ffd16c;
-    }
-
-    /* Card icon */
-    .card-icon {
-      position: relative;
-      z-index: 1;
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      background: var(--tag-bg);
-      border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      color: var(--accent);
-      font-size: 22px;
-      transition: transform 0.25s;
-    }
-
-    .card:hover .card-icon {
-      transform: scale(1.1);
-    }
-
-    /* Card text */
-    .card-text {
-      position: relative;
-      z-index: 1;
-      flex: 1;
-      min-width: 0;
-    }
-
-    .card-tag {
-      display: inline-block;
-      font-size: 14px;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: var(--tag-color);
-      background: var(--tag-bg);
-      border-radius: 6px;
-      padding: 2px 8px;
-      margin-bottom: 6px;
-    }
-
-    .card-title {
-      font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
-      letter-spacing: -0.02em;
-      font-size: 18px;
-      font-weight: 600;
-      color: #fff;
-      line-height: 1.2;
-      text-shadow: 0 1px 10px rgba(3, 6, 24, 0.55);
-    }
-
-    .card-sub {
-      font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
-      letter-spacing: -0.02em;
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.85);
-      text-shadow: 0 1px 8px rgba(3, 6, 24, 0.5);
-      margin-top: 3px;
-      font-weight: 500;
-    }
-
-    /* Arrow */
-    .card-arrow {
-      position: relative;
-      z-index: 1;
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: var(--tag-bg);
-      border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      flex-shrink: 0;
-      transition: background 0.25s, transform 0.25s;
-      font-size: 17px;
-    }
-
-    .card:hover .card-arrow {
-      background: color-mix(in srgb, var(--accent) 22%, transparent);
-      transform: translateX(3px);
-    }
-
-    /* Sparkle dots */
-    .card-dots {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-      border-radius: 20px;
-      pointer-events: none;
-    }
-
-    .card-dots span {
-      position: absolute;
-      border-radius: 50%;
-      background: var(--accent);
-      opacity: 0.12;
-    }
-
-
-
-    /* ── Light mode ── */
-    body.light {
-      background: #eef2f7;
-    }
-
-    body.light #theme-toggle {
-      border-color: rgba(0, 0, 0, 0.12);
-      background: rgba(0, 0, 0, 0.05);
-      color: rgba(0, 0, 0, 0.6);
-    }
-
-    body.light #theme-toggle:hover {
-      background: rgba(0, 0, 0, 0.1);
-      color: #000;
-    }
-
-    body.light .card-title {
-      color: #0f172a;
-    }
-
-    body.light .card-sub {
-      color: rgba(0, 0, 0, 0.45);
-    }
-
-    body.light .card-prm {
-      --card-bg: linear-gradient(135deg, rgba(0, 227, 253, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
-      --card-shadow: 0 12px 40px rgba(0, 227, 253, 0.22);
-    }
-
-    body.light .card-sih {
-      --card-bg: linear-gradient(135deg, rgba(255, 209, 108, 0.12) 0%, rgba(255, 255, 255, 0) 70%);
-      --card-shadow: 0 12px 40px rgba(255, 209, 108, 0.2);
-    }
-
-    /* ── Page Entry Transition ── */
-  </style>
+    <link rel="preload" as="image" href="/assets/images/allstar-home-saigon-illustrated.webp" fetchpriority="high" />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet" />
   </Fragment>
-
   <IntroLoader />
-  <ProgramTransition />
-
-  <div class="contest-bg" aria-hidden="true">
-    <video class="contest-video" autoplay muted loop playsinline preload="auto" poster="/assets/images/allstar-contest-arena.webp">
-      <source src="/assets/images/allstar-contest-arena-loop.mp4" type="video/mp4" />
+  <main class="club-cover home-cover">
+    <img class="club-scene" src="/assets/images/allstar-home-saigon-illustrated.webp" alt="" fetchpriority="high" width="1672" height="941" />
+    <video class="home-video" autoplay muted loop playsinline preload="auto" aria-hidden="true" poster="/assets/images/allstar-home-saigon-illustrated.webp">
+      <source src="/assets/images/allstar-home-river-new-loop.mp4" type="video/mp4" />
     </video>
-  </div>
-
-  <script is:inline>
-    const contestVideo = document.querySelector('.contest-video');
-    if (contestVideo) {
-      contestVideo.muted = true;
-      const ensureContestVideoPlays = () => contestVideo.play().catch(() => {});
-      contestVideo.addEventListener('canplay', ensureContestVideoPlays, { once: true });
-      document.addEventListener('visibilitychange', () => {
-        if (!document.hidden) ensureContestVideoPlays();
-      });
-      ensureContestVideoPlays();
-    }
-  </script>
-
-  <div class="logo-wrap">
-    <div class="logo-content">
-      <img src="prm/assets/images/Logo Allstar.webp" alt="AllStar Club" width="620" height="428" fetchpriority="high" decoding="async">
+    <div class="club-caption">
+      <h1 class="home-logo"><img class="club-wordmark" src="/assets/images/allstar-27.webp" alt="Allstar Club" width="1024" height="872" /><span class="home-logo-light" aria-hidden="true"></span></h1>
+      <p class="club-programs-prompt">Vui lòng chọn chương trình phù hợp</p>
+      <nav class="club-programs" aria-label="Chọn chương trình">
+        <a href="/prm/"><strong>PRM Techcombank</strong></a>
+        <a href="/sih/"><strong>LLB OneHousing</strong></a>
+      </nav>
     </div>
-
-    <!-- Glow behind logo -->
-    <div class="logo-glow-bg"></div>
-  </div>
-
-  <div class="cards">
-    <p class="cards-title">Vui lòng chọn chương trình phù hợp</p>
-
-    <a href="/prm/" class="card card-prm">
-      <div class="card-dots">
-        <span style="width:80px;height:80px;top:-20px;right:60px;filter:blur(20px)"></span>
-        <span style="width:40px;height:40px;bottom:10px;right:20px;filter:blur(12px)"></span>
-      </div>
-      <div class="card-icon">
-        <span class="material-symbols-outlined">trophy</span>
-      </div>
-      <div class="card-text">
-        <p class="card-title">PRM Techcombank</p>
-        <p class="card-sub">Chương trình Loyalty · Lực lượng tư vấn</p>
-      </div>
-      <div class="card-arrow">
-        <span class="material-symbols-outlined">arrow_forward</span>
-      </div>
-    </a>
-
-    <a href="/sih/" class="card card-sih">
-      <div class="card-dots">
-        <span style="width:80px;height:80px;top:-20px;right:60px;filter:blur(20px)"></span>
-        <span style="width:40px;height:40px;bottom:10px;right:20px;filter:blur(12px)"></span>
-      </div>
-      <div class="card-icon">
-        <span class="material-symbols-outlined">trophy</span>
-      </div>
-      <div class="card-text">
-        <p class="card-title">LLB OneHousing</p>
-        <p class="card-sub">Chương trình Loyalty · Sale In-House</p>
-      </div>
-      <div class="card-arrow">
-        <span class="material-symbols-outlined">arrow_forward</span>
-      </div>
-    </a>
-
-  </div>
+  </main>
+  <script is:inline>
+    (() => {
+      const video = document.querySelector('.home-video');
+      if (!video) return;
+      video.muted = true;
+      video.defaultMuted = true;
+      const play = () => {
+        if (!document.hidden) video.play().catch(() => {});
+      };
+      video.addEventListener('playing', () => video.classList.add('is-playing'));
+      video.addEventListener('error', () => video.classList.remove('is-playing'));
+      video.addEventListener('canplay', play, { once: true });
+      document.addEventListener('visibilitychange', play);
+      document.addEventListener('pointerdown', play, { once: true });
+      play();
+    })();
+  </script>
 </BaseLayout>
