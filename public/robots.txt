@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://allstar26.vercel.app/sitemap.xml
+Sitemap: https://allstar2027.vercel.app/sitemap.xml
