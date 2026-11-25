@@ -217,7 +217,7 @@
 .program-info .accordion-trigger:focus-visible { outline: 2px solid #ffc499; outline-offset: -4px; border-radius: inherit; }
 .program-info .accordion-trigger:hover, .program-info .is-open .accordion-trigger { color: #ffc499; }
 .program-info .accordion-icon { flex: none; color: #ffc499; transition: transform .2s ease; }
-.program-info .is-open .accordion-icon { transform: rotate(45deg); }
+.program-info .is-open .accordion-icon { transform: rotate(180deg); }
 .program-info .accordion-body { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows .25s ease, visibility .25s; }
 .program-info .is-open .accordion-body { grid-template-rows: 1fr; visibility: visible; }
 .program-info .accordion-content { min-height: 0; overflow: hidden; margin-inline: clamp(1.25rem, 2.5vw, 2.25rem); color: #ebdae5; line-height: 1.65; }
